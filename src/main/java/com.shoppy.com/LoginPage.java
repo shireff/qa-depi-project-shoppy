@@ -39,13 +39,13 @@ public class LoginPage extends BasePage {
         passField.sendKeys(pass);
     }
 
-    public ProductsPage clickLogin() {
+    public HomePage clickLogin() {
         WebElement button = getVisibleElement(loginButton);
         button.click();
-        return new ProductsPage();
+        return new HomePage();
     }
 
-    public ProductsPage loginIntoApp(String userName, String password) {
+    public HomePage loginIntoApp(String userName, String password) {
         setUserName(userName);
         setPassword(password);
         return clickLogin();
