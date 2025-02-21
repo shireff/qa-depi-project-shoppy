@@ -31,7 +31,7 @@ QA/
 ## 🏃‍♂️ How to Run
 1. **Clone the repository from GitHub**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/shireff/qa-depi-project-shoppy
    cd depi-project-shoppy
    ```
 
