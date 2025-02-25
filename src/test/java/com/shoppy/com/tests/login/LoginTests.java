@@ -1,8 +1,13 @@
 package com.shoppy.com.tests.login;
 
 import com.shoppy.com.base.BaseTest;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
+import java.util.Set;
 
 public class LoginTests extends BaseTest {
     @Test(priority = 1)
@@ -55,5 +60,31 @@ public class LoginTests extends BaseTest {
         String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
+    }
+
+    @Test(priority = 6)
+    public void testGoogleLogin() {
+        loginPage.clickGoogleLogin();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String mainWindow = driver.getWindowHandle();
+
+        wait.until(driver -> driver.getWindowHandles().size() > 1);
+
+        Set<String> allWindows = driver.getWindowHandles();
+        for (String window : allWindows) {
+            if (!window.equals(mainWindow)) {
+                driver.switchTo().window(window);
+                break;
+            }
+        }
+
+        wait.until(ExpectedConditions.urlContains("https://accounts.google.com/v3/signin"));
+
+        String currentURL = driver.getCurrentUrl();
+        Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
+                "Google Sign-in page did not open! Actual URL: " + currentURL);
+
     }
 }

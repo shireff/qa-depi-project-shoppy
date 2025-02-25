@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 public class LoginPage extends BasePage {
     private final By usernameField = By.id("email");
@@ -17,6 +18,11 @@ public class LoginPage extends BasePage {
     private final By userNotExistToastMsg = By.xpath("//li[@data-state='open']//div[contains(text(),'User does not exists! Please register')]");
     private final By adminDashboardHeader = By.xpath("//h2[text()='Admin Panel']");
     private final By userHeader = By.xpath("//span[text()='Shoppy']");
+    private final By googleLoginButton = By.xpath("//button[contains(., 'Continue with Google')]");
+    private final By emailField = By.xpath("//input[@type='email']");
+    private final By nextButton = By.xpath("//span[contains(text(),'Next')]");
+    private final By confirmNextButton = By.xpath("//span[contains(text(),'Next')]");
+
     private WebElement getVisibleElement(By locator) {
         List<WebElement> elements = driver.findElements(locator);
         for (WebElement element : elements) {
@@ -84,6 +90,35 @@ public class LoginPage extends BasePage {
         }
     }
 
+    public void clickGoogleLogin() {
+        WebElement googleBtn = getVisibleElement(googleLoginButton);
+        googleBtn.click();
+    }
+
+    public void loginWithGoogle(String email, String password) {
+        String mainWindow = driver.getWindowHandle();
+        Set<String> allWindows = driver.getWindowHandles();
+        for (String window : allWindows) {
+            if (!window.equals(mainWindow)) {
+                driver.switchTo().window(window);
+                break;
+            }
+        }
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));
+        emailInput.sendKeys(email);
+        driver.findElement(nextButton).click();
+
+        WebElement passwordInput = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordField));
+        passwordInput.sendKeys(password);
+        driver.findElement(confirmNextButton).click();
+
+        driver.switchTo().window(mainWindow);
+    }
+
+
     public boolean isLoggedInAsUser(int timeoutInSeconds) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
@@ -93,6 +128,8 @@ public class LoginPage extends BasePage {
             return false;
         }
     }
+
+
 
 }
 
