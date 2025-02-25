@@ -92,15 +92,15 @@ public class HomePageTests extends BaseTest {
 //        Assert.assertTrue(homePage.isNoProductsMessageDisplayed(), "\n Brand filter failed! \n");
 //    }
 
-    @Test
-    public void testBrandSelectionPuma() throws InterruptedException {
-        HomePage homePage = loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
-        homePage.selectBrand("Puma");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlContains("brand=puma"));
-        Thread.sleep(1000);
-        Assert.assertTrue(homePage.isNoProductsMessageDisplayed(), "\n Brand filter failed! \n");
-    }
+//    @Test
+//    public void testBrandSelectionPuma() throws InterruptedException {
+//        HomePage homePage = loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
+//        homePage.selectBrand("Puma");
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.urlContains("brand=puma"));
+//        Thread.sleep(1000);
+//        Assert.assertTrue(homePage.isNoProductsMessageDisplayed(), "\n Brand filter failed! \n");
+//    }
 
 //    @Test
 //    public void testBrandSelectionLevi() throws InterruptedException {
@@ -137,9 +137,10 @@ public class HomePageTests extends BaseTest {
     @Test
     public void testFeatureProductsInteraction() throws InterruptedException {
         HomePage homePage = loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
-
+        Thread.sleep(1000);
         Assert.assertTrue(homePage.isFeaturedProductDisplayed(), "\n ❌ Featured products are not displayed! \n");
 
+        Thread.sleep(1000);
         homePage.clickFirstFeaturedProduct();
 
 

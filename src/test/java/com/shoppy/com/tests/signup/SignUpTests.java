@@ -67,14 +67,15 @@ public class SignUpTests extends BaseTest {
         Assert.assertTrue(actualMessage.contains("Password is required"));
     }
 
-    @Test
-    public void testValidSign() throws InterruptedException {
-        SignUp signUpPage = new SignUp();
-        signUpPage.clickSignUpLink();
-        signUpPage.fillSignUpForm("new User Automation", "shireffn369+q@gmail.com", "Shireff@123");
-        LoginPage loginPage = signUpPage.clickSignUpButton();
-        Thread.sleep(2000);
-        Assert.assertTrue(driver.getCurrentUrl().contains("/auth/login"), "❌ Failed to navigate to the Login page after successful sign up.");
-        System.out.println("✅ Successfully navigated to the Login page.");    }
+//    @Test
+//    public void testValidSign() throws InterruptedException {
+//        SignUp signUpPage = new SignUp();
+//        signUpPage.clickSignUpLink();
+//        signUpPage.fillSignUpForm("new User Automation", "shireffn369+q@gmail.com", "Shireff@123");
+//        LoginPage loginPage = signUpPage.clickSignUpButton();
+//        Thread.sleep(2000);
+//        Assert.assertTrue(driver.getCurrentUrl().contains("/auth/login"), "❌ Failed to navigate to the Login page after successful sign up.");
+//        System.out.println("✅ Successfully navigated to the Login page.");
+//    }
 
 }

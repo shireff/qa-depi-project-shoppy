@@ -1,15 +1,17 @@
 package com.shoppy.com.base;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.shoppy.com.BasePage;
 import com.shoppy.com.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 public class BaseTest {
@@ -19,9 +21,20 @@ public class BaseTest {
     protected LoginPage loginPage;
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
 
+    private static ExtentReports extent;
+    protected ExtentTest test;
+
+    @BeforeSuite
+    public void setUpReport() {
+        ExtentSparkReporter htmlReporter = new ExtentSparkReporter("test-output/ExtentReport.html");
+        extent = new ExtentReports();
+        extent.attachReporter(htmlReporter);
+    }
+
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(Method method) {
+        test = extent.createTest(method.getName());
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-cache");
         options.addArguments("--disable-application-cache");
@@ -37,7 +50,20 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public void tearDown(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            test.fail("Test Failed: " + result.getThrowable().getMessage());
+        } else if (result.getStatus() == ITestResult.SUCCESS) {
+            test.pass("Test Passed Successfully!");
+        } else {
+            test.skip("Test Skipped: " + result.getThrowable().getMessage());
+        }
+
         driver.quit();
+    }
+
+    @AfterSuite
+    public void tearDownReport() {
+        extent.flush();
     }
 }
