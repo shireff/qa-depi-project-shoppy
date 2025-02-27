@@ -20,11 +20,12 @@ public class LoginTests extends BaseTest {
     }
 
     @Test(priority = 2)
-    public void testLoginWrongPasswordErrorMsg() {
+    public void testLoginWrongPasswordErrorMsg() throws InterruptedException {
         loginPage.setUserName("shireffn369+f@gmail.com");
         loginPage.setPassword("WrongPassword");
         loginPage.clickLogin();
         String actualMessage = loginPage.getToastErrorMsg();
+        Thread.sleep(1000);
         Assert.assertTrue(actualMessage.contains("Email or password is incorrect! Please try again"));
     }
 

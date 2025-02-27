@@ -1,6 +1,7 @@
 package com.shoppy.com;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,33 +23,31 @@ public class LoginPage extends BasePage {
     private final By emailField = By.xpath("//input[@type='email']");
     private final By nextButton = By.xpath("//span[contains(text(),'Next')]");
     private final By confirmNextButton = By.xpath("//span[contains(text(),'Next')]");
-
-    private WebElement getVisibleElement(By locator) {
-        List<WebElement> elements = driver.findElements(locator);
-        for (WebElement element : elements) {
-            if (element.isDisplayed()) {
-                return element;
-            }
-        }
-        throw new RuntimeException("No visible element found for: " + locator.toString());
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
+//    private WebElement getVisibleElement(By locator) {
+//        List<WebElement> elements = driver.findElements(locator);
+//        for (WebElement element : elements) {
+//            if (element.isDisplayed()) {
+//                return element;
+//            }
+//        }
+//        throw new RuntimeException("No visible element found for: " + locator.toString());
+//    }
+
     public void setUserName(String userName) {
-        WebElement emailField = getVisibleElement(usernameField);
-        emailField.clear();
-        emailField.sendKeys(userName);
+        set(usernameField, userName);
     }
 
     public void setPassword(String pass) {
-        WebElement passField = getVisibleElement(passwordField);
-        passField.clear();
-        passField.sendKeys(pass);
+        set(passwordField, pass);
     }
 
     public HomePage clickLogin() {
-        WebElement button = getVisibleElement(loginButton);
-        button.click();
-        return new HomePage();
+       click(loginButton);
+        return new HomePage(driver);
     }
 
     public HomePage loginIntoApp(String userName, String password) {
@@ -58,14 +57,13 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorMsg() {
-        WebElement errorElement = getVisibleElement(errorMsg);
+        WebElement errorElement = find(errorMsg);
         return errorElement.getText();
     }
 
     public String getToastErrorMsgUserNotExist() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            WebElement toastElement = wait.until(ExpectedConditions.visibilityOfElementLocated(userNotExistToastMsg));
+            WebElement toastElement = find(userNotExistToastMsg);
             return toastElement.getText();
         } catch (Exception e) {
             throw new RuntimeException("Toast message for 'User does not exist' did not appear!", e);
@@ -74,7 +72,7 @@ public class LoginPage extends BasePage {
 
 
     public String getToastErrorMsg() {
-        WebElement toastErrorElement = getVisibleElement(toastErrorMsg);
+        WebElement toastErrorElement = find(toastErrorMsg);
         return toastErrorElement.getText();
     }
 
@@ -82,8 +80,7 @@ public class LoginPage extends BasePage {
 
     public boolean isLoggedInAsAdmin(int timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-            WebElement dashboardHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(adminDashboardHeader));
+            WebElement dashboardHeader = find(adminDashboardHeader);
             return dashboardHeader != null;
         } catch (Exception e) {
             return false;
@@ -91,7 +88,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickGoogleLogin() {
-        WebElement googleBtn = getVisibleElement(googleLoginButton);
+        WebElement googleBtn = find(googleLoginButton);
         googleBtn.click();
     }
 
@@ -121,8 +118,7 @@ public class LoginPage extends BasePage {
 
     public boolean isLoggedInAsUser(int timeoutInSeconds) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-            WebElement dashboardHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(userHeader));
+            WebElement dashboardHeader = find(userHeader);
             return dashboardHeader != null;
         } catch (Exception e) {
             return false;

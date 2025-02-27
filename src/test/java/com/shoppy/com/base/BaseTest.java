@@ -5,6 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.shoppy.com.BasePage;
 import com.shoppy.com.LoginPage;
+import com.shoppy.com.SignUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -19,6 +20,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected BasePage basePage;
     protected LoginPage loginPage;
+    protected SignUp signUpPage;
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
 
     private static ExtentReports extent;
@@ -44,9 +46,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(url);
-        basePage = new BasePage();
-        basePage.setDriver(driver);
-        loginPage = new LoginPage();
+        basePage = new BasePage(driver);
+        //basePage.setDriver(driver);
+        loginPage = new LoginPage(driver);
+        signUpPage = new SignUp(driver);
     }
 
     @AfterMethod

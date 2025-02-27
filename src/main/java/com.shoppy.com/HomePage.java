@@ -24,6 +24,10 @@ public class HomePage extends BasePage {
     private By noProductsMessage = By.xpath("//h2[text()='No Products Found']");
     private By footerLinks = By.cssSelector("footer a");
 
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
+
     public boolean isHomePageHeaderDisplayed() {
         try {
             FluentWait<WebDriver> wait = new FluentWait<>(driver)
@@ -31,7 +35,7 @@ public class HomePage extends BasePage {
                     .pollingEvery(Duration.ofSeconds(1))  // Check every second
                     .ignoring(NoSuchElementException.class); // Ignore if not found initially
 
-            WebElement headerElement = wait.until(ExpectedConditions.visibilityOfElementLocated(homePageHeader));
+            WebElement headerElement = find(homePageHeader);
             return headerElement.isDisplayed();
         } catch (Exception e) {
             return false;  // Handle timeout case gracefully
