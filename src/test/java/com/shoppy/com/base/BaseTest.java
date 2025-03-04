@@ -3,9 +3,9 @@ package com.shoppy.com.base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.shoppy.com.BasePage;
-import com.shoppy.com.LoginPage;
-import com.shoppy.com.SignUp;
+import com.shoppy.com.pages.BasePage;
+import com.shoppy.com.pages.LoginPage;
+import com.shoppy.com.pages.SignUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -47,7 +47,6 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.get(url);
         basePage = new BasePage(driver);
-        //basePage.setDriver(driver);
         loginPage = new LoginPage(driver);
         signUpPage = new SignUp(driver);
     }

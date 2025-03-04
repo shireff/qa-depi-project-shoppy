@@ -1,32 +1,46 @@
 package com.shoppy.com.tests.login;
 
-import com.shoppy.com.base.BaseTest;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import com.shoppy.com.pages.LoginPage;
+import com.shoppy.com.utils.BrowserActions;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
-import java.util.Set;
 
-public class LoginTests extends BaseTest {
+public class LoginTests {
+
+    protected WebDriver driver;
+    protected LoginPage loginPage;
+    private String url = "https://shoppy-ochre.vercel.app/auth/login";
+
+    @BeforeMethod
+    public void setUp(Method method) {
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        BrowserActions.openUrl(driver, url);
+        loginPage = new LoginPage(driver);
+    }
+
     @Test(priority = 1)
     public void testLoginShortPasswordErrorMsg() {
         loginPage.setUserName("shireffn369+f@gmail.com");
         loginPage.setPassword("123");
         loginPage.clickLogin();
-        String actualMessage = loginPage.getErrorMsg();
-        Assert.assertTrue(actualMessage.contains("Password must be at least 8 characters long."));
+        loginPage.assertErrorMessageDisplayed();
     }
 
     @Test(priority = 2)
-    public void testLoginWrongPasswordErrorMsg() throws InterruptedException {
+    public void testLoginWrongPasswordErrorMsg() {
         loginPage.setUserName("shireffn369+f@gmail.com");
         loginPage.setPassword("WrongPassword");
         loginPage.clickLogin();
-        String actualMessage = loginPage.getToastErrorMsg();
-        Thread.sleep(1000);
-        Assert.assertTrue(actualMessage.contains("Email or password is incorrect! Please try again"));
+        loginPage.assertToastErrorMessageDisplayed();
     }
 
     @Test(priority = 3)
@@ -34,18 +48,15 @@ public class LoginTests extends BaseTest {
         loginPage.setUserName("notExist@gmail.com");
         loginPage.setPassword("WrongPassword");
         loginPage.clickLogin();
-        String actualMessage = loginPage.getToastErrorMsgUserNotExist();
-        Assert.assertTrue(actualMessage.contains("User does not exists! Please register"));
+        loginPage.assertUserNotExistToastDisplayed();
     }
-
 
     @Test(priority = 4)
     public void testLoginAsAdmin() {
         loginPage.setUserName("shireffn369@gmail.com");
         loginPage.setPassword("Shireff@123");
         loginPage.clickLogin();
-        boolean isAdminLoggedIn = loginPage.isLoggedInAsAdmin(10);
-        Assert.assertTrue(isAdminLoggedIn, "Admin login failed! Dashboard header not found.");
+        loginPage.assertLoginSuccessfulAsAdmin();
         String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
@@ -56,8 +67,7 @@ public class LoginTests extends BaseTest {
         loginPage.setUserName("shireffn369+f@gmail.com");
         loginPage.setPassword("Shireff@123");
         loginPage.clickLogin();
-        boolean isAdminLoggedIn = loginPage.isLoggedInAsUser(10);
-        Assert.assertTrue(isAdminLoggedIn, "User login failed! User header not found.");
+        loginPage.assertLoginSuccessfulAsUser();
         String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
@@ -67,25 +77,18 @@ public class LoginTests extends BaseTest {
     public void testGoogleLogin() {
         loginPage.clickGoogleLogin();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         String mainWindow = driver.getWindowHandle();
 
-        wait.until(driver -> driver.getWindowHandles().size() > 1);
-
-        Set<String> allWindows = driver.getWindowHandles();
-        for (String window : allWindows) {
-            if (!window.equals(mainWindow)) {
-                driver.switchTo().window(window);
-                break;
-            }
-        }
-
-        wait.until(ExpectedConditions.urlContains("https://accounts.google.com/v3/signin"));
+        driver.switchTo().window(mainWindow);
 
         String currentURL = driver.getCurrentUrl();
+        assert currentURL != null;
         Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
                 "Google Sign-in page did not open! Actual URL: " + currentURL);
+    }
 
+    @AfterMethod
+    public void tearDown() {
+        BrowserActions.closeBrowser(driver);
     }
 }
