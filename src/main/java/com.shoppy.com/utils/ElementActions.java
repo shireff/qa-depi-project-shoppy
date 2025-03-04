@@ -1,36 +1,33 @@
-package com.shoppy.com;
+package com.shoppy.com.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
-public class BasePage {
-    protected WebDriver driver;
+public class ElementActions {
     protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    private ElementActions() {
+        throw new UnsupportedOperationException("Utility class - Cannot be instantiated.");
     }
 
-//    protected WebElement find(By locator) {
-//        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+//    public static WebElement find(WebDriver driver, By locator) {
+//        WebElement element = driver.findElement(locator);
+//        return element;
 //    }
 
 
-    protected WebElement find(By locator) {
+    public static WebElement find(WebDriver driver, By locator) {
         List<WebElement> elements = driver.findElements(locator);
 
         // Step 1: Find the first visible element
         for (WebElement element : elements) {
             if (element.isDisplayed()) {
-                System.out.println("✅ Found VISIBLE element: " + locator.toString());
+                System.out.println("✅ Found visible element: " + locator.toString());
                 return element;
             }
         }
@@ -38,15 +35,9 @@ public class BasePage {
         throw new RuntimeException("❌ No visible element found for: " + locator.toString());
     }
 
-
-    //    protected void set(By locator, String text) {
-//        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-//        element.clear();
-//        element.sendKeys(text);
-//    }
-    protected void set(By locator, String text) {
+    public static void set(WebDriver driver, By locator, String text) {
         try {
-            WebElement element = find(locator);
+            WebElement element = find(driver, locator);
 
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
             System.out.println("✅ Scrolled to visible element.");
@@ -66,8 +57,15 @@ public class BasePage {
         }
     }
 
-    protected void click(By locator) {
-        find(locator).click();
+    public static void click(WebDriver driver, By locator) {
+        find(driver, locator).click();
         System.out.println("✅ Clicked element: " + locator.toString());
     }
+
+    public static String getText(WebDriver driver, By locator) {
+        Waits.waitForElementVisible(driver, locator);
+        Scrolling.scrollToElement(driver, locator);
+        return driver.findElement(locator).getText();
+    }
+
 }
