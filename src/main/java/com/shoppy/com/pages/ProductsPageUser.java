@@ -4,10 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class ProductsPageUser
-{
+public class ProductsPageUser {
     private final WebDriver driver;
-
+    public final String url = "https://shoppy-ochre.vercel.app/shop/listing";
     //Sort By
     private final By SortByButton = By.xpath("//button[@id=\"radix-:r87:\"]");
     private final By PriceLowToHigh = By.xpath("//div[@role=\"menuitemradio\"][1]");
@@ -35,124 +34,129 @@ public class ProductsPageUser
     private final By Kids_Label_Button = By.xpath("//div/nav/label[5]");
     private final By Footwear_Label_Button = By.xpath("//div/nav/label[6]");
     private final By Accessories_Label_Button = By.xpath("//div/nav/label[7]");
+
     //Constructor
-    public ProductsPageUser(WebDriver driver)
-    {
+    public ProductsPageUser(WebDriver driver) {
         this.driver = driver;
     }
     //Actions
 
     //Category Check Boxes
-    public ProductsPageUser clickMenCheckBox()
-    {
-        driver.findElement(Men_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickWomenCheckBox()
-    {
-        driver.findElement(Women_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickKidsCheckBox()
-    {
-        driver.findElement(Kids_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickAccessoriesCheckBox()
-    {
-        driver.findElement(Accessories_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickFootWearCheckBox()
-    {
-        driver.findElement(Footwear_CheckBox).click();
-        return this;
-    }
-    //Brand Check Boxes
-    public ProductsPageUser clickNickCheckBox()
-    {
-        driver.findElement(Nike_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickAdidasCheckBox()
-    {
-        driver.findElement(Adidas_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickPumaCheckBox()
-    {
-        driver.findElement(Puma_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickLevisCheckBox()
-    {
-        driver.findElement(Levis_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickZaraCheckBox()
-    {
-        driver.findElement(Zara_CheckBox).click();
-        return this;
-    }
-    public ProductsPageUser clickHMCheckBox()
-    {
-        driver.findElement(HM_CheckBox).click();
-        return this;
-    }
-    //Navigation Bar interaction
-    public HomePage clickNavBarHome()
-    {
-        driver.findElement(Home_Label_Button).click();
-        return new HomePage(driver);
-    }
-    public ProductsPageUser clickNavBarProducts()
-    {
+
+    public ProductsPageUser driverNavigate() {
         driver.findElement(Products_Label_Button).click();
         return this;
     }
-    public ProductsPageUser clickNavBarMen()
-    {
+
+    public ProductsPageUser clickMenCheckBox() {
+        driver.findElement(Men_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickWomenCheckBox() {
+        driver.findElement(Women_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickKidsCheckBox() {
+        driver.findElement(Kids_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickAccessoriesCheckBox() {
+        driver.findElement(Accessories_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickFootWearCheckBox() {
+        driver.findElement(Footwear_CheckBox).click();
+        return this;
+    }
+
+    //Brand Check Boxes
+    public ProductsPageUser clickNickCheckBox() {
+        driver.findElement(Nike_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickAdidasCheckBox() {
+        driver.findElement(Adidas_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickPumaCheckBox() {
+        driver.findElement(Puma_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickLevisCheckBox() {
+        driver.findElement(Levis_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickZaraCheckBox() {
+        driver.findElement(Zara_CheckBox).click();
+        return this;
+    }
+
+    public ProductsPageUser clickHMCheckBox() {
+        driver.findElement(HM_CheckBox).click();
+        return this;
+    }
+
+    //Navigation Bar interaction
+    public HomePage clickNavBarHome() {
+        driver.findElement(Home_Label_Button).click();
+        return new HomePage(driver);
+    }
+
+    public ProductsPageUser clickNavBarProducts() {
+        driver.findElement(Products_Label_Button).click();
+        return this;
+    }
+
+    public ProductsPageUser clickNavBarMen() {
         driver.findElement(Men_Label_Button).click();
         return this;
     }
-    public ProductsPageUser clickNavBarWomen()
-    {
+
+    public ProductsPageUser clickNavBarWomen() {
         driver.findElement(Women_Label_Button).click();
         return this;
     }
-    public ProductsPageUser clickNavBarKids()
-    {
+
+    public ProductsPageUser clickNavBarKids() {
         driver.findElement(Kids_Label_Button).click();
         return this;
     }
-    public ProductsPageUser clickNavBarFootWear()
-    {
+
+    public ProductsPageUser clickNavBarFootWear() {
         driver.findElement(Footwear_Label_Button).click();
         return this;
     }
-    public ProductsPageUser clickNavBarAccessories()
-    {
+
+    public ProductsPageUser clickNavBarAccessories() {
         driver.findElement(Accessories_Label_Button).click();
         return this;
     }
+
     //Sort By DropDown
-    public ProductsPageUser sortByPriceLowToHigh()
-    {
+    public ProductsPageUser sortByPriceLowToHigh() {
         new Select(driver.findElement(SortByButton)).selectByVisibleText(driver.findElement(PriceLowToHigh).getText());
         return this;
     }
-    public ProductsPageUser sortByPriceHighToLow()
-    {
+
+    public ProductsPageUser sortByPriceHighToLow() {
         new Select(driver.findElement(SortByButton)).selectByVisibleText(driver.findElement(PriceHighToLow).getText());
         return this;
     }
-    public ProductsPageUser sortByTitleA_To_Z()
-    {
+
+    public ProductsPageUser sortByTitleA_To_Z() {
         new Select(driver.findElement(SortByButton)).selectByVisibleText(driver.findElement(TitleA_To_Z).getText());
         return this;
     }
-    public ProductsPageUser sortByTitleZ_To_A()
-    {
+
+    public ProductsPageUser sortByTitleZ_To_A() {
         new Select(driver.findElement(SortByButton)).selectByVisibleText(driver.findElement(TitleZ_To_A).getText());
         return this;
     }
