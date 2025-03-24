@@ -11,7 +11,7 @@ import java.util.List;
 public class ElementActions {
     protected WebDriverWait wait;
 
-    private ElementActions() {
+    public ElementActions(WebDriver driver) {
         throw new UnsupportedOperationException("Utility class - Cannot be instantiated.");
     }
 
