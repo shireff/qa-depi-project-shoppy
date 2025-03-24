@@ -1,23 +1,21 @@
 package com.shoppy.com.tests.homePage;
 
+import DriverFactory.Driver;
 import com.shoppy.com.pages.HomePage;
 import com.shoppy.com.pages.LoginPage;
 import com.shoppy.com.pages.dataproviders.DataProviderTests;
 import com.shoppy.com.utils.BrowserActions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 public class HomePageTests {
 
 
-    protected WebDriver driver;
+    public Driver driver;
     protected LoginPage loginPage;
     protected HomePage homePage;
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
@@ -25,12 +23,12 @@ public class HomePageTests {
 
     @BeforeMethod
     public void setUp(Method method) {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        BrowserActions.openUrl(driver, url);
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
+        driver = new Driver("chrome");
+
+        //BrowserActions.openUrl(driver, url);
+        driver.browser().openUrl(driver.get(), url);
+        loginPage = new LoginPage(driver.get());
+        homePage = new HomePage(driver.get());
     }
 
 
@@ -76,6 +74,6 @@ public class HomePageTests {
 
     @AfterMethod
     public void tearDown() {
-        BrowserActions.closeBrowser(driver);
+        driver.browser().closeBrowser(driver.get());
     }
 }
