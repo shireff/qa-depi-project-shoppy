@@ -65,7 +65,14 @@ public class ElementActions {
     public static String getText(WebDriver driver, By locator) {
         Waits.waitForElementVisible(driver, locator);
         Scrolling.scrollToElement(driver, locator);
+        System.out.println("Getting text from locator: " + locator.toString());
         return driver.findElement(locator).getText();
+    }
+
+    //*******new
+    public static boolean isDisplayed(WebDriver driver, By locator) {
+        System.out.println("Check if Displayed or not locator: " + locator.toString());
+        return find(driver, locator).isDisplayed();
     }
 
 }
