@@ -18,7 +18,6 @@ public class FilterSortTests {
         driver = new Driver("chrome");
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.browser().openUrl(driver.get(), new ProductsPageUser(driver.get()).url);
-        //  BrowserActions.openUrl(driver, new ProductsPageUser(driver.get()).url);
         new LoginPage(driver.get()).loginIntoApp("ramymahana7@test.com", "archer@@@97");
     }
 
@@ -30,6 +29,5 @@ public class FilterSortTests {
     @AfterClass
     public void TearDown() {
         driver.browser().closeBrowser(driver.get());
-     //   BrowserActions.closeBrowser(driver);
     }
 }
