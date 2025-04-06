@@ -36,8 +36,7 @@ public class AdminProductsPageTests {
                 .checkProductsAreDisplayed();
     }
     @Test(priority = 2)
-    public void testThatProductCardAndItsComponentsExists()
-    {
+    public void testThatProductCardAndItsComponentsExists() {
         testNavigationToProductsPage();
         new AdminProductsPage(driver).
                 checkProductCardIsDisplayed()
@@ -48,6 +47,11 @@ public class AdminProductsPageTests {
                 .checkProductCardTitleIsDisplayed();
     }
 
+    @Test(priority = 3)
+    public void verifyThatAddProductBtnIsWorkingProperly() {
+        testNavigationToProductsPage();
+        new AdminProductsPage(driver).clickOnAddProductBtn();
+    }
 
     @AfterMethod
     public void tearDown() throws InterruptedException {
