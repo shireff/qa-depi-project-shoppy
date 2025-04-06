@@ -6,11 +6,12 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class AdminProductsPage {
-    private final String cardXpath = "//div[@class=\"grid gap-4 md:grid-cols-3 ls:grid-cols-4\"]/div";
     private final Driver driver;
+    private final String cardXpath = "//div[@class=\"grid gap-4 md:grid-cols-3 ls:grid-cols-4\"]/div";
+    private final String URL = "https://shoppy-ochre.vercel.app/admin/products";
+
     private final By firstProduct = By.xpath(cardXpath);
     private final By addProductBtn = By.xpath("//main/div/button");
-    private final String URL = "https://shoppy-ochre.vercel.app/admin/products";
 
     // Card Components
 
@@ -74,4 +75,10 @@ public class AdminProductsPage {
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardDeleteBtn));
         return this;
     }
+    public AdminAddProductPage clickOnAddProductBtn()
+    {
+        ElementActions.click(driver.get(),addProductBtn);
+        return new AdminAddProductPage(driver);
+    }
+
 }
