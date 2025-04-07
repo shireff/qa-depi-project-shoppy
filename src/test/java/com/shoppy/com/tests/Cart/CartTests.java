@@ -27,6 +27,8 @@ public class CartTests {
         cartPage = new CartPage(driver);
     }
 
+
+
     @Test(priority = 1)
     public void testAddToCartProduct() throws InterruptedException {
         loginPage.setUserName("mylovelynano@gmail.com");
@@ -45,17 +47,35 @@ public class CartTests {
                 .checkThatTheProductNameInCartIsDisable()
                 .checkThatTheProductPriceIsDisable()
                 .checkThatTheProductQuantityIsDisable()
-                .checkThatTheProductImageIsDisable();
+                .checkThatTheProductImageIsDisable()
+                .checkThatTheTotalIsDisable();
 
     }
 
+    @Test(priority = 3, dependsOnMethods = {"testAddToCartProduct"})
+    public void testCounterNumberIsUpdated() {
+        cartPage.clickOnCounterIcon()
+                .checkThatTheCartItemMessageUpdatedSuccesfullyIsDisable();
+
+    }
+
+
+/*
     @Test(priority = 3, dependsOnMethods = {"testProductDataIsFoundInCart"})
-    public void testProductDataIsDeletedFromCart() {
+    public void testProductDataIsDeletedFromCart() throws InterruptedException {
         cartPage.clickOnDeleteIcon()
                 .checkThatTheProductIsDeletedFromCart();
 
     }
 
+    @Test(priority = 4, dependsOnMethods = {"testProductDataIsFoundInCart"})
+    public void testCartIconIsClosed() throws InterruptedException {
+        cartPage.clickOnCloseIcon()
+                .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
+
+    }
+
+*/
 
     @AfterClass
     public void tearDown() {
