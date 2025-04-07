@@ -27,6 +27,8 @@ public class CartTests {
         cartPage = new CartPage(driver);
     }
 
+
+
     @Test(priority = 1)
     public void testAddToCartProduct() throws InterruptedException {
         loginPage.setUserName("mylovelynano@gmail.com");
@@ -50,11 +52,12 @@ public class CartTests {
     }
 
     @Test(priority = 3, dependsOnMethods = {"testProductDataIsFoundInCart"})
-    public void testProductDataIsDeletedFromCart() {
+    public void testProductDataIsDeletedFromCart() throws InterruptedException {
         cartPage.clickOnDeleteIcon()
                 .checkThatTheProductIsDeletedFromCart();
 
     }
+
 
 
     @AfterClass
