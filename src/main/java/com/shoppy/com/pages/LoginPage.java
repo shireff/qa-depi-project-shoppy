@@ -26,7 +26,7 @@ public class LoginPage {
     private final By nextButton = By.xpath("//span[contains(text(),'Next')]");
     private final By confirmNextButton = By.xpath("//span[contains(text(),'Next')]");
 
-    public LoginPage(WebDriver driver) {
+    public  LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
