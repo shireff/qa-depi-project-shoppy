@@ -18,4 +18,8 @@ public class BrowserActions {
         driver.quit();
         return this;
     }
+
+    public String getCurrentURL(WebDriver driver) {
+        return driver.getCurrentUrl();
+    }
 }
