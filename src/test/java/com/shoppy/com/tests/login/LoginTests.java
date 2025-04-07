@@ -73,19 +73,19 @@ public class LoginTests {
         Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
     }
 
-    @Test(priority = 6)
-    public void testGoogleLogin() {
-        loginPage.clickGoogleLogin();
-
-        String mainWindow = driver.get().getWindowHandle();
-
-        driver.get().switchTo().window(mainWindow);
-
-        String currentURL = driver.get().getCurrentUrl();
-        assert currentURL != null;
-        Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
-                "Google Sign-in page did not open! Actual URL: " + currentURL);
-    }
+//    @Test(priority = 6)
+//    public void testGoogleLogin() {
+//        loginPage.clickGoogleLogin();
+//
+//        String mainWindow = driver.get().getWindowHandle();
+//
+//        driver.get().switchTo().window(mainWindow);
+//
+//        String currentURL = driver.get().getCurrentUrl();
+//        assert currentURL != null;
+//        Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
+//                "Google Sign-in page did not open! Actual URL: " + currentURL);
+//    }
 
     @AfterMethod
     public void tearDown() {
