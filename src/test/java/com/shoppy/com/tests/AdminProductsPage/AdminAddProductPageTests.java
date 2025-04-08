@@ -22,7 +22,7 @@ public class AdminAddProductPageTests {
         driver = new Driver("CHROME");
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), LoginUrl);
-        loginPage = new LoginPage(driver.get());
+        loginPage = new LoginPage(driver);
         loginPage.setUserName("Arima@example.com");
         loginPage.setPassword("123456789");
         loginPage.clickLogin();
