@@ -1,5 +1,6 @@
 package com.shoppy.com.pages;
 
+import DriverFactory.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,7 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class CartPage {
-    private  WebDriver driver;
+    private Driver driver;
 
     By addToCartButton = By.xpath("(//div[@class=\"flex items-center p-6 pt-0\"])[3]");
     By ProductsName = By.xpath("//h2[@class=\"text-xl font-bold mb-2\" and text()= \"test\"]");
@@ -31,23 +32,23 @@ public class CartPage {
     String CartEmptyMessageTitle = "Your cart is empty";
 
 
-    public CartPage(WebDriver driver) {
+    public CartPage(Driver driver) {
         this.driver = driver;
     }
 
     /************************************ Assertions *******************************************/
     public CartPage checkThatTheProductNameIsDisable(){
-        Assert.assertEquals(driver.findElement(ProductsName).getText(),ProductsSectionName);
+        Assert.assertEquals(driver.element().getTextOf(ProductsName),ProductsSectionName);
         return this;
     }
 
     public CartPage checkThatTheProductMessageAddedSuccesfullyIsDisable(){
-        Assert.assertEquals(driver.findElement(productSuccessfullyAddedToCartMessage).getText(),productSuccessfullyAddedToCartTitle);
+        Assert.assertEquals(driver.element().getTextOf(productSuccessfullyAddedToCartMessage),productSuccessfullyAddedToCartTitle);
         return this;
     }
 
     public CartPage checkThatTheProductNameInCartIsDisable(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(5));
         WebElement productElement = wait.until(ExpectedConditions.visibilityOfElementLocated(productcart));
         System.out.println("Name is: " + productElement.getText());
 
@@ -64,30 +65,30 @@ public class CartPage {
 
 
     public CartPage checkThatTheProductImageIsDisable(){
-        Assert.assertTrue(driver.findElement(productImage).isEnabled());
+        Assert.assertTrue(driver.get().findElement(productImage).isEnabled());
         return this;
     }
 
 
     public CartPage checkThatTheProductPriceIsDisable(){
-        Assert.assertEquals(driver.findElement(productPriceInCart).getText(),ProductPrice);
+        Assert.assertEquals(driver.element().getTextOf(productPriceInCart),ProductPrice);
         return this;
     }
 
 
     public CartPage checkThatTheProductQuantityIsDisable(){
-        Assert.assertEquals(driver.findElement(productQuantityInCart).getText(),"1");
+        Assert.assertEquals(driver.element().getTextOf(productQuantityInCart),"1");
         return this;
     }
 
     public CartPage checkThatTheProductIsDeletedFromCart(){
-        Assert.assertEquals(driver.findElement(cartEmptyMessage).getText(),CartEmptyMessageTitle);
+        Assert.assertEquals(driver.element().getTextOf(cartEmptyMessage),CartEmptyMessageTitle);
         return this;
     }
 
     /************************************** Actions ********************************************/
    public CartPage clickOnAddToCartButton()  {
-     driver.findElement(addToCartButton).click();
+     driver.element().click(addToCartButton);
      return this;
    }
 
@@ -100,7 +101,7 @@ public class CartPage {
             e.printStackTrace();
         }
 
-        driver.findElement(cartIcon).click();
+        driver.element().click(cartIcon);
         return this;
     }
 
@@ -114,7 +115,7 @@ public class CartPage {
             e.printStackTrace();
         }
 
-        driver.findElement(deleteIcon).click();
+        driver.element().click(deleteIcon);
         return this;
     }
 

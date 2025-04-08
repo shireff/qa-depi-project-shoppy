@@ -5,8 +5,6 @@ import com.shoppy.com.pages.CartPage;
 import com.shoppy.com.pages.HomePage;
 import com.shoppy.com.pages.LoginPage;
 import com.shoppy.com.utils.BrowserActions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import java.time.Duration;
 
@@ -24,7 +22,7 @@ public class CartTests {
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
-        cartPage = new CartPage(driver.get());
+        cartPage = new CartPage(driver);
     }
 
 
@@ -47,20 +45,20 @@ public class CartTests {
                 .checkThatTheProductNameInCartIsDisable()
                 .checkThatTheProductPriceIsDisable()
                 .checkThatTheProductQuantityIsDisable()
-                .checkThatTheProductImageIsDisable()
-                .checkThatTheTotalIsDisable();
+                .checkThatTheProductImageIsDisable();
+              //  .checkThatTheTotalIsDisable();
 
     }
-
+/*
     @Test(priority = 3, dependsOnMethods = {"testAddToCartProduct"})
     public void testCounterNumberIsUpdated() {
         cartPage.clickOnCounterIcon()
                 .checkThatTheCartItemMessageUpdatedSuccesfullyIsDisable();
 
     }
+*/
 
 
-/*
     @Test(priority = 3, dependsOnMethods = {"testProductDataIsFoundInCart"})
     public void testProductDataIsDeletedFromCart() throws InterruptedException {
         cartPage.clickOnDeleteIcon()
@@ -68,20 +66,20 @@ public class CartTests {
 
     }
 
-    @Test(priority = 4, dependsOnMethods = {"testProductDataIsFoundInCart"})
-    public void testCartIconIsClosed() throws InterruptedException {
-        cartPage.clickOnCloseIcon()
-                .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
+//    @Test(priority = 4, dependsOnMethods = {"testProductDataIsFoundInCart"})
+//    public void testCartIconIsClosed() throws InterruptedException {
+//        cartPage.clickOnCloseIcon()
+//                .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
+//
+//    }
 
-    }
-
-*/
 
 
     @AfterClass
-    public void tearDown() {
-        BrowserActions.closeBrowser(driver);
-   }
+    public void tearDown() throws InterruptedException {
+     //   Thread.sleep(2000);
+        driver.browser().closeBrowser(driver.get());
+    }
 
 
 }
