@@ -1,10 +1,8 @@
 package com.shoppy.com.tests.signup;
 
 
+import DriverFactory.Driver;
 import com.shoppy.com.pages.SignUp;
-import com.shoppy.com.utils.BrowserActions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,16 +14,15 @@ import java.util.Objects;
 
 public class SignUpTests {
 
-    private WebDriver driver;
+    public Driver driver;
     private SignUp signUpPage;
     private final String url = "https://shoppy-ochre.vercel.app/auth/login";
 
     @BeforeMethod
     public void setUp(Method method) {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        BrowserActions.openUrl(driver, url);
+        driver = new Driver("chrome");
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.browser().openUrl(driver.get(), url);
         signUpPage = new SignUp(driver);
     }
 
@@ -33,7 +30,7 @@ public class SignUpTests {
     public void testSignUpLinkVisibilityAndNavigation() {
         Assert.assertTrue(signUpPage.isSignUpLinkVisible(), "❌ Sign Up link is not visible.");
         signUpPage.clickSignUpLink();
-        Assert.assertTrue(Objects.requireNonNull(driver.getCurrentUrl()).contains("/auth/register"), "❌ Navigation to Sign Up page failed.");
+        Assert.assertTrue(Objects.requireNonNull(driver.get().getCurrentUrl()).contains("/auth/register"), "❌ Navigation to Sign Up page failed.");
     }
 
     @Test(priority = 2)
@@ -84,6 +81,6 @@ public class SignUpTests {
 
     @AfterMethod
     public void tearDown() {
-        BrowserActions.closeBrowser(driver);
+        driver.browser().closeBrowser(driver.get());
     }
 }

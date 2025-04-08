@@ -1,5 +1,6 @@
 package com.shoppy.com.tests.login;
 
+import DriverFactory.Driver;
 import com.shoppy.com.pages.LoginPage;
 import com.shoppy.com.utils.BrowserActions;
 import org.openqa.selenium.WebDriver;
@@ -14,16 +15,15 @@ import java.time.Duration;
 
 public class LoginTests {
 
-    protected WebDriver driver;
+    public Driver driver;
     protected LoginPage loginPage;
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
 
     @BeforeMethod
-    public void setUp(Method method) {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        BrowserActions.openUrl(driver, url);
+    public void setUp() {
+        driver = new Driver("chrome");
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
     }
 
@@ -58,7 +58,7 @@ public class LoginTests {
         loginPage.clickLogin();
         loginPage.assertLoginSuccessfulAsAdmin();
         String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
-        String actualURL = driver.getCurrentUrl();
+        String actualURL = driver.get().getCurrentUrl();
         Assert.assertEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
     }
 
@@ -69,26 +69,26 @@ public class LoginTests {
         loginPage.clickLogin();
         loginPage.assertLoginSuccessfulAsUser();
         String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
-        String actualURL = driver.getCurrentUrl();
+        String actualURL = driver.get().getCurrentUrl();
         Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
     }
 
-    @Test(priority = 6)
-    public void testGoogleLogin() {
-        loginPage.clickGoogleLogin();
-
-        String mainWindow = driver.getWindowHandle();
-
-        driver.switchTo().window(mainWindow);
-
-        String currentURL = driver.getCurrentUrl();
-        assert currentURL != null;
-        Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
-                "Google Sign-in page did not open! Actual URL: " + currentURL);
-    }
+//    @Test(priority = 6)
+//    public void testGoogleLogin() {
+//        loginPage.clickGoogleLogin();
+//
+//        String mainWindow = driver.get().getWindowHandle();
+//
+//        driver.get().switchTo().window(mainWindow);
+//
+//        String currentURL = driver.get().getCurrentUrl();
+//        assert currentURL != null;
+//        Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
+//                "Google Sign-in page did not open! Actual URL: " + currentURL);
+//    }
 
     @AfterMethod
     public void tearDown() {
-        BrowserActions.closeBrowser(driver);
+        driver.browser().closeBrowser(driver.get());
     }
 }

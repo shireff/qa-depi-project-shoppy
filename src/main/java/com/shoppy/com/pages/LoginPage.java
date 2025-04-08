@@ -1,5 +1,6 @@
 package com.shoppy.com.pages;
 
+import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
 import com.shoppy.com.utils.Waits;
 import org.openqa.selenium.By;
@@ -10,7 +11,7 @@ import static com.shoppy.com.utils.ElementActions.find;
 
 public class LoginPage {
 
-    private final WebDriver driver;
+    private final Driver driver;
 
     // **Locators**
     private final By usernameField = By.id("email");
@@ -26,23 +27,23 @@ public class LoginPage {
     private final By nextButton = By.xpath("//span[contains(text(),'Next')]");
     private final By confirmNextButton = By.xpath("//span[contains(text(),'Next')]");
 
-    public LoginPage(WebDriver driver) {
+    public  LoginPage(Driver driver) {
         this.driver = driver;
     }
 
     /* -------------------------------------- Actions -------------------------------------- */
 
     public void setUserName(String userName) {
-        ElementActions.set(driver, usernameField, userName);
+        ElementActions.set(driver.get(), usernameField, userName);
     }
 
     public void setPassword(String pass) {
-        ElementActions.set(driver, passwordField, pass);
+        ElementActions.set(driver.get(), passwordField, pass);
     }
 
     public HomePage clickLogin() {
-        ElementActions.click(driver, loginButton);
-        return new HomePage(driver);
+        driver.element().click(loginButton);
+        return new HomePage(driver.get());
     }
 
     public HomePage loginIntoApp(String userName, String password) {
@@ -52,7 +53,7 @@ public class LoginPage {
     }
 
     public void clickGoogleLogin() {
-        WebElement googleBtn = find(driver, googleLoginButton);
+        WebElement googleBtn = find(driver.get(), googleLoginButton);
         googleBtn.click();
     }
 
@@ -80,7 +81,7 @@ public class LoginPage {
     }
 
     private void assertElementDisplayed(By locator, String errorMessage) {
-        WebElement element = Waits.waitForElementVisible(driver, locator);
+        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
         if (element == null || !element.isDisplayed()) {
             throw new AssertionError(errorMessage);
         }

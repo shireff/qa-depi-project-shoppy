@@ -1,6 +1,7 @@
 package com.shoppy.com.pages;
 
 
+import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
 import com.shoppy.com.utils.Waits;
 import org.openqa.selenium.By;
@@ -12,7 +13,7 @@ import static com.shoppy.com.utils.ElementActions.find;
 
 public class SignUp {
 
-    private final WebDriver driver;
+    private final Driver driver;
 
     // **Locators**
     private final By signUpLink = By.linkText("Sign Up");
@@ -23,26 +24,26 @@ public class SignUp {
     private final By errorMsg = By.cssSelector(".text-destructive");
     private final By toastErrorMsg = By.cssSelector("li[data-state='open'] .text-sm.font-semibold");
 
-    public SignUp(WebDriver driver) {
+    public SignUp(Driver driver) {
         this.driver = driver;
     }
 
     /* -------------------------------------- Actions -------------------------------------- */
 
     public void clickSignUpLink() {
-        ElementActions.click(driver, signUpLink);
+        driver.element().click(signUpLink);
     }
 
 
     public void fillSignUpForm(String userName, String email, String password) {
-        ElementActions.set(driver, userNameField, userName);
-        ElementActions.set(driver, emailField, email);
-        ElementActions.set(driver, passwordField, password);
+        driver.element().set(driver.get(), userNameField, userName);
+        driver.element().set(driver.get(), emailField, email);
+        driver.element().set(driver.get(), passwordField, password);
     }
 
 
     public LoginPage clickSignUpButton() {
-        ElementActions.click(driver, signUpButton);
+        driver.element().click( signUpButton);
         return new LoginPage(driver);
     }
 
@@ -50,14 +51,14 @@ public class SignUp {
 
 
     public boolean isSignUpLinkVisible() {
-        return find(driver, signUpLink).isDisplayed();
+        return find(driver.get(), signUpLink).isDisplayed();
     }
 
 
     public boolean isSignUpFieldsVisible() {
-        return find(driver, userNameField).isDisplayed()
-                && find(driver, emailField).isDisplayed()
-                && find(driver, passwordField).isDisplayed();
+        return find(driver.get(), userNameField).isDisplayed()
+                && find(driver.get(), emailField).isDisplayed()
+                && find(driver.get(), passwordField).isDisplayed();
     }
 
 
@@ -72,7 +73,7 @@ public class SignUp {
     }
 
     private void assertElementDisplayed(By locator, String errorMessage) {
-        WebElement element = Waits.waitForElementVisible(driver, locator);
+        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
         if (element == null || !element.isDisplayed()) {
             throw new AssertionError(errorMessage);
         }
