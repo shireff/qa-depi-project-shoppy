@@ -20,11 +20,11 @@ public class LoginTests {
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
 
     @BeforeMethod
-    public void setUp(Method method) {
+    public void setUp() {
         driver = new Driver("chrome");
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
-        loginPage = new LoginPage(driver.get());
+        loginPage = new LoginPage(driver);
     }
 
     @Test(priority = 1)
