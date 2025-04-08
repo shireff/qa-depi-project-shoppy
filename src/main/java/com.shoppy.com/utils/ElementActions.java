@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ElementActions {
@@ -99,4 +100,14 @@ public class ElementActions {
         return driver.findElement(locator).getAttribute(attributeName);
     }
 
+    public static List<By> getAllElementsLocators(WebDriver driver, By locator, String commonXpath) {
+        List<WebElement> allElementsList = driver.findElements(locator);
+        List<By> allElementsLocators = new ArrayList<>();
+        int i;
+        for (i = 1; i <= allElementsList.size(); i++) ;
+        {
+            allElementsLocators.add(By.xpath(commonXpath + "[" + i + "]"));
+        }
+        return allElementsLocators;
+    }
 }
