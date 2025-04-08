@@ -7,12 +7,13 @@ import org.testng.Assert;
 
 public class AdminDashboardPage {
     private final Driver driver;
-    private  final String URL="https://shoppy-ochre.vercel.app/admin/dashboard";
+    private final String URL = "https://shoppy-ochre.vercel.app/admin/dashboard";
     private final By adminPanelHeader = By.xpath("//h2[@class=\"text-2xl font-extrabold\"]");
     private final By dashboardBtn = By.xpath("//div[@class=\"flex text-xl items-center gap-2 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer\"][1]");
     private final By productsBtn = By.xpath("//div[@class=\"flex text-xl items-center gap-2 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer\"][2]");
     private final By ordersdBtn = By.xpath("//div[@class=\"flex text-xl items-center gap-2 rounded-md px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer\"][3]");
     private final By logoutBtn = By.xpath("//div[@class=\"flex flex-1 justify-end\"]/button");
+
     //    /****************the rest is the footer and its buttons ************************/
     public AdminDashboardPage(Driver driver) {
         this.driver = driver;
@@ -34,12 +35,12 @@ public class AdminDashboardPage {
     }
 
     public AdminDashboardPage checkDashboardBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(),dashboardBtn).contains("Dashboard"));
+        Assert.assertTrue(ElementActions.getText(driver.get(), dashboardBtn).contains("Dashboard"));
         return this;
     }
 
     public AdminDashboardPage checkDashboardBtnDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),dashboardBtn));
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), dashboardBtn));
         return this;
     }
 
@@ -74,7 +75,7 @@ public class AdminDashboardPage {
     }
 
     public AdminProductsPage clickOnProductsBtn() {
-        ElementActions.click(driver.get(), productsBtn);
+        driver.element().click(productsBtn);
         return new AdminProductsPage(driver);
     }
 }

@@ -23,7 +23,7 @@ public class SignUpTests {
         driver = new Driver("chrome");
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
-        signUpPage = new SignUp(driver.get());
+        signUpPage = new SignUp(driver);
     }
 
     @Test(priority = 1)

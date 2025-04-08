@@ -13,13 +13,10 @@ public class Waits {
     private Waits() {
     }
 
-    // present
     public static WebElement waitForElementPresent(WebDriver driver, By locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver1 -> driver1.findElement(locator));
     }
 
-
-    // visible
     public static WebElement waitForElementVisible(WebDriver driver, By locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver1 -> {
             WebElement element = waitForElementPresent(driver, locator);
@@ -28,7 +25,6 @@ public class Waits {
     }
 
 
-    // clickable
     public static WebElement waitForElementClickable(WebDriver driver, By locator) {
         return new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver1 -> {
             WebElement element = waitForElementVisible(driver, locator);

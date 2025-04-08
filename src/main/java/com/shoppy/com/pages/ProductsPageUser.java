@@ -47,135 +47,137 @@ public class ProductsPageUser {
     By CategoryTitle = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/div[1]/div[2]/div[1]/h3");
     String BrandTitleText = "Brand";
     By BrandTitle = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/div[1]/div[2]/div[3]/h3");
-    String Home_Button_Text ="Home";
-    String Products_Button_Text="Products";
-    String Men_Button_Text ="Men";
-    String Women_Button_Text ="Women";
-    String Kids_Button_Text ="Kids";
-    String Footwear_Button_Text="Footwear";
-    String Accessories_Button_Text ="Accessories";
-    String Search_Button_Text ="Search";
+    String Home_Button_Text = "Home";
+    String Products_Button_Text = "Products";
+    String Men_Button_Text = "Men";
+    String Women_Button_Text = "Women";
+    String Kids_Button_Text = "Kids";
+    String Footwear_Button_Text = "Footwear";
+    String Accessories_Button_Text = "Accessories";
+    String Search_Button_Text = "Search";
 
 
     //Constructor
     public ProductsPageUser(Driver driver) {
         this.driver = driver;
     }
+
     //Actions
     public ProductsPageUser driverNavigate() {
-     //   Thread.sleep(100);
+        //   Thread.sleep(100);
         System.out.println("⬆️navigating to the products page");
-        driver.element().click(driver.get(),Products_Label_Button);
+        driver.element().click(Products_Label_Button);
         return this;
     }
+
     //Category Check Boxes Actions
     public ProductsPageUser clickMenCheckBox() {
         System.out.println("✅clicking on Men CheckBox");
-        driver.element().click(driver.get(),Men_CheckBox);
+        driver.element().click(Men_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickWomenCheckBox() {
         System.out.println("✅clicking women check box");
-        driver.element().click(driver.get(),Women_CheckBox);
+        driver.element().click(Women_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickKidsCheckBox() {
         System.out.println("✅clicking kids check box");
-        driver.element().click(driver.get(),Kids_CheckBox);
+        driver.element().click(Kids_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickAccessoriesCheckBox() {
         System.out.println("✅clicking Accessors check box");
-        driver.element().click(driver.get(),Accessories_CheckBox);
+        driver.element().click(Accessories_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickFootWearCheckBox() {
         System.out.println("✅clicking foot wear check box");
-        driver.element().click(driver.get(),Footwear_CheckBox);
+        driver.element().click(Footwear_CheckBox);
         return this;
     }
 
     //Brand Check Boxes Actions
     public ProductsPageUser clickNickCheckBox() {
         System.out.println("✅clicking nick check box");
-        driver.element().click(driver.get(),Nike_CheckBox);
+        driver.element().click(Nike_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickAdidasCheckBox() {
         System.out.println("✅clicking adidas check box");
-        driver.element().click(driver.get(),Adidas_CheckBox);
+        driver.element().click(Adidas_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickPumaCheckBox() {
         System.out.println("✅click puma check box");
-        driver.element().click(driver.get(), Puma_CheckBox);
+        driver.element().click(Puma_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickLevisCheckBox() {
         System.out.println("✅click levis check box");
-        driver.element().click(driver.get(),Levis_CheckBox);
+        driver.element().click(Levis_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickZaraCheckBox() {
         System.out.println("✅click zara check box");
-        driver.element().click(driver.get(),Zara_CheckBox);
+        driver.element().click(Zara_CheckBox);
         return this;
     }
 
     public ProductsPageUser clickHMCheckBox() {
         System.out.println("✅click HM check box");
-        driver.element().click(driver.get(),HM_CheckBox);
+        driver.element().click(HM_CheckBox);
         return this;
     }
 
     //Navigation Bar interaction
     public HomePage clickNavBarHome() {
         System.out.println("⬆️click home tab");
-        driver.element().click(driver.get(),Home_Label_Button);
+        driver.element().click(Home_Label_Button);
         return new HomePage(driver.get());
     }
 
     public ProductsPageUser clickNavBarProducts() {
         System.out.println("⬆️click Products tab");
-        driver.element().click(driver.get(),Products_Label_Button);
+        driver.element().click(Products_Label_Button);
         return this;
     }
 
     public ProductsPageUser clickNavBarMen() {
         System.out.println("⬆️click men tab");
-        driver.element().click(driver.get(),Men_Label_Button);
+        driver.element().click(Men_Label_Button);
         return this;
     }
 
     public ProductsPageUser clickNavBarWomen() {
         System.out.println("⬆️click women tab");
-        driver.element().click(driver.get(),Women_Label_Button);
+        driver.element().click(Women_Label_Button);
         return this;
     }
 
     public ProductsPageUser clickNavBarKids() {
         System.out.println("⬆️click kids tab");
-        driver.element().click(driver.get(),Kids_Label_Button);
+        driver.element().click(Kids_Label_Button);
         return this;
     }
 
     public ProductsPageUser clickNavBarFootWear() {
         System.out.println("⬆️click foot wear tab");
-        driver.element().click(driver.get(), Footwear_Label_Button);
+        driver.element().click(Footwear_Label_Button);
         return this;
     }
 
     public ProductsPageUser clickNavBarAccessories() {
         System.out.println("⬆️click accessories tab");
-        driver.element().click(driver.get(),Accessories_Label_Button);
+        driver.element().click(Accessories_Label_Button);
         return this;
     }
 //    public void clickNavBarSearch()
@@ -187,278 +189,276 @@ public class ProductsPageUser {
     //Sort By DropDown Action
     public ProductsPageUser sortByPriceLowToHigh() {
         System.out.println("⬆️`Clicking Sort By button.");
-        driver.element().click(driver.get(), SortByButton);
+        driver.element().click(SortByButton);
         System.out.println("✅`Selecting Price Low to High.");
-        driver.element().click(driver.get(), PriceLowToHigh);
+        driver.element().click(PriceLowToHigh);
         return this;
     }
 
     public ProductsPageUser sortByPriceHighToLow() {
         System.out.println("⬆️Clicking Sort By button.");
-        driver.element().click(driver.get(), SortByButton);
+        driver.element().click(SortByButton);
         System.out.println("✅`Selecting Price High to Low.");
-        driver.element().click(driver.get(), PriceHighToLow);
+        driver.element().click(PriceHighToLow);
         return this;
     }
 
     public ProductsPageUser sortByTitleA_To_Z() {
         System.out.println("⬆️`Clicking Sort By button.");
-        driver.element().click(driver.get(), SortByButton);
+        driver.element().click(SortByButton);
         System.out.println("✅`Selecting Title A to Z.");
-        driver.element().click(driver.get(), TitleA_To_Z);
+        driver.element().click(TitleA_To_Z);
         return this;
     }
 
     public ProductsPageUser sortByTitleZ_To_A() {
         System.out.println("⬆️`Clicking Sort By button.");
-        driver.element().click(driver.get(), SortByButton);
+        driver.element().click(SortByButton);
         System.out.println("✅Selecting Title Z to A.");
-        driver.element().click(driver.get(), TitleZ_To_A);
+        driver.element().click(TitleZ_To_A);
         return this;
     }
 
     //Assertions
     //Titles
-    public ProductsPageUser checkThatTheAllProductsTitleIsDisplayed()
-    {
+    public ProductsPageUser checkThatTheAllProductsTitleIsDisplayed() {
         System.out.println("✅check that all products title is displayed");
         String actualTitle = driver.element().getTextOf(AllProductsTitle);
-        Assert.assertEquals(actualTitle,AllProductsTitleText);
+        Assert.assertEquals(actualTitle, AllProductsTitleText);
         return this;
     }
-    public ProductsPageUser checkThatTheFiltersTitleIsDisplayed()
-    {
+
+    public ProductsPageUser checkThatTheFiltersTitleIsDisplayed() {
         System.out.println("✅check that filters title is displayed");
         String actualTitle = driver.element().getTextOf(FiltersTitle);
-        Assert.assertEquals(actualTitle,FiltersTitleText);
+        Assert.assertEquals(actualTitle, FiltersTitleText);
         return this;
     }
-    public ProductsPageUser checkThatTheCategoryTitleIsDisplayed()
-    {
+
+    public ProductsPageUser checkThatTheCategoryTitleIsDisplayed() {
         System.out.println("✅check that category title is displayed");
         String actualTitle = driver.element().getTextOf(CategoryTitle);
-        Assert.assertEquals(actualTitle,CategoryTitleText);
+        Assert.assertEquals(actualTitle, CategoryTitleText);
         return this;
     }
-    public ProductsPageUser checkThatTheBrandTitleIsDisplayed()
-    {
+
+    public ProductsPageUser checkThatTheBrandTitleIsDisplayed() {
         System.out.println("✅check that brand title is displayed");
         String actualTitle = driver.element().getTextOf(BrandTitle);
-        Assert.assertEquals(actualTitle,BrandTitleText);
+        Assert.assertEquals(actualTitle, BrandTitleText);
         return this;
     }
-    public ProductsPageUser checkThatProductsCountMutedTextIsVisible()
-    {
+
+    public ProductsPageUser checkThatProductsCountMutedTextIsVisible() {
         System.out.println("✅check that products count title is displayed");
         String mutedProductsCount = driver.element().getTextOf(ProductsNumberText);
         Assert.assertTrue(mutedProductsCount.contains("Products"));
         return this;
     }
+
     //Category Check Boxes Assertions
-    public ProductsPageUser checkThatTheMenCheckBoxIsChecked()
-    {
+    public ProductsPageUser checkThatTheMenCheckBoxIsChecked() {
         System.out.println("✅check that Men check box is checked");
-        String state = driver.element().getElementAttribute(Men_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheWomenCheckBoxIsChecked()
-    {
-        System.out.println("✅check that Women check box is checked");
-        String state = driver.element().getElementAttribute(Women_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheKidsCheckBoxIsChecked()
-    {
-        System.out.println("✅check that kids check box is checked");
-        String state = driver.element().getElementAttribute(Kids_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheAccessoriesCheckBoxIsChecked()
-    {
-        System.out.println("✅check that accessories check box is checked");
-        String state = driver.element().getElementAttribute(Accessories_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatFootWearCheckBoxIsChecked()
-    {
-        System.out.println("✅check that foot wear check box is checked");
-        String state = driver.element().getElementAttribute(Footwear_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheMenCheckBoxIsNotChecked()
-    {
-        System.out.println("❎check that Men check box is not checked");
-        String state = driver.element().getElementAttribute(Men_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheWomenCheckBoxIsNotChecked()
-    {
-        System.out.println("❎check that Women check box is not checked");
-        String state = driver.element().getElementAttribute(Women_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheKidsCheckBoxIsNotChecked()
-    {
-        System.out.println("❎check that kids check box is not checked");
-        String state = driver.element().getElementAttribute(Kids_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
-        return this;
-    }
-    public ProductsPageUser checkThatTheAccessoriesCheckBoxIsNotChecked()
-    {
-        System.out.println("❎check that accessories check box is not checked");
-        String state = driver.element().getElementAttribute(Accessories_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
-        return this;
-    }
-    public ProductsPageUser checkThatFootWearCheckBoxIsNotChecked()
-    {
-        System.out.println("❎check that foot wear check box is not checked");
-        String state = driver.element().getElementAttribute(Footwear_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
-        return this;
-    }
-    //Brand Check Boxes Assertions
-    public ProductsPageUser checkThatNikeCheckBoxIsChecked()
-    {
-        System.out.println("✅check that nike check box is checked");
-        String state = driver.element().getElementAttribute(Nike_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatAdidasCheckBoxIsChecked()
-    {
-        System.out.println("✅check that adidas check box is checked");
-        String state = driver.element().getElementAttribute(Adidas_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatPumaCheckBoxIsChecked()
-    {
-        System.out.println("✅check that puma check box is checked");
-        String state = driver.element().getElementAttribute(Puma_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatLevisCheckBoxIsChecked()
-    {
-        System.out.println("✅check that levis check box is checked");
-        String state = driver.element().getElementAttribute(Levis_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatZaraCheckBoxIsChecked()
-    {
-        System.out.println("✅check that zara check box is checked");
-        String state = driver.element().getElementAttribute(Zara_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
-        return this;
-    }
-    public ProductsPageUser checkThatHMCheckBoxIsChecked()
-    {
-        System.out.println("✅check that HM check box is checked");
-        String state = driver.element().getElementAttribute(HM_CheckBox,"data-state");
-        Assert.assertEquals(state,"checked");
+        String state = driver.element().getElementAttribute(Men_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
         return this;
     }
 
-    public ProductsPageUser checkThatNikeCheckBoxIsNotChecked()
-    {
+    public ProductsPageUser checkThatTheWomenCheckBoxIsChecked() {
+        System.out.println("✅check that Women check box is checked");
+        String state = driver.element().getElementAttribute(Women_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatTheKidsCheckBoxIsChecked() {
+        System.out.println("✅check that kids check box is checked");
+        String state = driver.element().getElementAttribute(Kids_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatTheAccessoriesCheckBoxIsChecked() {
+        System.out.println("✅check that accessories check box is checked");
+        String state = driver.element().getElementAttribute(Accessories_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatFootWearCheckBoxIsChecked() {
+        System.out.println("✅check that foot wear check box is checked");
+        String state = driver.element().getElementAttribute(Footwear_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatTheMenCheckBoxIsNotChecked() {
+        System.out.println("❎check that Men check box is not checked");
+        String state = driver.element().getElementAttribute(Men_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatTheWomenCheckBoxIsNotChecked() {
+        System.out.println("❎check that Women check box is not checked");
+        String state = driver.element().getElementAttribute(Women_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatTheKidsCheckBoxIsNotChecked() {
+        System.out.println("❎check that kids check box is not checked");
+        String state = driver.element().getElementAttribute(Kids_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatTheAccessoriesCheckBoxIsNotChecked() {
+        System.out.println("❎check that accessories check box is not checked");
+        String state = driver.element().getElementAttribute(Accessories_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatFootWearCheckBoxIsNotChecked() {
+        System.out.println("❎check that foot wear check box is not checked");
+        String state = driver.element().getElementAttribute(Footwear_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
+        return this;
+    }
+
+    //Brand Check Boxes Assertions
+    public ProductsPageUser checkThatNikeCheckBoxIsChecked() {
+        System.out.println("✅check that nike check box is checked");
+        String state = driver.element().getElementAttribute(Nike_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatAdidasCheckBoxIsChecked() {
+        System.out.println("✅check that adidas check box is checked");
+        String state = driver.element().getElementAttribute(Adidas_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatPumaCheckBoxIsChecked() {
+        System.out.println("✅check that puma check box is checked");
+        String state = driver.element().getElementAttribute(Puma_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatLevisCheckBoxIsChecked() {
+        System.out.println("✅check that levis check box is checked");
+        String state = driver.element().getElementAttribute(Levis_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatZaraCheckBoxIsChecked() {
+        System.out.println("✅check that zara check box is checked");
+        String state = driver.element().getElementAttribute(Zara_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatHMCheckBoxIsChecked() {
+        System.out.println("✅check that HM check box is checked");
+        String state = driver.element().getElementAttribute(HM_CheckBox, "data-state");
+        Assert.assertEquals(state, "checked");
+        return this;
+    }
+
+    public ProductsPageUser checkThatNikeCheckBoxIsNotChecked() {
         System.out.println("❎check that nike check box is not checked");
-        String state = driver.element().getElementAttribute(Nike_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
+        String state = driver.element().getElementAttribute(Nike_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
         return this;
     }
-    public ProductsPageUser checkThatAdidasCheckBoxIsNotChecked()
-    {
+
+    public ProductsPageUser checkThatAdidasCheckBoxIsNotChecked() {
         System.out.println("❎check that adidas check box is not checked");
-        String state = driver.element().getElementAttribute(Adidas_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
+        String state = driver.element().getElementAttribute(Adidas_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
         return this;
     }
-    public ProductsPageUser checkThatPumaCheckBoxIsNotChecked()
-    {
+
+    public ProductsPageUser checkThatPumaCheckBoxIsNotChecked() {
         System.out.println("❎check that puma check box is not checked");
-        String state = driver.element().getElementAttribute(Puma_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
+        String state = driver.element().getElementAttribute(Puma_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
         return this;
     }
-    public ProductsPageUser checkThatLevisCheckBoxIsNotChecked()
-    {
+
+    public ProductsPageUser checkThatLevisCheckBoxIsNotChecked() {
         System.out.println("❎check that levis check box is not checked");
-        String state = driver.element().getElementAttribute(Levis_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
+        String state = driver.element().getElementAttribute(Levis_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
         return this;
     }
-    public ProductsPageUser checkThatZaraCheckBoxIsNotChecked()
-    {
+
+    public ProductsPageUser checkThatZaraCheckBoxIsNotChecked() {
         System.out.println("❎check that zara check box is not checked");
-        String state = driver.element().getElementAttribute(Zara_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
+        String state = driver.element().getElementAttribute(Zara_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
         return this;
     }
-    public ProductsPageUser checkThatHMCheckBoxIsNotChecked()
-    {
+
+    public ProductsPageUser checkThatHMCheckBoxIsNotChecked() {
         System.out.println("❎check that HM check box is not checked");
-        String state = driver.element().getElementAttribute(HM_CheckBox,"data-state");
-        Assert.assertEquals(state,"unchecked");
+        String state = driver.element().getElementAttribute(HM_CheckBox, "data-state");
+        Assert.assertEquals(state, "unchecked");
         return this;
     }
+
     //nav bar tabs assertions
-    public HomePage checkThatHomeTabIsVisible()
-    {
+    public HomePage checkThatHomeTabIsVisible() {
         System.out.println("✅check home tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Home_Label_Button);
-        Assert.assertEquals(actualTitle,Home_Button_Text);
+        Assert.assertEquals(actualTitle, Home_Button_Text);
         return new HomePage(driver.get());
     }
-    public ProductsPageUser checkThatProductsTabIsVisible()
-    {
+
+    public ProductsPageUser checkThatProductsTabIsVisible() {
         System.out.println("✅check products tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Products_Label_Button);
-        Assert.assertEquals(actualTitle,Products_Button_Text);
+        Assert.assertEquals(actualTitle, Products_Button_Text);
         return this;
     }
-    public ProductsPageUser checkThatMenTabIsVisible()
-    {
+
+    public ProductsPageUser checkThatMenTabIsVisible() {
         System.out.println("✅check men tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Men_Label_Button);
-        Assert.assertEquals(actualTitle,Men_Button_Text);
+        Assert.assertEquals(actualTitle, Men_Button_Text);
         return this;
     }
-    public ProductsPageUser checkThatWomenTabIsVisible()
-    {
+
+    public ProductsPageUser checkThatWomenTabIsVisible() {
         System.out.println("✅check women tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Women_Label_Button);
-        Assert.assertEquals(actualTitle,Women_Button_Text);
+        Assert.assertEquals(actualTitle, Women_Button_Text);
         return this;
     }
-    public ProductsPageUser checkThatKidsTabIsVisible()
-    {
+
+    public ProductsPageUser checkThatKidsTabIsVisible() {
         System.out.println("✅check kids tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Kids_Label_Button);
-        Assert.assertEquals(actualTitle,Kids_Button_Text);
+        Assert.assertEquals(actualTitle, Kids_Button_Text);
         return this;
     }
-    public ProductsPageUser checkThatFootwearTabIsVisible()
-    {
+
+    public ProductsPageUser checkThatFootwearTabIsVisible() {
         System.out.println("✅check foot wear tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Footwear_Label_Button);
-        Assert.assertEquals(actualTitle,Footwear_Button_Text);
+        Assert.assertEquals(actualTitle, Footwear_Button_Text);
         return this;
     }
-    public ProductsPageUser checkThatAccessoriesTabIsVisible()
-    {
+
+    public ProductsPageUser checkThatAccessoriesTabIsVisible() {
         System.out.println("✅check accessories tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Accessories_Label_Button);
-        Assert.assertEquals(actualTitle,Accessories_Button_Text);
+        Assert.assertEquals(actualTitle, Accessories_Button_Text);
         return this;
     }
 //    public void checkThatSearchTabIsVisible()

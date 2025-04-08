@@ -27,7 +27,7 @@ public class HomePageTests {
 
         //BrowserActions.openUrl(driver, url);
         driver.browser().openUrl(driver.get(), url);
-        loginPage = new LoginPage(driver.get());
+        loginPage = new LoginPage(driver);
         homePage = new HomePage(driver.get());
     }
 

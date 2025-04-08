@@ -1,6 +1,8 @@
 package com.shoppy.com.utils;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class BrowserActions {
     private WebDriver driver;
@@ -8,6 +10,12 @@ public class BrowserActions {
     public BrowserActions(WebDriver driver) {
         this.driver = driver;
     }
+
+    public BrowserActions navigateToURL(String url) {
+        driver.navigate().to(url);
+        return this;
+    }
+
 
     public BrowserActions openUrl(WebDriver driver, String url) {
         driver.get(url);
@@ -21,5 +29,53 @@ public class BrowserActions {
 
     public String getCurrentURL(WebDriver driver) {
         return driver.getCurrentUrl();
+    }
+
+    public BrowserActions navigateForward() {
+        driver.navigate().forward();
+        return this;
+    }
+
+    public BrowserActions navigateBack() {
+        driver.navigate().back();
+        return this;
+    }
+
+    public BrowserActions refreshCurrentPage() {
+        driver.navigate().refresh();
+        return this;
+    }
+
+    public BrowserActions scrollToBottom() {
+        new Actions(driver).scrollByAmount(0, 2500).build().perform();
+        return this;
+    }
+
+    public BrowserActions scrollToAmount(int width, int height) {
+        new Actions(driver).scrollByAmount(width, height).build().perform();
+        return this;
+    }
+
+    /****************************************** Cookies ****************************************/
+
+    public BrowserActions addCookie(Cookie cookie) {
+        driver.manage().addCookie(cookie);
+        return this;
+    }
+
+
+    public BrowserActions deleteCookie(Cookie cookie) {
+        driver.manage().deleteCookie(cookie);
+        return this;
+    }
+
+    public BrowserActions deleteCookieWithName(String name) {
+        driver.manage().deleteCookieNamed(name);
+        return this;
+    }
+
+    public BrowserActions deleteAllCookies() {
+        driver.manage().deleteAllCookies();
+        return this;
     }
 }
