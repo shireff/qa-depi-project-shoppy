@@ -25,6 +25,11 @@ public class ElementActions {
         js = (JavascriptExecutor) this.driver;
     }
 
+//    public static WebElement find(WebDriver driver, By locator) {
+//        WebElement element = driver.findElement(locator);
+//        return element;
+//    }
+
 
     public static WebElement find(WebDriver driver, By locator) {
             List<WebElement> elements = driver.findElements(locator);
@@ -171,4 +176,14 @@ public class ElementActions {
         return this;
     }
 
+    public static List<By> getAllElementsLocators(WebDriver driver, By locator, String commonXpath) {
+        List<WebElement> allElementsList = driver.findElements(locator);
+        List<By> allElementsLocators = new ArrayList<>();
+        int i;
+        for (i = 1; i <= allElementsList.size(); i++) ;
+        {
+            allElementsLocators.add(By.xpath(commonXpath + "[" + i + "]"));
+        }
+        return allElementsLocators;
+    }
 }
