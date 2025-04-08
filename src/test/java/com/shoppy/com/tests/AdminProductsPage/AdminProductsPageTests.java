@@ -2,6 +2,7 @@ package com.shoppy.com.tests.AdminProductsPage;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.AdminDashboardPage;
+import com.shoppy.com.pages.AdminProductsPage;
 import com.shoppy.com.pages.LoginPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -32,9 +33,25 @@ public class AdminProductsPageTests {
                 .clickOnProductsBtn()
                 .checkProductsPageUrl()
                 .checkAddProductBtnIsDisplayed()
-                .checkAllProductsAreDisplayed();
+                .checkProductsAreDisplayed();
+    }
+    @Test(priority = 2)
+    public void testThatProductCardAndItsComponentsExists() {
+        testNavigationToProductsPage();
+        new AdminProductsPage(driver).
+                checkProductCardIsDisplayed()
+                .checkProductCardImageIsDisplayed()
+                .checkProductCardEditBtnIsDisplayed()
+                .checkProductCardDeleteBtnIsDisplayed()
+                .checkProductCardPriceIsDisplayed()
+                .checkProductCardTitleIsDisplayed();
     }
 
+    @Test(priority = 3)
+    public void verifyThatAddProductBtnIsWorkingProperly() {
+        testNavigationToProductsPage();
+        new AdminProductsPage(driver).clickOnAddProductBtn();
+    }
 
     @AfterMethod
     public void tearDown() throws InterruptedException {
