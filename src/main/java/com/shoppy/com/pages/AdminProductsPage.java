@@ -77,7 +77,7 @@ public class AdminProductsPage {
     }
     public AdminAddProductPage clickOnAddProductBtn()
     {
-        ElementActions.click(driver.get(),addProductBtn);
+        driver.element().click(addProductBtn);
         return new AdminAddProductPage(driver);
     }
 
