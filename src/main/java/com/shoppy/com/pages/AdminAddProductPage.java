@@ -419,27 +419,27 @@ public class AdminAddProductPage {
 
     /***************  clicks  *******************/
     public AdminAddProductPage clickOnCategoryBtn() {
-        ElementActions.click(driver.get(), categoryBtn);
+        driver.element().click( categoryBtn);
         return this;
     }
 
     public AdminAddProductPage clickOnBrandBtn() {
-        ElementActions.click(driver.get(), brandBtn);
+        driver.element().click( brandBtn);
         return this;
     }
 
     public AdminAddProductPage clickOnCloseAddProductFormBtn() {
-        ElementActions.click(driver.get(), closeAddProductFormBtn);
+        driver.element().click(closeAddProductFormBtn);
         return this;
     }
 
     public AdminAddProductPage clickOnAddBtn() {
-        ElementActions.click(driver.get(), addBtn);
+        driver.element().click(addBtn);
         return this;
     }
 
     public AdminAddProductPage clickOnToastCloseBtn() {
-        ElementActions.click(driver.get(), toastCloseBtn);
+        driver.element().click(toastCloseBtn);
         return this;
     }
 
