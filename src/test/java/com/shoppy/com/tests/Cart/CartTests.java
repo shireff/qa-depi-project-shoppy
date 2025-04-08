@@ -1,5 +1,6 @@
 package com.shoppy.com.tests.Cart;
 
+import DriverFactory.Driver;
 import com.shoppy.com.pages.CartPage;
 import com.shoppy.com.pages.HomePage;
 import com.shoppy.com.pages.LoginPage;
@@ -11,7 +12,7 @@ import java.time.Duration;
 
 public class CartTests {
 
-    protected WebDriver driver;
+    protected Driver driver;
     protected CartPage cartPage;
     protected LoginPage loginPage;
     protected HomePage homePage;
@@ -19,12 +20,11 @@ public class CartTests {
 
     @BeforeClass
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        BrowserActions.openUrl(driver, url);
+        driver = new Driver("chrome");
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
-        cartPage = new CartPage(driver);
+        cartPage = new CartPage(driver.get());
     }
 
 
