@@ -13,7 +13,6 @@ public class Scrolling {
 
     public static void scrollToElement(WebDriver driver, By locator) {
         try {
-        //    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", locator);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", locator);
         } catch (Exception e) {
             System.out.println("⚠️ Scroll failed: " + e.getMessage());
