@@ -142,7 +142,7 @@ public class ProductsPageUser {
     public HomePage clickNavBarHome() {
         System.out.println("⬆️click home tab");
         driver.element().click(Home_Label_Button);
-        return new HomePage(driver.get());
+        return new HomePage(driver);
     }
 
     public ProductsPageUser clickNavBarProducts() {
@@ -418,7 +418,7 @@ public class ProductsPageUser {
         System.out.println("✅check home tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Home_Label_Button);
         Assert.assertEquals(actualTitle, Home_Button_Text);
-        return new HomePage(driver.get());
+        return new HomePage(driver);
     }
 
     public ProductsPageUser checkThatProductsTabIsVisible() {

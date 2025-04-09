@@ -448,32 +448,32 @@ public class AdminAddProductPage {
     /***************  Send Keys  *******************/
     public AdminAddProductPage fillUploadImageField(String path) {
         File uploadFile = new File(path);
-        ElementActions.set(driver.get(), uploadImageField, uploadFile.getAbsolutePath());
+        driver.element().set(uploadImageField, uploadFile.getAbsolutePath());
         return this;
     }
 
     public AdminAddProductPage fillTitleField(String title) {
-        ElementActions.set(driver.get(), titleField, title);
+        driver.element().set( titleField, title);
         return this;
     }
 
     public AdminAddProductPage fillDescriptionField(String description) {
-        ElementActions.set(driver.get(), descriptionField, description);
+        driver.element().set( descriptionField, description);
         return this;
     }
 
     public AdminAddProductPage fillPriceField(String price) {
-        ElementActions.set(driver.get(), priceField, price);
+        driver.element().set( priceField, price);
         return this;
     }
 
     public AdminAddProductPage fillSalePriceField(String salePrice) {
-        ElementActions.set(driver.get(), salePriceField, salePrice);
+        driver.element().set( salePriceField, salePrice);
         return this;
     }
 
     public AdminAddProductPage fillTotalStockField(String totalStock) {
-        ElementActions.set(driver.get(), totalStockField, totalStock);
+        driver.element().set( totalStockField, totalStock);
         return this;
     }
 
