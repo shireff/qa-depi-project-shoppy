@@ -180,11 +180,12 @@ public class ProductsPageUser {
         driver.element().click(Accessories_Label_Button);
         return this;
     }
-//    public void clickNavBarSearch()
-//    {
-//        System.out.println("⬆️click search tab");
-//        driver.element().click(driver.get(),Accessories_Label_Button);
-//    }
+    public SearchPageUser clickNavBarSearch()
+    {
+        System.out.println("⬆️click search tab");
+        driver.element().click(Accessories_Label_Button);
+        return new SearchPageUser(driver);
+    }
 
     //Sort By DropDown Action
     public ProductsPageUser sortByPriceLowToHigh() {
@@ -461,11 +462,12 @@ public class ProductsPageUser {
         Assert.assertEquals(actualTitle, Accessories_Button_Text);
         return this;
     }
-//    public void checkThatSearchTabIsVisible()
-//    {
-//        System.out.println("✅check search tab in nav is visible");
-//        String actualTitle = driver.element().getTextOf(Search_Label_Button);
-//        Assert.assertEquals(actualTitle,Search_Button_Text);
-//    }
+    public ProductsPageUser checkThatSearchTabIsVisible()
+    {
+        System.out.println("✅check search tab in nav is visible");
+        String actualTitle = driver.element().getTextOf(Search_Label_Button);
+        Assert.assertEquals(actualTitle,Search_Button_Text);
+        return this;
+    }
 
 }
