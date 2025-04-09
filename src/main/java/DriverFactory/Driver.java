@@ -2,6 +2,7 @@ package DriverFactory;
 
 import com.shoppy.com.utils.BrowserActions;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.ElementAssertions;
 import listeners.webDriver.DriverListeners;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
@@ -82,5 +83,10 @@ public class Driver {
 
     public BrowserActions browser() {
         return new BrowserActions(driver.get());
+    }
+
+    public ElementAssertions assertion() {
+        return new ElementAssertions(driver.get());
+
     }
 }
