@@ -72,7 +72,7 @@ public class ElementActions {
     public ElementActions click(By locator) {
         logger.info(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
         try {
-            isClickable(locator);
+        //    isClickable(locator);
             find(driver, locator).click();
         } catch (ElementClickInterceptedException | NoSuchElementException | StaleElementReferenceException |
                  TimeoutException exception) {

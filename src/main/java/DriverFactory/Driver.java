@@ -9,7 +9,9 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 import static com.shoppy.com.utils.PropertiesManager.webConfig;
 
 public class Driver {
+    private static WebDriver sharedDriver;
     private ThreadLocal<WebDriver> driver;
+
 
 
     public Driver() {

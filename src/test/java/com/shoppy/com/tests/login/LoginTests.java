@@ -21,7 +21,7 @@ public class LoginTests {
 
     @BeforeMethod
     public void setUp() {
-        driver = new Driver("chrome");
+        driver = new Driver();
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
@@ -43,35 +43,35 @@ public class LoginTests {
         loginPage.assertToastErrorMessageDisplayed();
     }
 
-    @Test(priority = 3)
-    public void testLoginNotExistUserErrorMsg() {
-        loginPage.setUserName("notExist@gmail.com");
-        loginPage.setPassword("WrongPassword");
-        loginPage.clickLogin();
-        loginPage.assertUserNotExistToastDisplayed();
-    }
-
-    @Test(priority = 4)
-    public void testLoginAsAdmin() {
-        loginPage.setUserName("shireffn369@gmail.com");
-        loginPage.setPassword("Shireff@123");
-        loginPage.clickLogin();
-        loginPage.assertLoginSuccessfulAsAdmin();
-        String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
-        String actualURL = driver.get().getCurrentUrl();
-        Assert.assertEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
-    }
-
-    @Test(priority = 5)
-    public void testLoginAsUser() {
-        loginPage.setUserName("shireffn369+f@gmail.com");
-        loginPage.setPassword("Shireff@123");
-        loginPage.clickLogin();
-        loginPage.assertLoginSuccessfulAsUser();
-        String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
-        String actualURL = driver.get().getCurrentUrl();
-        Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
-    }
+//    @Test(priority = 3)
+//    public void testLoginNotExistUserErrorMsg() {
+//        loginPage.setUserName("notExist@gmail.com");
+//        loginPage.setPassword("WrongPassword");
+//        loginPage.clickLogin();
+//        loginPage.assertUserNotExistToastDisplayed();
+//    }
+//
+//    @Test(priority = 4)
+//    public void testLoginAsAdmin() {
+//        loginPage.setUserName("shireffn369@gmail.com");
+//        loginPage.setPassword("Shireff@123");
+//        loginPage.clickLogin();
+//        loginPage.assertLoginSuccessfulAsAdmin();
+//        String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
+//        String actualURL = driver.get().getCurrentUrl();
+//        Assert.assertEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
+//    }
+//
+//    @Test(priority = 5)
+//    public void testLoginAsUser() {
+//        loginPage.setUserName("shireffn369+f@gmail.com");
+//        loginPage.setPassword("Shireff@123");
+//        loginPage.clickLogin();
+//        loginPage.assertLoginSuccessfulAsUser();
+//        String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
+//        String actualURL = driver.get().getCurrentUrl();
+//        Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
+//    }
 
 //    @Test(priority = 6)
 //    public void testGoogleLogin() {

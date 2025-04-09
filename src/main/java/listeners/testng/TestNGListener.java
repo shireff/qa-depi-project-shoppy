@@ -25,7 +25,6 @@ public class TestNGListener implements IExecutionListener, ITestListener {
     @Override
     public void onExecutionStart() {
         logger.info(CYAN + "🚀 TestNG is starting the execution" + RESET);
-
         initializeProperties();
     }
 
@@ -34,6 +33,7 @@ public class TestNGListener implements IExecutionListener, ITestListener {
         logger.info(GREEN + "🎉 TestNG has finished the execution" + RESET);
     }
 
+    @Override
     public void onTestStart(ITestResult result) {
         logger.info(BLUE + "🟢 TestNG is starting the test: " + result.getName() + RESET);
     }
