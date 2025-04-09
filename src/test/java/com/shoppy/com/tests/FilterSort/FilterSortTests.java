@@ -48,6 +48,16 @@ public class FilterSortTests {
                 checkThatZaraCheckBoxIsChecked().
                 checkThatHMCheckBoxIsChecked();
     }
+    @Test
+    public void goingToSearchPageFromProductsPage()
+    {
+        new ProductsPageUser(driver).clickNavBarSearch().checkThatSearchTabIsVisible();
+    }
+    @Test
+    public void goingToHomePageFromProductsPage()
+    {
+        new ProductsPageUser(driver).clickNavBarHome().
+    }
 
     @AfterClass
     public void TearDown() {
