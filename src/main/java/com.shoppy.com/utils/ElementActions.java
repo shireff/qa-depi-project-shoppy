@@ -1,11 +1,13 @@
 package com.shoppy.com.utils;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,14 +28,9 @@ public class ElementActions {
         js = (JavascriptExecutor) this.driver;
     }
 
-//    public static WebElement find(WebDriver driver, By locator) {
-//        WebElement element = driver.findElement(locator);
-//        return element;
-//    }
-
 
     public static WebElement find(WebDriver driver, By locator) {
-            List<WebElement> elements = driver.findElements(locator);
+        List<WebElement> elements = driver.findElements(locator);
 
         // Step 1: Find the first visible element
         for (WebElement element : elements) {
@@ -46,7 +43,7 @@ public class ElementActions {
         throw new RuntimeException("❌ No visible element found for: " + locator.toString());
     }
 
-    public static void set(WebDriver driver, By locator, String text) {
+    public ElementActions set(By locator, String text) {
         try {
             WebElement element = find(driver, locator);
 
@@ -67,12 +64,13 @@ public class ElementActions {
             ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", element, text);
             logger.info(BLUE + "ℹ️ Fallback JavaScript set text: " + CYAN + text + RESET);
         }
+        return this;
     }
 
     public ElementActions click(By locator) {
         logger.info(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
         try {
-            isClickable(locator);
+            //    isClickable(locator);
             find(driver, locator).click();
         } catch (ElementClickInterceptedException | NoSuchElementException | StaleElementReferenceException |
                  TimeoutException exception) {
@@ -100,6 +98,61 @@ public class ElementActions {
         logger.info(CYAN + "🔽 Scrolling to element: " + locator.toString() + RESET);
         js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(locator));
         return this;
+    }
+
+    // Unified method for selecting category or brand
+    public ElementActions selectItem(By itemLocator, String item, String itemType) {
+        String typeLabel = itemType.equalsIgnoreCase("category") ? "category" : "brand";
+        logger.info(BLUE + "🔍 Selecting " + typeLabel + ": " + CYAN + item + RESET);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+            List<WebElement> items = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(itemLocator));
+            logger.info(GREEN + "✅ Found " + items.size() + " " + typeLabel + " elements" + RESET);
+
+            for (WebElement element : items) {
+                String itemText = element.getText().trim();
+                if (itemText.equalsIgnoreCase(item)) {
+                    logger.info(GREEN + "✅ Found matching " + typeLabel + ": " + CYAN + itemText + RESET);
+
+                    // Scroll behavior: smooth for brands, basic for categories
+                    String scrollScript = itemType.equalsIgnoreCase("brand")
+                            ? "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});"
+                            : "arguments[0].scrollIntoView(true);";
+                    js.executeScript(scrollScript, element);
+                    logger.info(GREEN + "✅ Scrolled to " + typeLabel + ": " + CYAN + item + RESET);
+
+                    // Click: JS for brands, regular for categories
+                    if (itemType.equalsIgnoreCase("brand")) {
+                        js.executeScript("arguments[0].click();", element);
+                    } else {
+                        element.click();
+                    }
+                    logger.info(GREEN + "✅ Clicked " + typeLabel + ": " + CYAN + item + RESET);
+
+                    // URL check: category= for categories, brand= with encoding for brands
+                    String urlFragment;
+                    if (itemType.equalsIgnoreCase("brand")) {
+                        String encodedItem = item.toLowerCase().replace("'s", "").replace("&", "%26");
+                        urlFragment = "brand=" + encodedItem;
+                    } else {
+                        urlFragment = "category=" + item.toLowerCase();
+                    }
+                    wait.until(ExpectedConditions.urlContains(urlFragment));
+                    logger.info(GREEN + "✅ URL updated to include: " + CYAN + urlFragment + RESET);
+                    return this;
+                }
+            }
+            logger.error(RED + BOLD + "❌ " + typeLabel + " '" + item + "' not found in the list!" + RESET);
+            throw new AssertionError("❌ " + typeLabel + " '" + item + "' not found!");
+
+        } catch (TimeoutException e) {
+            logger.error(RED + BOLD + "❌ Timeout waiting for " + typeLabel + " elements or URL update: " + e.getMessage() + RESET);
+            throw new RuntimeException("❌ Failed to select " + typeLabel + " '" + item + "' due to timeout", e);
+        } catch (Exception e) {
+            logger.error(RED + BOLD + "❌ Unexpected error selecting " + typeLabel + ": " + e.getMessage() + RESET);
+            throw new RuntimeException("❌ Failed to select " + typeLabel + " '" + item + "'", e);
+        }
     }
 
     public ElementActions selectByIndex(By locator, int index) {

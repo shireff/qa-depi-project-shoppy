@@ -2,15 +2,11 @@ package com.shoppy.com.tests.login;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.LoginPage;
-import com.shoppy.com.utils.BrowserActions;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Method;
 import java.time.Duration;
 
 public class LoginTests {

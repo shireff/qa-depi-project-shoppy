@@ -4,6 +4,7 @@ package com.shoppy.com.pages;
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
 import com.shoppy.com.utils.Waits;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,19 +30,19 @@ public class SignUp {
     }
 
     /* -------------------------------------- Actions -------------------------------------- */
-
+    @Step("Click Sign Up link")
     public void clickSignUpLink() {
         driver.element().click(signUpLink);
     }
 
-
+    @Step("Fill sign-up form with username, email, password")
     public void fillSignUpForm(String userName, String email, String password) {
-        driver.element().set(driver.get(), userNameField, userName);
-        driver.element().set(driver.get(), emailField, email);
-        driver.element().set(driver.get(), passwordField, password);
+        driver.element().set( userNameField, userName);
+        driver.element().set(emailField, email);
+        driver.element().set( passwordField, password);
     }
 
-
+    @Step("Click Sign Up button")
     public LoginPage clickSignUpButton() {
         driver.element().click( signUpButton);
         return new LoginPage(driver);
@@ -49,12 +50,12 @@ public class SignUp {
 
     /* -------------------------------------- Validations -------------------------------------- */
 
-
+    @Step("Check if Sign Up link is visible")
     public boolean isSignUpLinkVisible() {
         return find(driver.get(), signUpLink).isDisplayed();
     }
 
-
+    @Step("Check if sign-up fields are visible")
     public boolean isSignUpFieldsVisible() {
         return find(driver.get(), userNameField).isDisplayed()
                 && find(driver.get(), emailField).isDisplayed()
@@ -63,19 +64,13 @@ public class SignUp {
 
 
     /* -------------------------------------- Assertions -------------------------------------- */
-
+    @Step("Assert error message is displayed")
     public void assertErrorMessageDisplayed() {
-        assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
+        driver.assertion().assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
     }
-
+    @Step("Assert toast error message is displayed")
     public void assertToastErrorMessageDisplayed() {
-        assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
+        driver.assertion().assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
     }
 
-    private void assertElementDisplayed(By locator, String errorMessage) {
-        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
-        if (element == null || !element.isDisplayed()) {
-            throw new AssertionError(errorMessage);
-        }
-    }
 }
