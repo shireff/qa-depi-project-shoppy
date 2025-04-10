@@ -548,7 +548,7 @@ public class AdminAddProductPage {
     /***************  Send Keys  *******************/
     public AdminAddProductPage fillUploadImageField(String path) {
         File uploadFile = new File(path);
-//        ElementActions.set(driver.get(), uploadImageInputField, uploadFile.getAbsolutePath());
+//        driver.element().set(uploadImageInputField, uploadFile.getAbsolutePath());
         WebElement fileInput = driver.get().findElement(uploadImageInputField);
         fileInput.sendKeys(uploadFile.getAbsolutePath());
 
@@ -556,30 +556,30 @@ public class AdminAddProductPage {
     }
 
     public AdminAddProductPage fillTitleField(String title) {
-        ElementActions.set(driver.get(), titleField, title);
+        driver.element().set(titleField, title);
         return this;
     }
 
     public AdminAddProductPage fillDescriptionField(String description) {
-        ElementActions.set(driver.get(), descriptionField, description);
+        driver.element().set(descriptionField, description);
         return this;
     }
 
     public AdminAddProductPage fillPriceField(int price) {
-//      ElementActions.set(driver.get(), priceField, String.valueOf(price));
+//      driver.element().set(priceField, String.valueOf(price));
         ElementActions.setNumberField(driver.get(),priceField,price);
         return this;
     }
 
     public AdminAddProductPage fillSalePriceField(int salePrice) {
-//        ElementActions.set(driver.get(), salePriceField, String.valueOf(salePrice));
+//        driver.element().set(salePriceField, String.valueOf(salePrice));
         ElementActions.setNumberField(driver.get(),salePriceField,salePrice);
 
         return this;
     }
 
     public AdminAddProductPage fillTotalStockField(int totalStock) {
-//        ElementActions.set(driver.get(), totalStockField, String.valueOf(totalStock));
+//        driver.element().set(totalStockField, String.valueOf(totalStock));
         ElementActions.setNumberField(driver.get(),totalStockField,totalStock);
         return this;
     }
