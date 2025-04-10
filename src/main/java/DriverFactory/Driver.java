@@ -43,10 +43,14 @@ public class Driver {
         WebDriver currentDriver = driver.get();
         currentDriver.manage().window().maximize();
 
+        long implicitlyWaitTime = Long.parseLong(webConfig.getProperty("implicitlyWait", "10"));
+        long pageLoadTimeout = Long.parseLong(webConfig.getProperty("pageLoadTimeout", "30"));
+        long scriptTimeout = Long.parseLong(webConfig.getProperty("scriptTimeout", "30"));
+
         // Configuring timeouts (implicitly wait, page load timeout, script timeout)
-        currentDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        currentDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
-        currentDriver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
+        currentDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWaitTime));
+        currentDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+        currentDriver.manage().timeouts().scriptTimeout(Duration.ofSeconds(scriptTimeout));
 
         Optional.ofNullable(webConfig.getProperty("BaseURL"))
                 .filter(url -> !url.isEmpty())
