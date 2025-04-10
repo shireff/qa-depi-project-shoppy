@@ -1,6 +1,7 @@
 package listeners.testng;
 
 import DriverFactory.Driver;
+import com.shoppy.com.utils.AllureReportHelper;
 import com.shoppy.com.utils.ScreenshotManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +9,11 @@ import org.testng.IExecutionListener;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 import static com.shoppy.com.utils.PropertiesManager.initializeProperties;
+import static com.shoppy.com.utils.PropertiesManager.webConfig;
 
 public class TestNGListener implements IExecutionListener, ITestListener {
     private static final Logger logger = LoggerFactory.getLogger(TestNGListener.class);
@@ -26,12 +29,27 @@ public class TestNGListener implements IExecutionListener, ITestListener {
     public void onExecutionStart() {
         logger.info(CYAN + "🚀 TestNG is starting the execution" + RESET);
         initializeProperties();
+        AllureReportHelper.cleanAllureReport();
     }
 
     @Override
     public void onExecutionFinish() {
-        logger.info(GREEN + "🎉 TestNG has finished the execution" + RESET);
+        logger.info(CYAN + "📊 Generating Allure Report..." + RESET);
+
+        if (webConfig.getProperty("openAllureReportAfterExecution").equalsIgnoreCase("true")) {
+            try {
+                logger.info(BLUE + "🔍 Opening Allure Report..." + RESET);
+                Runtime.getRuntime().exec("reportGeneration.bat");
+            } catch (IOException e) {
+                logger.error(RED + "⚠️ Unable to open Allure Report. Please check the batch file or commands." + RESET);
+            }
+        } else {
+            logger.info(YELLOW + "🛑 Allure Report not opened (check 'openAllureReportAfterExecution' config)." + RESET);
+        }
+
+        logger.info(GREEN + "✅ TestNG has finished the execution." + RESET);
     }
+
 
     @Override
     public void onTestStart(ITestResult result) {

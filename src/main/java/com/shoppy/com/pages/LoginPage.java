@@ -3,6 +3,7 @@ package com.shoppy.com.pages;
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
 import com.shoppy.com.utils.Waits;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,8 +15,8 @@ public class LoginPage {
     private final Driver driver;
 
     // **Locators**
-    private final By usernameField = By.id("email");
-    private final By passwordField = By.id("password");
+    private final By usernameField = By.xpath("(//input[@id=\"email\"])[2]");
+    private final By passwordField = By.xpath("(//input[@id=\"password\"])[2]");
     private final By loginButton = By.xpath("//button[@type='submit']");
     private final By errorMsg = By.cssSelector(".text-destructive");
     private final By toastErrorMsg = By.cssSelector("li[data-state='open'] .text-sm.font-semibold");
@@ -27,31 +28,35 @@ public class LoginPage {
     private final By nextButton = By.xpath("//span[contains(text(),'Next')]");
     private final By confirmNextButton = By.xpath("//span[contains(text(),'Next')]");
 
-    public  LoginPage(Driver driver) {
+    public LoginPage(Driver driver) {
         this.driver = driver;
     }
 
     /* -------------------------------------- Actions -------------------------------------- */
-
+    @Step("Set username")
     public void setUserName(String userName) {
-        ElementActions.set(driver.get(), usernameField, userName);
+        driver.element().type(usernameField, userName);
     }
 
+    @Step("Set password")
     public void setPassword(String pass) {
-        ElementActions.set(driver.get(), passwordField, pass);
+        driver.element().type(passwordField, pass);
     }
 
+    @Step("Click login button")
     public HomePage clickLogin() {
         driver.element().click(loginButton);
-        return new HomePage(driver.get());
+        return new HomePage(driver);
     }
 
+    @Step("Login with username and password")
     public HomePage loginIntoApp(String userName, String password) {
         setUserName(userName);
         setPassword(password);
         return clickLogin();
     }
 
+    @Step("Click Google login button")
     public void clickGoogleLogin() {
         WebElement googleBtn = find(driver.get(), googleLoginButton);
         googleBtn.click();
@@ -59,31 +64,30 @@ public class LoginPage {
 
 
     /* -------------------------------------- Assertions -------------------------------------- */
-
+    @Step("Assert login successful as admin")
     public void assertLoginSuccessfulAsAdmin() {
-        assertElementDisplayed(adminDashboardHeader, "❌ Admin login failed!");
+        driver.assertion().assertElementDisplayed(adminDashboardHeader, "❌ Admin login failed!");
     }
 
+    @Step("Assert login successful as user")
     public void assertLoginSuccessfulAsUser() {
-        assertElementDisplayed(userHeader, "❌ User login failed!");
+        driver.assertion().assertElementDisplayed(userHeader, "❌ User login failed!");
     }
 
+    @Step("Assert error message is displayed")
     public void assertErrorMessageDisplayed() {
-        assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
+        driver.assertion().assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
     }
 
+    @Step("Assert toast error message is displayed")
     public void assertToastErrorMessageDisplayed() {
-        assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
+        driver.assertion().assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
     }
 
+    @Step("Assert 'User does not exist' toast message is displayed")
     public void assertUserNotExistToastDisplayed() {
-        assertElementDisplayed(userNotExistToastMsg, "❌ User not exists toast message is missing!");
-    }
+        driver.assertion().assertElementDisplayed(userNotExistToastMsg, "❌ User not exists toast message is missing!");
+        driver.assertion().assertElementTextContains(userNotExistToastMsg, "User does not exists! Please register",
+                "❌ User not exists toast message text is incorrect!");    }
 
-    private void assertElementDisplayed(By locator, String errorMessage) {
-        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
-        if (element == null || !element.isDisplayed()) {
-            throw new AssertionError(errorMessage);
-        }
-    }
 }
