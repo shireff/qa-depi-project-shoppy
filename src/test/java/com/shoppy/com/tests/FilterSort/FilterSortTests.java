@@ -56,7 +56,7 @@ public class FilterSortTests {
     @Test
     public void goingToHomePageFromProductsPage()
     {
-        new ProductsPageUser(driver).clickNavBarHome().
+        new ProductsPageUser(driver).clickNavBarHome();
     }
 
     @AfterClass
