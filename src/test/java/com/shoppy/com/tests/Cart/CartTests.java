@@ -2,7 +2,6 @@ package com.shoppy.com.tests.Cart;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.CartPage;
-import com.shoppy.com.pages.HomePage;
 import com.shoppy.com.pages.LoginPage;
 import com.shoppy.com.utils.BrowserActions;
 import org.testng.annotations.*;
@@ -10,10 +9,9 @@ import java.time.Duration;
 
 public class CartTests {
 
-    protected Driver driver;
+    public Driver driver;
     protected CartPage cartPage;
     protected LoginPage loginPage;
-    protected HomePage homePage;
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
 
     @BeforeClass
@@ -25,10 +23,8 @@ public class CartTests {
         cartPage = new CartPage(driver);
     }
 
-
-
     @Test(priority = 1)
-    public void testAddToCartProduct() throws InterruptedException {
+    public void testAddToCartProduct() {
         loginPage.setUserName("mylovelynano@gmail.com");
         loginPage.setPassword("hakem@2010");
         loginPage.clickLogin();
@@ -36,7 +32,8 @@ public class CartTests {
 
         cartPage.checkThatTheProductNameIsDisable()
                 .clickOnAddToCartButton()
-                .checkThatTheProductMessageAddedSuccesfullyIsDisable();
+                .checkThatTheProductMessageAddedSuccesfullyIsDisable()
+                .checkThatTheNumberOnCartIsDisable();
     }
 
     @Test(priority = 2, dependsOnMethods = {"testAddToCartProduct"})
@@ -45,39 +42,59 @@ public class CartTests {
                 .checkThatTheProductNameInCartIsDisable()
                 .checkThatTheProductPriceIsDisable()
                 .checkThatTheProductQuantityIsDisable()
-                .checkThatTheProductImageIsDisable();
-              //  .checkThatTheTotalIsDisable();
+                .checkThatTheProductImageIsDisable()
+                .checkThatTheProductTotalIsDisable();
 
     }
-/*
-    @Test(priority = 3, dependsOnMethods = {"testAddToCartProduct"})
-    public void testCounterNumberIsUpdated() {
-        cartPage.clickOnCounterIcon()
-                .checkThatTheCartItemMessageUpdatedSuccesfullyIsDisable();
-
-    }
-*/
-
 
     @Test(priority = 3, dependsOnMethods = {"testProductDataIsFoundInCart"})
-    public void testProductDataIsDeletedFromCart() throws InterruptedException {
+    public void testMinusButtonIdDisapledWhenProductQuantityEqualOne(){
+        cartPage.checkThatTheProductMinusButtonIsDisapledWhenQuantityIsOne();
+    }
+
+    @Test(priority = 4, dependsOnMethods = {"testProductDataIsFoundInCart"})
+    public void testProductPriceAndTotalIsUpdatedWhenQuantityIsIncreased() {
+        cartPage.clickOnQuantityPlusIcon()
+                .checkThatTheProductMessageUpdatedSuccesfullyIsDisable()
+                .checkThatTheProducDataIsUpdatedWhenIncreasingTheQuantity();
+    }
+
+    @Test(priority = 5, dependsOnMethods = {"testProductPriceAndTotalIsUpdatedWhenQuantityIsIncreased"})
+    public void testProductPriceAndTotalIsUpdatedWhenQuantityIsDecreased(){
+        cartPage.clickOnQuantityMinusIcon()
+                .checkThatTheProductMessageUpdatedSuccesfullyIsDisable()
+                .checkThatTheProducDataIsUpdatedWhenDecreasingTheQuantity();
+    }
+
+    @Test(priority = 6, dependsOnMethods = {"testProductDataIsFoundInCart"})
+    public void testProductDataIsDeletedFromCart()  {
         cartPage.clickOnDeleteIcon()
-                .checkThatTheProductIsDeletedFromCart();
+                .checkThatTheProductIsDeletedFromCart()
+                .checkThatTheProductMessageDeletedSuccesfullyIsDisable();
 
     }
 
-//    @Test(priority = 4, dependsOnMethods = {"testProductDataIsFoundInCart"})
-//    public void testCartIconIsClosed() throws InterruptedException {
-//        cartPage.clickOnCloseIcon()
-//                .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
-//
-//    }
+    @Test(priority = 7, dependsOnMethods = {"testProductDataIsDeletedFromCart"})
+    public void testCartIconIsClosed()  {
+        cartPage.clickOnCloseIcon()
+                .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
+    }
 
+    @Test(priority = 8)
+    public void testCheckoutButtonIsClickable() {
+        cartPage.clickOnCartIcon()
+                .clickOnCheckoutButton()
+                .checkThatTheCheckoutButtonIsClickable();
+    }
+    @Test(priority = 9, dependsOnMethods = {"testProductDataIsFoundInCart"})
+    public void testTheUrlChagnedToCheckoutPageAfterClickingOnCheckoutButton() {
+        cartPage.clickOnCheckoutButton()
+                .checkThatTheUrlChangedToTheCheckoutPage();
+    }
 
 
     @AfterClass
-    public void tearDown() throws InterruptedException {
-     //   Thread.sleep(2000);
+    public void tearDown() {
         driver.browser().closeBrowser(driver.get());
     }
 
