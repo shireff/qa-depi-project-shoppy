@@ -19,9 +19,8 @@ public class SignUpTests {
     private final String url = "https://shoppy-ochre.vercel.app/auth/login";
 
     @BeforeMethod
-    public void setUp(Method method) {
+    public void setUp() {
         driver = new Driver("chrome");
-        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
         signUpPage = new SignUp(driver);
     }
@@ -70,14 +69,6 @@ public class SignUpTests {
         signUpPage.clickSignUpButton();
         signUpPage.assertErrorMessageDisplayed();
     }
-
-//    @Test(priority = 7)
-//    public void testValidSignUp() {
-//        signUpPage.clickSignUpLink();
-//        signUpPage.fillSignUpForm("new User Automation", "shireffn369+q@gmail.com", "Shireff@123");
-//        signUpPage.clickSignUpButton();
-//        Assert.assertTrue(driver.getCurrentUrl().contains("/auth/login"), "❌ Failed to navigate to Login page.");
-//    }
 
     @AfterMethod
     public void tearDown() {

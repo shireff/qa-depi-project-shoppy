@@ -2,71 +2,72 @@ package DriverFactory;
 
 import com.shoppy.com.utils.BrowserActions;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.ElementAssertions;
 import listeners.webDriver.DriverListeners;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
+import java.time.Duration;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import static com.shoppy.com.utils.PropertiesManager.webConfig;
 
 public class Driver {
-    private ThreadLocal<WebDriver> driver;
+    private static final Logger logger = Logger.getLogger(Driver.class.getName());
 
+    private final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public Driver() {
-        String browserType = webConfig.getProperty("BrowserType");
-        WebDriver undecoratedDriver = getDriver(browserType).startDriver();
-        assert undecoratedDriver != null;
-
-
-        driver = new ThreadLocal<>();
-        driver.set(new EventFiringDecorator<>(WebDriver.class,
-                new DriverListeners(undecoratedDriver)).decorate(undecoratedDriver));
-
-
-        System.out.println("Start with driver: " + driver);
-        driver.get().manage().window().maximize();
-        String baseUrl = webConfig.getProperty("BaseURL");
-
-        if (!baseUrl.isEmpty()) {
-            driver.get().navigate().to(baseUrl);
-        }
-
+        initializeDriver(webConfig.getProperty("BrowserType"));
     }
 
     public Driver(String driverType) {
-        WebDriver undecoratedDriver = getDriver(driverType).startDriver();
-        assert undecoratedDriver != null;
-
-
-        driver = new ThreadLocal<>();
-        driver.set(new EventFiringDecorator<>(WebDriver.class,
-                new DriverListeners(undecoratedDriver)).decorate(undecoratedDriver));
-
-
-        System.out.println("Start with driver: " + driver);
-        driver.get().manage().window().maximize();
-        String baseUrl = webConfig.getProperty("BaseURL");
-
-        if (!baseUrl.isEmpty()) {
-            driver.get().navigate().to(baseUrl);
-        }
-
+        initializeDriver(driverType);
     }
 
-    private DriverAbstract getDriver(String driver) {
-        switch (driver.toUpperCase()) {
-            case "CHROME": {
+    private void initializeDriver(String driverType) {
+        WebDriver undecoratedDriver = Optional.ofNullable(getDriver(driverType).startDriver())
+                .orElseThrow(() -> new IllegalStateException("Driver could not be started."));
+
+        WebDriver decoratedDriver = new EventFiringDecorator<>(WebDriver.class,
+                new DriverListeners(undecoratedDriver)).decorate(undecoratedDriver);
+
+        driver.set(decoratedDriver);
+
+        logger.info("Started with driver: " + driver.get());
+        configureDriver();
+    }
+
+    private void configureDriver() {
+        WebDriver currentDriver = driver.get();
+        currentDriver.manage().window().maximize();
+
+        long implicitlyWaitTime = Long.parseLong(webConfig.getProperty("implicitlyWait", "10"));
+        long pageLoadTimeout = Long.parseLong(webConfig.getProperty("pageLoadTimeout", "30"));
+        long scriptTimeout = Long.parseLong(webConfig.getProperty("scriptTimeout", "30"));
+
+        // Configuring timeouts (implicitly wait, page load timeout, script timeout)
+        currentDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWaitTime));
+        currentDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(pageLoadTimeout));
+        currentDriver.manage().timeouts().scriptTimeout(Duration.ofSeconds(scriptTimeout));
+
+        Optional.ofNullable(webConfig.getProperty("BaseURL"))
+                .filter(url -> !url.isEmpty())
+                .ifPresent(url -> currentDriver.navigate().to(url));
+    }
+
+
+    private DriverAbstract getDriver(String browserType) {
+        switch (Optional.ofNullable(browserType).orElse("").toUpperCase()) {
+            case "CHROME":
                 return new ChromeDriverFactory();
-            }
-            case "FIREFOX": {
+            case "FIREFOX":
                 return new FirefoxDriverFactory();
-            }
-            case "EDGE": {
+            case "EDGE":
                 return new EdgeDriverFactory();
-            }
-            default: {
-                throw new IllegalStateException("Unexpected value" + driver);
-            }
+            default:
+                throw new IllegalStateException("Unsupported browser type: " + browserType);
         }
     }
 
@@ -80,5 +81,9 @@ public class Driver {
 
     public BrowserActions browser() {
         return new BrowserActions(driver.get());
+    }
+
+    public ElementAssertions assertion() {
+        return new ElementAssertions(driver.get());
     }
 }

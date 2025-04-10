@@ -22,37 +22,35 @@ public class HomePageTests {
 
 
     @BeforeMethod
-    public void setUp(Method method) {
+    public void setUp() {
         driver = new Driver("chrome");
-
-        //BrowserActions.openUrl(driver, url);
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver.get());
+        homePage = new HomePage(driver);
     }
 
 
-    @Test
+    @Test(priority = 1)
     public void testHomePageHeaderIsDisplayed() {
         loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
         homePage.assertHomePageHeaderDisplayed();
     }
 
-    @Test(dataProvider = "categoryData", dataProviderClass = DataProviderTests.class)
-    public void testCategorySelection(String category, boolean hasProducts) {
+    @Test(priority = 2, dataProvider = "categoryData", dataProviderClass = DataProviderTests.class)
+    public void testCategorySelection(String category, boolean hasProducts) throws InterruptedException {
         loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
         homePage.selectCategory(category);
         homePage.validateProductVisibility(hasProducts, "Category filter failed for: " + category);
     }
 
-    @Test(dataProvider = "brandData", dataProviderClass = DataProviderTests.class)
+    @Test(priority = 3, dataProvider = "brandData", dataProviderClass = DataProviderTests.class)
     public void testBrandSelection(String brand, boolean hasProducts) {
         loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
         homePage.selectBrand(brand);
         homePage.validateProductVisibility(hasProducts, "Brand filter failed for: " + brand);
     }
 
-    @Test
+    @Test(priority = 4)
     public void testFeatureProductsInteraction() throws InterruptedException {
         loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
         homePage.assertFeatureProductsDisplayed();
@@ -60,13 +58,13 @@ public class HomePageTests {
         homePage.assertProductModalDisplayed();
     }
 
-    @Test
+    @Test(priority = 5)
     public void testCustomerReviewsVisibility() {
         loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
         Assert.assertTrue(homePage.isCustomerReviewsDisplayed(), "\n Customer reviews section is missing! \n");
     }
 
-    @Test
+    @Test(priority = 6)
     public void testFooterLinks() {
         loginPage.loginIntoApp("shireffn369+f@gmail.com", "Shireff@123");
         Assert.assertTrue(homePage.areFooterLinksWorking(), "\n Footer links are not working! \n");
