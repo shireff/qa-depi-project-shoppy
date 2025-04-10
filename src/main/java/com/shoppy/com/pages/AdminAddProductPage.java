@@ -504,6 +504,16 @@ public class AdminAddProductPage {
         Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock is required"));
         return this;
     }
+
+    public AdminAddProductPage checkInvalidPriceErrorMsgText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price must be greater than 0."));
+        return this;
+    }
+
+    public AdminAddProductPage checkInvalidTotalStockErrorMsgText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock must be greater than 0."));
+        return this;
+    }
     /***************  End Error Msg Text *******************/
 
     /***************  ACTIONS  *******************/
@@ -567,20 +577,20 @@ public class AdminAddProductPage {
 
     public AdminAddProductPage fillPriceField(int price) {
 //      driver.element().set(priceField, String.valueOf(price));
-        ElementActions.setNumberField(driver.get(),priceField,price);
+        ElementActions.setNumberField(driver.get(), priceField, price);
         return this;
     }
 
     public AdminAddProductPage fillSalePriceField(int salePrice) {
 //        driver.element().set(salePriceField, String.valueOf(salePrice));
-        ElementActions.setNumberField(driver.get(),salePriceField,salePrice);
+        ElementActions.setNumberField(driver.get(), salePriceField, salePrice);
 
         return this;
     }
 
     public AdminAddProductPage fillTotalStockField(int totalStock) {
 //        driver.element().set(totalStockField, String.valueOf(totalStock));
-        ElementActions.setNumberField(driver.get(),totalStockField,totalStock);
+        ElementActions.setNumberField(driver.get(), totalStockField, totalStock);
         return this;
     }
 

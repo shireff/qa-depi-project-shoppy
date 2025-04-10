@@ -25,6 +25,12 @@ public class AdminAddProductPageTests {
     private int salePrice = 50;
     private int totalStock = 20;
 
+    //    invalid values
+    private int Invalidprice = -100;
+    private int InvalidsalePrice = -50;
+    private int InvalidtotalStock = -20;
+
+
     @BeforeClass
     public void setup() {
         driver = new ThreadLocal<>();
@@ -137,6 +143,200 @@ public class AdminAddProductPageTests {
                 .checkAddProductFormIsNotDisplayed()
         ;
     }
+
+    @Test(priority = 8)
+    public void confirmErrorMsgsAreDisplayedOnSubmittingWithEmptyFields() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .checkSalePriceFieldIsDisplayed()
+                .checkTotalStockFieldIsDisplayed()
+                .checkUploadImageFieldLabelIsDisplayed()
+                .checkTitleFieldIsDisplayed()
+                .checkDescriptionFieldIsDisplayed()
+                .checkCategoryBtnIsDisplayed()
+                .checkBrandBtnIsDisplayed()
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkTitleErrorMsgIsDisplayed()
+                .checkTitleErrorMsgText()
+                .checkBrandErrorMsgIsDisplayed()
+                .checkBrandErrorMsgText()
+                .checkCategoryErrorMsgIsDisplayed()
+                .checkCategoryErrorMsgText()
+                .checkPriceErrorMsgIsDisplayed()
+                .checkPriceErrorMsgText()
+                .checkTotalStockErrorMsgIsDisplayed()
+                .checkTotalStockErrorMsgText()
+        ;
+    }
+
+    @Test(priority = 9)
+    public void ensureOptionalFieldsDoNotTriggerErrors() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsNotDisplayed()
+        ;
+    }
+
+
+    //    ensure the submittion is stopped if any required field is empty
+    @Test(priority = 10)
+    public void ensureTitleFieldsIsRequiredAndTheSubmittionStopped() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+//                .checkTitleFieldIsDisplayed()
+//                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkTitleErrorMsgIsDisplayed()
+                .checkTitleErrorMsgText()
+        ;
+    }
+
+    @Test(priority = 11)
+    public void ensureCategoryFieldsIsRequiredAndTheSubmittionStopped() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+//                .checkCategoryBtnIsDisplayed()
+//                .clickOnCategoryBtn()
+//                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkCategoryErrorMsgIsDisplayed()
+                .checkCategoryErrorMsgText()
+        ;
+    }
+
+    @Test(priority = 12)
+    public void ensureBrandFieldsIsRequiredAndTheSubmittionStopped() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+//                .checkBrandBtnIsDisplayed()
+//                .clickOnBrandBtn()
+//                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkBrandErrorMsgIsDisplayed()
+                .checkBrandErrorMsgText()
+        ;
+    }
+
+    @Test(priority = 13)
+    public void ensurePriceFieldsIsRequiredAndTheSubmittionStopped() {
+        new AdminAddProductPage(driver.get())
+//                .checkPriceFieldIsDisplayed()
+//                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkPriceErrorMsgIsDisplayed()
+                .checkPriceErrorMsgText()
+        ;
+    }
+
+    @Test(priority = 13)
+    public void ensureTotalStockFieldsIsRequiredAndTheSubmittionStopped() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+//                .checkTotalStockFieldIsDisplayed()
+//                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkTotalStockErrorMsgIsDisplayed()
+                .checkTotalStockErrorMsgText()
+        ;
+    }
+
+    // End ensure the submittion is stopped if any required field is empty
+
+    // Invalid numbers
+    @Test(priority = 14)
+    public void validateSubmissionWithIncorrectValueInPriceField() {
+        new AdminAddProductPage(driver.get())
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(Invalidprice)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+                .checkInvalidPriceErrorMsgText();
+        ;
+    }
+
+
+    // End Invalid numbers
+
 
     @AfterClass
     public void tearDown() throws InterruptedException {
