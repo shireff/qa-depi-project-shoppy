@@ -32,4 +32,15 @@ public class Waits {
         });
     }
 
+    public static boolean waitForElementToBeInvisible(WebDriver driver, By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(driver1 -> {
+                    try {
+                        WebElement element = driver1.findElement(locator);
+                        return !element.isDisplayed();
+                    } catch (Exception e) {
+                        return true; // If it's gone from DOM, it's definitely invisible
+                    }
+                });
+    }
 }
