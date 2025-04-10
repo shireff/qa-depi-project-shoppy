@@ -15,7 +15,6 @@ public class FilterSortTests {
     @BeforeClass
     public void SetUp() {
         driver = new Driver("chrome");
-        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.browser().openUrl(driver.get(), new ProductsPageUser(driver).url);
         new LoginPage(driver).loginIntoApp("ramymahana7@test.com", "archer@@@97");
     }

@@ -17,7 +17,6 @@ public class CartTests {
     @BeforeClass
     public void setUp() {
         driver = new Driver("chrome");
-        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
         cartPage = new CartPage(driver);
