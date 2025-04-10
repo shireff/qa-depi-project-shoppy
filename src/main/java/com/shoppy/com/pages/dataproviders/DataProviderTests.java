@@ -8,19 +8,19 @@ public class DataProviderTests {
     @DataProvider(name = "categoryData")
     public static Object[][] provideCategoryData() {
         return new Object[][]{
-                {"Men", true},       // Expected to have products
-                {"Women", false},    // Expected to have no products
+                {"Men", true},
+                {"Women", true},
                 {"Kids", false},
-                {"Accessories", false},
-                {"Footwear", false}
+                {"Accessories", true},
+                {"Footwear", true}
         };
     }
 
     @DataProvider(name = "brandData")
     public static Object[][] provideBrandData() {
         return new Object[][]{
-                {"Nike", true},      // Expected to have products
-                {"Zara", false},     // Expected to have no products
+                {"Nike", true},
+                {"Zara", false},
                 {"H&M", true}
         };
     }
