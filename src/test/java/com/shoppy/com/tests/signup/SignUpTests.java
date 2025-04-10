@@ -21,7 +21,6 @@ public class SignUpTests {
     @BeforeMethod
     public void setUp() {
         driver = new Driver("chrome");
-        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
         signUpPage = new SignUp(driver);
     }
