@@ -17,17 +17,11 @@ public class AdminProductsPageTests {
 
     @BeforeClass
     public void setup() {
-<<<<<<< HEAD
         driver = new ThreadLocal<>();
         driver.set(new Driver());
         driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get().browser().openUrl(driver.get().get(), URL);
         loginPage = new LoginPage(driver.get());
-=======
-        driver = new Driver("CHROME");
-        driver.browser().openUrl(driver.get(), URL);
-        loginPage = new LoginPage(driver);
->>>>>>> 1ad320c4243af4182578b60883c99dda90aba694
         loginPage.setUserName("Arima@example.com");
         loginPage.setPassword("123456789");
         loginPage.clickLogin();
