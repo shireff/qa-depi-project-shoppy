@@ -10,30 +10,30 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class CartPage {
-    private Driver driver;
+    private final Driver driver;
 
-    By addToCartButton = By.xpath("(//div[@class=\"flex items-center p-6 pt-0\"])[3]");
-    By ProductsName = By.xpath("//h2[@class=\"text-xl font-bold mb-2\" and text()= \"test\"]");
-    By productSuccessfullyAddedToCartMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()=\"Product added to cart successfully!\"]");
-    By cartIcon = By.xpath("//div[@class=\"relative\"]");
-    By productImage = By.xpath("//img[@class=\"w-16 h-16 sm:w-20 sm:h-20 object-cover rounded\"]");
-    By productPriceInCart = By.xpath("//p[@class=\"font-semibold text-sm sm:text-base\"]");
-    By productQuantityInCart = By.xpath("//span[@class=\"font-semibold text-sm\"]");
-    By productTotalInCart = By.xpath("(//div[@class='flex justify-between']//span[@class='font-bold'])[2]");
-    By productcart = By.xpath("(//h3[@class=\"font-extrabold text-sm sm:text-base\"])[1]");
-    By deleteIcon = By.cssSelector("svg[class=\"lucide lucide-trash cursor-pointer mt-1 text-red-500\"]");
-    By cartEmptyMessage = By.xpath("//div[@class='mt-8 space-y-4']//p[text()='Your cart is empty']");
-    By cartDeletedMessage = By.xpath("//div[@class=\"text-sm font-semibold\"]");
-    By closeIcon = By.xpath("//button[@class=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary\"]");
-    By yourCartMessage = By.xpath("//h2[@id=\"radix-:r4:\"]");
-    By productQuantityPlusIcon = By.xpath("//div[@class='flex justify-center sm:justify-start items-center mt-1 gap-2']//button[2]");
-    By productQuantityMinusIcon = By.xpath("//div[@class='flex justify-center sm:justify-start items-center mt-1 gap-2']//button[1]");
-    By cartUpdatedSuccessfullyMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()= \"Card item updated successfully\"]");
-    By checkoutButton = By.xpath("//button[text()='Checkout']");
-    By cartNumber = By.xpath("//span[@class=\"absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold\"]");
+    private final By addToCartButton = By.xpath("(//div[@class=\"flex items-center p-6 pt-0\"])[7]");
+    private final By ProductsName = By.xpath("//h2[@class=\"text-xl font-bold mb-2\" and text()= \"Nike Precision ...\"]");
+    private final By productSuccessfullyAddedToCartMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()=\"Product added to cart successfully!\"]");
+    private final By cartIcon = By.xpath("//div[@class=\"relative\"]");
+    private final By productImage = By.xpath("//img[@class=\"w-16 h-16 sm:w-20 sm:h-20 object-cover rounded\"]");
+    private final By productPriceInCart = By.xpath("//p[@class=\"font-semibold text-sm sm:text-base\"]");
+    private final By productQuantityInCart = By.xpath("//span[@class=\"font-semibold text-sm\"]");
+    private final By productTotalInCart = By.xpath("(//div[@class='flex justify-between']//span[@class='font-bold'])[2]");
+    private final By productcart = By.xpath("(//h3[@class=\"font-extrabold text-sm sm:text-base\"])[1]");
+    private final By deleteIcon = By.cssSelector("svg[class=\"lucide lucide-trash cursor-pointer mt-1 text-red-500\"]");
+    private final By cartEmptyMessage = By.xpath("//div[@class='mt-8 space-y-4']//p[text()='Your cart is empty']");
+    private final By cartDeletedMessage = By.xpath("//div[@class=\"text-sm font-semibold\"]");
+    private final By closeIcon = By.xpath("//button[@class=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary\"]");
+    private final By yourCartMessage = By.xpath("//h2[@id=\"radix-:r4:\"]");
+    private final By productQuantityPlusIcon = By.xpath("//div[@class='flex justify-center sm:justify-start items-center mt-1 gap-2']//button[2]");
+    private final By productQuantityMinusIcon = By.xpath("//div[@class='flex justify-center sm:justify-start items-center mt-1 gap-2']//button[1]");
+    private final By cartUpdatedSuccessfullyMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()= \"Card item updated successfully\"]");
+    private final By checkoutButton = By.xpath("//button[text()='Checkout']");
+    private final By cartNumber = By.xpath("//span[@class=\"absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold\"]");
 
 
-    String ProductsSectionName = "test";
+    String ProductsSectionName = "Nike Precision ...";
     String productSuccessfullyAddedToCartTitle = "Product added to cart successfully!";
     String CartEmptyMessageTitle = "Your cart is empty";
     String cartDeletedMessageTitle = "Card item deleted successfully";
@@ -211,13 +211,13 @@ public class CartPage {
     }
 
     public CartPage clickOnDeleteIcon()  {
-        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
+//
+//        try {
+//            Thread.sleep(500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         driver.element().click(deleteIcon);
         return this;
@@ -237,26 +237,26 @@ public class CartPage {
     }
 
     public CartPage clickOnQuantityPlusIcon()  {
-        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
+//
+//        try {
+//            Thread.sleep(500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         driver.element().click(productQuantityPlusIcon);
         return this;
     }
 
     public CartPage clickOnQuantityMinusIcon()  {
-        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
+//
+//        try {
+//            Thread.sleep(500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         driver.element().click(productQuantityMinusIcon);
         return this;

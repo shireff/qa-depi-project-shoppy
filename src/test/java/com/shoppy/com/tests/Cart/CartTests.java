@@ -1,6 +1,7 @@
 package com.shoppy.com.tests.Cart;
 
 import DriverFactory.Driver;
+import com.shoppy.com.pages.AdminProductsPage;
 import com.shoppy.com.pages.CartPage;
 import com.shoppy.com.pages.LoginPage;
 import com.shoppy.com.utils.BrowserActions;
@@ -19,17 +20,16 @@ public class CartTests {
         driver = new Driver("chrome");
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
-        cartPage = new CartPage(driver);
+       // new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010");
+        loginPage.setUserName("mylovelynano@gmail.com");
+        loginPage.setPassword("hakem@2010");
+        loginPage.clickLogin();
     }
 
     @Test(priority = 1)
     public void testAddToCartProduct() {
-        loginPage.setUserName("mylovelynano@gmail.com");
-        loginPage.setPassword("hakem@2010");
-        loginPage.clickLogin();
         loginPage.assertLoginSuccessfulAsUser();
-
-        cartPage.checkThatTheProductNameIsDisable()
+        new CartPage(driver).checkThatTheProductNameIsDisable()
                 .clickOnAddToCartButton()
                 .checkThatTheProductMessageAddedSuccesfullyIsDisable()
                 .checkThatTheNumberOnCartIsDisable();
@@ -37,7 +37,7 @@ public class CartTests {
 
     @Test(priority = 2, dependsOnMethods = {"testAddToCartProduct"})
     public void testProductDataIsFoundInCart() {
-        cartPage.clickOnCartIcon()
+        new CartPage(driver).clickOnCartIcon()
                 .checkThatTheProductNameInCartIsDisable()
                 .checkThatTheProductPriceIsDisable()
                 .checkThatTheProductQuantityIsDisable()
@@ -48,26 +48,26 @@ public class CartTests {
 
     @Test(priority = 3, dependsOnMethods = {"testProductDataIsFoundInCart"})
     public void testMinusButtonIdDisapledWhenProductQuantityEqualOne(){
-        cartPage.checkThatTheProductMinusButtonIsDisapledWhenQuantityIsOne();
+        new CartPage(driver).checkThatTheProductMinusButtonIsDisapledWhenQuantityIsOne();
     }
 
     @Test(priority = 4, dependsOnMethods = {"testProductDataIsFoundInCart"})
     public void testProductPriceAndTotalIsUpdatedWhenQuantityIsIncreased() {
-        cartPage.clickOnQuantityPlusIcon()
+        new CartPage(driver).clickOnQuantityPlusIcon()
                 .checkThatTheProductMessageUpdatedSuccesfullyIsDisable()
                 .checkThatTheProducDataIsUpdatedWhenIncreasingTheQuantity();
     }
 
     @Test(priority = 5, dependsOnMethods = {"testProductPriceAndTotalIsUpdatedWhenQuantityIsIncreased"})
     public void testProductPriceAndTotalIsUpdatedWhenQuantityIsDecreased(){
-        cartPage.clickOnQuantityMinusIcon()
+        new CartPage(driver).clickOnQuantityMinusIcon()
                 .checkThatTheProductMessageUpdatedSuccesfullyIsDisable()
                 .checkThatTheProducDataIsUpdatedWhenDecreasingTheQuantity();
     }
 
     @Test(priority = 6, dependsOnMethods = {"testProductDataIsFoundInCart"})
     public void testProductDataIsDeletedFromCart()  {
-        cartPage.clickOnDeleteIcon()
+        new CartPage(driver).clickOnDeleteIcon()
                 .checkThatTheProductIsDeletedFromCart()
                 .checkThatTheProductMessageDeletedSuccesfullyIsDisable();
 
@@ -75,19 +75,19 @@ public class CartTests {
 
     @Test(priority = 7, dependsOnMethods = {"testProductDataIsDeletedFromCart"})
     public void testCartIconIsClosed()  {
-        cartPage.clickOnCloseIcon()
+        new CartPage(driver).clickOnCloseIcon()
                 .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
     }
 
     @Test(priority = 8)
     public void testCheckoutButtonIsClickable() {
-        cartPage.clickOnCartIcon()
+        new CartPage(driver).clickOnCartIcon()
                 .clickOnCheckoutButton()
                 .checkThatTheCheckoutButtonIsClickable();
     }
     @Test(priority = 9, dependsOnMethods = {"testProductDataIsFoundInCart"})
     public void testTheUrlChagnedToCheckoutPageAfterClickingOnCheckoutButton() {
-        cartPage.clickOnCheckoutButton()
+        new CartPage(driver).clickOnCheckoutButton()
                 .checkThatTheUrlChangedToTheCheckoutPage();
     }
 
