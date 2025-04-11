@@ -39,6 +39,17 @@ public class AdminDashboardPage {
     private final By Eighth_Image = By.xpath("//main/div/div[2]/div[8]/div"); //div[i]/div to go to the next image
     private final By Ninth_Image = By.xpath("//main/div/div[2]/div[9]/div"); //div[i]/div to go to the next image
     private final By Tenth_Image = By.xpath("//main/div/div[2]/div[10]/div"); //div[i]/div to go to the next image
+    private final By First_Image_Delete_Button = By.xpath("//main/div/div[2]/div[1]/div/button");
+    private final By Second_Image_Delete_Button = By.xpath("//main/div/div[2]/div[2]/div/button");
+    private final By Third_Image_Delete_Button = By.xpath("//main/div/div[2]/div[3]/div/button");
+    private final By Fourth_Image_Delete_Button = By.xpath("//main/div/div[2]/div[4]/div/button");
+    private final By Fifth_Image_Delete_Button = By.xpath("//main/div/div[2]/div[5]/div/button");
+    private final By Sixth_Image_Delete_Button = By.xpath("//main/div/div[2]/div[6]/div/button");
+    private final By Seventh_Image_Delete_Button = By.xpath("//main/div/div[2]/div[7]/div/button");
+    private final By Eighth_Image_Delete_Button = By.xpath("//main/div/div[2]/div[8]/div/button");
+    private final By Ninth_Image_Delete_Button = By.xpath("//main/div/div[2]/div[9]/div/button");
+    private final By Tenth_Image_Delete_Button = By.xpath("//main/div/div[2]/div[10]/div/button");
+
     //footer locators
     private final By Footer_Rights_Reserved = By.xpath("//footer/div/p");
     private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
@@ -52,7 +63,39 @@ public class AdminDashboardPage {
     public AdminDashboardPage(Driver driver) {
         this.driver = driver;
     }
+    //Actions
+    public AdminProductsPage clickOnProductsBtn() {
+        driver.element().click(Products_Button);
+        return new AdminProductsPage(driver);
+    }
+    public AdminPanelOrders clickOnOrdersBtn()
+    {
+        driver.element().click(Orders_Button);
+        return new AdminPanelOrders(driver);
+    }
+    public AdminDashboardPage clickOnUploadImageBox()
+    {
+        driver.element().click(Drag_Drop_Click_Upload);
+        return this;
+    }
+    public AdminDashboardPage clickOnUploadBtn()
+    {
+        driver.element().click(Upload_Button);
+        return this;
+    }
+    public AdminDashboardPage clickOnDeleteBtn()
+    {
+        driver.element().click(First_Image_Delete_Button);
+        return this;
+    }
+    public LoginPage clickOnLogoutBtn()
+    {
+        driver.element().click(Logout_Button);
+        return new LoginPage(driver);
+    }
 
+
+    //Assertions
     public AdminDashboardPage checkAdminDashboardUrl() {
         Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), URL);
         return this;
@@ -98,6 +141,7 @@ public class AdminDashboardPage {
         return this;
     }
 
+
     public AdminDashboardPage checkLogoutBtnText() {
         Assert.assertTrue(ElementActions.getText(driver.get(), Logout_Button).contains(" Logout"));
         return this;
@@ -107,9 +151,45 @@ public class AdminDashboardPage {
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Logout_Button));
         return this;
     }
-
-    public AdminProductsPage clickOnProductsBtn() {
-        driver.element().click(Products_Button);
-        return new AdminProductsPage(driver);
+    public AdminDashboardPage checkFeatureImagesTitleIsDisplayed()
+    {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Feature_Images_Title));
+        return this;
     }
+    public AdminDashboardPage checkFeatureImagesTitleText()
+    {
+        Assert.assertTrue(ElementActions.getText(driver.get(), Feature_Images_Title).contains("Feature Images"));
+        return this;
+    }
+    public AdminDashboardPage checkUploadNewImageTitleIsDisplayed()
+    {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_New_Image_Title));
+        return this;
+    }
+    public AdminDashboardPage checkUploadNewImageTitleText()
+    {
+        Assert.assertTrue(ElementActions.getText(driver.get(), Upload_New_Image_Title).contains("Upload New Image"));
+        return this;
+    }
+    public AdminDashboardPage checkUploadImageTitleIsDisplayed()
+    {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_Image_Title));
+        return this;
+    }
+    public AdminDashboardPage checkUploadImageTitleText()
+    {
+        Assert.assertTrue(ElementActions.getText(driver.get(),Upload_Image_Title).contains("Upload Image"));
+        return this;
+    }
+    public AdminDashboardPage checkThatUploadButtonIsDisplayed()
+    {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_Button));
+        return this;
+    }
+    public AdminDashboardPage checkThatUploadedImageIsDisplayed()
+    {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Image));
+        return this;
+    }
+
 }
