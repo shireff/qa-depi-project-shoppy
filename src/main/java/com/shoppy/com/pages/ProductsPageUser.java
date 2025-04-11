@@ -8,7 +8,7 @@ public class ProductsPageUser {
     private final Driver driver;
     public final String url = "https://shoppy-ochre.vercel.app/shop/listing";
     //Sort By
-    private final By SortByButton = By.xpath("//button[@id=\"radix-:r87:\"]");
+    private final By SortByButton = By.xpath("//button [@aria-haspopup=\"dialog\"]");
     private final By PriceLowToHigh = By.xpath("//div[@role=\"menuitemradio\"][1]");
     private final By PriceHighToLow = By.xpath("//div[@role=\"menuitemradio\"][2]");
     private final By TitleA_To_Z = By.xpath("//div[@role=\"menuitemradio\"][3]");
@@ -26,27 +26,29 @@ public class ProductsPageUser {
     private final By Levis_CheckBox = By.xpath("//button[@id=\"levi\"]");
     private final By Zara_CheckBox = By.xpath("//button[@id=\"zara\"]");
     private final By HM_CheckBox = By.xpath("//button[@id=\"h&m\"]");
-    //Nav Bar  Buttons
-    private final By Home_Label_Button = By.xpath("//div/nav/label[1]");
-    private final By Products_Label_Button = By.xpath("//div/nav/label[2]");
-    private final By Men_Label_Button = By.xpath("//div/nav/label[3]");
-    private final By Women_Label_Button = By.xpath("//div/nav/label[4]");
-    private final By Kids_Label_Button = By.xpath("//div/nav/label[5]");
-    private final By Footwear_Label_Button = By.xpath("//div/nav/label[6]");
-    private final By Accessories_Label_Button = By.xpath("//div/nav/label[7]");
-    private final By Search_Label_Button = By.xpath("//div/nav/label[8]");
-
+    //Nav Bar Responsive Button
+    private final By Responsive_Nav_Button = By.xpath("//header/div/button [@type=\"button\"]");
+    //Nav Bar  Buttons Responsive and Normal working for both
+    private final By Home_Label_Button = By.xpath("//nav/label[1]");
+    private final By Products_Label_Button = By.xpath("//nav/label[2]");
+    private final By Men_Label_Button = By.xpath("//nav/label[3]");
+    private final By Women_Label_Button = By.xpath("//nav/label[4]");
+    private final By Kids_Label_Button = By.xpath("//nav/label[5]");
+    private final By Footwear_Label_Button = By.xpath("//nav/label[6]");
+    private final By Accessories_Label_Button = By.xpath("//nav/label[7]");
+    private final By Search_Label_Button = By.xpath("//nav/label[8]");
+    private final By Shoppy_Icon = By.xpath("//header/div/a");
     //Muted Text Products Number
     private final By ProductsNumberText = By.xpath("//span [@class=\"text-muted-foreground\"]");
     //Text Variables
     String AllProductsTitleText = "All Products";
-    By AllProductsTitle = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/div[2]/div[1]/h2");
+    By AllProductsTitle = By.xpath("//main/div/div[2]/div[1]/h2");
     String FiltersTitleText = "Filters";
-    By FiltersTitle = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/div[1]/div[1]/h2");
+    By FiltersTitle = By.xpath("//main/div/div[1]/div[1]/h2");
     String CategoryTitleText = "Category";
-    By CategoryTitle = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/div[1]/div[2]/div[1]/h3");
+    By CategoryTitle = By.xpath("//main/div/div[1]/div[2]/div[1]/h3");
     String BrandTitleText = "Brand";
-    By BrandTitle = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/div[1]/div[2]/div[3]/h3");
+    By BrandTitle = By.xpath("//main/div/div[1]/div[2]/div[3]/h3");
     String Home_Button_Text = "Home";
     String Products_Button_Text = "Products";
     String Men_Button_Text = "Men";
@@ -55,7 +57,11 @@ public class ProductsPageUser {
     String Footwear_Button_Text = "Footwear";
     String Accessories_Button_Text = "Accessories";
     String Search_Button_Text = "Search";
-
+    //footer locators
+    private final By Footer_Rights_Reserved = By.xpath("//footer/div/p");
+    private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
+    private final By Footer_LinkedIn = By.xpath("//footer/div/div/a[2]");
+    private final By Footer_WhatsApp = By.xpath("//footer/div/div/a[3]");
 
     //Constructor
     public ProductsPageUser(Driver driver) {
@@ -180,11 +186,12 @@ public class ProductsPageUser {
         driver.element().click(Accessories_Label_Button);
         return this;
     }
-//    public void clickNavBarSearch()
-//    {
-//        System.out.println("⬆️click search tab");
-//        driver.element().click(driver.get(),Accessories_Label_Button);
-//    }
+    public SearchPageUser clickNavBarSearch()
+    {
+        System.out.println("⬆️click search tab");
+        driver.element().click(Accessories_Label_Button);
+        return new SearchPageUser(driver);
+    }
 
     //Sort By DropDown Action
     public ProductsPageUser sortByPriceLowToHigh() {
@@ -461,11 +468,12 @@ public class ProductsPageUser {
         Assert.assertEquals(actualTitle, Accessories_Button_Text);
         return this;
     }
-//    public void checkThatSearchTabIsVisible()
-//    {
-//        System.out.println("✅check search tab in nav is visible");
-//        String actualTitle = driver.element().getTextOf(Search_Label_Button);
-//        Assert.assertEquals(actualTitle,Search_Button_Text);
-//    }
+    public ProductsPageUser checkThatSearchTabIsVisible()
+    {
+        System.out.println("✅check search tab in nav is visible");
+        String actualTitle = driver.element().getTextOf(Search_Label_Button);
+        Assert.assertEquals(actualTitle,Search_Button_Text);
+        return this;
+    }
 
 }
