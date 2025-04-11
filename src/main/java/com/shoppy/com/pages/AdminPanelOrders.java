@@ -34,7 +34,11 @@ public class AdminPanelOrders
     private final By OrderStatus_FirstOrder = By.xpath("//main/div/div/div[2]/div/table/tbody/tr[1]/td[3]");//tr[i]/td[i]   tr[i] for the next order
     private final By OrderPrice_FirstOrder = By.xpath("//main/div/div/div[2]/div/table/tbody/tr[1]/td[4]");//tr[i]/td[i]    tr[i] for the next order
     private final By ViewOrderDetails_FirstOrder = By.xpath("//tr[1]/td[5]/button");  //tr[i]
-
+    //footer locators
+    private final By Footer_Rights_Reserved = By.xpath("//footer/div/p");
+    private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
+    private final By Footer_LinkedIn = By.xpath("//footer/div/div/a[2]");
+    private final By Footer_WhatsApp = By.xpath("//footer/div/div/a[3]");
 
 
 

@@ -41,6 +41,9 @@ public class AdminDashboardPage {
     private final By Tenth_Image = By.xpath("//main/div/div[2]/div[10]/div"); //div[i]/div to go to the next image
     //footer locators
     private final By Footer_Rights_Reserved = By.xpath("//footer/div/p");
+    private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
+    private final By Footer_LinkedIn = By.xpath("//footer/div/div/a[2]");
+    private final By Footer_WhatsApp = By.xpath("//footer/div/div/a[3]");
 
 
 
