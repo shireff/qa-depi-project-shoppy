@@ -1,0 +1,206 @@
+package com.shoppy.com.pages;
+
+import DriverFactory.Driver;
+import com.shoppy.com.utils.ElementActions;
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
+public class AdminPanelOrders
+{
+    private final Driver driver;
+    private final String url = "https://shoppy-ochre.vercel.app/admin/orders";
+    //Responsive nav menu button
+    private final By Res_Nav_Button = By.xpath("//header/button");
+    //Admin panel responsive
+    private final By AdminPanel_Title_Responsive = By.xpath("//h2/h2");
+    private final By DashBoard_Button_Responsive = By.xpath("//div/div/nav/div[1]/span");
+    private final By Products_Button_Responsive = By.xpath("//div/div/nav/div[2]/span");
+    private final By Orders_Button_Responsive = By.xpath("//div/div/nav/div[3]/span");
+    //Admin panel nav
+    private final By AdminPanel_Title = By.xpath("//aside/div/h2");
+    private final By DashBoard_Button = By.xpath("//nav/div[1]");
+    private final By Products_Button = By.xpath("//nav/div[2]");
+    private final By Orders_Button = By.xpath("//nav/div[3]");
+    //logout button
+    private final By Logout_Button = By.xpath("//div[1]/div/div/div/header/div/button");
+    //basic locators of the page
+    private final By AllOrders_Title = By.xpath("//main/div/div/div[1]/div");
+    //orders table head
+    private final By OrderId_Title = By.xpath("//div[2]/div/table/thead/tr/th[1]");
+    private final By OrderDate_Tile = By.xpath("//div[2]/div/table/thead/tr/th[2]");
+    private final By OrderStatus_Title = By.xpath("//div[2]/div/table/thead/tr/th[3]");
+    private final By OrderPrice_Title = By.xpath("//div[2]/div/table/thead/tr/th[4]");
+    //orders table locators
+    private final By OrderId_FirstOrder = By.xpath("//main/div/div/div[2]/div/table/tbody/tr[1]/td[1]");//tr[i]/td[i]   tr[i] for the next order
+    private final By OrderDate_FirstOrder = By.xpath("//main/div/div/div[2]/div/table/tbody/tr[1]/td[2]");//tr[i]/td[i] tr[i] for the next order
+    private final By OrderStatus_FirstOrder = By.xpath("//main/div/div/div[2]/div/table/tbody/tr[1]/td[3]");//tr[i]/td[i]   tr[i] for the next order
+    private final By OrderPrice_FirstOrder = By.xpath("//main/div/div/div[2]/div/table/tbody/tr[1]/td[4]");//tr[i]/td[i]    tr[i] for the next order
+    private final By ViewOrderDetails_FirstOrder = By.xpath("//tr[1]/td[5]/button");  //tr[i]
+    //footer locators
+    private final By Footer_Rights_Reserved = By.xpath("//footer/div/p");
+    private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
+    private final By Footer_LinkedIn = By.xpath("//footer/div/div/a[2]");
+    private final By Footer_WhatsApp = By.xpath("//footer/div/div/a[3]");
+
+    //constructors
+    public AdminPanelOrders(Driver driver)
+    {
+        this.driver = driver;
+    }
+    //Actions
+    public AdminProductsPage clickOnProductsBtn()
+    {
+        return new AdminProductsPage(driver);
+    }
+    public AdminDashboardPage clickOnDashboardBtn()
+    {
+        return new AdminDashboardPage(driver);
+    }
+    public AdminPanelOrdersDetails clickOnViewDetailsBtn()
+    {
+        return new AdminPanelOrdersDetails(driver);
+    }
+    public LoginPage clickOnLogoutBtn()
+    {
+        return new LoginPage(driver);
+    }
+    //Assertions
+    public AdminPanelOrders checkAdminPanelOrdersUrl()
+    {
+        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), url);
+        return this;
+    }
+    public AdminPanelOrders checkAdminPanelHeaderText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), AdminPanel_Title).contains("Admin Panel"));
+        return this;
+    }
+
+    public AdminPanelOrders checkAdminPanelHeaderDisplayed() {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), AdminPanel_Title));
+        return this;
+    }
+
+    public AdminPanelOrders checkDashboardBtnText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), DashBoard_Button).contains("Dashboard"));
+        return this;
+    }
+
+    public AdminPanelOrders checkDashboardBtnDisplayed() {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), DashBoard_Button));
+        return this;
+    }
+    public AdminPanelOrders checkProductsBtnText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), Products_Button).contains("Products"));
+        return this;
+    }
+
+    public AdminPanelOrders checkProductsBtnDisplayed() {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Products_Button));
+        return this;
+    }
+
+    public AdminPanelOrders checkOrdersBtnText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), Orders_Button).contains("Orders"));
+        return this;
+    }
+
+    public AdminPanelOrders checkOrdersBtnDisplayed() {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Orders_Button));
+        return this;
+    }
+
+
+    public AdminPanelOrders checkLogoutBtnText() {
+        Assert.assertTrue(ElementActions.getText(driver.get(), Logout_Button).contains(" Logout"));
+        return this;
+    }
+
+    public AdminPanelOrders checkLogoutBtnDisplayed() {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Logout_Button));
+        return this;
+    }
+    public AdminPanelOrders checkAllOrdersTitleIsDisplayed()
+    {
+        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),AllOrders_Title));
+        return this;
+    }
+    public AdminPanelOrders checkAllOrdersTitleText()
+    {
+        Assert.assertTrue(ElementActions.getText(driver.get(),AllOrders_Title).contains("All Orders"));
+        return this;
+    }
+    public AdminPanelOrders checkOrderIDTitleIsDisplayed()
+    {
+
+        return this;
+    }
+    public AdminPanelOrders checkOrderIDTitleText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderDateTitleIsDisplayed()
+    {
+
+        return this;
+    }
+    public AdminPanelOrders checkOrderDateTitleText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderStatusTitleIsDisplayed()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderStatusTitleText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderPriceTitleIsDisplayed()
+    {
+
+        return this;
+    }
+    public AdminPanelOrders checkOrderPriceTitleText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderIDIsDisplayed()
+    {
+
+        return this;
+    }
+    public AdminPanelOrders checkOrderIDText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderDateIsDisplayed()
+    {
+
+        return this;
+    }
+    public AdminPanelOrders checkOrderDateText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderStatusIsDisplayed()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderStatusText()
+    {
+        return this;
+    }
+    public AdminPanelOrders checkOrderPriceIsDisplayed()
+    {
+
+        return this;
+    }
+    public AdminPanelOrders checkOrderPriceText()
+    {
+        return this;
+    }
+
+
+
+
+}

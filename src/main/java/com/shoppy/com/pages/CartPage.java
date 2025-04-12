@@ -83,7 +83,11 @@ public class CartPage {
 
     public CartPage checkThatTheProductImageIsDisable() {
         Assert.assertTrue(driver.get().findElement(productImage).isDisplayed());
-      //  Assert.assertEquals(driver.get().findElement(productImage).getAttribute("src"), "http://res.cloudinary.com/dhz0pkov6/image/upload/v1734705102/ecommerce/rshhdelbx0midngaglbi.jpg");
+        return this;
+    }
+
+    public CartPage checkThatTheProductImageSrcIsDisable() {
+        Assert.assertEquals(driver.get().findElement(productImage).getAttribute("src"), "http://res.cloudinary.com/dhz0pkov6/image/upload/v1735932881/ecommerce/ubbmqjalem2fi0wmyvbt.png");
         return this;
     }
 
@@ -107,9 +111,7 @@ public class CartPage {
         WebElement productElement5 = wait.until(ExpectedConditions.visibilityOfElementLocated(cartEmptyMessage));
         System.out.println("Card Empty message is: " + productElement5.getText());
 
-        // Assert.assertTrue(driver.get().findElement(cartEmptyMessage).isDisplayed());
         Assert.assertEquals(driver.element().getTextOf(cartEmptyMessage), CartEmptyMessageTitle);
-
         return this;
     }
 
@@ -211,53 +213,21 @@ public class CartPage {
     }
 
     public CartPage clickOnDeleteIcon()  {
-//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-//
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         driver.element().click(deleteIcon);
         return this;
     }
 
     public CartPage clickOnCloseIcon()  {
-//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-//
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         driver.element().click(closeIcon);
         return this;
     }
 
     public CartPage clickOnQuantityPlusIcon()  {
-//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-//
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         driver.element().click(productQuantityPlusIcon);
         return this;
     }
 
     public CartPage clickOnQuantityMinusIcon()  {
-//        ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
-//
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
         driver.element().click(productQuantityMinusIcon);
         return this;
     }

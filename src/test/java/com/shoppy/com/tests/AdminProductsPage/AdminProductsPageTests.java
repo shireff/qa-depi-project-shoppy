@@ -19,6 +19,7 @@ public class AdminProductsPageTests {
     @BeforeMethod
     public void setup() {
         driver = new Driver("CHROME");
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), URL);
         loginPage = new LoginPage(driver);
         loginPage.setUserName("Arima@example.com");
