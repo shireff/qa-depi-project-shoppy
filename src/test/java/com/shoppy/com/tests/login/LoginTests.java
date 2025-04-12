@@ -2,21 +2,19 @@ package com.shoppy.com.tests.login;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.LoginPage;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-
 public class LoginTests {
 
     public Driver driver;
     protected LoginPage loginPage;
     private String url = "https://shoppy-ochre.vercel.app/auth/login";
+
     @BeforeMethod
     public void setUp() {
         driver = new Driver("chrome");
@@ -24,9 +22,12 @@ public class LoginTests {
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
     }
-    @Epic("Login Functionality")
-    @Feature("User Login")
+
+    @Epic("Login")
+    @Feature("Validation")
     @Story("Login with short password")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify error message is shown when password is less than allowed length.")
     @Test(priority = 1)
     public void testLoginShortPasswordErrorMsg() {
         loginPage.setUserName("shireffn369+f@gmail.com");
@@ -35,9 +36,11 @@ public class LoginTests {
         loginPage.assertErrorMessageDisplayed();
     }
 
-    @Epic("Login Functionality")
-    @Feature("User Login")
+    @Epic("Login")
+    @Feature("Validation")
     @Story("Login with wrong password")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify toast message appears when incorrect password is used.")
     @Test(priority = 2)
     public void testLoginWrongPasswordErrorMsg() {
         loginPage.setUserName("shireffn369+f@gmail.com");
@@ -46,9 +49,11 @@ public class LoginTests {
         loginPage.assertToastErrorMessageDisplayed();
     }
 
-    @Epic("Login Functionality")
-    @Feature("User Login")
-    @Story("Login with non-existent user")
+    @Epic("Login")
+    @Feature("Validation")
+    @Story("Login with non-existing user")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify toast message appears when user does not exist in the system.")
     @Test(priority = 3)
     public void testLoginNotExistUserErrorMsg() {
         loginPage.setUserName("notExist@gmail.com");
@@ -57,9 +62,11 @@ public class LoginTests {
         loginPage.assertUserNotExistToastDisplayed();
     }
 
-    @Epic("Login Functionality")
+    @Epic("Login")
     @Feature("Admin Login")
-    @Story("Login as Admin with correct credentials")
+    @Story("Admin logs in with correct credentials")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Ensure admin can login successfully and redirect to admin dashboard")
     @Test(priority = 4)
     public void testLoginAsAdmin() {
         loginPage.setUserName("shireffn369@gmail.com");
@@ -71,9 +78,11 @@ public class LoginTests {
         Assert.assertEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
     }
 
-    @Epic("Login Functionality")
+    @Epic("Login")
     @Feature("User Login")
-    @Story("Login as User with correct credentials")
+    @Story("User logs in with valid credentials")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify normal user can login and gets redirected to shop homepage")
     @Test(priority = 5)
     public void testLoginAsUser() {
         loginPage.setUserName("shireffn369+f@gmail.com");
@@ -85,19 +94,6 @@ public class LoginTests {
         Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
     }
 
-//    @Test(priority = 6)
-//    public void testGoogleLogin() {
-//        loginPage.clickGoogleLogin();
-//
-//        String mainWindow = driver.get().getWindowHandle();
-//
-//        driver.get().switchTo().window(mainWindow);
-//
-//        String currentURL = driver.get().getCurrentUrl();
-//        assert currentURL != null;
-//        Assert.assertTrue(currentURL.startsWith("https://accounts.google.com/v3/signin"),
-//                "Google Sign-in page did not open! Actual URL: " + currentURL);
-//    }
 
     @AfterMethod
     public void tearDown() {
