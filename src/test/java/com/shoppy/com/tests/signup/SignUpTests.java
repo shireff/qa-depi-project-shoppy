@@ -3,6 +3,9 @@ package com.shoppy.com.tests.signup;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.SignUp;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,6 +29,9 @@ public class SignUpTests {
         signUpPage = new SignUp(driver);
     }
 
+    @Epic("SignUp Functionality")
+    @Feature("User Registration")
+    @Story("Visibility of SignUp link and navigation")
     @Test(priority = 1)
     public void testSignUpLinkVisibilityAndNavigation() {
         Assert.assertTrue(signUpPage.isSignUpLinkVisible(), "❌ Sign Up link is not visible.");
@@ -33,12 +39,18 @@ public class SignUpTests {
         Assert.assertTrue(Objects.requireNonNull(driver.get().getCurrentUrl()).contains("/auth/register"), "❌ Navigation to Sign Up page failed.");
     }
 
+    @Epic("SignUp Functionality")
+    @Feature("User Registration")
+    @Story("Check if sign-up fields are visible")
     @Test(priority = 2)
     public void testFieldsIsVisible() {
         signUpPage.clickSignUpLink();
         Assert.assertTrue(signUpPage.isSignUpFieldsVisible(), "❌ Sign Up form fields are not visible.");
     }
 
+    @Epic("SignUp Functionality")
+    @Feature("User Registration")
+    @Story("Sign up with existing email")
     @Test(priority = 3)
     public void testSignWithExistingEmail() {
         signUpPage.clickSignUpLink();
@@ -47,6 +59,9 @@ public class SignUpTests {
         signUpPage.assertToastErrorMessageDisplayed();
     }
 
+    @Epic("SignUp Functionality")
+    @Feature("User Registration")
+    @Story("Sign up with empty username")
     @Test(priority = 4)
     public void testSignWithEmptyUserName() {
         signUpPage.clickSignUpLink();
@@ -55,6 +70,9 @@ public class SignUpTests {
         signUpPage.assertErrorMessageDisplayed();
     }
 
+    @Epic("SignUp Functionality")
+    @Feature("User Registration")
+    @Story("Sign up with empty email")
     @Test(priority = 5)
     public void testSignWithEmptyEmail() {
         signUpPage.clickSignUpLink();
@@ -63,6 +81,9 @@ public class SignUpTests {
         signUpPage.assertErrorMessageDisplayed();
     }
 
+    @Epic("SignUp Functionality")
+    @Feature("User Registration")
+    @Story("Sign up with empty password")
     @Test(priority = 6)
     public void testSignWithEmptyPassword() {
         signUpPage.clickSignUpLink();
