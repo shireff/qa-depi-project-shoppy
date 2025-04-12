@@ -12,25 +12,27 @@ import java.time.Duration;
 public class CartPage {
     private final Driver driver;
 
-    private final By addToCartButton = By.xpath("(//div[@class=\"flex items-center p-6 pt-0\"])[7]");
-    private final By ProductsName = By.xpath("//h2[@class=\"text-xl font-bold mb-2\" and text()= \"Nike Precision ...\"]");
-    private final By productSuccessfullyAddedToCartMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()=\"Product added to cart successfully!\"]");
-    private final By cartIcon = By.xpath("//div[@class=\"relative\"]");
-    private final By productImage = By.xpath("//img[@class=\"w-16 h-16 sm:w-20 sm:h-20 object-cover rounded\"]");
-    private final By productPriceInCart = By.xpath("//p[@class=\"font-semibold text-sm sm:text-base\"]");
-    private final By productQuantityInCart = By.xpath("//span[@class=\"font-semibold text-sm\"]");
-    private final By productTotalInCart = By.xpath("(//div[@class='flex justify-between']//span[@class='font-bold'])[2]");
-    private final By productcart = By.xpath("(//h3[@class=\"font-extrabold text-sm sm:text-base\"])[1]");
+    private final By addToCartButton = By.xpath("//div[7]//button");
+    private final By ProductsName = By.xpath("//div[7]//h2");
+    private final By productSuccessfullyAddedToCartMessage = By.xpath("//li/div/div[contains(text(),'Product added to cart successfully!')]");
+    //private final By productSuccessfullyAddedToCartMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()=\"Product added to cart successfully!\"]");
+    private final By cartIcon = By.xpath("(//div//div/div/button)[1]");
+    private final By productImage = By.xpath("//div[@role=\"dialog\"]//img");
+    private final By productPriceInCart = By.xpath("//div[@role=\"dialog\"]//p");
+    private final By productQuantityInCart = By.xpath("(//div[@role=\"dialog\"]//span)[1]");
+    private final By productTotalInCart = By.xpath("(//div[@role=\"dialog\"]//span)[1]");
+    private final By productcart = By.xpath("(//div[@role=\"dialog\"]//h3)[1]");
     private final By deleteIcon = By.cssSelector("svg[class=\"lucide lucide-trash cursor-pointer mt-1 text-red-500\"]");
-    private final By cartEmptyMessage = By.xpath("//div[@class='mt-8 space-y-4']//p[text()='Your cart is empty']");
-    private final By cartDeletedMessage = By.xpath("//div[@class=\"text-sm font-semibold\"]");
-    private final By closeIcon = By.xpath("//button[@class=\"absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary\"]");
-    private final By yourCartMessage = By.xpath("//h2[@id=\"radix-:r4:\"]");
-    private final By productQuantityPlusIcon = By.xpath("//div[@class='flex justify-center sm:justify-start items-center mt-1 gap-2']//button[2]");
-    private final By productQuantityMinusIcon = By.xpath("//div[@class='flex justify-center sm:justify-start items-center mt-1 gap-2']//button[1]");
-    private final By cartUpdatedSuccessfullyMessage = By.xpath("//div[@class=\"text-sm font-semibold\" and text()= \"Card item updated successfully\"]");
-    private final By checkoutButton = By.xpath("//button[text()='Checkout']");
-    private final By cartNumber = By.xpath("//span[@class=\"absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold\"]");
+    private final By cartEmptyMessage = By.xpath("//div[@role=\"dialog\"]//p[contains(text(),'Your cart is empty')]");
+    private final By cartDeletedMessage = By.xpath("//li/div/div");
+    private final By closeIcon = By.xpath("(//div[@role=\"dialog\"]/button)[2]");
+    private final By yourCartMessage = By.xpath("//div[@role=\"dialog\"]/div/h2");
+    private final By productQuantityPlusIcon = By.xpath("(//div[@role=\"dialog\"]//button[2])[1]");
+    private final By productQuantityMinusIcon = By.xpath("(//div[@role=\"dialog\"]//button[1])[1]");
+    private final By cartUpdatedSuccessfullyMessage = By.xpath("//li/div/div[contains(text(),'Card item updated successfully')]");
+    private final By checkoutButton = By.xpath("(//div[@role=\"dialog\"]/button)[1]");
+    private final By cartOpen = By.xpath("//div[@role=\"dialog\"]");
+    private final By cartNumber = By.xpath("(//div//div/div/span)[1]");
 
 
     String ProductsSectionName = "Nike Precision ...";
@@ -183,16 +185,19 @@ public class CartPage {
     }
 
     public CartPage checkThatTheCheckoutButtonIsClickable() {
-        Assert.assertFalse(driver.element().isClickable(checkoutButton));
+        Assert.assertTrue(driver.element().isClickable(checkoutButton));
         return this;
-
     }
 
-    public CartPage checkThatTheUrlChangedToTheCheckoutPage() {
-        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), "https://shoppy-ochre.vercel.app/shop/checkout");
+    public CartPage checkThatTheCartIsDisplayed() {
+        Assert.assertTrue(driver.get().findElement(cartOpen).isDisplayed());
         return this;
-
     }
+
+//    public CartPage checkThatTheUrlChangedToTheCheckoutPage() {
+//        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), "https://shoppy-ochre.vercel.app/shop/checkout");
+//        return this;
+//    }
     /************************************** Actions ********************************************/
    public CartPage clickOnAddToCartButton()  {
      driver.element().click(addToCartButton);
@@ -232,8 +237,9 @@ public class CartPage {
         return this;
     }
 
-    public CartPage clickOnCheckoutButton()  {
+    public CheckoutPageUser clickOnCheckoutButton()  {
         ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
+
 
         try {
             Thread.sleep(500);
@@ -242,7 +248,8 @@ public class CartPage {
         }
 
         driver.element().click(checkoutButton);
-        return this;
+        return new CheckoutPageUser(driver);
+
     }
 
 
