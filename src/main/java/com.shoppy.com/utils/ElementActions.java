@@ -241,7 +241,7 @@ public class ElementActions {
         return allElementsLocators;
     }
 
-    public static void setNumberField(WebDriver driver, By locator, int number) {
+    public void setNumberField(WebDriver driver, By locator, int number) {
         try {
             WebElement element = find(driver, locator);
 

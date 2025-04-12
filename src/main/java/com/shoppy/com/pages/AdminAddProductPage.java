@@ -97,6 +97,11 @@ public class AdminAddProductPage {
         brandOptionsXpathList = setOptions(brandOptions, brandOptionsXpath);
     }
 
+    public AdminAddProductPage navigateToProductsPage() {
+        driver.browser().openUrl(driver.get(), "https://shoppy-ochre.vercel.app/admin/products");
+        return this;
+    }
+
     public AdminAddProductPage clickOnAddProductBtn() {
         driver.element().click(addProductBtn);
         return this;
@@ -110,19 +115,21 @@ public class AdminAddProductPage {
 //    done
     public AdminAddProductPage checkAddProductFormIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductForm));
-        assertElementDisplayed(addProductForm, "❌ addProductForm is not displayed!");
+        driver.assertion().assertElementDisplayed(addProductForm, "❌ addProductForm is not displayed!");
         return this;
     }
 
     public AdminAddProductPage checkAddProductFormTitleIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductFormTitle));
-        assertElementDisplayed(addProductFormTitle, "❌ addProductFormTitle is not displayed!");
+        driver.assertion().assertElementDisplayed(addProductFormTitle, "❌ addProductFormTitle is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkAddProductFormTitleText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), addProductFormTitle).contains("Add New Product"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), addProductFormTitle).contains("Add New Product"));
+        driver.assertion().assertElementTextContains(addProductFormTitle, "Add New Product", "❌ addProductFormTitle is not correct!");
+
         return this;
     }
     /************** end form itself***************/
@@ -131,63 +138,63 @@ public class AdminAddProductPage {
 //    done
     public AdminAddProductPage checkUploadImageLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), uploadImageLabel));
-        assertElementDisplayed(uploadImageLabel, "❌ uploadImageLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(uploadImageLabel, "❌ uploadImageLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkUploadImageFieldLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), uploadImageFieldLabel));
-        assertElementDisplayed(uploadImageFieldLabel, "❌ uploadImageFieldLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(uploadImageFieldLabel, "❌ uploadImageFieldLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkTitleLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), titleLabel));
-        assertElementDisplayed(titleLabel, "❌ titleLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(titleLabel, "❌ titleLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkDescriptionLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), descriptionLabel));
-        assertElementDisplayed(descriptionLabel, "❌ descriptionLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(descriptionLabel, "❌ descriptionLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkCategoryLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categoryLabel));
-        assertElementDisplayed(categoryLabel, "❌ categoryLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(categoryLabel, "❌ categoryLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkBrandLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandLabel));
-        assertElementDisplayed(brandLabel, "❌ brandLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(brandLabel, "❌ brandLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkPriceLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), priceLabel));
-        assertElementDisplayed(priceLabel, "❌ priceLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(priceLabel, "❌ priceLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkSalePriceLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), salePriceLabel));
-        assertElementDisplayed(salePriceLabel, "❌ salePriceLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(salePriceLabel, "❌ salePriceLabel is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkTotalStockLabelIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), totalStockLabel));
-        assertElementDisplayed(totalStockLabel, "❌ totalStockLabel is not displayed!");
+        driver.assertion().assertElementDisplayed(totalStockLabel, "❌ totalStockLabel is not displayed!");
 
         return this;
     }
@@ -197,47 +204,65 @@ public class AdminAddProductPage {
     /*************** label Text *******************/
 
     public AdminAddProductPage checkUploadImageLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), uploadImageLabel).contains("Upload Image"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), uploadImageLabel).contains("Upload Image"));
+        driver.assertion().assertElementTextContains(uploadImageLabel, "Upload Image", "❌ uploadImageLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkUploadImageFieldLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), uploadImageFieldLabel).contains("Drag & Drop or Click to Upload"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), uploadImageFieldLabel).contains("Drag & Drop or Click to Upload"));
+        driver.assertion().assertElementTextContains(uploadImageFieldLabel, "Drag & Drop or Click to Upload", "❌ uploadImageFieldLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkTitleLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), titleLabel).contains("Title"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), titleLabel).contains("Title"));
+        driver.assertion().assertElementTextContains(titleLabel, "Title", "❌ titleLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkDescriptionLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), descriptionLabel).contains("Description"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), descriptionLabel).contains("Description"));
+        driver.assertion().assertElementTextContains(descriptionLabel, "Description", "❌ descriptionLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkCategoryLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), categoryLabel).contains("Category"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), categoryLabel).contains("Category"));
+        driver.assertion().assertElementTextContains(categoryLabel, "Category", "❌ categoryLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkBrandLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), brandLabel).contains("Brand"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), brandLabel).contains("Brand"));
+        driver.assertion().assertElementTextContains(brandLabel, "Brand", "❌ brandLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkPriceLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), priceLabel).contains("Price"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), priceLabel).contains("Price"));
+        driver.assertion().assertElementTextContains(priceLabel, "Price", "❌ priceLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkSalePriceLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), salePriceLabel).contains("Sale Price"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), salePriceLabel).contains("Sale Price"));
+        driver.assertion().assertElementTextContains(salePriceLabel, "Sale Price", "❌ salePriceLabel is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkTotalStockLabelText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockLabel).contains("Total Stock"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockLabel).contains("Total Stock"));
+        driver.assertion().assertElementTextContains(totalStockLabel, "Total Stock", "❌ totalStockLabel is not correct!");
+
         return this;
     }
     /*************** End label Text *******************/
@@ -246,70 +271,70 @@ public class AdminAddProductPage {
 //done
     public AdminAddProductPage checkUploadImageFieldIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), uploadImageField));
-        assertElementDisplayed(uploadImageField, "❌ uploadImageField is not displayed!");
+        driver.assertion().assertElementDisplayed(uploadImageField, "❌ uploadImageField is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkTitleFieldIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), titleField));
-        assertElementDisplayed(titleField, "❌ titleField is not displayed!");
+        driver.assertion().assertElementDisplayed(titleField, "❌ titleField is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkDescriptionFieldIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), descriptionField));
-        assertElementDisplayed(descriptionField, "❌ descriptionField is not displayed!");
+        driver.assertion().assertElementDisplayed(descriptionField, "❌ descriptionField is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkCategoryBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categoryBtn));
-        assertElementDisplayed(categoryBtn, "❌ categoryBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(categoryBtn, "❌ categoryBtn is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkCategorySelectIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categorySelect));
-        assertElementDisplayed(categorySelect, "❌ categorySelect is not displayed!");
+        driver.assertion().assertElementDisplayed(categorySelect, "❌ categorySelect is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkBrandBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandBtn));
-        assertElementDisplayed(brandBtn, "❌ brandBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(brandBtn, "❌ brandBtn is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkBrandSelectIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandSelect));
-        assertElementDisplayed(brandSelect, "❌ brandSelect is not displayed!");
+        driver.assertion().assertElementDisplayed(brandSelect, "❌ brandSelect is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkPriceFieldIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), priceField));
-        assertElementDisplayed(priceField, "❌ priceField is not displayed!");
+        driver.assertion().assertElementDisplayed(priceField, "❌ priceField is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkSalePriceFieldIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), salePriceField));
-        assertElementDisplayed(salePriceField, "❌ salePriceField is not displayed!");
+        driver.assertion().assertElementDisplayed(salePriceField, "❌ salePriceField is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkTotalStockFieldIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), totalStockField));
-        assertElementDisplayed(totalStockField, "❌ totalStockField is not displayed!");
+        driver.assertion().assertElementDisplayed(totalStockField, "❌ totalStockField is not displayed!");
 
         return this;
     }
@@ -318,27 +343,36 @@ public class AdminAddProductPage {
     /***************Placeholder Text *******************/
 
     public AdminAddProductPage checkTitleFieldPlaceHolderText() {
-        Assert.assertTrue(ElementActions.find(driver.get(), titleField).getDomAttribute("placeholder").contains("Enter product title"));
+//        Assert.assertTrue(ElementActions.find(driver.get(), titleField).getDomAttribute("placeholder").contains("Enter product title"));
+        driver.assertion().assertElementAttributeEquals(titleField, "placeholder", "Enter product title", "❌ titleFieldPlaceHolder is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkDescriptionFieldPlaceHolderText() {
-        Assert.assertTrue(ElementActions.find(driver.get(), descriptionField).getDomAttribute("placeholder").contains("Enter product description"));
+//        Assert.assertTrue(ElementActions.find(driver.get(), descriptionField).getDomAttribute("placeholder").contains("Enter product description"));
+        driver.assertion().assertElementAttributeEquals(descriptionField, "placeholder", "Enter product description", "❌ descriptionFieldPlaceHolder is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkPriceFieldPlaceHolderText() {
-        Assert.assertTrue(ElementActions.find(driver.get(), priceField).getDomAttribute("placeholder").contains("Enter product price"));
+//        Assert.assertTrue(ElementActions.find(driver.get(), priceField).getDomAttribute("placeholder").contains("Enter product price"));
+        driver.assertion().assertElementAttributeEquals(priceField, "placeholder", "Enter product price", "❌ priceFieldPlaceHolder is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkSalePriceFieldPlaceHolderText() {
-        Assert.assertTrue(ElementActions.find(driver.get(), salePriceField).getDomAttribute("placeholder").contains("Enter sale price (optional)"));
+//        Assert.assertTrue(ElementActions.find(driver.get(), salePriceField).getDomAttribute("placeholder").contains("Enter sale price (optional)"));
+        driver.assertion().assertElementAttributeEquals(salePriceField, "placeholder", "Enter sale price (optional)", "❌ salePriceFieldPlaceHolder is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkTotalStockFieldPlaceHolderText() {
-        Assert.assertTrue(ElementActions.find(driver.get(), totalStockField).getDomAttribute("placeholder").contains("Enter total stock"));
+//        Assert.assertTrue(ElementActions.find(driver.get(), totalStockField).getDomAttribute("placeholder").contains("Enter total stock"));
+        driver.assertion().assertElementAttributeEquals(totalStockField, "placeholder", "Enter total stock", "❌ totalStockFieldPlaceHolder is not correct!");
         return this;
     }
 
@@ -347,50 +381,54 @@ public class AdminAddProductPage {
     /*************** Category & Brand btn text/default value *******************/
 
     public AdminAddProductPage checkCategoryBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), categoryBtn).contains("Category"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), categoryBtn).contains("Category"));
+        driver.assertion().assertElementTextContains(categoryBtn, "Category", "❌ categoryBtn is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkBrandBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), brandBtn).contains("Brand"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), brandBtn).contains("Brand"));
+        driver.assertion().assertElementTextContains(brandBtn, "Brand", "❌ brandBtn is not correct!");
+
         return this;
     }
     /*************** End Category & Brand btn text/default value *******************/
 
     /*************** Check Category & Brand Options  *******************/
 
-    public AdminAddProductPage checkBrandOptions() {
-        Assert.assertEquals(brandOptionsXpathList.size(), brandOptionsList.length);
+//    public AdminAddProductPage checkBrandOptions() {
+//        Assert.assertEquals(brandOptionsXpathList.size(), brandOptionsList.length);
+//
+//        for (int i = 0; i < brandOptionsXpathList.size(); i++) {
+//            WebElement option = ElementActions.find(driver.get(), brandOptionsXpathList.get(i));
+//            Assert.assertTrue(Arrays.stream(brandOptionsList).equals(option.getText()));
+//        }
+//        return this;
+//    }
 
-        for (int i = 0; i < brandOptionsXpathList.size(); i++) {
-            WebElement option = ElementActions.find(driver.get(), brandOptionsXpathList.get(i));
-            Assert.assertTrue(Arrays.stream(brandOptionsList).equals(option.getText()));
-        }
-        return this;
-    }
-
-    public AdminAddProductPage checkCategoryOptions() {
-        Assert.assertEquals(categoryOptionsXpathList.size(), categoryOptionsList.length);
-        for (int i = 0; i < categoryOptionsXpathList.size(); i++) {
-            WebElement option = ElementActions.find(driver.get(), categoryOptionsXpathList.get(i));
-            Assert.assertTrue(Arrays.stream(categoryOptionsList).equals(option.getText()));
-        }
-
-        return this;
-    }
+//    public AdminAddProductPage checkCategoryOptions() {
+//        Assert.assertEquals(categoryOptionsXpathList.size(), categoryOptionsList.length);
+//        for (int i = 0; i < categoryOptionsXpathList.size(); i++) {
+//            WebElement option = ElementActions.find(driver.get(), categoryOptionsXpathList.get(i));
+//            Assert.assertTrue(Arrays.stream(categoryOptionsList).equals(option.getText()));
+//        }
+//
+//        return this;
+//    }
     /*************** End Check Category & Brand Options  *******************/
 
     /*************** Check Add btn and Close Btn Is Displayed  *******************/
     public AdminAddProductPage checkAddBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addBtn));
-        assertElementDisplayed(addBtn, "❌ addBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(addBtn, "❌ addBtn is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkCloseAddProductFormBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), closeAddProductFormBtn));
-        assertElementDisplayed(closeAddProductFormBtn, "❌ closeAddProductFormBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(closeAddProductFormBtn, "❌ closeAddProductFormBtn is not displayed!");
 
         return this;
     }
@@ -399,7 +437,9 @@ public class AdminAddProductPage {
     /***************Add btn Text  *******************/
 
     public AdminAddProductPage checkAddBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), addBtn).contains("Add"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), addBtn).contains("Add"));
+        driver.assertion().assertElementTextContains(addBtn, "Add", "❌ addBtn is not correct!");
+
         return this;
     }
     /***************End Add btn Text  *******************/
@@ -407,6 +447,7 @@ public class AdminAddProductPage {
     /***************check Add Product form is not Displayed  *******************/
 
     public AdminAddProductPage checkAddProductFormIsNotDisplayed() {
+//        assertElementNotDisplayed(addProductForm, "❌ addProductForm is displayed!");
         assertElementNotDisplayed(addProductForm, "❌ addProductForm is displayed!");
         return this;
     }
@@ -415,19 +456,21 @@ public class AdminAddProductPage {
     /***************Toast msg staff  *******************/
     public AdminAddProductPage checkToastMsgIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), toastMsg));
-        assertElementDisplayed(toastMsg, "❌ toastMsg is not displayed!");
+        driver.assertion().assertElementDisplayed(toastMsg, "❌ toastMsg is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkToastMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), toastMsg).contains("Product Added Successfully"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), toastMsg).contains("Product Added Successfully"));
+        driver.assertion().assertElementTextContains(toastMsg, "Product Added Successfully", "❌ toastMsg is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkToastCloseBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), toastCloseBtn));
-        assertElementDisplayed(toastCloseBtn, "❌ toastCloseBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(toastCloseBtn, "❌ toastCloseBtn is not displayed!");
 
         return this;
     }
@@ -443,35 +486,35 @@ public class AdminAddProductPage {
     /***************  Error Msg Is Displayed *******************/
     public AdminAddProductPage checkTitleErrorMsgIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), titleErrorMsg));
-        assertElementDisplayed(titleErrorMsg, "❌ titleErrorMsg is not displayed!");
+        driver.assertion().assertElementDisplayed(titleErrorMsg, "❌ titleErrorMsg is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkCategoryErrorMsgIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categoryErrorMsg));
-        assertElementDisplayed(categoryErrorMsg, "❌ categoryErrorMsg is not displayed!");
+        driver.assertion().assertElementDisplayed(categoryErrorMsg, "❌ categoryErrorMsg is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkBrandErrorMsgIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandErrorMsg));
-        assertElementDisplayed(brandErrorMsg, "❌ brandErrorMsg is not displayed!");
+        driver.assertion().assertElementDisplayed(brandErrorMsg, "❌ brandErrorMsg is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkPriceErrorMsgIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), priceErrorMsg));
-        assertElementDisplayed(priceErrorMsg, "❌ priceErrorMsg is not displayed!");
+        driver.assertion().assertElementDisplayed(priceErrorMsg, "❌ priceErrorMsg is not displayed!");
 
         return this;
     }
 
     public AdminAddProductPage checkTotalStockErrorMsgIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), totalStockErrorMsg));
-        assertElementDisplayed(totalStockErrorMsg, "❌ totalStockErrorMsg is not displayed!");
+        driver.assertion().assertElementDisplayed(totalStockErrorMsg, "❌ totalStockErrorMsg is not displayed!");
 
         return this;
     }
@@ -481,37 +524,55 @@ public class AdminAddProductPage {
     /***************  Error Msg Text *******************/
 
     public AdminAddProductPage checkTitleErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), titleErrorMsg).contains("Title is required"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), titleErrorMsg).contains("Title is required"));
+        driver.assertion().assertElementTextContains(titleErrorMsg, "Title is required", "❌ titleErrorMsg is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkCategoryErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), categoryErrorMsg).contains("Category is required"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), categoryErrorMsg).contains("Category is required"));
+        driver.assertion().assertElementTextContains(categoryErrorMsg, "Category is required", "❌ categoryErrorMsg is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkBrandErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), brandErrorMsg).contains("Brand is required"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), brandErrorMsg).contains("Brand is required"));
+        driver.assertion().assertElementTextContains(brandErrorMsg, "Brand is required", "❌ brandErrorMsg is not correct!");
         return this;
     }
 
     public AdminAddProductPage checkPriceErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price is required"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price is required"));
+        driver.assertion().assertElementTextContains(priceErrorMsg, "Price is required", "❌ priceErrorMsg is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkTotalStockErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock is required"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock is required"));
+        driver.assertion().assertElementTextContains(totalStockErrorMsg, "Total Stock is required", "❌ totalStockErrorMsg is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkInvalidPriceErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price must be greater than 0."));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price must be greater than 0."));
+        driver.assertion().assertElementTextContains(priceErrorMsg, "Price must be greater than 0.", "❌ priceErrorMsg is not correct!");
+
         return this;
     }
 
     public AdminAddProductPage checkInvalidTotalStockErrorMsgText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock must be greater than 0."));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock must be greater than 0."));
+        driver.assertion().assertElementTextContains(totalStockErrorMsg, "Total Stock must be greater than 0.", "❌ totalStockErrorMsg is not correct!");
+
+        return this;
+    }
+
+    public AdminAddProductPage checkInvalidTitleErrorMsgText() {
+        driver.assertion().assertElementTextContains(titleErrorMsg, "Title is too long!", "❌ titleErrorMsg is not correct!");
         return this;
     }
     /***************  End Error Msg Text *******************/
@@ -561,7 +622,6 @@ public class AdminAddProductPage {
 //        driver.element().set(uploadImageInputField, uploadFile.getAbsolutePath());
         WebElement fileInput = driver.get().findElement(uploadImageInputField);
         fileInput.sendKeys(uploadFile.getAbsolutePath());
-
         return this;
     }
 
@@ -577,20 +637,20 @@ public class AdminAddProductPage {
 
     public AdminAddProductPage fillPriceField(int price) {
 //      driver.element().set(priceField, String.valueOf(price));
-        ElementActions.setNumberField(driver.get(), priceField, price);
+        driver.element().setNumberField(driver.get(), priceField, price);
         return this;
     }
 
     public AdminAddProductPage fillSalePriceField(int salePrice) {
 //        driver.element().set(salePriceField, String.valueOf(salePrice));
-        ElementActions.setNumberField(driver.get(), salePriceField, salePrice);
+        driver.element().setNumberField(driver.get(), salePriceField, salePrice);
 
         return this;
     }
 
     public AdminAddProductPage fillTotalStockField(int totalStock) {
 //        driver.element().set(totalStockField, String.valueOf(totalStock));
-        ElementActions.setNumberField(driver.get(), totalStockField, totalStock);
+        driver.element().setNumberField(driver.get(), totalStockField, totalStock);
         return this;
     }
 
@@ -598,13 +658,13 @@ public class AdminAddProductPage {
     /***************  Select options  *******************/
     public AdminAddProductPage selectOptionFromCategorySelect(int index) {
 //        driver.element().click(categoryOptionsXpathList.get(index));
-        new ElementActions(driver.get()).selectByIndex(categorySelect, index);
+        driver.element().selectByIndex(categorySelect, index);
         return this;
     }
 
     public AdminAddProductPage selectOptionFromBrandSelect(int index) {
 //        driver.element().click(brandOptionsXpathList.get(index));
-        new ElementActions(driver.get()).selectByIndex(brandSelect, index);
+        driver.element().selectByIndex(brandSelect, index);
         return this;
 
     }
@@ -615,13 +675,12 @@ public class AdminAddProductPage {
 //        Assert.assertFalse(ElementActions.isDisplayed(driver.get(), greySection));
 //        return this;
 //    }
-    private void assertElementDisplayed(By locator, String errorMessage) {
-        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
-        if (element == null || !element.isDisplayed()) {
-            throw new AssertionError(errorMessage);
-        }
-    }
-
+//    private void assertElementDisplayed(By locator, String errorMessage) {
+//        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
+//        if (element == null || !element.isDisplayed()) {
+//            throw new AssertionError(errorMessage);
+//        }
+//    }
     private void assertElementNotDisplayed(By locator, String errorMessage) {
         boolean isGone = Waits.waitForElementToBeInvisible(driver.get(), locator);
         if (!isGone) {

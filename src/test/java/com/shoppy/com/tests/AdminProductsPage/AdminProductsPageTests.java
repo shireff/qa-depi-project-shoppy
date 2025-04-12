@@ -19,7 +19,7 @@ public class AdminProductsPageTests {
     public void setup() {
         driver = new ThreadLocal<>();
         driver.set(new Driver());
-        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get().browser().openUrl(driver.get().get(), URL);
         loginPage = new LoginPage(driver.get());
         loginPage.setUserName("Arima@example.com");

@@ -30,65 +30,67 @@ public class AdminProductsPage {
 
     public AdminProductsPage checkProductsPageUrl() {
         Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), URL);
+//        driver.assertion().assertElementTextEquals()
         return this;
     }
 
     public AdminProductsPage checkAddProductBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductBtn));
-        assertElementDisplayed(addProductBtn, "❌ addProductBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(addProductBtn, "❌ addProductBtn is not displayed!");
         return this;
     }
 
     public AdminProductsPage checkAddProductBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), addProductBtn).contains("Add Product"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), addProductBtn).contains("Add Product"));
+        driver.assertion().assertElementTextContains(addProductBtn,"Add Product","❌ addProductBtn is not correct!");
         return this;
     }
 
     public AdminProductsPage checkProductsAreDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), firstProduct));
-        assertElementDisplayed(firstProduct, "❌ firstProduct is not displayed!");
+        driver.assertion().assertElementDisplayed(firstProduct, "❌ firstProduct is not displayed!");
         return this;
     }
 
     public AdminProductsPage checkProductCardIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), card));
-        assertElementDisplayed(card, "❌ card is not displayed!");
+        driver.assertion().assertElementDisplayed(card, "❌ card is not displayed!");
 
         return this;
     }
 
     public AdminProductsPage checkProductCardImageIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardImage));
-        assertElementDisplayed(cardImage, "❌ cardImage is not displayed!");
+        driver.assertion().assertElementDisplayed(cardImage, "❌ cardImage is not displayed!");
 
         return this;
     }
 
     public AdminProductsPage checkProductCardTitleIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardTitle));
-        assertElementDisplayed(cardTitle, "❌ cardTitle is not displayed!");
+        driver.assertion().assertElementDisplayed(cardTitle, "❌ cardTitle is not displayed!");
 
         return this;
     }
 
     public AdminProductsPage checkProductCardPriceIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardPrice));
-        assertElementDisplayed(cardPrice, "❌ cardPrice is not displayed!");
+        driver.assertion().assertElementDisplayed(cardPrice, "❌ cardPrice is not displayed!");
 
         return this;
     }
 
     public AdminProductsPage checkProductCardEditBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardEditBtn));
-        assertElementDisplayed(cardEditBtn, "❌ cardEditBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(cardEditBtn, "❌ cardEditBtn is not displayed!");
 
         return this;
     }
 
     public AdminProductsPage checkProductCardDeleteBtnIsDisplayed() {
 //        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardDeleteBtn));
-        assertElementDisplayed(cardDeleteBtn, "❌ cardDeleteBtn is not displayed!");
-
+//        assertElementDisplayed(cardDeleteBtn, "❌ cardDeleteBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(cardDeleteBtn, "❌ cardDeleteBtn is not displayed!");
         return this;
     }
 
@@ -97,10 +99,10 @@ public class AdminProductsPage {
         return new AdminAddProductPage(driver);
     }
 
-    private void assertElementDisplayed(By locator, String errorMessage) {
-        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
-        if (element == null || !element.isDisplayed()) {
-            throw new AssertionError(errorMessage);
-        }
-    }
+//    private void assertElementDisplayed(By locator, String errorMessage) {
+//        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
+//        if (element == null || !element.isDisplayed()) {
+//            throw new AssertionError(errorMessage);
+//        }
+//    }
 }

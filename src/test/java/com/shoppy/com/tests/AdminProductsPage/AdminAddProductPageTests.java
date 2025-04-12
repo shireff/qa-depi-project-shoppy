@@ -26,16 +26,18 @@ public class AdminAddProductPageTests {
     private int totalStock = 20;
 
     //    invalid values
-    private int Invalidprice = -100;
-    private int InvalidsalePrice = -50;
-    private int InvalidtotalStock = -20;
+    private int invalidPrice = -100;
+    private int invalidSalePrice = -50;
+    private int invalidTotalStock = -20;
+    private String longTitle = "Test automation Title! Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!Test automation Title!";
+    private String filePath = "src/test/resources/1.txt";
 
 
     @BeforeClass
     public void setup() {
         driver = new ThreadLocal<>();
         driver.set(new Driver());
-        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get().browser().openUrl(driver.get().get(), LoginUrl);
         loginPage = new LoginPage(driver.get());
         loginPage.setUserName("Arima@example.com");
@@ -46,12 +48,15 @@ public class AdminAddProductPageTests {
                 .checkProductsPageUrl()
                 .checkAddProductBtnIsDisplayed()
                 .checkProductsAreDisplayed();
-        new AdminAddProductPage(driver.get()).clickOnAddProductBtn();
+//        new AdminAddProductPage(driver.get())
+//                .clickOnAddProductBtn();
     }
 
     @Test(priority = 1)
     public void verifyThatAllLabelsOfTheFormAreDisplayed() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkUploadImageLabelIsDisplayed()
                 .checkUploadImageFieldLabelIsDisplayed()
                 .checkTitleLabelIsDisplayed()
@@ -66,6 +71,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 2)
     public void verifyThatAllInputFieldsOfTheFormAreDisplayed() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkTitleFieldIsDisplayed()
                 .checkDescriptionFieldIsDisplayed()
                 .checkCategoryBtnIsDisplayed()
@@ -81,6 +88,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 3)
     public void verifyThatPlaceholdersTextIsCorrectlyWritten() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkTitleFieldIsDisplayed()
                 .checkTitleFieldPlaceHolderText()
                 .checkDescriptionFieldIsDisplayed()
@@ -100,18 +109,24 @@ public class AdminAddProductPageTests {
     @Test(priority = 4)
     public void verifyThatAddBtnOfTheFormIsDisplayed() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkAddBtnIsDisplayed();
     }
 
     @Test(priority = 5)
     public void verifyThatCloseBtnXIsDisplayed() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkCloseAddProductFormBtnIsDisplayed();
     }
 
     @Test(priority = 6)
     public void verifyThatCloseBtnXClosesTheAddProductForm() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkCloseAddProductFormBtnIsDisplayed()
                 .clickOnCloseAddProductFormBtn()
                 .checkAddProductFormIsNotDisplayed();
@@ -120,6 +135,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 7)
     public void validateSubmissionWithCorrectData() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .fillPriceField(price)
                 .checkSalePriceFieldIsDisplayed()
@@ -147,6 +164,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 8)
     public void confirmErrorMsgsAreDisplayedOnSubmittingWithEmptyFields() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .checkSalePriceFieldIsDisplayed()
                 .checkTotalStockFieldIsDisplayed()
@@ -174,6 +193,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 9)
     public void ensureOptionalFieldsDoNotTriggerErrors() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .fillPriceField(price)
                 .checkTotalStockFieldIsDisplayed()
@@ -197,6 +218,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 10)
     public void ensureTitleFieldsIsRequiredAndTheSubmittionStopped() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .fillPriceField(price)
                 .checkTotalStockFieldIsDisplayed()
@@ -220,6 +243,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 11)
     public void ensureCategoryFieldsIsRequiredAndTheSubmittionStopped() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .fillPriceField(price)
                 .checkTotalStockFieldIsDisplayed()
@@ -243,6 +268,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 12)
     public void ensureBrandFieldsIsRequiredAndTheSubmittionStopped() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .fillPriceField(price)
                 .checkTotalStockFieldIsDisplayed()
@@ -266,6 +293,8 @@ public class AdminAddProductPageTests {
     @Test(priority = 13)
     public void ensurePriceFieldsIsRequiredAndTheSubmittionStopped() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
 //                .checkPriceFieldIsDisplayed()
 //                .fillPriceField(price)
                 .checkTotalStockFieldIsDisplayed()
@@ -286,9 +315,11 @@ public class AdminAddProductPageTests {
         ;
     }
 
-    @Test(priority = 13)
+    @Test(priority = 14)
     public void ensureTotalStockFieldsIsRequiredAndTheSubmittionStopped() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
                 .fillPriceField(price)
 //                .checkTotalStockFieldIsDisplayed()
@@ -312,11 +343,13 @@ public class AdminAddProductPageTests {
     // End ensure the submittion is stopped if any required field is empty
 
     // Invalid numbers
-    @Test(priority = 14)
+    @Test(priority = 15)
     public void validateSubmissionWithIncorrectValueInPriceField() {
         new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
                 .checkPriceFieldIsDisplayed()
-                .fillPriceField(Invalidprice)
+                .fillPriceField(invalidPrice)
                 .checkTotalStockFieldIsDisplayed()
                 .fillTotalStockField(totalStock)
                 .checkTitleFieldIsDisplayed()
@@ -334,13 +367,93 @@ public class AdminAddProductPageTests {
         ;
     }
 
+    @Test(priority = 16)
+    public void validateSubmissionWithIncorrectValueInTotalStockField() {
+        new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(invalidTotalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+//                .checkInvalidTotalStockErrorMsgText();
+        ;
+    }
+
+    @Test(priority = 17)
+    public void validateSubmissionWithLongValueInTitleField() {
+        new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(longTitle)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+//                .checkInvalidTitleErrorMsgText();
+        ;
+    }
+
+
+
+    @Test(priority = 18)
+    public void verifyThatTheUploadImageFieldAcceptsOnlyImages() {
+        new AdminAddProductPage(driver.get())
+                .navigateToProductsPage()
+                .clickOnAddProductBtn()
+                .checkPriceFieldIsDisplayed()
+                .fillPriceField(price)
+                .checkSalePriceFieldIsDisplayed()
+//                .fillSalePriceField(salePrice)
+//                .checkTotalStockFieldIsDisplayed()
+                .fillTotalStockField(totalStock)
+                .checkUploadImageFieldLabelIsDisplayed()
+                .fillUploadImageField(filePath)
+                .checkTitleFieldIsDisplayed()
+                .fillTitleField(title)
+//                .checkDescriptionFieldIsDisplayed()
+//                .fillDescriptionField(description)
+                .checkCategoryBtnIsDisplayed()
+                .clickOnCategoryBtn()
+                .selectOptionFromCategorySelect(categoryIndex)
+                .checkBrandBtnIsDisplayed()
+                .clickOnBrandBtn()
+                .selectOptionFromBrandSelect(brandIndex)
+                .checkAddBtnIsDisplayed()
+                .clickOnAddBtn()
+                .checkAddProductFormIsDisplayed()
+        ;
+    }
+
 
     // End Invalid numbers
 
 
     @AfterClass
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(3000);
-//        driver.get().browser().closeBrowser(driver.get().get());
+    public void tearDown() {
+//        Thread.sleep(3000);
+        driver.get().browser().closeBrowser(driver.get().get());
     }
+
 }
