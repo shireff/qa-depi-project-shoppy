@@ -157,6 +157,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsNotDisplayed()
         ;
     }
@@ -209,6 +210,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsNotDisplayed()
         ;
     }
@@ -234,6 +236,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully()
                 .checkAddProductFormIsDisplayed()
                 .checkTitleErrorMsgIsDisplayed()
                 .checkTitleErrorMsgText()
@@ -259,6 +262,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
                 .checkCategoryErrorMsgIsDisplayed()
                 .checkCategoryErrorMsgText()
@@ -284,6 +288,7 @@ public class AdminAddProductPageTests {
 //                .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
                 .checkBrandErrorMsgIsDisplayed()
                 .checkBrandErrorMsgText()
@@ -309,6 +314,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
                 .checkPriceErrorMsgIsDisplayed()
                 .checkPriceErrorMsgText()
@@ -334,6 +340,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
                 .checkTotalStockErrorMsgIsDisplayed()
                 .checkTotalStockErrorMsgText()
@@ -362,6 +369,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
                 .checkInvalidPriceErrorMsgText();
         ;
@@ -386,6 +394,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
 //                .checkInvalidTotalStockErrorMsgText();
         ;
@@ -410,6 +419,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(longTitle)
                 .checkAddProductFormIsDisplayed()
 //                .checkInvalidTitleErrorMsgText();
         ;
@@ -442,6 +452,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
+                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsDisplayed()
         ;
     }
