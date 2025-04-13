@@ -69,7 +69,7 @@ public class HomePageTests {
     @Epic("Home Page Functionality")
     @Feature("Featured Products")
     @Story("Interact with featured products section")
-    @Severity(SeverityLevel.CRITICAL)  // زيادة الأولوية
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Test the interaction with featured products and verify modal display.")
     @Test(priority = 4)
     public void testFeatureProductsInteraction() throws InterruptedException {

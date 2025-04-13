@@ -2,6 +2,7 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -64,43 +65,57 @@ public class AdminDashboardPage {
         this.driver = driver;
     }
     //Actions
+    @Step("👆click on products button")
     public AdminProductsPage clickOnProductsBtn() {
+        System.out.println("👆Clicking on products button");
         driver.element().click(Products_Button);
         return new AdminProductsPage(driver);
     }
+    @Step("👆click on orders button")
     public AdminPanelOrders clickOnOrdersBtn()
     {
+        System.out.println("👆Clicking on orders button");
         driver.element().click(Orders_Button);
         return new AdminPanelOrders(driver);
     }
+    @Step("👆click on upload image box")
     public AdminDashboardPage clickOnUploadImageBox()
     {
+        System.out.println("👆Clicking on upload image box");
         driver.element().click(Drag_Drop_Click_Upload);
         return this;
     }
+    @Step("👆click on upload button")
     public AdminDashboardPage clickOnUploadBtn()
     {
+        System.out.println("👆Clicking on upload button");
         driver.element().click(Upload_Button);
         return this;
     }
+    @Step("👆click on delete button")
     public AdminDashboardPage clickOnDeleteBtn()
     {
+        System.out.println("👆Clicking on delete button");
         driver.element().click(First_Image_Delete_Button);
         return this;
     }
+    @Step("👆click on logout button")
     public LoginPage clickOnLogoutBtn()
     {
+        System.out.println("👆Clicking on logout button");
         driver.element().click(Logout_Button);
         return new LoginPage(driver);
     }
 
 
     //Assertions
-    public AdminDashboardPage checkAdminDashboardUrl() {
+    @Step("✅Check Admin Dashboard url")
+    public AdminDashboardPage checkAdminDashboardUrl()
+    {
+        System.out.println("✅Checking Admin dashboard url");
         Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), URL);
         return this;
     }
-
     public AdminDashboardPage checkAdminPanelHeaderText() {
         Assert.assertTrue(ElementActions.getText(driver.get(), AdminPanel_Title).contains("Admin Panel"));
         return this;
