@@ -70,7 +70,6 @@ public class ProductsPageUser {
 
     //Actions
     public ProductsPageUser driverNavigate() {
-        //   Thread.sleep(100);
         System.out.println("⬆️navigating to the products page");
         driver.element().click(Products_Label_Button);
         return this;
