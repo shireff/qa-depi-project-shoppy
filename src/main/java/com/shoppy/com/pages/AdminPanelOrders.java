@@ -188,12 +188,13 @@ public class AdminPanelOrders
         return this;
     }
     public AdminPanelOrders checkOrdersBtnResDisplayed() {
-        System.out.println("✅check products btn is displayed responsive");
+        System.out.println("✅check orders btn is displayed responsive");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Orders_Button_Responsive));
         return this;
     }
 
     public AdminPanelOrders checkLogoutBtnText() {
+        System.out.println();
         Assert.assertTrue(ElementActions.getText(driver.get(), Logout_Button).contains(" Logout"));
         return this;
     }
