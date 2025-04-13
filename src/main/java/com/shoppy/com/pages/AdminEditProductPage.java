@@ -5,6 +5,7 @@ import com.shoppy.com.utils.ElementActions;
 import com.shoppy.com.utils.Waits;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,19 +19,15 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class AdminEditProductPage {
-    //  a card with specific title
-    //main//h2[contains(text(),"Carbon Blue Men's Crew Neck")]
+
     private final Driver driver;
     // options problem
     private final By div = By.xpath("//div[@data-radix-popper-content-wrapper]");
-
-// private final String path = "./../../../../../../test/resources/1.png"
-
     //
     private final By editProductForm = By.xpath("//div[@role=\"dialog\"]");
     private final By editProductFormTitle = By.xpath("//div[@role=\"dialog\"]/div/h2");
-//    private final By addProductBtn = By.xpath("//main/div/button");
     private final By greySection = By.xpath("/html/body/span[1]");
+    private final By editBtnCard = By.xpath("//main//h2[contains(text(),\"Test automation Title for Edit!\")]/../..//button[1]");
 
     //    form elements
     // *************** Labels ************* //
@@ -382,16 +379,16 @@ public class AdminEditProductPage {
     /***************End Placeholder Text *******************/
     /*************** Category & Brand btn text/default value *******************/
 
-    public AdminEditProductPage checkCategoryBtnText() {
+    public AdminEditProductPage checkCategoryBtnText(int index) {
 //        Assert.assertTrue(ElementActions.getText(driver.get(), categoryBtn).contains("Category"));
-        driver.assertion().assertElementTextContains(categoryBtn, "Category", "❌ categoryBtn is not correct!");
+        driver.assertion().assertElementTextContains(categoryBtn, categoryOptionsList[index], "❌ categoryBtn is not correct!");
 
         return this;
     }
 
-    public AdminEditProductPage checkBrandBtnText() {
+    public AdminEditProductPage checkBrandBtnText(int index) {
 //        Assert.assertTrue(ElementActions.getText(driver.get(), brandBtn).contains("Brand"));
-        driver.assertion().assertElementTextContains(brandBtn, "Brand", "❌ brandBtn is not correct!");
+        driver.assertion().assertElementTextContains(brandBtn, brandOptionsList[index], "❌ brandBtn is not correct!");
 
         return this;
     }
@@ -611,12 +608,47 @@ public class AdminEditProductPage {
         return this;
     }
 
+    public AdminEditProductPage clickOnEditBtnCard() {
+        driver.element().click(editBtnCard);
+//        WebElement element = ElementActions.find(driver.get(), addBtn);
+//        ((JavascriptExecutor) driver.get()).executeScript("document.querySelector(\"button[type='submit']\").click()");
+
+        return this;
+    }
+
     public AdminEditProductPage clickOnToastCloseBtn() {
         driver.element().click(toastCloseBtn);
         return this;
     }
 
     /***************  End clicks  *******************/
+    /***************  clear Fields  *******************/
+    public AdminEditProductPage clearTitleField() {
+//        driver.element().clearField(titleField);
+        clearField(titleField);
+        return this;
+    }
+
+    public AdminEditProductPage clearDescriptionField() {
+        clearField(descriptionField);
+        return this;
+    }
+
+    public AdminEditProductPage clearPriceField() {
+        clearField(priceField);
+        return this;
+    }
+
+    public AdminEditProductPage clearTotalStockField() {
+        clearField(totalStockField);
+        return this;
+    }
+
+    public AdminEditProductPage clearSalePriceField() {
+        clearField(salePriceField);
+        return this;
+    }
+    /***************  End clear Fields  *******************/
 
     /***************  Send Keys  *******************/
     public AdminEditProductPage fillUploadImageField(String path) {
@@ -697,4 +729,13 @@ public class AdminEditProductPage {
 //    return this;
 //}
 
+
+    public void clearField(By locator) {
+        WebElement input = ElementActions.find(driver.get(), locator);
+//        JavascriptExecutor js = (JavascriptExecutor) driver.get();
+//        js.executeScript("arguments[0].value=''", input);
+//        js.executeScript("arguments[0].innerText=''", input);
+        input.sendKeys("");
+        input.submit();
+    }
 }

@@ -236,7 +236,7 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
-                .deleteAfterAddedSuccessfully()
+                .deleteAfterAddedSuccessfully("")
                 .checkAddProductFormIsDisplayed()
                 .checkTitleErrorMsgIsDisplayed()
                 .checkTitleErrorMsgText()
