@@ -3,6 +3,7 @@ package com.shoppy.com.tests.Cart;
 import DriverFactory.Driver;
 import com.shoppy.com.pages.CartPage;
 import com.shoppy.com.pages.LoginPage;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class CartTests {
@@ -88,7 +89,10 @@ public class CartTests {
                             .checkThatTheProductMessageAddedSuccesfullyIsDisable()
                             .clickOnCartIcon()
                             .clickOnCheckoutButton();
-                            //.checkThatTheUrlChangedToTheCheckoutPage();
+
+                             String expectedCheckoutURL = "https://shoppy-ochre.vercel.app/shop/checkout";
+                             String actualURL = driver.get().getCurrentUrl();
+                             Assert.assertEquals(actualURL, expectedCheckoutURL, "Checkout URL mismatch!");
     }
 
 
