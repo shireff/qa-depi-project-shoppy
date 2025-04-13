@@ -22,7 +22,7 @@ public class CartPage {
     private final By productQuantityInCart = By.xpath("(//div[@role=\"dialog\"]//span)[1]");
     private final By productTotalInCart = By.xpath("(//div[@role=\"dialog\"]//span)[1]");
     private final By productcart = By.xpath("(//div[@role=\"dialog\"]//h3)[1]");
-    private final By deleteIcon = By.cssSelector("svg[class=\"lucide lucide-trash cursor-pointer mt-1 text-red-500\"]");
+    private final By deleteIcon = By.cssSelector("//*[@id=\"radix-:rq:\"]/div[2]/div/div[2] /*[local-name() = 'svg']");
     private final By cartEmptyMessage = By.xpath("//div[@role=\"dialog\"]//p[contains(text(),'Your cart is empty')]");
     private final By cartDeletedMessage = By.xpath("//li/div/div");
     private final By closeIcon = By.xpath("(//div[@role=\"dialog\"]/button)[2]");
@@ -50,6 +50,7 @@ public class CartPage {
     /************************************ Assertions *******************************************/
     public CartPage checkThatTheProductNameIsDisable() {
         Assert.assertEquals(driver.element().getTextOf(ProductsName), ProductsSectionName);
+        //Assert.assertEquals(driver.element().getTextOf(ProductsName), ProductsSectionName);
         return this;
     }
 
@@ -194,10 +195,6 @@ public class CartPage {
         return this;
     }
 
-//    public CartPage checkThatTheUrlChangedToTheCheckoutPage() {
-//        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), "https://shoppy-ochre.vercel.app/shop/checkout");
-//        return this;
-//    }
     /************************************** Actions ********************************************/
    public CartPage clickOnAddToCartButton()  {
      driver.element().click(addToCartButton);
