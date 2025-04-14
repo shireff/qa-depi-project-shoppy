@@ -1,8 +1,6 @@
 package DriverFactory;
 
-import com.shoppy.com.utils.BrowserActions;
-import com.shoppy.com.utils.ElementActions;
-import com.shoppy.com.utils.ElementAssertions;
+import com.shoppy.com.utils.*;
 import listeners.webDriver.DriverListeners;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
@@ -85,5 +83,13 @@ public class Driver {
 
     public ElementAssertions assertion() {
         return new ElementAssertions(driver.get());
+    }
+
+    public ElementValidations validations() {
+        return new ElementValidations();
+    }
+
+    public CustomSoftAssertion softAssertion() {
+        return new CustomSoftAssertion();
     }
 }

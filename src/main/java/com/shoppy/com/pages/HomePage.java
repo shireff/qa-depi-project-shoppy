@@ -21,7 +21,7 @@ public class HomePage {
     private final By homePageHeader = By.xpath("//span[text()='Shoppy']");
     private final By categoryButtons = By.cssSelector(".grid.grid-cols-2 div.rounded-lg span.font-bold");
     private final By featuredProductsSection = By.xpath("//h2[@class=\"text-3xl font-bold text-center mb-8\" and text()=\"Feature products\"]\n");
-    private final By featuredProductImages = By.cssSelector(".rounded-lg.border.bg-card.text-card-foreground.shadow-sm img");
+    private final By featuredProductImages = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/section[5]/div/div/div[1]/div/div[1]/img");
     private final By brandButtons = By.xpath("//h2[contains(text(), 'Shop by Brand')]/following-sibling::div//span[contains(@class, 'font-bold')]");
     private final By featuredProducts = By.cssSelector(".rounded-lg.border.bg-card.text-card-foreground.shadow-sm");
     private final By productModal = By.cssSelector("div[role='dialog']");
@@ -46,6 +46,7 @@ public class HomePage {
             return false;
         }
     }
+
     @Step("Select category")
     public void selectCategory(String category) {
         try {
@@ -55,6 +56,7 @@ public class HomePage {
         }
 
     }
+
     @Step("Select brand")
     public void selectBrand(String brand) {
         try {
@@ -63,6 +65,7 @@ public class HomePage {
             Assert.fail("\n ❌ Failed to select brand '" + brand + "': " + e.getMessage() + "\n");
         }
     }
+
     @Step("Click the first featured product")
     public void clickFirstFeaturedProduct() {
         try {
@@ -78,26 +81,32 @@ public class HomePage {
     public boolean isFeaturedProductDisplayed() {
         return isElementVisible(featuredProducts);
     }
+
     @Step("Check if product modal is displayed")
     public boolean isProductModalDisplayed() {
         return isElementVisible(productModal);
     }
+
     @Step("Check if product title is visible")
     public boolean isProductTitleVisible() {
         return isElementVisible(productTitle);
     }
+
     @Step("Check if product price is visible")
     public boolean isProductPriceVisible() {
         return isElementVisible(productPrice);
     }
+
     @Step("Check if 'No Products Found' message is displayed")
     public boolean isNoProductsMessageDisplayed() {
         return isElementVisible(noProductsMessage);
     }
+
     @Step("Check if customer reviews are displayed")
     public boolean isCustomerReviewsDisplayed() {
         return isElementVisible(customerReviews);
     }
+
     @Step("Check if footer links are working")
     public boolean areFooterLinksWorking() {
         List<WebElement> links = driver.get().findElements(footerLinks);
@@ -137,16 +146,6 @@ public class HomePage {
     @Step("Assert product modal is displayed")
     public void assertProductModalDisplayed() {
         driver.assertion().assertElementDisplayed(productModal, "\n ❌ Product modal did not appear! \n");
-    }
-
-    @Step("Assert product title is visible")
-    public void assertProductTitleVisible() {
-        driver.assertion().assertElementDisplayed(productTitle, "\n ❌ Product title is missing! \n");
-    }
-
-    @Step("Assert product price is visible")
-    public void assertProductPriceVisible() {
-        driver.assertion().assertElementDisplayed(productPrice, "\n ❌ Product price is missing! \n");
     }
 
     @Step("Assert customer reviews are displayed")

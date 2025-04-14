@@ -11,10 +11,8 @@ public class EdgeDriverFactory extends DriverAbstract
 
     @Override
     public WebDriver startDriver() {
-        EdgeOptions options = new EdgeOptions();
-        if(webConfig.getProperty("HeadlessMode").equalsIgnoreCase("true")){
-            options.addArguments("--headless");
-        }
+        boolean isHeadless = webConfig.getProperty("HeadlessMode").equalsIgnoreCase("true");
+        EdgeOptions options = BrowserOptionsFactory.getEdgeOptions(isHeadless);
         driver = new EdgeDriver(options);
         return driver;
     }
