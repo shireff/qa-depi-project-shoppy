@@ -1,6 +1,7 @@
 package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -69,6 +70,7 @@ public class ProductsPageUser {
     }
 
     //Actions
+    @Step("⬆️navigating to the products page")
     public ProductsPageUser driverNavigate() {
         System.out.println("⬆️navigating to the products page");
         driver.element().click(Products_Label_Button);
@@ -76,30 +78,31 @@ public class ProductsPageUser {
     }
 
     //Category Check Boxes Actions
+    @Step("✅clicking on Men CheckBox")
     public ProductsPageUser clickMenCheckBox() {
         System.out.println("✅clicking on Men CheckBox");
         driver.element().click(Men_CheckBox);
         return this;
     }
-
+    @Step("✅clicking women check box")
     public ProductsPageUser clickWomenCheckBox() {
         System.out.println("✅clicking women check box");
         driver.element().click(Women_CheckBox);
         return this;
     }
-
+    @Step("✅clicking kids check box")
     public ProductsPageUser clickKidsCheckBox() {
         System.out.println("✅clicking kids check box");
         driver.element().click(Kids_CheckBox);
         return this;
     }
-
+    @Step("✅clicking Accessors check box")
     public ProductsPageUser clickAccessoriesCheckBox() {
         System.out.println("✅clicking Accessors check box");
         driver.element().click(Accessories_CheckBox);
         return this;
     }
-
+    @Step("✅clicking foot wear check box")
     public ProductsPageUser clickFootWearCheckBox() {
         System.out.println("✅clicking foot wear check box");
         driver.element().click(Footwear_CheckBox);
@@ -107,36 +110,37 @@ public class ProductsPageUser {
     }
 
     //Brand Check Boxes Actions
+    @Step("✅clicking nick check box")
     public ProductsPageUser clickNickCheckBox() {
         System.out.println("✅clicking nick check box");
         driver.element().click(Nike_CheckBox);
         return this;
     }
-
+    @Step("✅clicking adidas check box")
     public ProductsPageUser clickAdidasCheckBox() {
         System.out.println("✅clicking adidas check box");
         driver.element().click(Adidas_CheckBox);
         return this;
     }
-
+    @Step("✅click puma check box")
     public ProductsPageUser clickPumaCheckBox() {
         System.out.println("✅click puma check box");
         driver.element().click(Puma_CheckBox);
         return this;
     }
-
+    @Step("✅click levis check box")
     public ProductsPageUser clickLevisCheckBox() {
         System.out.println("✅click levis check box");
         driver.element().click(Levis_CheckBox);
         return this;
     }
-
+    @Step("✅click zara check box")
     public ProductsPageUser clickZaraCheckBox() {
         System.out.println("✅click zara check box");
         driver.element().click(Zara_CheckBox);
         return this;
     }
-
+    @Step("✅click HM check box")
     public ProductsPageUser clickHMCheckBox() {
         System.out.println("✅click HM check box");
         driver.element().click(HM_CheckBox);
@@ -144,47 +148,49 @@ public class ProductsPageUser {
     }
 
     //Navigation Bar interaction
+    @Step("⬆️click home tab")
     public HomePage clickNavBarHome() {
         System.out.println("⬆️click home tab");
         driver.element().click(Home_Label_Button);
         return new HomePage(driver);
     }
-
+    @Step("⬆️click Products tab")
     public ProductsPageUser clickNavBarProducts() {
         System.out.println("⬆️click Products tab");
         driver.element().click(Products_Label_Button);
         return this;
     }
-
+    @Step("⬆️click men tab")
     public ProductsPageUser clickNavBarMen() {
         System.out.println("⬆️click men tab");
         driver.element().click(Men_Label_Button);
         return this;
     }
-
+    @Step("⬆️click women tab")
     public ProductsPageUser clickNavBarWomen() {
         System.out.println("⬆️click women tab");
         driver.element().click(Women_Label_Button);
         return this;
     }
-
+    @Step("⬆️click kids tab")
     public ProductsPageUser clickNavBarKids() {
         System.out.println("⬆️click kids tab");
         driver.element().click(Kids_Label_Button);
         return this;
     }
-
+    @Step("⬆️click foot wear tab")
     public ProductsPageUser clickNavBarFootWear() {
         System.out.println("⬆️click foot wear tab");
         driver.element().click(Footwear_Label_Button);
         return this;
     }
-
+    @Step("⬆️click accessories tab")
     public ProductsPageUser clickNavBarAccessories() {
         System.out.println("⬆️click accessories tab");
         driver.element().click(Accessories_Label_Button);
         return this;
     }
+    @Step("⬆️click search tab")
     public SearchPageUser clickNavBarSearch()
     {
         System.out.println("⬆️click search tab");
@@ -193,6 +199,7 @@ public class ProductsPageUser {
     }
 
     //Sort By DropDown Action
+    @Step("⬆️`Clicking Sort By button and ✅`Selecting Price Low to High.")
     public ProductsPageUser sortByPriceLowToHigh() {
         System.out.println("⬆️`Clicking Sort By button.");
         driver.element().click(SortByButton);
@@ -200,7 +207,7 @@ public class ProductsPageUser {
         driver.element().click(PriceLowToHigh);
         return this;
     }
-
+    @Step("⬆️Clicking Sort By button and ✅`Selecting Price High to Low. ")
     public ProductsPageUser sortByPriceHighToLow() {
         System.out.println("⬆️Clicking Sort By button.");
         driver.element().click(SortByButton);
@@ -208,7 +215,7 @@ public class ProductsPageUser {
         driver.element().click(PriceHighToLow);
         return this;
     }
-
+    @Step("⬆️`Clicking Sort By button and ✅`Selecting Title A to Z.")
     public ProductsPageUser sortByTitleA_To_Z() {
         System.out.println("⬆️`Clicking Sort By button.");
         driver.element().click(SortByButton);
@@ -216,7 +223,7 @@ public class ProductsPageUser {
         driver.element().click(TitleA_To_Z);
         return this;
     }
-
+    @Step("⬆️`Clicking Sort By button and ✅Selecting Title Z to A.")
     public ProductsPageUser sortByTitleZ_To_A() {
         System.out.println("⬆️`Clicking Sort By button.");
         driver.element().click(SortByButton);
@@ -227,105 +234,106 @@ public class ProductsPageUser {
 
     //Assertions
     //Titles
+    @Step("✅check that all products title is displayed")
     public ProductsPageUser checkThatTheAllProductsTitleIsDisplayed() {
         System.out.println("✅check that all products title is displayed");
         String actualTitle = driver.element().getTextOf(AllProductsTitle);
         Assert.assertEquals(actualTitle, AllProductsTitleText);
         return this;
     }
-
+    @Step("✅check that filters title is displayed")
     public ProductsPageUser checkThatTheFiltersTitleIsDisplayed() {
         System.out.println("✅check that filters title is displayed");
         String actualTitle = driver.element().getTextOf(FiltersTitle);
         Assert.assertEquals(actualTitle, FiltersTitleText);
         return this;
     }
-
+    @Step("✅check that category title is displayed")
     public ProductsPageUser checkThatTheCategoryTitleIsDisplayed() {
         System.out.println("✅check that category title is displayed");
         String actualTitle = driver.element().getTextOf(CategoryTitle);
         Assert.assertEquals(actualTitle, CategoryTitleText);
         return this;
     }
-
+    @Step("✅check that brand title is displayed")
     public ProductsPageUser checkThatTheBrandTitleIsDisplayed() {
         System.out.println("✅check that brand title is displayed");
         String actualTitle = driver.element().getTextOf(BrandTitle);
         Assert.assertEquals(actualTitle, BrandTitleText);
         return this;
     }
-
+    @Step("✅check that products count title is displayed")
     public ProductsPageUser checkThatProductsCountMutedTextIsVisible() {
         System.out.println("✅check that products count title is displayed");
         String mutedProductsCount = driver.element().getTextOf(ProductsNumberText);
         Assert.assertTrue(mutedProductsCount.contains("Products"));
         return this;
     }
-
     //Category Check Boxes Assertions
+    @Step("✅check that Men check box is checked")
     public ProductsPageUser checkThatTheMenCheckBoxIsChecked() {
         System.out.println("✅check that Men check box is checked");
         String state = driver.element().getElementAttribute(Men_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that Women check box is checked")
     public ProductsPageUser checkThatTheWomenCheckBoxIsChecked() {
         System.out.println("✅check that Women check box is checked");
         String state = driver.element().getElementAttribute(Women_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that kids check box is checked")
     public ProductsPageUser checkThatTheKidsCheckBoxIsChecked() {
         System.out.println("✅check that kids check box is checked");
         String state = driver.element().getElementAttribute(Kids_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that accessories check box is checked")
     public ProductsPageUser checkThatTheAccessoriesCheckBoxIsChecked() {
         System.out.println("✅check that accessories check box is checked");
         String state = driver.element().getElementAttribute(Accessories_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that foot wear check box is checked")
     public ProductsPageUser checkThatFootWearCheckBoxIsChecked() {
         System.out.println("✅check that foot wear check box is checked");
         String state = driver.element().getElementAttribute(Footwear_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("❎check that Men check box is not checked")
     public ProductsPageUser checkThatTheMenCheckBoxIsNotChecked() {
         System.out.println("❎check that Men check box is not checked");
         String state = driver.element().getElementAttribute(Men_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that Women check box is not checked")
     public ProductsPageUser checkThatTheWomenCheckBoxIsNotChecked() {
         System.out.println("❎check that Women check box is not checked");
         String state = driver.element().getElementAttribute(Women_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that kids check box is not checked")
     public ProductsPageUser checkThatTheKidsCheckBoxIsNotChecked() {
         System.out.println("❎check that kids check box is not checked");
         String state = driver.element().getElementAttribute(Kids_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that accessories check box is not checked")
     public ProductsPageUser checkThatTheAccessoriesCheckBoxIsNotChecked() {
         System.out.println("❎check that accessories check box is not checked");
         String state = driver.element().getElementAttribute(Accessories_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that foot wear check box is not checked")
     public ProductsPageUser checkThatFootWearCheckBoxIsNotChecked() {
         System.out.println("❎check that foot wear check box is not checked");
         String state = driver.element().getElementAttribute(Footwear_CheckBox, "data-state");
@@ -334,139 +342,141 @@ public class ProductsPageUser {
     }
 
     //Brand Check Boxes Assertions
+    @Step("✅check that nike check box is checked")
     public ProductsPageUser checkThatNikeCheckBoxIsChecked() {
         System.out.println("✅check that nike check box is checked");
         String state = driver.element().getElementAttribute(Nike_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that adidas check box is checked")
     public ProductsPageUser checkThatAdidasCheckBoxIsChecked() {
         System.out.println("✅check that adidas check box is checked");
         String state = driver.element().getElementAttribute(Adidas_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that puma check box is checked")
     public ProductsPageUser checkThatPumaCheckBoxIsChecked() {
         System.out.println("✅check that puma check box is checked");
         String state = driver.element().getElementAttribute(Puma_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that levis check box is checked")
     public ProductsPageUser checkThatLevisCheckBoxIsChecked() {
         System.out.println("✅check that levis check box is checked");
         String state = driver.element().getElementAttribute(Levis_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that zara check box is checked")
     public ProductsPageUser checkThatZaraCheckBoxIsChecked() {
         System.out.println("✅check that zara check box is checked");
         String state = driver.element().getElementAttribute(Zara_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("✅check that HM check box is checked")
     public ProductsPageUser checkThatHMCheckBoxIsChecked() {
         System.out.println("✅check that HM check box is checked");
         String state = driver.element().getElementAttribute(HM_CheckBox, "data-state");
         Assert.assertEquals(state, "checked");
         return this;
     }
-
+    @Step("❎check that nike check box is not checked")
     public ProductsPageUser checkThatNikeCheckBoxIsNotChecked() {
         System.out.println("❎check that nike check box is not checked");
         String state = driver.element().getElementAttribute(Nike_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that adidas check box is not checked")
     public ProductsPageUser checkThatAdidasCheckBoxIsNotChecked() {
         System.out.println("❎check that adidas check box is not checked");
         String state = driver.element().getElementAttribute(Adidas_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that puma check box is not checked")
     public ProductsPageUser checkThatPumaCheckBoxIsNotChecked() {
         System.out.println("❎check that puma check box is not checked");
         String state = driver.element().getElementAttribute(Puma_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that levis check box is not checked")
     public ProductsPageUser checkThatLevisCheckBoxIsNotChecked() {
         System.out.println("❎check that levis check box is not checked");
         String state = driver.element().getElementAttribute(Levis_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that zara check box is not checked")
     public ProductsPageUser checkThatZaraCheckBoxIsNotChecked() {
         System.out.println("❎check that zara check box is not checked");
         String state = driver.element().getElementAttribute(Zara_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
+    @Step("❎check that HM check box is not checked")
     public ProductsPageUser checkThatHMCheckBoxIsNotChecked() {
         System.out.println("❎check that HM check box is not checked");
         String state = driver.element().getElementAttribute(HM_CheckBox, "data-state");
         Assert.assertEquals(state, "unchecked");
         return this;
     }
-
     //nav bar tabs assertions
+    @Step("✅check home tab in nav is visible")
     public HomePage checkThatHomeTabIsVisible() {
         System.out.println("✅check home tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Home_Label_Button);
         Assert.assertEquals(actualTitle, Home_Button_Text);
         return new HomePage(driver);
     }
-
+    @Step("✅check products tab in nav is visible")
     public ProductsPageUser checkThatProductsTabIsVisible() {
         System.out.println("✅check products tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Products_Label_Button);
         Assert.assertEquals(actualTitle, Products_Button_Text);
         return this;
     }
-
+    @Step("✅check men tab in nav is visible")
     public ProductsPageUser checkThatMenTabIsVisible() {
         System.out.println("✅check men tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Men_Label_Button);
         Assert.assertEquals(actualTitle, Men_Button_Text);
         return this;
     }
-
+    @Step("✅check women tab in nav is visible")
     public ProductsPageUser checkThatWomenTabIsVisible() {
         System.out.println("✅check women tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Women_Label_Button);
         Assert.assertEquals(actualTitle, Women_Button_Text);
         return this;
     }
-
+    @Step("✅check kids tab in nav is visible")
     public ProductsPageUser checkThatKidsTabIsVisible() {
         System.out.println("✅check kids tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Kids_Label_Button);
         Assert.assertEquals(actualTitle, Kids_Button_Text);
         return this;
     }
-
+    @Step("✅check foot wear tab in nav is visible")
     public ProductsPageUser checkThatFootwearTabIsVisible() {
         System.out.println("✅check foot wear tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Footwear_Label_Button);
         Assert.assertEquals(actualTitle, Footwear_Button_Text);
         return this;
     }
-
+    @Step("✅check accessories tab in nav is visible")
     public ProductsPageUser checkThatAccessoriesTabIsVisible() {
         System.out.println("✅check accessories tab in nav is visible");
         String actualTitle = driver.element().getTextOf(Accessories_Label_Button);
         Assert.assertEquals(actualTitle, Accessories_Button_Text);
         return this;
     }
+    @Step("✅check search tab in nav is visible")
     public ProductsPageUser checkThatSearchTabIsVisible()
     {
         System.out.println("✅check search tab in nav is visible");

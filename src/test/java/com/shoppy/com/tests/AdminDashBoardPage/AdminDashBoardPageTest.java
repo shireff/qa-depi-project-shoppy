@@ -1,4 +1,6 @@
 package com.shoppy.com.tests.AdminDashBoardPage;
 
-public class AdminDashBoardPageTest {
+public class AdminDashBoardPageTest
+{
+
 }

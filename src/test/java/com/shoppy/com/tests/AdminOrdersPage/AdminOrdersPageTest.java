@@ -1,4 +1,6 @@
 package com.shoppy.com.tests.AdminOrdersPage;
 
-public class AdminOrdersPageTest {
+public class AdminOrdersPageTest
+{
+
 }

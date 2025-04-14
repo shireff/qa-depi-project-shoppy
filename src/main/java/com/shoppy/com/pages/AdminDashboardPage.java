@@ -116,93 +116,121 @@ public class AdminDashboardPage {
         Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), URL);
         return this;
     }
-    public AdminDashboardPage checkAdminPanelHeaderText() {
+    @Step("✅check admin panel header text")
+    public AdminDashboardPage checkAdminPanelHeaderText()
+    {
+        System.out.println("✅check admin panel header text");
         Assert.assertTrue(ElementActions.getText(driver.get(), AdminPanel_Title).contains("Admin Panel"));
         return this;
     }
-
+    @Step("✅check admin panel header isDisplayed")
     public AdminDashboardPage checkAdminPanelHeaderDisplayed() {
+        System.out.println("✅check admin panel header isDisplayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), AdminPanel_Title));
         return this;
     }
-
+    @Step("✅check dashboard button text")
     public AdminDashboardPage checkDashboardBtnText() {
+        System.out.println("✅check dashboard button text");
         Assert.assertTrue(ElementActions.getText(driver.get(), DashBoard_Button).contains("Dashboard"));
         return this;
     }
-
+    @Step("✅check dashboard button is displayed")
     public AdminDashboardPage checkDashboardBtnDisplayed() {
+        System.out.println("✅check dashboard button is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), DashBoard_Button));
         return this;
     }
-
+    @Step("✅check dashboard button text")
     public AdminDashboardPage checkProductsBtnText() {
+        System.out.println("✅check dashboard button text");
         Assert.assertTrue(ElementActions.getText(driver.get(), Products_Button).contains("Products"));
         return this;
     }
-
+    @Step("✅check products button is displayed")
     public AdminDashboardPage checkProductsBtnDisplayed() {
+        System.out.println("✅check products button is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Products_Button));
         return this;
     }
-
+    @Step("✅check orders button text")
     public AdminDashboardPage checkOrdersBtnText() {
+        System.out.println("✅check orders button text");
         Assert.assertTrue(ElementActions.getText(driver.get(), Orders_Button).contains("Orders"));
         return this;
     }
-
+    @Step("✅check orders button is displayed")
     public AdminDashboardPage checkOrdersBtnDisplayed() {
+        System.out.println("✅check orders button is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Orders_Button));
         return this;
     }
 
-
+    @Step("✅check logout button text")
     public AdminDashboardPage checkLogoutBtnText() {
+        System.out.println("✅check logout button text");
         Assert.assertTrue(ElementActions.getText(driver.get(), Logout_Button).contains(" Logout"));
         return this;
     }
-
+    @Step("✅check logout button is displayed")
     public AdminDashboardPage checkLogoutBtnDisplayed() {
+        System.out.println("✅check logout button is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Logout_Button));
         return this;
     }
+    @Step("✅check feature image title is displayed")
     public AdminDashboardPage checkFeatureImagesTitleIsDisplayed()
     {
+        System.out.println("✅check feature image title is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Feature_Images_Title));
         return this;
     }
+    @Step("✅check feature images text")
     public AdminDashboardPage checkFeatureImagesTitleText()
     {
+        System.out.println("✅check feature images text");
         Assert.assertTrue(ElementActions.getText(driver.get(), Feature_Images_Title).contains("Feature Images"));
         return this;
     }
+    @Step("✅check upload new image title is displayed")
     public AdminDashboardPage checkUploadNewImageTitleIsDisplayed()
     {
+        System.out.println("✅check upload new image title is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_New_Image_Title));
         return this;
     }
+    @Step("✅check upload new image title text")
     public AdminDashboardPage checkUploadNewImageTitleText()
     {
+        System.out.println("✅check upload new image title text");
         Assert.assertTrue(ElementActions.getText(driver.get(), Upload_New_Image_Title).contains("Upload New Image"));
         return this;
     }
+    @Step("✅check upload image title is displayed")
     public AdminDashboardPage checkUploadImageTitleIsDisplayed()
     {
+        System.out.println("✅check upload image title is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_Image_Title));
         return this;
     }
+    @Step("✅check upload image title text")
     public AdminDashboardPage checkUploadImageTitleText()
     {
+        System.out.println("✅check upload image title text");
         Assert.assertTrue(ElementActions.getText(driver.get(),Upload_Image_Title).contains("Upload Image"));
         return this;
     }
+    @Step("✅check that upload button is displayed")
     public AdminDashboardPage checkThatUploadButtonIsDisplayed()
     {
+        System.out.println("✅check that upload button is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_Button));
         return this;
     }
+    @Step("✅check that uploaded image is displayed")
     public AdminDashboardPage checkThatUploadedImageIsDisplayed()
     {
+        System.out.println("✅check that uploaded image is displayed");
         Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Image));
         return this;
     }
