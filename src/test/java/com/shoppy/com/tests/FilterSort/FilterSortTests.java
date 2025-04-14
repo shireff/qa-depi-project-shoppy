@@ -16,18 +16,18 @@ public class FilterSortTests {
     public void SetUp() {
         driver = new Driver("chrome");
         driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.browser().openUrl(driver.get(), new ProductsPageUser(driver).url);
         new LoginPage(driver).loginIntoApp("ramymahana7@test.com", "archer@@@97");
+        new ProductsPageUser(driver).driverNavigate();
     }
 
     @Test
     public void TestCase_Demo() {
-        new ProductsPageUser(driver).driverNavigate().clickMenCheckBox().clickHMCheckBox().clickAccessoriesCheckBox();
+        new ProductsPageUser(driver).clickMenCheckBox().clickHMCheckBox().clickAccessoriesCheckBox();
     }
     @Test
     public void usingAllCheckBoxes()
     {
-        new ProductsPageUser(driver).driverNavigate().clickMenCheckBox().
+        new ProductsPageUser(driver).clickMenCheckBox().
                 clickWomenCheckBox().
                 clickKidsCheckBox().
                 clickAccessoriesCheckBox().
@@ -59,7 +59,6 @@ public class FilterSortTests {
     {
         new ProductsPageUser(driver).clickNavBarHome();
     }
-
     @AfterClass
     public void TearDown() {
         driver.browser().closeBrowser(driver.get());

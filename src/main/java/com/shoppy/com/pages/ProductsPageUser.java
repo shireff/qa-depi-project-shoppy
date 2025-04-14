@@ -7,7 +7,7 @@ import org.testng.Assert;
 
 public class ProductsPageUser {
     private final Driver driver;
-    public final String url = "https://shoppy-ochre.vercel.app/shop/listing";
+    private final String url = "https://shoppy-ochre.vercel.app/shop/listing";
     //Sort By
     private final By SortByButton = By.xpath("//button [@aria-haspopup=\"dialog\"]");
     private final By PriceLowToHigh = By.xpath("//div[@role=\"menuitemradio\"][1]");
@@ -233,6 +233,13 @@ public class ProductsPageUser {
     }
 
     //Assertions
+    @Step("✅check the url of the page")
+    public ProductsPageUser checkProductsPageUrl()
+    {
+        System.out.println("✅check the url of the page");
+        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()),url);
+        return this;
+    }
     //Titles
     @Step("✅check that all products title is displayed")
     public ProductsPageUser checkThatTheAllProductsTitleIsDisplayed() {

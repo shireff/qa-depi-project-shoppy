@@ -40,12 +40,20 @@ public class SearchPageUser
     private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
     private final By Footer_LinkedIn = By.xpath("//footer/div/div/a[2]");
     private final By Footer_WhatsApp = By.xpath("//footer/div/div/a[3]");
+    //Constructor
     public SearchPageUser(Driver driver)
     {
         this.driver = driver;
     }
 
     //Actions
+    @Step("👆click on search tap")
+    public SearchPageUser clickOnSearchTap()
+    {
+        System.out.println("👆click on search tap");
+        driver.element().click(Search_Label_Button);
+        return this;
+    }
     @Step("👆click on the search box")
     public SearchPageUser clickOnSearchBox()
     {
