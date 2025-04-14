@@ -240,4 +240,29 @@ public class ElementActions {
         }
         return allElementsLocators;
     }
+
+    public void setNumberField(WebDriver driver, By locator, int number) {
+        try {
+            WebElement element = find(driver, locator);
+
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+            logger.info(GREEN + "✅ Scrolled to visible element." + RESET);
+
+            element.submit();
+            logger.info(GREEN + "✅ Clicked element to ensure focus." + RESET);
+
+            element.clear();
+            element.sendKeys(String.valueOf(number), Keys.TAB);
+            logger.info(GREEN + "✅ Successfully set number: " + CYAN + number + RESET);
+
+        } catch (Exception e) {
+            logger.warn(BOLD + RED + "⚠️ ERROR: Unable to set number normally. Using JavaScript as fallback." + RESET);
+            WebElement element = driver.findElement(locator);
+            element.sendKeys(Keys.TAB);
+            element.sendKeys(Keys.ENTER);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", element, number);
+           logger.info(BLUE + "ℹ️ Fallback JavaScript set number: " + CYAN + number + RESET);
+        }
+
+    }
 }
