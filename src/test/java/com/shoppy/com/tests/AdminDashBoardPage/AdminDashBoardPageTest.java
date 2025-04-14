@@ -7,14 +7,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.time.Duration;
 
 public class AdminDashBoardPageTest
 {
     public Driver driver;
-    String image1 = "src/test/resources/images/dash-1.jpg";
-    String image2 = "src/test/resources/images/dash-2.jpg";
-    String image3 = "src/test/resources/images/dash-3.jpg";
+    String image1 = new File("src/test/resources/images/dash_1.jpg").getAbsolutePath();
+    String image2 = new File("src/test/resources/images/dash_2.jpg").getAbsolutePath();
+    String image3 = new File("src/test/resources/images/dash_3.jpg").getAbsolutePath();
     @BeforeClass
     public void SetUp() {
         driver = new Driver("chrome");
