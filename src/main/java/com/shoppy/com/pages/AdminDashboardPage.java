@@ -6,6 +6,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
+import java.io.File;
+import java.time.Duration;
+
 public class AdminDashboardPage {
     private final Driver driver;
     private final String URL = "https://shoppy-ochre.vercel.app/admin/dashboard";
@@ -27,7 +30,9 @@ public class AdminDashboardPage {
     private final By Feature_Images_Title = By.xpath("//main/div/h1");
     private final By Upload_New_Image_Title = By.xpath("//main/div/div[1]/h2");
     private final By Upload_Image_Title = By.xpath("//main/div/div[1]/div/label");
-    private final By Drag_Drop_Click_Upload = By.xpath("//main/div/div[1]/div/div/label");
+    //private final By Drag_Drop_Click_Upload = By.xpath("//main/div/div[1]/div/div/label");
+    private final By Drag_Drop_Click_Upload = By.xpath("//input [@id=\"image-upload\"]");
+
     private final By Upload_Button = By.xpath("//main/div/div[1]/button");
     //images uploaded  locators
     private final By First_Image = By.xpath("//main/div/div[2]/div[1]/div");  //div[i]/div to go to the next image
@@ -65,6 +70,14 @@ public class AdminDashboardPage {
         this.driver = driver;
     }
     //Actions
+    @Step("🔃upload image selected image")
+    public AdminDashboardPage uploadImageDashBoard(String path) {
+        System.out.println("🔃upload image with path "+ path);
+        File uploadFile = new File(path);
+//        driver.element().set(Drag_Drop_Click_Upload, uploadFile.getAbsolutePath());
+        driver.get().findElement(Drag_Drop_Click_Upload).sendKeys(uploadFile.getAbsolutePath());
+        return this;
+    }
     @Step("👆click on products button")
     public AdminProductsPage clickOnProductsBtn() {
         System.out.println("👆Clicking on products button");

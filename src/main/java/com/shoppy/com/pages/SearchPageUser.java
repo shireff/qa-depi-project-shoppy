@@ -8,7 +8,7 @@ import org.testng.Assert;
 
 public class SearchPageUser
 {
-    private final Driver driver;
+    private Driver driver;
 
     private final String url = "https://shoppy-ochre.vercel.app/shop/search";
     //Nav Bar Responsive Button
