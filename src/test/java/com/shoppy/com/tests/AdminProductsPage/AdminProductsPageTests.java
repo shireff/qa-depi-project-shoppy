@@ -1,13 +1,11 @@
 package com.shoppy.com.tests.AdminProductsPage;
 
 import DriverFactory.Driver;
-import com.shoppy.com.pages.AdminAddProductPage;
 import com.shoppy.com.pages.AdminDashboardPage;
 import com.shoppy.com.pages.AdminProductsPage;
 import com.shoppy.com.pages.LoginPage;
 import org.testng.annotations.*;
 
-import java.time.Duration;
 
 public class AdminProductsPageTests {
 
@@ -19,7 +17,6 @@ public class AdminProductsPageTests {
     public void setup() {
         driver = new ThreadLocal<>();
         driver.set(new Driver());
-//        driver.get().get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get().browser().openUrl(driver.get().get(), URL);
         loginPage = new LoginPage(driver.get());
         loginPage.setUserName("Arima@example.com");
@@ -56,8 +53,7 @@ public class AdminProductsPageTests {
     }
 
     @AfterClass
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(2000);
+    public void tearDown() {
         driver.get().browser().closeBrowser(driver.get().get());
     }
 }
