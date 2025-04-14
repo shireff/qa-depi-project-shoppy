@@ -2,7 +2,9 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.Waits;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class AdminProductsPage {
@@ -28,57 +30,79 @@ public class AdminProductsPage {
 
     public AdminProductsPage checkProductsPageUrl() {
         Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), URL);
+//        driver.assertion().assertElementTextEquals()
         return this;
     }
 
     public AdminProductsPage checkAddProductBtnIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductBtn));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductBtn));
+        driver.assertion().assertElementDisplayed(addProductBtn, "❌ addProductBtn is not displayed!");
         return this;
     }
 
     public AdminProductsPage checkAddProductBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), addProductBtn).contains("Add Product"));
+//        Assert.assertTrue(ElementActions.getText(driver.get(), addProductBtn).contains("Add Product"));
+        driver.assertion().assertElementTextContains(addProductBtn,"Add Product","❌ addProductBtn is not correct!");
         return this;
     }
 
     public AdminProductsPage checkProductsAreDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), firstProduct));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), firstProduct));
+        driver.assertion().assertElementDisplayed(firstProduct, "❌ firstProduct is not displayed!");
         return this;
     }
 
     public AdminProductsPage checkProductCardIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), card));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), card));
+        driver.assertion().assertElementDisplayed(card, "❌ card is not displayed!");
+
         return this;
     }
 
     public AdminProductsPage checkProductCardImageIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardImage));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardImage));
+        driver.assertion().assertElementDisplayed(cardImage, "❌ cardImage is not displayed!");
+
         return this;
     }
 
     public AdminProductsPage checkProductCardTitleIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardTitle));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardTitle));
+        driver.assertion().assertElementDisplayed(cardTitle, "❌ cardTitle is not displayed!");
+
         return this;
     }
 
     public AdminProductsPage checkProductCardPriceIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardPrice));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardPrice));
+        driver.assertion().assertElementDisplayed(cardPrice, "❌ cardPrice is not displayed!");
+
         return this;
     }
 
     public AdminProductsPage checkProductCardEditBtnIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardEditBtn));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardEditBtn));
+        driver.assertion().assertElementDisplayed(cardEditBtn, "❌ cardEditBtn is not displayed!");
+
         return this;
     }
 
     public AdminProductsPage checkProductCardDeleteBtnIsDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardDeleteBtn));
+//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), cardDeleteBtn));
+//        assertElementDisplayed(cardDeleteBtn, "❌ cardDeleteBtn is not displayed!");
+        driver.assertion().assertElementDisplayed(cardDeleteBtn, "❌ cardDeleteBtn is not displayed!");
         return this;
     }
-    public AdminAddProductPage clickOnAddProductBtn()
-    {
+
+    public AdminAddProductPage clickOnAddProductBtn() {
         driver.element().click(addProductBtn);
         return new AdminAddProductPage(driver);
     }
 
+//    private void assertElementDisplayed(By locator, String errorMessage) {
+//        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
+//        if (element == null || !element.isDisplayed()) {
+//            throw new AssertionError(errorMessage);
+//        }
+//    }
 }
