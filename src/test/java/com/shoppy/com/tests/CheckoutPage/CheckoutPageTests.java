@@ -18,13 +18,22 @@ public class CheckoutPageTests {
         driver.browser().openUrl(driver.get(), url);
         new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010");
         new LoginPage(driver).assertLoginSuccessfulAsUser();
+
+        new CartPage(driver).checkThatTheProductNameIsDisable()
+                .clickOnAddToCartButton()
+                .checkThatTheProductMessageAddedSuccesfullyIsDisable()
+                .checkThatTheNumberOnCartIsDisable()
+                .clickOnCartIcon()
+                .checkThatTheCartIsDisplayed()
+                .clickOnCheckoutButton();
+
     }
 
     @Test(priority = 1)
     public void testClickingCartAndCheckoutButton() {
         new CartPage(driver).clickOnCartIcon()
-                .checkThatTheCartIsDisplayed()
-                .clickOnCheckoutButton();
+                            .checkThatTheCartIsDisplayed()
+                            .clickOnCheckoutButton();
    }
     @Test(priority = 2)
     public void testCheckoutPageHeaderIsDisplayed() {
@@ -78,26 +87,34 @@ public class CheckoutPageTests {
     @Test(priority = 3)
     public void testAddAddressButtonIsDisabledWhenTheFormFieldsAreEmpty() {
         new CheckoutPageUser(driver).clickOnAddAddressButton()
-                .checkThatTheAddaddressButtonIsNotClickableWhenTheFormFieldsAreEmpty();
+                                    .checkThatTheAddaddressButtonIsNotClickableWhenTheFormFieldsAreEmpty();
     }
 
     @Test(priority = 4)
     public void testErrorMessageIsDisplayedWhenTheFormFieldsAreEmpty() {
         new CheckoutPageUser(driver).clickOnCheckoutButton()
-                .checkThatTheErrorMessageShowWhenTheFormFieldsAreEmpty()
-                .checkThatTheErrorMessageTitleIsCorrect();
+                                    .checkThatTheErrorMessageShowWhenTheFormFieldsAreEmpty()
+                                    .checkThatTheErrorMessageTitleIsCorrect();
     }
 
     @Test(priority = 5)
     public void testFillAddAddressForm() {
-        new CheckoutPageUser(driver).fillAddAddressForm("Egypt","6thoctober","125478","01148154132","Testing");
-        new CheckoutPageUser(driver).clickOnAddAddressButton();
-        new CheckoutPageUser(driver).checkThatTheAddAddressMessageShow();
-        //new CheckoutPageUser(driver).checkThatTheAddAddressMessageTitleIsCorrect();
-        new CheckoutPageUser(driver).checkThatTheAddressDataIsDisplayed();
+        new CheckoutPageUser(driver).fillAddAddressForm("Egypt","6thoctober","125478","01148154132","Testing")
+                                    .clickOnAddAddressButton()
+                                    .checkThatTheAddAddressMessageShow()
+                                    //.checkThatTheAddAddressMessageTitleIsCorrect()
+                                    .checkThatTheAddressDataIsDisplayed();
+
     }
 
-    @Test(priority = 6 ,dependsOnMethods = {"testFillAddAddressForm"})
+    @Test(priority = 6,dependsOnMethods = {"testFillAddAddressForm"})
+    public void testErrorMessageIsDisplayedWhenThePaymentFiledsIsEmpty() {
+        new CheckoutPageUser(driver).clickOnCheckoutButton()
+                .checkThatThePaymentMessageShow();
+                //.checkThatThePaymentMessageTitleIsCorrect();
+    }
+
+    @Test(priority = 7 ,dependsOnMethods = {"testFillAddAddressForm"})
     public void testEditAddressButton() throws InterruptedException {
         new CheckoutPageUser(driver).clickOnEditAddressButton();
         Thread.sleep(10);
@@ -106,12 +123,12 @@ public class CheckoutPageTests {
         new CheckoutPageUser(driver).checkThatTheEditMessageIsDisplayed();
     }
 
-    @Test(priority = 7 ,dependsOnMethods = {"testFillAddAddressForm"})
+    @Test(priority = 8 ,dependsOnMethods = {"testFillAddAddressForm"})
     public void testDeleteAddressButton() {
         new CheckoutPageUser(driver).clickOnDeleteAddressButton()
                                     .checkThatTheDeleteMessageIsDisplayed();
     }
-    @Test(priority = 8)
+    @Test(priority = 9)
     public void testOrderSuccessByCashOndelivery() {
         new CheckoutPageUser(driver).checkThatTheAdressInputIsDisblayed()
                                     .fillAddAddressForm("Portsaid cairo","Madina nasr","125478","01148054132","Testing")
@@ -122,7 +139,7 @@ public class CheckoutPageTests {
                                     .checkThatTheOrderSucessMessageIsDisplayed();
     }
 
-    @Test(priority = 9)
+    @Test(priority = 10)
     public void testProductDataIsUpdatedWhenClickingPlusButton() {
         new CheckoutPageUser(driver).checkThatTheOrderCloseButtonIsDisplayed()
                                     .clickOnCloseButton();
@@ -138,7 +155,7 @@ public class CheckoutPageTests {
                 .checkThatTheUpdateMessageTitleIsCorrectWhenUpdatingTheQuantity();
     }
 
-    @Test(priority = 10)
+    @Test(priority = 11)
     public void testProductDataIsUpdatedWhenClickingMinusButton() {
         new CheckoutPageUser(driver).clickOnminusButton()
                 .checkThatTheProducDataIsUpdatedWhendecreasingTheQuantity()
@@ -155,7 +172,7 @@ public class CheckoutPageTests {
 
     @Test(priority = 12)
     public void testOrderSuccessByPaypal() {
-
+        new CheckoutPageUser(driver).clickOnShopyLink();
         new CartPage(driver).checkThatTheProductNameIsDisable()
                 .clickOnAddToCartButton()
                 .checkThatTheProductMessageAddedSuccesfullyIsDisable()
@@ -164,7 +181,7 @@ public class CheckoutPageTests {
                 .checkThatTheCartIsDisplayed()
                 .clickOnCheckoutButton();
 
-        new CheckoutPageUser(driver).checkThatTheAdressInputIsDisblayed()
+        new CheckoutPageUser(driver)
                 .fillAddAddressForm("london","london","125478","01148054132","Testing")
                 .clickOnAddAddressButton()
                 .clickOnAddressSection()
