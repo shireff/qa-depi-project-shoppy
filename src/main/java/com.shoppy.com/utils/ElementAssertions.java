@@ -51,7 +51,7 @@ public class ElementAssertions {
             }
         } catch (Exception e) {
             logger.info(GREEN + "✅ Element is not displayed as expected: " + locator.toString() + RESET);
-            return this; // Element not found or not visible is a success case here
+            return this;
         }
         logger.error(RED + BOLD + "❌ " + errorMessage + RESET);
         throw new AssertionError(errorMessage);

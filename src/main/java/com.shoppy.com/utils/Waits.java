@@ -9,7 +9,6 @@ import java.time.Duration;
 
 public class Waits {
 
-    // prevent instantiation
     private Waits() {
     }
 
