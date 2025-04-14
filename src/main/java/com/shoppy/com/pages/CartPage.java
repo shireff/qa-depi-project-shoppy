@@ -22,7 +22,8 @@ public class CartPage {
     private final By productQuantityInCart = By.xpath("(//div[@role=\"dialog\"]//span)[1]");
     private final By productTotalInCart = By.xpath("(//div[@role=\"dialog\"]//span)[1]");
     private final By productcart = By.xpath("(//div[@role=\"dialog\"]//h3)[1]");
-    private final By deleteIcon = By.cssSelector("//*[@id=\"radix-:rq:\"]/div[2]/div/div[2] /*[local-name() = 'svg']");
+    private final By deleteIcon = By.xpath("//div[@class='flex flex-col items-center sm:items-end']/*[2]");
+    //private final By deleteIcon = By.xpath("//*[@id=\"radix-:rb:\"]/div[2]/div/div[2]");
     private final By cartEmptyMessage = By.xpath("//div[@role=\"dialog\"]//p[contains(text(),'Your cart is empty')]");
     private final By cartDeletedMessage = By.xpath("//li/div/div");
     private final By closeIcon = By.xpath("(//div[@role=\"dialog\"]/button)[2]");
