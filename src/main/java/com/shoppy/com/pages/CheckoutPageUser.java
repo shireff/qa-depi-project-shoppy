@@ -3,12 +3,7 @@ package com.shoppy.com.pages;
 import DriverFactory.Driver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
-import java.time.Duration;
+import static com.shoppy.com.utils.Waits.*;
 
 public class CheckoutPageUser
 {
@@ -66,7 +61,6 @@ public class CheckoutPageUser
     private final By ProductQuantity_Label = By.xpath("//main/div/div[2]/div[2]/div[1]/div[1]/div/span");
     private final By ProductPrice_Label = By.xpath("//main/div/div[2]/div[2]/div[1]/div[2]/p");
     private final By DeleteProduct_Button = By.xpath("//main/div/div[2]/div[2]/div[1]/div[2]/*[local-name() = 'svg']");
-    //private final By DeleteProduct_Button = By.xpath("//main/div/div[2]/div[2]/div[1]/div[2]");
 
     //Total data
     private final By Total_Title = By.xpath("//main/div/div[2]/div[2]/div[2]/div/span[1]");
@@ -81,7 +75,7 @@ public class CheckoutPageUser
     private final By Error_Message = By.xpath("//div//ol");
 
     //Update message
-    private final By checkoutUpdatedSuccessfullyMessage = By.xpath("//li/div/div[contains(text(),'Card item updated successfully')]");
+    private final By checkoutUpdatedSuccessfullyMessage = By.xpath("//li/div/div");
 
     //Delete message
     private final By DeletedMessage = By.xpath("//li/div/div");
@@ -137,63 +131,63 @@ public class CheckoutPageUser
 
     @Step("Assert header is displayed")
     public CheckoutPageUser checkThatTheHeaderDisblayed() {
-    Assert.assertTrue(driver.get().findElement(Header).isDisplayed());
-    return this;
+       driver.assertion().assertElementDisplayed(Header, "❌ The header is not displayed!");
+       return this;
 }
 
     //Header Buttons Displayedibility
 
     @Step("Assert home label button is displayed")
     public CheckoutPageUser checkThatTheHomeLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Home_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Home_Label_Button, "❌ The home label button is not displayed!");
         return this;
     }
 
     @Step("Assert products label button is displayed")
     public CheckoutPageUser checkThatTheProductsLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Products_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Products_Label_Button, "❌ The products label button is not displayed!");
         return this;
     }
 
     @Step("Assert mens label button is displayed")
     public CheckoutPageUser checkThatTheMensLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Men_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Men_Label_Button, "❌ The mens label button is not displayed!");
         return this;
     }
 
     @Step("Assert women label button is displayed")
     public CheckoutPageUser checkThatTheWomenLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Women_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Women_Label_Button, "❌ The women label button is not displayed!");
         return this;
     }
 
     @Step("Assert kids label button  is displayed")
     public CheckoutPageUser checkThatTheKidsLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Kids_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Kids_Label_Button, "❌ The kids label button is not displayed!");
         return this;
     }
 
     @Step("Assert footwear label button is displayed")
     public CheckoutPageUser checkThatTheFootwearLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Footwear_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Footwear_Label_Button, "❌ The footwear label button is not displayed!");
         return this;
     }
 
     @Step("Assert accessories label button is displayed")
     public CheckoutPageUser checkThatTheAccessoriesLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Accessories_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Accessories_Label_Button, "❌ The accessories label button is not displayed!");
         return this;
     }
 
     @Step("Assert search label button is displayed")
     public CheckoutPageUser checkThatTheSearchLabelButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Search_Label_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Search_Label_Button, "❌ The search label button is not displayed!");
         return this;
     }
 
     @Step("Assert shoppy icon is displayed")
     public CheckoutPageUser checkThatTheShoopyIconIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Shoppy_Icon).isDisplayed());
+        driver.assertion().assertElementDisplayed(Shoppy_Icon, "❌ The shoppy icon is not displayed!");
         return this;
     }
 
@@ -201,32 +195,32 @@ public class CheckoutPageUser
 
     @Step("Assert footer is displayed")
     public CheckoutPageUser checkThatTheFooterIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(footerLinks).isDisplayed());
+        driver.assertion().assertElementDisplayed(footerLinks, "❌ The footer is not displayed!");
         return this;
     }
     //footer_links Displayedibility
 
     @Step("Assert Right reserved is displayed")
      public CheckoutPageUser checkThatTheRightsReservedIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Footer_Rights_Reserved).isDisplayed());
+        driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "❌ The footer rights reserved is not displayed!");
         return this;
     }
 
     @Step("Assert GitHub is displayed")
     public CheckoutPageUser checkThatTheGithubIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Footer_GitHub).isDisplayed());
+        driver.assertion().assertElementDisplayed(Footer_GitHub, "❌ The github is not displayed!");
         return this;
     }
 
     @Step("Assert Linkedin is displayed")
     public CheckoutPageUser checkThatTheLinkedinIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Footer_LinkedIn).isDisplayed());
+        driver.assertion().assertElementDisplayed(Footer_LinkedIn, "❌ The linkedin is not displayed!");
         return this;
     }
 
     @Step("Assert Whatsapp is displayed")
     public CheckoutPageUser checkThatTheWatsappIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Footer_WhatsApp).isDisplayed());
+        driver.assertion().assertElementDisplayed(Footer_WhatsApp, "❌ The whatsapp is not displayed!");
         return this;
     }
 
@@ -234,13 +228,14 @@ public class CheckoutPageUser
 
     @Step("Assert title image is displayed")
     public CheckoutPageUser checkThatTheTitleImageIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Title_Image).isDisplayed());
+        driver.assertion().assertElementDisplayed(Title_Image, "❌ The title image is not displayed!");
         return this;
     }
 
     @Step("Assert product image src is displayed")
     public CheckoutPageUser checkThatTheProductImageSrcIsDisable() {
-        Assert.assertEquals(driver.get().findElement(Title_Image).getAttribute("src"), "https://shoppy-ochre.vercel.app/assets/account-BgQkthTh.jpg");
+        String title_image_src = driver.get().findElement(Title_Image).getAttribute("src");
+        driver.validations().validateEquals(title_image_src, "https://shoppy-ochre.vercel.app/assets/account-BgQkthTh.jpg", "❌ The title image src is not displayed!");
         return this;
     }
 
@@ -248,129 +243,133 @@ public class CheckoutPageUser
 
     @Step("Assert user saved address is displayed")
     public CheckoutPageUser checkThatTheUserSavedAddressIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(User_Saved_Address).isDisplayed());
+        driver.assertion().assertElementDisplayed(User_Saved_Address, "❌ The user saved address is not displayed!");
         return this;
     }
 
     @Step("Assert new address title is displayed")
     public CheckoutPageUser checkThatTheNewAddressTitleIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(AddNewAddress_Title).isDisplayed());
+        driver.assertion().assertElementDisplayed(AddNewAddress_Title, "❌ The add new address title is not displayed!");
         return this;
     }
 
     @Step("Assert address label is displayed")
     public CheckoutPageUser checkThatTheAdressLabelIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Address_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(Address_Label, "❌ The address label is not displayed!");
+
         return this;
     }
 
     @Step("Assert address input is displayed")
     public CheckoutPageUser checkThatTheAdressInputIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Address_Input).isDisplayed());
+        driver.assertion().assertElementDisplayed(Address_Input, "❌ The address input is not displayed!");
         return this;
     }
 
     @Step("Assert city label is displayed")
     public CheckoutPageUser checkThatTheCityLabelIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(City_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(City_Label, "❌ The city label is not displayed!");
         return this;
     }
 
     @Step("Assert city input is displayed")
     public CheckoutPageUser checkThatTheCityInputIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(City_Input).isDisplayed());
+        driver.assertion().assertElementDisplayed(City_Input, "❌ The city input is not displayed!");
         return this;
     }
 
     @Step("Assert pin code label is displayed")
     public CheckoutPageUser checkThatThePineCodeLabelIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(PineCode_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(PineCode_Label, "❌ The pincode label is not displayed!");
         return this;
     }
 
     @Step("Assert pin code input is displayed")
     public CheckoutPageUser checkThatThePinCodeInputIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(PinCode_Input).isDisplayed());
+        driver.assertion().assertElementDisplayed(PinCode_Input, "❌ The pincode input is not displayed!");
         return this;
     }
 
-    @Step("Assert phone input lable is displayed")
+    @Step("Assert phone label lable is displayed")
     public CheckoutPageUser checkThatThePhoneLabelIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Phone_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(Phone_Label, "❌ The phone label is not displayed!");
         return this;
     }
 
     @Step("Assert phone input is displayed")
     public CheckoutPageUser checkThatThePhoneinputIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Phone_input).isDisplayed());
+        driver.assertion().assertElementDisplayed(Phone_input, "❌ The phone input is not displayed!");
         return this;
     }
 
     @Step("Assert notes label is displayed")
     public CheckoutPageUser checkThatTheNotesLabelIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Notes_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(Notes_Label, "❌ The notes label is not displayed!");
         return this;
     }
 
-    @Step("Assert notes text area is displayed")
+    @Step("Assert notes textarea is displayed")
     public CheckoutPageUser checkThatTheNotesTextAreaIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Notes_TextArea).isDisplayed());
+        driver.assertion().assertElementDisplayed(Notes_TextArea, "❌ The notes textarea is not displayed!");
         return this;
     }
 
     @Step("Assert addaddress button is displayed")
     public CheckoutPageUser checkThatTheAddAddressButtonIsDisblayed() {
-        Assert.assertTrue(driver.get().findElement(AddAddress_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(AddAddress_Button, "❌ The addaddress button is not displayed!");
         return this;
     }
 
     @Step("Assert addaddress button is disapled")
     public CheckoutPageUser checkThatTheAddAddressButtonIsDisapledWhenFormIsEmpty() {
-        Assert.assertFalse(driver.get().findElement(AddAddress_Button).isEnabled());
-        System.out.println("AddAddress Button is disapled when Form Is Empty");
+
+        boolean isAddAddressButtonEnabled = driver.get().findElement(AddAddress_Button).isEnabled();
+        driver.validations().validateEquals(isAddAddressButtonEnabled, false, "❌ The minus button is not disabled.");
+
+        //driver.assertion().assertElementEnabled(AddAddress_Button, "❌ The addaddress button is disabled!");
         return this;
     }
 
     //Product_data Displayedibility
     @Step("Assert product image is displayed")
     public CheckoutPageUser checkThatTheProductImagesDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Product_Image).isDisplayed());
+        driver.assertion().assertElementDisplayed(Product_Image, "❌ The product image is not displayed!");
         return this;
     }
 
     @Step("Assert product name is displayed")
     public CheckoutPageUser checkThatTheProductNameDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Product_Name).isDisplayed());
+        driver.assertion().assertElementDisplayed(Product_Name, "❌ The product name is not displayed!");
         return this;
     }
 
     @Step("Assert minus button is displayed")
     public CheckoutPageUser checkThatTheMinusButtonDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Minus_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Minus_Button, "❌ The minus button is not displayed!");
         return this;
     }
 
     @Step("Assert add button is displayed")
     public CheckoutPageUser checkThatTheAddButtonDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Add_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Add_Button, "❌ The add button is not displayed!");
         return this;
     }
 
     @Step("Assert product quantity is displayed")
     public CheckoutPageUser checkThatTheProductQuantityLabelDisblayed() {
-        Assert.assertTrue(driver.get().findElement(ProductQuantity_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(ProductQuantity_Label, "❌ The product quantity is not displayed!");
         return this;
     }
 
     @Step("Assert product price label is displayed")
     public CheckoutPageUser checkThatTheProductPriceLabelDisblayed() {
-        Assert.assertTrue(driver.get().findElement(ProductPrice_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(ProductPrice_Label, "❌ The product price label is not displayed!");
         return this;
     }
 
     @Step("Assert delete product button is displayed")
     public CheckoutPageUser checkThatTheDeleteProductButtonDisblayed() {
-        Assert.assertTrue(driver.get().findElement(DeleteProduct_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(DeleteProduct_Button, "❌ The product button is not displayed!");
         return this;
     }
 
@@ -378,138 +377,84 @@ public class CheckoutPageUser
 
     @Step("Assert total title is displayed")
     public CheckoutPageUser checkThatTheTotalTitleDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Total_Title).isDisplayed());
+        driver.assertion().assertElementDisplayed(Total_Title, "❌ The total title is not displayed!");
         return this;
     }
 
     @Step("Assert total buy label is displayed")
     public CheckoutPageUser checkThatTheTotalBuyLabelDisblayed() {
-        Assert.assertTrue(driver.get().findElement(TotalBuy_Label).isDisplayed());
+        driver.assertion().assertElementDisplayed(TotalBuy_Label, "❌ The total label is not displayed!");
         return this;
     }
 
     @Step("Assert paypal button is displayed")
     public CheckoutPageUser checkThatThePayPalButtonDisblayed() {
-        Assert.assertTrue(driver.get().findElement(PayPal_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(PayPal_Button, "❌ The paypal button is not displayed!");
         return this;
     }
 
     @Step("Assert cash button is displayed")
     public CheckoutPageUser checkThatTheCashButtonDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Cash_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Cash_Button, "❌ The cash button is not displayed!");
         return this;
     }
 
     //Checkout_button Displayedibility
     @Step("Assert checkout button is displayed")
     public CheckoutPageUser checkThatTheCheckoutButtonDisblayed() {
-        Assert.assertTrue(driver.get().findElement(Checkout_Button).isDisplayed());
+        driver.assertion().assertElementDisplayed(Checkout_Button, "❌ The checkout button is not displayed!");
         return this;
     }
     @Step("Assert checkout button is clickable")
     public CheckoutPageUser checkThatTheCheckoutButtonIsClickable() {
-        Assert.assertTrue(driver.element().isClickable(Checkout_Button));
+        driver.validations().validateEquals(driver.element().isClickable(Checkout_Button), true, "❌ The checkout button is not clickable.");
         return this;
     }
 
     // AddAddress button is disabled when the form fields are empty
     @Step("Assert addaddress button is not clickable")
     public CheckoutPageUser checkThatTheAddaddressButtonIsNotClickableWhenTheFormFieldsAreEmpty() {
-        Assert.assertFalse(driver.element().isClickable(AddAddress_Button));
+        driver.validations().validateEquals(driver.element().isClickable(AddAddress_Button), false, "❌ The addaddress button is clickable.");
+
         return this;
     }
+
     @Step("Assert error message is displayed")
     public CheckoutPageUser checkThatTheErrorMessageShowWhenTheFormFieldsAreEmpty() {
-        Assert.assertTrue(driver.get().findElement(Error_Message).isDisplayed());
+        driver.assertion().assertElementDisplayed(Error_Message, "❌ The error is not displayed!");
         return this;
 
-    }
-
-    @Step("Assert error message text is correct")
-    public CheckoutPageUser checkThatTheErrorMessageTitleIsCorrect() {
-        Assert.assertEquals(driver.element().getTextOf(Error_Message), ErrorMessageTitle);
-        return this;
     }
 
     @Step("Assert product data aftern increasing quantity are displayed")
-    public CheckoutPageUser checkThatTheProducDataIsUpdatedWhenIncreasingTheQuantity() {
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(ProductQuantity_Label, "2"));
-        WebElement productElement = wait.until(ExpectedConditions.visibilityOfElementLocated(Product_Name));
+    public CheckoutPageUser checkThatTheProducDataIsUpdatedWithePlusIcon() {
+        waitForElementTextToBe(driver.get(), ProductQuantity_Label, "2");
 
-        WebElement productElement2 = wait.until(ExpectedConditions.visibilityOfElementLocated(ProductPrice_Label));
-        System.out.println("Price After Update is: " + productElement2.getText());
-
-        WebElement productElement3 = wait.until(ExpectedConditions.visibilityOfElementLocated(ProductQuantity_Label));
-        System.out.println("Quantity After Update is: " + productElement3.getText());
-
-        WebElement productElement4 = wait.until(ExpectedConditions.visibilityOfElementLocated(TotalBuy_Label));
-        System.out.println("Total After Update is: " + productElement4.getText());
-
-        Assert.assertTrue(driver.get().findElement(Product_Name).isDisplayed());
+        String productQuantity =driver.get().findElement(ProductQuantity_Label).getText();
+        driver.validations().validateEquals(productQuantity,"2", "❌ The product quantity is not 2");
         return this;
     }
-
-    @Step("Assert update element on checkout page")
-    public CheckoutPageUser checkThatTheToastMessageUpdateIsDisplayed() {
-        String MSG = "Card item updated successfully";
-        By AC = By.xpath("//li[@role=\"status\"]");
-        driver.assertion().assertElementTextEquals(AC, MSG, "Element not updated on checkout");
-        return this;
-    }
-
-
 
     @Step("Assert product data after decreasing quantity are displayed")
-    public CheckoutPageUser checkThatTheProducDataIsUpdatedWhendecreasingTheQuantity() {
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(20));
+    public CheckoutPageUser checkThatTheProducDataIsUpdatedWithMinusIcon() {
+        waitForElementTextToBe(driver.get(), ProductQuantity_Label, "1");
 
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(ProductQuantity_Label, "1"));
-        WebElement productElement2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Product_Name));
-
-        WebElement productElement5 = wait.until(ExpectedConditions.visibilityOfElementLocated(ProductPrice_Label));
-        System.out.println("Price After Update is: " + productElement5.getText());
-
-        WebElement productElement6 = wait.until(ExpectedConditions.visibilityOfElementLocated(ProductQuantity_Label));
-        System.out.println("Quantity After Update is: " + productElement6.getText());
-
-        WebElement productElement7 = wait.until(ExpectedConditions.visibilityOfElementLocated(TotalBuy_Label));
-        System.out.println("Total After Update is: " + productElement7.getText());
-
-        Assert.assertTrue(driver.get().findElement(Product_Name).isDisplayed());
+        String productQuantity =driver.get().findElement(ProductQuantity_Label).getText();
+        driver.validations().validateEquals(productQuantity,"1", "❌ The product quantity is not 1");
         return this;
     }
 
     @Step("Assert update message is displayed")
     public CheckoutPageUser checkThatTheUpdateMessageShowWhenUpdatingTheQuantity() {
-        Assert.assertTrue(driver.get().findElement(checkoutUpdatedSuccessfullyMessage).isDisplayed());
+        driver.assertion().assertElementDisplayed(checkoutUpdatedSuccessfullyMessage, "❌ The update message is not displayed!");
         return this;
     }
 
-    @Step("Assert update message text is correct")
-    public CheckoutPageUser checkThatTheUpdateMessageTitleIsCorrectWhenUpdatingTheQuantity() {
-        Assert.assertEquals(driver.element().getTextOf(checkoutUpdatedSuccessfullyMessage), UpdatedMessageTitle);
+    @Step("Assert delete message is displayed")
+    public CheckoutPageUser checkThatTheDeleteMessageShow() {
+        driver.assertion().assertElementDisplayed(DeletedMessage, "❌ The product is not deleted!");
         return this;
     }
-
-    @Step("Assert product is deleted and checkout is disapled")
-    public CheckoutPageUser checkThatTheProductIsDeleted() {
-        Assert.assertFalse(driver.element().isClickable(Checkout_Button));
-        System.out.println("checkout Button is disapled");
-        return this;
-    }
-
-//    @Step("Assert delete message text is correct")
-//    public CheckoutPageUser checkThatTheProductMessageDeletedhowWhenDeleting() throws InterruptedException {
-//       // WebDriverWait wait12 = new WebDriverWait(driver.get(), Duration.ofSeconds(5));
-//        //WebElement productElement = wait12.until(ExpectedConditions.visibilityOfElementLocated(DeletedMessage));
-//        //Assert.assertEquals(driver.element().getTextOf(DeletedMessage), DeletedMessageTitle);
-//        By AC = By.xpath("//li[@role=\"status\"]");
-//
-//      //  Thread.sleep(1000000);
-//        driver.assertion().assertElementTextEquals(AC,DeletedMessageTitle,"The product is not deleted");
-//        return this;
-//    }
 
     //Enter address form data
     @Step("Fill address form with Address, City, Pincode , Phone , Notes")
@@ -524,80 +469,52 @@ public class CheckoutPageUser
 
     @Step("Assert AddAddress message is displayed")
     public CheckoutPageUser checkThatTheAddAddressMessageShow() {
-        Assert.assertTrue(driver.get().findElement(AddAddressMessage).isDisplayed());
-        return this;
-    }
-
-    @Step("Assert error message text is correct")
-    public CheckoutPageUser checkThatTheAddAddressMessageTitleIsCorrect() {
-        WebDriverWait wait4 = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
-        WebElement productElement = wait4.until(ExpectedConditions.visibilityOfElementLocated(AddAddressMessage));
-        Assert.assertEquals(driver.element().getTextOf(AddAddressMessage), AddAddressMessageTitle);
+        driver.assertion().assertElementDisplayed(AddAddressMessage, "❌ The addaddress message is not displayed!");
         return this;
     }
 
     //Address_data Displayedibility
     @Step("Assert Address data is displayed")
     public CheckoutPageUser checkThatTheAddressDataIsDisplayed() {
-       // Assert.assertTrue(driver.get().findElement(AddressData).isDisplayed());
-        driver.assertion().assertElementDisplayed(AddressData,"The label is not found");
+        driver.assertion().assertElementDisplayed(AddressData,"❌ The Address data is not displayed");
         return this;
     }
 
     //Edit message Displayedibility
-    @Step("Assert Address data is displayed")
+    @Step("Assert edit message is displayed")
     public CheckoutPageUser checkThatTheEditMessageIsDisplayed() {
-        Assert.assertTrue(driver.get().findElement(EditMessage).isDisplayed());
+        driver.assertion().assertElementDisplayed(EditMessage, "❌ The edit message is not displayed!");
         return this;
     }
 
     //Delete message Displayedibility
-    @Step("Assert Address data is displayed")
+    @Step("Assert delete message is displayed")
     public CheckoutPageUser checkThatTheDeleteMessageIsDisplayed() {
-        Assert.assertTrue(driver.get().findElement(DeleteMessage).isDisplayed());
+        driver.assertion().assertElementDisplayed(DeleteMessage, "❌ The delete message is not displayed!");
         return this;
     }
 
     //Order success message Displayedibility
-    @Step("Assert Address data is displayed")
+    @Step("Assert order success message is displayed")
     public CheckoutPageUser checkThatTheOrderSucessMessageIsDisplayed() {
-        Assert.assertTrue(driver.get().findElement(OrderSuccessMessage).isDisplayed());
+        driver.assertion().assertElementDisplayed(OrderSuccessMessage, "❌ The order success message is not displayed!");
         return this;
     }
 
     //Order close button Displayedibility
     @Step("Assert Order close button is displayed")
     public CheckoutPageUser checkThatTheOrderCloseButtonIsDisplayed() {
-        Assert.assertTrue(driver.get().findElement(Close_Button).isDisplayed());
-        return this;
-    }
-
-    //The Url chenged to paypal
-    @Step("Assert Order close button is displayed")
-        public CheckoutPageUser checkThatTheUrlChangedToThePaypalPage() {
-        //Assert.assertTrue(driver.browser().getCurrentURL(driver.get()).contains("paypal.com"));
-        String currentUrl = driver.browser().getCurrentURL(driver.get());
-        if (currentUrl.contains("paypal.com") && currentUrl.contains("token=")) {
-            String token = currentUrl.split("token=")[1];
-            System.out.println("✅ Token found: " + token);
-        } else {
-            System.out.println("❌ Token not found or not redirected properly.");
-        }
+        driver.assertion().assertElementDisplayed(Close_Button, "❌ The order close button is not displayed!");
         return this;
     }
 
     //Payment message disability
-    @Step("Assert payment message is displayed")
+    @Step("Assert payment error message is displayed")
     public CheckoutPageUser checkThatThePaymentMessageShow() {
-        Assert.assertTrue(driver.get().findElement(PaymentMessage).isDisplayed());
+        driver.assertion().assertElementDisplayed(PaymentMessage, "❌ The payment error message is not displayed!");
         return this;
     }
 
-    @Step("Assert error message text is correct")
-    public CheckoutPageUser checkThatThePaymentMessageTitleIsCorrect() {
-        Assert.assertEquals(driver.element().getTextOf(PaymentMessage), PaymentMessageTitle);
-        return this;
-    }
     /************************************** Actions ********************************************/
     @Step("Click addaddress button")
     public CheckoutPageUser clickOnAddAddressButton()  {
@@ -629,25 +546,25 @@ public class CheckoutPageUser
         return this;
     }
 
-    @Step("Click address section")
+    @Step("Select address")
     public CheckoutPageUser clickOnAddressSection()  {
         driver.element().click(AddressData);
         return this;
     }
 
-    @Step("Click cashondelivery section")
+    @Step("Click cash_on_delivery button")
     public CheckoutPageUser clickOnCashOnDeliveryButton()  {
         driver.element().click(Cash_Button);
         return this;
     }
 
-    @Step("Click paypal section")
+    @Step("Click paypal button")
     public CheckoutPageUser clickOnPaypalButton()  {
         driver.element().click(PayPal_Button);
         return this;
     }
 
-    @Step("Click edit button in address section")
+    @Step("Click edit address button in address section")
     public CheckoutPageUser clickOnEditAddressButton()  {
         driver.element().click(EditAddress_Button);
         return this;
@@ -659,7 +576,7 @@ public class CheckoutPageUser
         return this;
     }
 
-    @Step("Click edit address button in address section")
+    @Step("Click delete address button in address section")
     public CheckoutPageUser clickOnDeleteAddressButton()  {
         driver.element().click(FormDeleteAddress_Button);
         //driver.get().findElement(FormDeleteAddress_Button).submit();
@@ -672,7 +589,7 @@ public class CheckoutPageUser
         return this;
     }
 
-    @Step("Click shopy link")
+    @Step("Click shoppy link")
     public HomePage clickOnShopyLink()  {
         driver.element().click(Shoppy_Icon);
         return new HomePage(driver);

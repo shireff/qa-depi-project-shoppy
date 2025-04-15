@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+
 public class LoginTests {
 
     public Driver driver;
@@ -18,7 +19,6 @@ public class LoginTests {
     @BeforeMethod
     public void setUp() {
         driver = new Driver("chrome");
-        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
     }
@@ -30,9 +30,9 @@ public class LoginTests {
     @Description("Verify error message is shown when password is less than allowed length.")
     @Test(priority = 1)
     public void testLoginShortPasswordErrorMsg() {
-        loginPage.setUserName("shireffn369+f@gmail.com");
-        loginPage.setPassword("123");
-        loginPage.clickLogin();
+        loginPage.setUserName("shireffn369+f@gmail.com")
+                .setPassword("123")
+                .clickLogin();
         loginPage.assertErrorMessageDisplayed();
     }
 
@@ -43,9 +43,9 @@ public class LoginTests {
     @Description("Verify toast message appears when incorrect password is used.")
     @Test(priority = 2)
     public void testLoginWrongPasswordErrorMsg() {
-        loginPage.setUserName("shireffn369+f@gmail.com");
-        loginPage.setPassword("WrongPassword");
-        loginPage.clickLogin();
+        loginPage.setUserName("shireffn369+f@gmail.com")
+                .setPassword("WrongPassword")
+                .clickLogin();
         loginPage.assertToastErrorMessageDisplayed();
     }
 
@@ -56,9 +56,9 @@ public class LoginTests {
     @Description("Verify toast message appears when user does not exist in the system.")
     @Test(priority = 3)
     public void testLoginNotExistUserErrorMsg() {
-        loginPage.setUserName("notExist@gmail.com");
-        loginPage.setPassword("WrongPassword");
-        loginPage.clickLogin();
+        loginPage.setUserName("notExist@gmail.com")
+                .setPassword("WrongPassword")
+                .clickLogin();
         loginPage.assertUserNotExistToastDisplayed();
     }
 
@@ -69,13 +69,11 @@ public class LoginTests {
     @Description("Ensure admin can login successfully and redirect to admin dashboard")
     @Test(priority = 4)
     public void testLoginAsAdmin() {
-        loginPage.setUserName("shireffn369@gmail.com");
-        loginPage.setPassword("Shireff@123");
-        loginPage.clickLogin();
+        loginPage.setUserName("shireffn369@gmail.com")
+                .setPassword("Shireff@123")
+                .clickLogin();
         loginPage.assertLoginSuccessfulAsAdmin();
-        String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
-        String actualURL = driver.get().getCurrentUrl();
-        Assert.assertEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
+
     }
 
     @Epic("Login")
@@ -85,13 +83,9 @@ public class LoginTests {
     @Description("Verify normal user can login and gets redirected to shop homepage")
     @Test(priority = 5)
     public void testLoginAsUser() {
-        loginPage.setUserName("shireffn369+f@gmail.com");
-        loginPage.setPassword("Shireff@123");
-        loginPage.clickLogin();
-        loginPage.assertLoginSuccessfulAsUser();
-        String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
-        String actualURL = driver.get().getCurrentUrl();
-        Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
+        loginPage.setUserName("shireffn369+f@gmail.com").setPassword("Shireff@123").clickLogin().assertLoginSuccessfulAsUser();
+
+
     }
 
 

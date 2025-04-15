@@ -25,137 +25,110 @@ public class HomePage {
     private final By brandButtons = By.xpath("//h2[contains(text(), 'Shop by Brand')]/following-sibling::div//span[contains(@class, 'font-bold')]");
     private final By featuredProducts = By.cssSelector(".rounded-lg.border.bg-card.text-card-foreground.shadow-sm");
     private final By productModal = By.cssSelector("div[role='dialog']");
-    private final By productTitle = By.cssSelector(".text-xl.sm\\:text-2xl.font-bold");
-    private final By productPrice = By.cssSelector(".text-xl.font-bold.text-primary");
     private final By customerReviews = By.cssSelector(".grid > div.rounded-lg.border");
     private final By noProductsMessage = By.xpath("//h2[text()='No Products Found']");
     private final By footerLinks = By.cssSelector("footer a");
+    private final By userHeader = By.xpath("//span[text()='Shoppy']");
+    private final By clickOnAddToCardFirstProduct = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/section[5]/div/div/div[1]/div/div[3]/button");
 
     public HomePage(Driver driver) {
         this.driver = driver;
     }
 
     /***************************************** Validation Methods  ******************************************/
-    @Step("Verify if the home page header is displayed")
-    public boolean isHomePageHeaderDisplayed() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
-            WebElement headerElement = wait.until(ExpectedConditions.visibilityOfElementLocated(homePageHeader));
-            return headerElement.isDisplayed();
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
 
     @Step("Select category")
-    public void selectCategory(String category) {
+    public HomePage selectCategory(String category) {
         try {
             driver.element().selectItem(categoryButtons, category, "category");
         } catch (Exception e) {
-            Assert.fail("\n ❌ Failed to select category '" + category + "': " + e.getMessage() + "\n");
+            driver.validations().validateFail("\n ❌ Failed to select category '" + category + "': " + e.getMessage() + "\n");
         }
-
+        return this;
     }
 
     @Step("Select brand")
-    public void selectBrand(String brand) {
+    public HomePage selectBrand(String brand) {
         try {
             driver.element().selectItem(brandButtons, brand, "brand");
         } catch (Exception e) {
-            Assert.fail("\n ❌ Failed to select brand '" + brand + "': " + e.getMessage() + "\n");
+            driver.validations().validateFail("\n ❌ Failed to select brand '" + brand + "': " + e.getMessage() + "\n");
         }
+        return this;
     }
 
     @Step("Click the first featured product")
-    public void clickFirstFeaturedProduct() {
+    public HomePage clickFirstFeaturedProduct() {
         try {
             driver.element().scrollToElement(featuredProductsSection);
             driver.element().click(featuredProductImages);
         } catch (Exception e) {
-            Assert.fail("\n ❌ Failed to click first featured product: " + e.getMessage() + "\n");
+            driver.validations().validateFail("\n ❌ Failed to click first featured product: " + e.getMessage() + "\n");
         }
+        return this;
     }
 
-    /***************************************** General Element Visibility Checks  ******************************************/
-    @Step("Check if featured products are displayed")
-    public boolean isFeaturedProductDisplayed() {
-        return isElementVisible(featuredProducts);
-    }
-
-    @Step("Check if product modal is displayed")
-    public boolean isProductModalDisplayed() {
-        return isElementVisible(productModal);
-    }
-
-    @Step("Check if product title is visible")
-    public boolean isProductTitleVisible() {
-        return isElementVisible(productTitle);
-    }
-
-    @Step("Check if product price is visible")
-    public boolean isProductPriceVisible() {
-        return isElementVisible(productPrice);
-    }
-
-    @Step("Check if 'No Products Found' message is displayed")
-    public boolean isNoProductsMessageDisplayed() {
-        return isElementVisible(noProductsMessage);
-    }
-
-    @Step("Check if customer reviews are displayed")
-    public boolean isCustomerReviewsDisplayed() {
-        return isElementVisible(customerReviews);
-    }
-
-    @Step("Check if footer links are working")
-    public boolean areFooterLinksWorking() {
-        List<WebElement> links = driver.get().findElements(footerLinks);
-        return links.stream().allMatch(WebElement::isDisplayed);
-    }
-
-    private boolean isElementVisible(By locator) {
+    @Step("Click on the add to card on first featured product")
+    public CartPage clickAddToCardFirstFeaturedProduct() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(5));
-            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-            return element.isDisplayed();
-        } catch (TimeoutException e) {
-            return false;
+            driver.element().scrollToElement(featuredProductsSection);
+            driver.element().click(clickOnAddToCardFirstProduct);
+        } catch (Exception e) {
+            driver.validations().validateFail("\n ❌ Failed to click first featured product: " + e.getMessage() + "\n");
         }
+        return new CartPage(driver);
     }
+
 
     /***************************************** Assertions  ******************************************/
+    @Step("Assert login successful as user")
+    public HomePage assertLoginSuccessfulAsUser() {
+        driver.assertion().assertElementDisplayed(userHeader, "❌ User login failed!");
+        String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
+        String actualURL = driver.get().getCurrentUrl();
+        driver.validations().validateEquals(actualURL, expectedUserURL, "User URL mismatch!");
+        return this;
+    }
+
+
     @Step("Validate product visibility for hasProducts: {0}")
-    public void validateProductVisibility(boolean hasProducts, String errorMessage) {
+    public HomePage validateProductVisibility(boolean hasProducts, String errorMessage) {
         if (hasProducts) {
             driver.assertion().assertElementDisplayed(featuredProducts, "\n ❌ " + errorMessage + " \n");
         } else {
             driver.assertion().assertElementDisplayed(noProductsMessage, "\n ❌ " + errorMessage + " \n");
         }
+        return this;
     }
 
     @Step("Assert home page header is displayed")
-    public void assertHomePageHeaderDisplayed() {
+    public HomePage assertHomePageHeaderDisplayed() {
         driver.assertion().assertElementDisplayed(homePageHeader, "\n ❌ Home page header is not displayed! \n");
+        return this;
     }
 
     @Step("Assert featured products are displayed")
-    public void assertFeatureProductsDisplayed() {
+    public HomePage assertFeatureProductsDisplayed() {
         driver.assertion().assertElementDisplayed(featuredProducts, "\n ❌ Featured products are not displayed! \n");
+        return this;
     }
 
     @Step("Assert product modal is displayed")
-    public void assertProductModalDisplayed() {
+    public HomePage assertProductModalDisplayed() {
         driver.assertion().assertElementDisplayed(productModal, "\n ❌ Product modal did not appear! \n");
+        return this;
     }
 
     @Step("Assert customer reviews are displayed")
-    public void assertCustomerReviewsDisplayed() {
+    public HomePage assertCustomerReviewsDisplayed() {
         driver.assertion().assertElementDisplayed(customerReviews, "\n ❌ Customer reviews section is missing! \n");
+        return this;
     }
 
     @Step("Assert footer links are working")
-    public void assertFooterLinksWorking() {
+    public HomePage assertFooterLinksWorking() {
         List<WebElement> links = driver.get().findElements(footerLinks);
-        Assert.assertTrue(links.stream().allMatch(WebElement::isDisplayed), "\n ❌ Footer links are not working! \n");
+        driver.validations().validateTrue(links.stream().allMatch(WebElement::isDisplayed), "\n ❌ Footer links are not working! \n");
+        return this;
     }
 }

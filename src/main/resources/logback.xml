@@ -7,9 +7,19 @@
         </encoder>
     </appender>
 
+    <!-- Define a FileAppender to log to a file -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/logs/logfile.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <!-- Set the root log level to INFO and associate it with the console appender -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </root>
 
 </configuration>

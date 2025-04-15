@@ -1,11 +1,9 @@
 package com.shoppy.com.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.testng.asserts.SoftAssert;
 
 public class CustomSoftAssertion extends SoftAssert {
-    private static final Logger logger = LoggerFactory.getLogger(CustomSoftAssertion.class);
     private static final String RESET = "\u001B[0m";
     private static final String GREEN = "\u001B[32m";
     private static final String RED = "\u001B[31m";
@@ -18,9 +16,9 @@ public class CustomSoftAssertion extends SoftAssert {
     public CustomSoftAssertion softAssertionTrue(boolean condition, String MSG) {
         try {
             assertTrue(condition, MSG);
-            logger.info(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
         }
         return this;
     }
@@ -31,9 +29,9 @@ public class CustomSoftAssertion extends SoftAssert {
     public CustomSoftAssertion softAssertionFalse(boolean condition, String MSG) {
         try {
             assertFalse(condition, MSG);
-            logger.info(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
         }
         return this;
     }
@@ -44,9 +42,9 @@ public class CustomSoftAssertion extends SoftAssert {
     public <T> CustomSoftAssertion softAssertionEquals(T actual, T expected, String MSG) {
         try {
             assertEquals(actual, expected, MSG);
-            logger.info(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
         }
         return this;
     }
@@ -55,8 +53,8 @@ public class CustomSoftAssertion extends SoftAssert {
      * Executes all assertions and logs the result
      */
     public void assertAllAssertions() {
-        logger.info(CYAN + "🔍 Running all assertions..." + RESET);
+        LogHelper.logInfo(CYAN + "🔍 Running all assertions..." + RESET);
         assertAll();
-        logger.info(CYAN + "✅ All assertions completed." + RESET);
+        LogHelper.logError(CYAN + "✅ All assertions completed." + RESET);
     }
 }

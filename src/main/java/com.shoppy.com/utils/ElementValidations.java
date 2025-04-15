@@ -17,9 +17,9 @@ public class ElementValidations {
     public ElementValidations validateTrue(boolean condition, String MSG) {
         try {
             Assert.assertTrue(condition, MSG);
-            logger.info(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
@@ -28,9 +28,9 @@ public class ElementValidations {
     public ElementValidations validateFalse(boolean condition, String MSG) {
         try {
             Assert.assertFalse(condition, MSG);
-            logger.info(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
@@ -39,11 +39,22 @@ public class ElementValidations {
     public <T> ElementValidations validateEquals(T actual, T expected, String MSG) {
         try {
             Assert.assertEquals(actual, expected, MSG);
-            logger.info(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
     }
+
+    public ElementValidations validateFail(String MSG) {
+        try {
+            Assert.fail(MSG);
+        } catch (AssertionError e) {
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            throw e;
+        }
+        return this;
+    }
+
 }

@@ -1,5 +1,6 @@
 package listeners.webDriver;
 
+import com.shoppy.com.utils.LogHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,6 @@ import static com.shoppy.com.utils.PropertiesManager.webConfig;
 public class DriverListeners implements WebDriverListener {
 
     private WebDriver driver;
-    private static final Logger logger = LoggerFactory.getLogger(DriverListeners.class);
 
     public DriverListeners(WebDriver driver) {
         this.driver = driver;
@@ -25,55 +25,55 @@ public class DriverListeners implements WebDriverListener {
 
     @Override
     public void afterGet(WebDriver driver, String url) {
-        logger.info("🖥️ Getting to \"" + url + "\".");
+        LogHelper.logInfo("🖥️ Getting to \"" + url + "\".");
 
     }
 
     @Override
     public void afterGetTitle(WebDriver driver, String result) {
-        logger.info("📄 Current Page Title is: \"" + result + "\".");
+        LogHelper.logInfo("📄 Current Page Title is: \"" + result + "\".");
 
     }
 
     @Override
     public void afterTo(WebDriver.Navigation navigation, String url) {
-        logger.info("🌐 Navigating to url \"" + url + "\".");
+        LogHelper.logInfo("🌐 Navigating to url \"" + url + "\".");
 
     }
 
     @Override
     public void afterBack(WebDriver.Navigation navigation) {
-        logger.info("🔙 Navigating back.");
+        LogHelper.logInfo("🔙 Navigating back.");
 
     }
 
     @Override
     public void afterForward(WebDriver.Navigation navigation) {
-        logger.info("🔜 Navigating forward.");
+        LogHelper.logInfo("🔜 Navigating forward.");
 
     }
 
     @Override
     public void afterRefresh(WebDriver.Navigation navigation) {
-        logger.info("🔄 Refreshing current page...");
+        LogHelper.logInfo("🔄 Refreshing current page...");
 
     }
 
     @Override
     public void afterGetPageSource(WebDriver driver, String result) {
-        logger.info("📜 Getting Page source: " + result);
+        LogHelper.logInfo("📜 Getting Page source: " + result);
 
     }
 
     @Override
     public void beforeDeleteCookie(WebDriver.Options options, Cookie cookie) {
-        logger.info("🍪 Deleting Cookie: " + cookie + " ......");
+        LogHelper.logInfo("🍪 Deleting Cookie: " + cookie + " ......");
 
     }
 
     @Override
     public void beforeDeleteAllCookies(WebDriver.Options options) {
-        logger.info("🍪 Deleting All Cookies...");
+        LogHelper.logInfo("🍪 Deleting All Cookies...");
     }
 
     /************************************* Element Actions Listeners ******************************************/
@@ -88,7 +88,7 @@ public class DriverListeners implements WebDriverListener {
                     .ignoring(StaleElementReferenceException.class)
                     .until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (TimeoutException exception) {
-            logger.error("⏳ Timeout: " + exception.getMessage() + " || " + exception.getCause().getMessage().substring(0, exception.getCause().getMessage().indexOf("\n")));
+            LogHelper.logError("⏳ Timeout: " + exception.getMessage() + " || " + exception.getCause().getMessage().substring(0, exception.getCause().getMessage().indexOf("\n")));
             throw exception;
         }
 
@@ -97,18 +97,18 @@ public class DriverListeners implements WebDriverListener {
 
     @Override
     public void afterClose(WebDriver driver) {
-        logger.info("🚪 Successfully Closed Driver.");
+        LogHelper.logInfo("🚪 Successfully Closed Driver.");
 
     }
 
     @Override
     public void afterQuit(WebDriver driver) {
-        logger.info("🚪 Successfully Quit Driver.");
+        LogHelper.logInfo("🚪 Successfully Quit Driver.");
     }
 
     @Override
     public void beforeClick(WebElement element) {
-        logger.info("🔘 Wait for " + getElementName(element) + " to be clickable");
+        LogHelper.logInfo("🔘 Wait for " + getElementName(element) + " to be clickable");
 
 
         try {
@@ -116,15 +116,15 @@ public class DriverListeners implements WebDriverListener {
                     Duration.ofSeconds(Long.parseLong(webConfig.getProperty("actionTimeout"))))
                     .until(ExpectedConditions.elementToBeClickable(element));
         } catch (org.openqa.selenium.TimeoutException timeoutException) {
-            logger.error("⏳ Timeout on click: " + timeoutException);
+            LogHelper.logError("⏳ Timeout on click: " + timeoutException);
             throw timeoutException;
         }
 
         try {
-            logger.info("🖱️ Click on " + getElementName(element) + ".");
+            LogHelper.logInfo("🖱️ Click on " + getElementName(element) + ".");
 
         } catch (Exception throwable) {
-            logger.info("🖱️ Click.");
+            LogHelper.logInfo("🖱️ Click.");
 
         }
     }
@@ -132,27 +132,27 @@ public class DriverListeners implements WebDriverListener {
     @Override
     public void beforeSubmit(WebElement element) {
         try {
-            logger.info("📤 Submit " + getElementName(element) + ".");
+            LogHelper.logInfo("📤 Submit " + getElementName(element) + ".");
 
         } catch (Exception throwable) {
-            logger.info("📤 Submit.");
+            LogHelper.logInfo("📤 Submit.");
         }
     }
 
 
     @Override
     public void beforeClear(WebElement element) {
-        logger.info("❌ Clear " + getElementName(element) + ".");
+        LogHelper.logInfo("❌ Clear " + getElementName(element) + ".");
 
     }
 
     @Override
     public void afterGetAttribute(WebElement element, String name, String result) {
         try {
-            logger.info("📝 Get Attribute \"" + name + "\" from " + getElementName(element) + ", value is \"" + result + "\".");
+            LogHelper.logInfo("📝 Get Attribute \"" + name + "\" from " + getElementName(element) + ", value is \"" + result + "\".");
 
         } catch (Exception throwable) {
-            logger.info("📝 Get Attribute \"" + name + "\", value is \"" + result + "\".");
+            LogHelper.logInfo("📝 Get Attribute \"" + name + "\", value is \"" + result + "\".");
 
         }
     }
@@ -160,10 +160,10 @@ public class DriverListeners implements WebDriverListener {
     @Override
     public void afterGetText(WebElement element, String result) {
         try {
-            logger.info("📝 Get Text from " + getElementName(element) + ", text is \"" + result + "\".");
+            LogHelper.logInfo("📝 Get Text from " + getElementName(element) + ", text is \"" + result + "\".");
 
         } catch (Exception throwable) {
-            logger.info("📝 Get Text, text is :\"" + result + "\".");
+            LogHelper.logInfo("📝 Get Text, text is :\"" + result + "\".");
 
         }
     }
@@ -172,7 +172,7 @@ public class DriverListeners implements WebDriverListener {
     // Alert
     @Override
     public void beforeSendKeys(Alert alert, String text) {
-        logger.info("⌨️ Type \"" + text + "\" into Alert.");
+        LogHelper.logInfo("⌨️ Type \"" + text + "\" into Alert.");
 
     }
 

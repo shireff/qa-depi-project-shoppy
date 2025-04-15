@@ -14,7 +14,6 @@ import java.util.List;
 public class ElementActions {
     private WebDriver driver;
     private JavascriptExecutor js;
-    private static final Logger logger = LoggerFactory.getLogger(ElementActions.class); // Create logger instance
     private static final String RESET = "\u001B[0m";
     private static final String GREEN = "\u001B[32m";
     private static final String RED = "\u001B[31m";
@@ -35,7 +34,7 @@ public class ElementActions {
         // Step 1: Find the first visible element
         for (WebElement element : elements) {
             if (element.isDisplayed()) {
-                System.out.println("✅ Found visible element: " + locator.toString());
+                LogHelper.logInfo( String.format(GREEN + "✅ Found visible element: %s" + RESET, locator.toString()));
                 return element;
             }
         }
@@ -48,33 +47,33 @@ public class ElementActions {
             WebElement element = find(driver, locator);
 
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-            logger.info(GREEN + "✅ Scrolled to visible element." + RESET);
+            LogHelper.logInfo(GREEN + "✅ Scrolled to visible element." + RESET);
 
             element.click();
-            logger.info(GREEN + "✅ Clicked element to ensure focus." + RESET);
+            LogHelper.logInfo(GREEN + "✅ Clicked element to ensure focus." + RESET);
 
             element.clear();
             element.sendKeys(text);
-            logger.info(GREEN + "✅ Successfully set text: " + CYAN + text + RESET);
+            LogHelper.logInfo(GREEN + "✅ Successfully set text: " + CYAN + text + RESET);
 
         } catch (Exception e) {
-            logger.warn(BOLD + RED + "⚠️ ERROR: Unable to set text normally. Using JavaScript as fallback." + RESET);
+            LogHelper.logWarn(BOLD + RED + "⚠️ ERROR: Unable to set text normally. Using JavaScript as fallback." + RESET);
 
             WebElement element = driver.findElement(locator);
             ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", element, text);
-            logger.info(BLUE + "ℹ️ Fallback JavaScript set text: " + CYAN + text + RESET);
+            LogHelper.logInfo(BLUE + "ℹ️ Fallback JavaScript set text: " + CYAN + text + RESET);
         }
         return this;
     }
 
     public ElementActions click(By locator) {
-        logger.info(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
+        LogHelper.logInfo(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
         try {
             //    isClickable(locator);
             find(driver, locator).click();
         } catch (ElementClickInterceptedException | NoSuchElementException | StaleElementReferenceException |
                  TimeoutException exception) {
-            logger.error(RED + BOLD + "❌ ERROR From click method: " + exception.getMessage() + RESET);
+            LogHelper.logError(RED + BOLD + "❌ ERROR From click method: " + exception.getMessage() + RESET);
             scrollToElement(locator);
             clickUsingJs(locator);
         }
@@ -83,19 +82,19 @@ public class ElementActions {
 
     public ElementActions type(By locator, String text) {
         clearField(locator);
-        logger.info(GREEN + "⌨️ Fill field: " + locator.toString() + " with: " + text + RESET);
+        LogHelper.logInfo(GREEN + "⌨️ Fill field: " + locator.toString() + " with: " + text + RESET);
         driver.findElement(locator).sendKeys(text);
         return this;
     }
 
     public ElementActions clearField(By locator) {
-        logger.info(YELLOW + "❌ Clear field with locator: " + locator.toString() + RESET);
+        LogHelper.logInfo(YELLOW + "❌ Clear field with locator: " + locator.toString() + RESET);
         driver.findElement(locator).clear();
         return this;
     }
 
     public ElementActions scrollToElement(By locator) {
-        logger.info(CYAN + "🔽 Scrolling to element: " + locator.toString() + RESET);
+        LogHelper.logInfo(CYAN + "🔽 Scrolling to element: " + locator.toString() + RESET);
         js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(locator));
         return this;
     }
@@ -103,24 +102,24 @@ public class ElementActions {
     // Unified method for selecting category or brand
     public ElementActions selectItem(By itemLocator, String item, String itemType) {
         String typeLabel = itemType.equalsIgnoreCase("category") ? "category" : "brand";
-        logger.info(BLUE + "🔍 Selecting " + typeLabel + ": " + CYAN + item + RESET);
+        LogHelper.logInfo(BLUE + "🔍 Selecting " + typeLabel + ": " + CYAN + item + RESET);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
             List<WebElement> items = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(itemLocator));
-            logger.info(GREEN + "✅ Found " + items.size() + " " + typeLabel + " elements" + RESET);
+            LogHelper.logInfo(GREEN + "✅ Found " + items.size() + " " + typeLabel + " elements" + RESET);
 
             for (WebElement element : items) {
                 String itemText = element.getText().trim();
                 if (itemText.equalsIgnoreCase(item)) {
-                    logger.info(GREEN + "✅ Found matching " + typeLabel + ": " + CYAN + itemText + RESET);
+                    LogHelper.logInfo(GREEN + "✅ Found matching " + typeLabel + ": " + CYAN + itemText + RESET);
 
                     // Scroll behavior: smooth for brands, basic for categories
                     String scrollScript = itemType.equalsIgnoreCase("brand")
                             ? "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});"
                             : "arguments[0].scrollIntoView(true);";
                     js.executeScript(scrollScript, element);
-                    logger.info(GREEN + "✅ Scrolled to " + typeLabel + ": " + CYAN + item + RESET);
+                    LogHelper.logInfo(GREEN + "✅ Scrolled to " + typeLabel + ": " + CYAN + item + RESET);
 
                     // Click: JS for brands, regular for categories
                     if (itemType.equalsIgnoreCase("brand")) {
@@ -128,7 +127,7 @@ public class ElementActions {
                     } else {
                         element.click();
                     }
-                    logger.info(GREEN + "✅ Clicked " + typeLabel + ": " + CYAN + item + RESET);
+                    LogHelper.logInfo(GREEN + "✅ Clicked " + typeLabel + ": " + CYAN + item + RESET);
 
                     // URL check: category= for categories, brand= with encoding for brands
                     String urlFragment;
@@ -139,36 +138,36 @@ public class ElementActions {
                         urlFragment = "category=" + item.toLowerCase();
                     }
                     wait.until(ExpectedConditions.urlContains(urlFragment));
-                    logger.info(GREEN + "✅ URL updated to include: " + CYAN + urlFragment + RESET);
+                    LogHelper.logInfo(GREEN + "✅ URL updated to include: " + CYAN + urlFragment + RESET);
                     return this;
                 }
             }
-            logger.error(RED + BOLD + "❌ " + typeLabel + " '" + item + "' not found in the list!" + RESET);
+            LogHelper.logError(RED + BOLD + "❌ " + typeLabel + " '" + item + "' not found in the list!" + RESET);
             throw new AssertionError("❌ " + typeLabel + " '" + item + "' not found!");
 
         } catch (TimeoutException e) {
-            logger.error(RED + BOLD + "❌ Timeout waiting for " + typeLabel + " elements or URL update: " + e.getMessage() + RESET);
+            LogHelper.logError(RED + BOLD + "❌ Timeout waiting for " + typeLabel + " elements or URL update: " + e.getMessage() + RESET);
             throw new RuntimeException("❌ Failed to select " + typeLabel + " '" + item + "' due to timeout", e);
         } catch (Exception e) {
-            logger.error(RED + BOLD + "❌ Unexpected error selecting " + typeLabel + ": " + e.getMessage() + RESET);
+            LogHelper.logError(RED + BOLD + "❌ Unexpected error selecting " + typeLabel + ": " + e.getMessage() + RESET);
             throw new RuntimeException("❌ Failed to select " + typeLabel + " '" + item + "'", e);
         }
     }
 
     public ElementActions selectByIndex(By locator, int index) {
-        logger.info(BLUE + "🔘 Selecting Option " + index + " from dropdown: " + locator.toString() + RESET);
+        LogHelper.logInfo(BLUE + "🔘 Selecting Option " + index + " from dropdown: " + locator.toString() + RESET);
         new Select(driver.findElement(locator)).selectByIndex(index);
         return this;
     }
 
     public ElementActions selectByValue(By locator, String value) {
-        logger.info(BLUE + "🔘 Selecting Value: " + value + " from dropdown: " + locator.toString() + RESET);
+        LogHelper.logInfo(BLUE + "🔘 Selecting Value: " + value + " from dropdown: " + locator.toString() + RESET);
         new Select(driver.findElement(locator)).selectByValue(value);
         return this;
     }
 
     public ElementActions selectByVisibleText(By locator, String value) {
-        logger.info(BLUE + "🔘 Selecting Value: " + value + " from dropdown: " + locator.toString() + RESET);
+        LogHelper.logInfo(BLUE + "🔘 Selecting Value: " + value + " from dropdown: " + locator.toString() + RESET);
         new Select(driver.findElement(locator)).selectByVisibleText(value);
         return this;
     }
@@ -207,23 +206,23 @@ public class ElementActions {
     }
 
     public Boolean isSelected(By locator) {
-        logger.info(GREEN + "✔️ Checking " + locator.toString().split(":", 2)[1] + " if Selected" + RESET);
+        LogHelper.logInfo(GREEN + "✔️ Checking " + locator.toString().split(":", 2)[1] + " if Selected" + RESET);
         return driver.findElement(locator).isSelected();
     }
 
     public Boolean isClickable(By locator) {
-        logger.info(GREEN + "👆 Checking " + locator.toString().split(":", 2)[1] + " if Clickable" + RESET);
+        LogHelper.logInfo(GREEN + "👆 Checking " + locator.toString().split(":", 2)[1] + " if Clickable" + RESET);
         return driver.findElement(locator).isEnabled();
     }
 
     public ElementActions clickUsingJs(By locator) {
-        logger.info(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
+        LogHelper.logInfo(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
         try {
             isClickable(locator);
             js.executeScript("arguments[0].click();", driver.findElement(locator));
         } catch (ElementClickInterceptedException | NoSuchElementException | StaleElementReferenceException |
                  TimeoutException exception) {
-            logger.error(RED + BOLD + "❌ ERROR From click method: " + exception.getMessage() + RESET);
+            LogHelper.logError(RED + BOLD + "❌ ERROR From click method: " + exception.getMessage() + RESET);
             scrollToElement(locator);
             js.executeScript("arguments[0].click();", driver.findElement(locator));
         }
@@ -246,22 +245,22 @@ public class ElementActions {
             WebElement element = find(driver, locator);
 
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-            logger.info(GREEN + "✅ Scrolled to visible element." + RESET);
+            LogHelper.logInfo(GREEN + "✅ Scrolled to visible element." + RESET);
 
             element.submit();
-            logger.info(GREEN + "✅ Clicked element to ensure focus." + RESET);
+            LogHelper.logInfo(GREEN + "✅ Clicked element to ensure focus." + RESET);
 
             element.clear();
             element.sendKeys(String.valueOf(number), Keys.TAB);
-            logger.info(GREEN + "✅ Successfully set number: " + CYAN + number + RESET);
+            LogHelper.logInfo(GREEN + "✅ Successfully set number: " + CYAN + number + RESET);
 
         } catch (Exception e) {
-            logger.warn(BOLD + RED + "⚠️ ERROR: Unable to set number normally. Using JavaScript as fallback." + RESET);
+            LogHelper.logWarn(BOLD + RED + "⚠️ ERROR: Unable to set number normally. Using JavaScript as fallback." + RESET);
             WebElement element = driver.findElement(locator);
             element.sendKeys(Keys.TAB);
             element.sendKeys(Keys.ENTER);
             ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", element, number);
-           logger.info(BLUE + "ℹ️ Fallback JavaScript set number: " + CYAN + number + RESET);
+            LogHelper.logInfo(BLUE + "ℹ️ Fallback JavaScript set number: " + CYAN + number + RESET);
         }
 
     }
