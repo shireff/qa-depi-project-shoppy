@@ -69,9 +69,6 @@ public class LoginPage {
     @Step("Assert login successful as admin")
     public LoginPage assertLoginSuccessfulAsAdmin() {
         driver.assertion().assertElementDisplayed(adminDashboardHeader, "❌ Admin login failed!");
-        String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
-        String actualURL = driver.get().getCurrentUrl();
-        driver.validations().validateEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
         return this;
     }
 

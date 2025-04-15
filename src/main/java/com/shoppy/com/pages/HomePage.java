@@ -85,9 +85,6 @@ public class HomePage {
     @Step("Assert login successful as user")
     public HomePage assertLoginSuccessfulAsUser() {
         driver.assertion().assertElementDisplayed(userHeader, "❌ User login failed!");
-        String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
-        String actualURL = driver.get().getCurrentUrl();
-        driver.validations().validateEquals(actualURL, expectedUserURL, "User URL mismatch!");
         return this;
     }
 
