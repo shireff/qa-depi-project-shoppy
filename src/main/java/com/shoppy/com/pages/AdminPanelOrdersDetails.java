@@ -322,7 +322,7 @@ public class AdminPanelOrdersDetails
     @Step("✅check the pinecode title text")
     public AdminPanelOrdersDetails checkPincodeTitleText()
     {
-        driver.assertion().assertElementTextEquals(Pincode_Field_Title,"Pincode","The text of the element does not match the expected value");
+        driver.assertion().assertElementTextEquals(Pincode_Field_Title,"Pincode:","The text of the element does not match the expected value");
         return this;
     }
     @Step("✅check the phone title is displayed")

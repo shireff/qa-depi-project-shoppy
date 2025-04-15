@@ -25,11 +25,6 @@ public class AdminOrderDetailsPageTest
         new LoginPage(driver).loginIntoApp("ramymahana7@gmail.com", "archer@@@97");
         new AdminDashboardPage(driver).clickOnOrdersBtn().clickOnViewDetailsBtn();
     }
-    @Test
-    public void TestMethod()
-    {
-        new AdminPanelOrdersDetails(driver).clickOnCloseDetailsBtn();
-    }
     @Epic("Admin Panel")
     @Feature("Order Details Page")
     @Story("Verify Order Details Page URL")

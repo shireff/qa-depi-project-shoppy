@@ -101,6 +101,17 @@ public class AdminDashboardPage {
         driver.element().click(First_Image_Delete_Button);
         return this;
     }
+    public AdminDashboardPage clickOnDeleteBtnThird()
+    {
+        driver.element().click(Third_Image_Delete_Button);
+        return this;
+    }
+    @Step("👆click on delete button")
+    public AdminDashboardPage clickOnDeleteBtnFourthImage()
+    {
+        driver.element().click(Fourth_Image_Delete_Button);
+        return this;
+    }
     @Step("👆click on logout button")
     public LoginPage clickOnLogoutBtn()
     {

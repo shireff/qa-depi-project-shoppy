@@ -40,7 +40,7 @@ public class AdminDashBoardPageTest
     @Description("Verify the presence and text of navigation elements on the Admin Dashboard.")
     @Test(priority = 1)
     public void verifyNavigationElements() {
-       new AdminDashboardPage(driver).checkAdminDashboardUrl()
+       new AdminDashboardPage(driver)
                 .checkAdminPanelHeaderDisplayed()
                 .checkAdminPanelHeaderText()
                 .checkDashboardBtnDisplayed()
@@ -50,7 +50,7 @@ public class AdminDashBoardPageTest
                 .checkOrdersBtnDisplayed()
                 .checkOrdersBtnText()
                 .checkLogoutBtnDisplayed()
-                .checkLogoutBtnText();
+                .checkLogoutBtnText().checkAdminDashboardUrl();
     }
 
     @Epic("Admin Dashboard")
@@ -60,13 +60,13 @@ public class AdminDashBoardPageTest
     @Description("Verify the UI elements of the Feature Images section on the Admin Dashboard.")
     @Test(priority = 2)
     public void verifyFeatureImagesSectionUI() {
-       new AdminDashboardPage(driver).checkFeatureImagesTitleIsDisplayed()
+       new AdminDashboardPage(driver)
                 .checkFeatureImagesTitleText()
                 .checkUploadNewImageTitleIsDisplayed()
                 .checkUploadNewImageTitleText()
                 .checkUploadImageTitleIsDisplayed()
                 .checkUploadImageTitleText()
-                .checkThatUploadButtonIsDisplayed();
+                .checkThatUploadButtonIsDisplayed().checkFeatureImagesTitleIsDisplayed();
     }
 
     @Epic("Admin Dashboard")
@@ -78,7 +78,7 @@ public class AdminDashBoardPageTest
     public void uploadAndVerifyImage() {
        new AdminDashboardPage(driver).uploadImageDashBoard(image3)
                 .clickOnUploadBtn()
-                .checkThatUploadedImageIsDisplayed();
+                .checkThatUploadedImageIsDisplayed().clickOnDeleteBtnFourthImage();
         // Note: You might want to add a step to delete the uploaded image for cleanup in a real scenario.
     }
 
@@ -89,7 +89,7 @@ public class AdminDashBoardPageTest
     @Description("Upload an image and then attempt to delete it.")
     @Test(priority = 4, dependsOnMethods = "uploadAndVerifyImage")
     public void deleteUploadedImage() {
-        new AdminDashboardPage(driver).clickOnDeleteBtn();
+        new AdminDashboardPage(driver).clickOnDeleteBtnThird();
         // Note: You would typically add an assertion here to verify that the image is no longer displayed.
         // Due to the dynamic nature of image deletion and the lack of a specific "image not found" assertion,
         // we'll skip that explicit check for now but it's crucial in a real test.
@@ -131,20 +131,20 @@ public class AdminDashBoardPageTest
         // For example, check the URL or the presence of login-related elements.
     }
 
-    @Epic("Admin Dashboard")
-    @Feature("Footer")
-    @Story("Verify Footer Elements")
-    @Severity(SeverityLevel.MINOR)
-    @Description("Verify the presence of footer elements on the Admin Dashboard.")
-    @Test(priority = 8)
-    public void verifyFooterElements() {
-        // Note: You'll need to add methods to your AdminDashboardPage to interact with and assert on footer elements.
-        // Assuming you add methods like checkFooterRightsReservedDisplayed, checkFooterGitHubDisplayed, etc.
-        // adminDashboardPage.checkFooterRightsReservedDisplayed()
-        //         .checkFooterGitHubDisplayed()
-        //         .checkFooterLinkedInDisplayed()
-        //         .checkFooterWhatsAppDisplayed();
-    }
+//    @Epic("Admin Dashboard")
+//    @Feature("Footer")
+//    @Story("Verify Footer Elements")
+//    @Severity(SeverityLevel.MINOR)
+//    @Description("Verify the presence of footer elements on the Admin Dashboard.")
+//    @Test(priority = 8)
+//    public void verifyFooterElements() {
+//        // Note: You'll need to add methods to your AdminDashboardPage to interact with and assert on footer elements.
+//        // Assuming you add methods like checkFooterRightsReservedDisplayed, checkFooterGitHubDisplayed, etc.
+//        // adminDashboardPage.checkFooterRightsReservedDisplayed()
+//        //         .checkFooterGitHubDisplayed()
+//        //         .checkFooterLinkedInDisplayed()
+//        //         .checkFooterWhatsAppDisplayed();
+//    }
 
     @AfterClass
     public void TearDown() {

@@ -52,6 +52,7 @@ public class AdminPanelOrders
     @Step("👆click on the nav bar responsive button")
     public AdminPanelOrders clickOnNavigationResponsiveButton()
     {
+        driver.get().manage().window().minimize();
         driver.element().click(Res_Nav_Button);
         return this;
     }
