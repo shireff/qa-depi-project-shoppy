@@ -42,4 +42,12 @@ public class Waits {
                     }
                 });
     }
+
+    public static WebElement waitForElementTextToBe(WebDriver driver, By locator, String expectedText) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(driver1 -> {
+                    WebElement element = driver1.findElement(locator);
+                    return expectedText.equals(element.getText()) ? element : null;
+                });
+    }
 }
