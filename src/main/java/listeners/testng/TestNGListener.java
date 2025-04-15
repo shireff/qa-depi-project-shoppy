@@ -54,16 +54,16 @@ public class TestNGListener implements IExecutionListener, ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        logger.info(BLUE + "🟢 TestNG is starting the test: " + result.getName() + RESET);
+        LogHelper.logInfo(logger,BLUE + "🟢 TestNG is starting the test: " + result.getName() + RESET);
     }
 
     public void onTestSuccess(ITestResult result) {
-        logger.info(GREEN + "✅ TestNG has finished the test successfully: " + result.getName() + RESET);
+        LogHelper.logInfo(logger,BLUE+ "✅ TestNG has finished the test successfully: " + result.getName() + RESET);
     }
 
     public void onTestFailure(ITestResult result) {
-        logger.error(RED + "❌ Test Failed..........." + RESET);
-        logger.error(RED + "📸 Taking Screenshot..........." + RESET);
+        LogHelper.logError(logger,RED + "❌ Test Failed..........." + RESET);
+        LogHelper.logError(logger,RED + "📸 Taking Screenshot..........." + RESET);
 
         Driver driver = null;
         ThreadLocal<Driver> driverThreadLocal;
@@ -81,7 +81,7 @@ public class TestNGListener implements IExecutionListener, ITestListener {
                 }
             }
         } catch (IllegalAccessException e) {
-            logger.error(YELLOW + "⚠️ Failed to get field: " + e.getMessage() + RESET);
+            LogHelper.logError(logger,YELLOW + "⚠️ Failed to get field: " + e.getMessage() + RESET);
 
         }
 
@@ -91,6 +91,7 @@ public class TestNGListener implements IExecutionListener, ITestListener {
     }
 
     public void onTestSkipped(ITestResult result) {
-        logger.info(YELLOW + "⏭️ TestNG has skipped the test: ", result.getName());
+        LogHelper.logInfo(logger, YELLOW + "⏭️ TestNG has skipped the test: " + result.getName());
     }
+
 }

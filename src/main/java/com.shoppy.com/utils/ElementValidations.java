@@ -19,7 +19,7 @@ public class ElementValidations {
             Assert.assertTrue(condition, MSG);
             LogHelper.logInfo(logger,GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(logger,RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
