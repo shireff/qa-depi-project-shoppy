@@ -3,24 +3,16 @@ package com.shoppy.com.pages;
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
 import com.shoppy.com.utils.Waits;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-
 import java.io.File;
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class AdminAddProductPage {
 
     private final Driver driver;
-
 
 
     private final By addProductForm = By.xpath("//div[@role=\"dialog\"]");
@@ -95,11 +87,13 @@ public class AdminAddProductPage {
         brandOptionsXpathList = setOptions(brandOptions, brandOptionsXpath);
     }
 
+    @Step("Navigate To Products Page")
     public AdminAddProductPage navigateToProductsPage() {
         driver.browser().openUrl(driver.get(), "https://shoppy-ochre.vercel.app/admin/products");
         return this;
     }
 
+    @Step("Click On Add Product Btn")
     public AdminAddProductPage clickOnAddProductBtn() {
         driver.element().click(addProductBtn);
         return this;
@@ -111,265 +105,229 @@ public class AdminAddProductPage {
 
     /********* form itself **********/
 //    done
+    @Step("Check Add Product Form Is Displayed")
     public AdminAddProductPage checkAddProductFormIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductForm));
         driver.assertion().assertElementDisplayed(addProductForm, "❌ addProductForm is not displayed!");
         return this;
     }
 
+    @Step("Check Add Product Form Title Is Displayed")
     public AdminAddProductPage checkAddProductFormTitleIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addProductFormTitle));
         driver.assertion().assertElementDisplayed(addProductFormTitle, "❌ addProductFormTitle is not displayed!");
-
         return this;
     }
 
+    @Step("Check Add Product Form Title Text IS \"Add New Product\"")
     public AdminAddProductPage checkAddProductFormTitleText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), addProductFormTitle).contains("Add New Product"));
         driver.assertion().assertElementTextContains(addProductFormTitle, "Add New Product", "❌ addProductFormTitle is not correct!");
-
         return this;
     }
     /************** end form itself***************/
 
     /***************labels Is Displayed *******************/
 //    done
+    @Step("Check Upload Image Label Is Displayed")
     public AdminAddProductPage checkUploadImageLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), uploadImageLabel));
         driver.assertion().assertElementDisplayed(uploadImageLabel, "❌ uploadImageLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Upload Image Field Label Is Displayed")
     public AdminAddProductPage checkUploadImageFieldLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), uploadImageFieldLabel));
         driver.assertion().assertElementDisplayed(uploadImageFieldLabel, "❌ uploadImageFieldLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Title Label Is Displayed")
     public AdminAddProductPage checkTitleLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), titleLabel));
         driver.assertion().assertElementDisplayed(titleLabel, "❌ titleLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Description Label Is Displayed")
     public AdminAddProductPage checkDescriptionLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), descriptionLabel));
         driver.assertion().assertElementDisplayed(descriptionLabel, "❌ descriptionLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Category Label Is Displayed")
     public AdminAddProductPage checkCategoryLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categoryLabel));
         driver.assertion().assertElementDisplayed(categoryLabel, "❌ categoryLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Brand Label Is Displayed")
     public AdminAddProductPage checkBrandLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandLabel));
         driver.assertion().assertElementDisplayed(brandLabel, "❌ brandLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Price Label Is Displayed")
     public AdminAddProductPage checkPriceLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), priceLabel));
         driver.assertion().assertElementDisplayed(priceLabel, "❌ priceLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Sale Price Label Is Displayed")
     public AdminAddProductPage checkSalePriceLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), salePriceLabel));
         driver.assertion().assertElementDisplayed(salePriceLabel, "❌ salePriceLabel is not displayed!");
-
         return this;
     }
 
+    @Step("Check Total Stock Label Is Displayed")
     public AdminAddProductPage checkTotalStockLabelIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), totalStockLabel));
         driver.assertion().assertElementDisplayed(totalStockLabel, "❌ totalStockLabel is not displayed!");
-
         return this;
     }
 
     /*************** End labels Is Displayed *******************/
 
     /*************** label Text *******************/
-
+    @Step("Check Upload Image Label Text Is \"Upload Image\"")
     public AdminAddProductPage checkUploadImageLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), uploadImageLabel).contains("Upload Image"));
         driver.assertion().assertElementTextContains(uploadImageLabel, "Upload Image", "❌ uploadImageLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Upload Image Field Label Text Is \"Drag & Drop or Click to Upload\"")
     public AdminAddProductPage checkUploadImageFieldLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), uploadImageFieldLabel).contains("Drag & Drop or Click to Upload"));
         driver.assertion().assertElementTextContains(uploadImageFieldLabel, "Drag & Drop or Click to Upload", "❌ uploadImageFieldLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Title Label Text Is \"Title\"")
     public AdminAddProductPage checkTitleLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), titleLabel).contains("Title"));
         driver.assertion().assertElementTextContains(titleLabel, "Title", "❌ titleLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Description Label Text Is \"Description\"")
     public AdminAddProductPage checkDescriptionLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), descriptionLabel).contains("Description"));
         driver.assertion().assertElementTextContains(descriptionLabel, "Description", "❌ descriptionLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Category Label Text Is \"Category\"")
     public AdminAddProductPage checkCategoryLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), categoryLabel).contains("Category"));
         driver.assertion().assertElementTextContains(categoryLabel, "Category", "❌ categoryLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Brand Label Text Is \"Brand\"")
     public AdminAddProductPage checkBrandLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), brandLabel).contains("Brand"));
         driver.assertion().assertElementTextContains(brandLabel, "Brand", "❌ brandLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Price Label Text Is \"Price\"")
     public AdminAddProductPage checkPriceLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), priceLabel).contains("Price"));
         driver.assertion().assertElementTextContains(priceLabel, "Price", "❌ priceLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Sale Price Label Text Is \"Sale Price\"")
     public AdminAddProductPage checkSalePriceLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), salePriceLabel).contains("Sale Price"));
         driver.assertion().assertElementTextContains(salePriceLabel, "Sale Price", "❌ salePriceLabel is not correct!");
-
         return this;
     }
 
+    @Step("Check Total Stock Label Text Is \"Total Stock\"")
     public AdminAddProductPage checkTotalStockLabelText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockLabel).contains("Total Stock"));
         driver.assertion().assertElementTextContains(totalStockLabel, "Total Stock", "❌ totalStockLabel is not correct!");
-
         return this;
     }
     /*************** End label Text *******************/
 
     /***************Fields Is Displayed *******************/
 //done
+    @Step("Check Upload Image Field Is Displayed")
     public AdminAddProductPage checkUploadImageFieldIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), uploadImageField));
         driver.assertion().assertElementDisplayed(uploadImageField, "❌ uploadImageField is not displayed!");
-
         return this;
     }
 
+    @Step("Check Title Field Is Displayed")
     public AdminAddProductPage checkTitleFieldIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), titleField));
         driver.assertion().assertElementDisplayed(titleField, "❌ titleField is not displayed!");
-
         return this;
     }
 
+    @Step("check Description Field Is Displayed")
     public AdminAddProductPage checkDescriptionFieldIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), descriptionField));
         driver.assertion().assertElementDisplayed(descriptionField, "❌ descriptionField is not displayed!");
-
         return this;
     }
 
+    @Step("Check Category Btn Is Displayed")
     public AdminAddProductPage checkCategoryBtnIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categoryBtn));
         driver.assertion().assertElementDisplayed(categoryBtn, "❌ categoryBtn is not displayed!");
-
         return this;
     }
 
+    @Step("Check Category Select Is Displayed")
     public AdminAddProductPage checkCategorySelectIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categorySelect));
         driver.assertion().assertElementDisplayed(categorySelect, "❌ categorySelect is not displayed!");
-
         return this;
     }
 
+    @Step("Check Brand Btn Is Displayed")
     public AdminAddProductPage checkBrandBtnIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandBtn));
         driver.assertion().assertElementDisplayed(brandBtn, "❌ brandBtn is not displayed!");
-
         return this;
     }
 
+    @Step("Check Brand Select Is Displayed")
     public AdminAddProductPage checkBrandSelectIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandSelect));
         driver.assertion().assertElementDisplayed(brandSelect, "❌ brandSelect is not displayed!");
-
         return this;
     }
 
+    @Step("Check Price Field Is Displayed")
     public AdminAddProductPage checkPriceFieldIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), priceField));
         driver.assertion().assertElementDisplayed(priceField, "❌ priceField is not displayed!");
-
         return this;
     }
 
+    @Step("Check Sale Price Field Is Displayed")
     public AdminAddProductPage checkSalePriceFieldIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), salePriceField));
         driver.assertion().assertElementDisplayed(salePriceField, "❌ salePriceField is not displayed!");
-
         return this;
     }
 
+    @Step("Check Total Stock Field Is Displayed")
     public AdminAddProductPage checkTotalStockFieldIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), totalStockField));
         driver.assertion().assertElementDisplayed(totalStockField, "❌ totalStockField is not displayed!");
-
         return this;
     }
     /***************End Fields Is Displayed *******************/
 
     /***************Placeholder Text *******************/
-
+    @Step("Check Title Field PlaceHolder Text Is \"Enter product title\"")
     public AdminAddProductPage checkTitleFieldPlaceHolderText() {
-//        Assert.assertTrue(ElementActions.find(driver.get(), titleField).getDomAttribute("placeholder").contains("Enter product title"));
         driver.assertion().assertElementAttributeEquals(titleField, "placeholder", "Enter product title", "❌ titleFieldPlaceHolder is not correct!");
-
         return this;
     }
 
+    @Step("Check Description Field PlaceHolder Text Is \"Enter product description\"")
     public AdminAddProductPage checkDescriptionFieldPlaceHolderText() {
-//        Assert.assertTrue(ElementActions.find(driver.get(), descriptionField).getDomAttribute("placeholder").contains("Enter product description"));
         driver.assertion().assertElementAttributeEquals(descriptionField, "placeholder", "Enter product description", "❌ descriptionFieldPlaceHolder is not correct!");
-
         return this;
     }
 
+    @Step("Check Price Field PlaceHolder Text Is \"Enter product price\"")
     public AdminAddProductPage checkPriceFieldPlaceHolderText() {
-//        Assert.assertTrue(ElementActions.find(driver.get(), priceField).getDomAttribute("placeholder").contains("Enter product price"));
         driver.assertion().assertElementAttributeEquals(priceField, "placeholder", "Enter product price", "❌ priceFieldPlaceHolder is not correct!");
-
         return this;
     }
 
+    @Step("Check Sale Price Field PlaceHolder Text Is \"Enter sale price (optional)\"")
     public AdminAddProductPage checkSalePriceFieldPlaceHolderText() {
-//        Assert.assertTrue(ElementActions.find(driver.get(), salePriceField).getDomAttribute("placeholder").contains("Enter sale price (optional)"));
         driver.assertion().assertElementAttributeEquals(salePriceField, "placeholder", "Enter sale price (optional)", "❌ salePriceFieldPlaceHolder is not correct!");
-
         return this;
     }
 
+    @Step("Check Total Stock Field PlaceHolder Text Is \"Enter total stock\"")
     public AdminAddProductPage checkTotalStockFieldPlaceHolderText() {
-//        Assert.assertTrue(ElementActions.find(driver.get(), totalStockField).getDomAttribute("placeholder").contains("Enter total stock"));
         driver.assertion().assertElementAttributeEquals(totalStockField, "placeholder", "Enter total stock", "❌ totalStockFieldPlaceHolder is not correct!");
         return this;
     }
@@ -378,140 +336,109 @@ public class AdminAddProductPage {
     /***************End Placeholder Text *******************/
     /*************** Category & Brand btn text/default value *******************/
 
+    @Step("Check Category Btn Text Is \"Category\"")
     public AdminAddProductPage checkCategoryBtnText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), categoryBtn).contains("Category"));
         driver.assertion().assertElementTextContains(categoryBtn, "Category", "❌ categoryBtn is not correct!");
-
         return this;
     }
 
+    @Step("Check Brand Btn Text Is \"Brand\"")
     public AdminAddProductPage checkBrandBtnText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), brandBtn).contains("Brand"));
         driver.assertion().assertElementTextContains(brandBtn, "Brand", "❌ brandBtn is not correct!");
-
         return this;
     }
     /*************** End Category & Brand btn text/default value *******************/
 
     /*************** Check Category & Brand Options  *******************/
 
-//    public AdminAddProductPage checkBrandOptions() {
-//        Assert.assertEquals(brandOptionsXpathList.size(), brandOptionsList.length);
-//
-//        for (int i = 0; i < brandOptionsXpathList.size(); i++) {
-//            WebElement option = ElementActions.find(driver.get(), brandOptionsXpathList.get(i));
-//            Assert.assertTrue(Arrays.stream(brandOptionsList).equals(option.getText()));
-//        }
-//        return this;
-//    }
-
-//    public AdminAddProductPage checkCategoryOptions() {
-//        Assert.assertEquals(categoryOptionsXpathList.size(), categoryOptionsList.length);
-//        for (int i = 0; i < categoryOptionsXpathList.size(); i++) {
-//            WebElement option = ElementActions.find(driver.get(), categoryOptionsXpathList.get(i));
-//            Assert.assertTrue(Arrays.stream(categoryOptionsList).equals(option.getText()));
-//        }
-//
-//        return this;
-//    }
     /*************** End Check Category & Brand Options  *******************/
 
     /*************** Check Add btn and Close Btn Is Displayed  *******************/
+    @Step("Check Add Btn Is Displayed")
     public AdminAddProductPage checkAddBtnIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), addBtn));
         driver.assertion().assertElementDisplayed(addBtn, "❌ addBtn is not displayed!");
-
         return this;
     }
 
+    @Step("Check Close Add Product Form Btn Is Displayed")
     public AdminAddProductPage checkCloseAddProductFormBtnIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), closeAddProductFormBtn));
         driver.assertion().assertElementDisplayed(closeAddProductFormBtn, "❌ closeAddProductFormBtn is not displayed!");
-
         return this;
     }
     /***************End Check Add btn and Close Btn Is Displayed  *******************/
 
     /***************Add btn Text  *******************/
 
+    @Step("Check Add Btn Text Is \"Add\"")
     public AdminAddProductPage checkAddBtnText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), addBtn).contains("Add"));
         driver.assertion().assertElementTextContains(addBtn, "Add", "❌ addBtn is not correct!");
-
         return this;
     }
     /***************End Add btn Text  *******************/
 
     /***************check Add Product form is not Displayed  *******************/
-
+    @Step("Check Add Product Form Is Not Displayed")
     public AdminAddProductPage checkAddProductFormIsNotDisplayed() {
-//        assertElementNotDisplayed(addProductForm, "❌ addProductForm is displayed!");
         assertElementNotDisplayed(addProductForm, "❌ addProductForm is displayed!");
         return this;
     }
     /***************End check Add Product form is not Displayed  *******************/
 
     /***************Toast msg staff  *******************/
+    @Step("Check Toast Msg Is Displayed")
     public AdminAddProductPage checkToastMsgIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), toastMsg));
         driver.assertion().assertElementDisplayed(toastMsg, "❌ toastMsg is not displayed!");
         return this;
     }
 
+    @Step("Check Toast Msg Text Is \"Product Added Successfully\"")
     public AdminAddProductPage checkToastMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), toastMsg).contains("Product Added Successfully"));
         driver.assertion().assertElementTextContains(toastMsg, "Product Added Successfully", "❌ toastMsg is not correct!");
         return this;
     }
 
+    @Step("Check Toast Close Btn Is Displayed")
     public AdminAddProductPage checkToastCloseBtnIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), toastCloseBtn));
         driver.assertion().assertElementDisplayed(toastCloseBtn, "❌ toastCloseBtn is not displayed!");
-
         return this;
     }
 
+    @Step("Check Toast Msg Is Not Displayed")
     public AdminAddProductPage checkToastMsgIsNotDisplayed() {
-//        Assert.assertTrue(!ElementActions.isDisplayed(driver.get(), toastMsg));
         assertElementNotDisplayed(toastMsg, "❌ toastMsg is displayed!");
-
         return this;
     }
 
     /***************End Toast msg staff  *******************/
     /***************  Error Msg Is Displayed *******************/
+
+    @Step("Check Title Error Msg Is Displayed")
     public AdminAddProductPage checkTitleErrorMsgIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), titleErrorMsg));
         driver.assertion().assertElementDisplayed(titleErrorMsg, "❌ titleErrorMsg is not displayed!");
-
         return this;
     }
 
+    @Step("Check Category Error Msg Is Displayed")
     public AdminAddProductPage checkCategoryErrorMsgIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), categoryErrorMsg));
         driver.assertion().assertElementDisplayed(categoryErrorMsg, "❌ categoryErrorMsg is not displayed!");
-
         return this;
     }
 
+    @Step("Check Brand Error Msg Is Displayed")
     public AdminAddProductPage checkBrandErrorMsgIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), brandErrorMsg));
         driver.assertion().assertElementDisplayed(brandErrorMsg, "❌ brandErrorMsg is not displayed!");
-
         return this;
     }
 
+    @Step("Check Price Error Msg Is Displayed")
     public AdminAddProductPage checkPriceErrorMsgIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), priceErrorMsg));
         driver.assertion().assertElementDisplayed(priceErrorMsg, "❌ priceErrorMsg is not displayed!");
-
         return this;
     }
 
+    @Step("Check Total Stock Error Msg Is Displayed")
     public AdminAddProductPage checkTotalStockErrorMsgIsDisplayed() {
-//        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), totalStockErrorMsg));
         driver.assertion().assertElementDisplayed(totalStockErrorMsg, "❌ totalStockErrorMsg is not displayed!");
-
         return this;
     }
 
@@ -519,54 +446,49 @@ public class AdminAddProductPage {
 
     /***************  Error Msg Text *******************/
 
+    @Step("Check Title Error Msg Text Is \"Title is required\"")
     public AdminAddProductPage checkTitleErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), titleErrorMsg).contains("Title is required"));
         driver.assertion().assertElementTextContains(titleErrorMsg, "Title is required", "❌ titleErrorMsg is not correct!");
-
         return this;
     }
 
+    @Step("Check Category Error Msg Text Is \"Category is required\"")
     public AdminAddProductPage checkCategoryErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), categoryErrorMsg).contains("Category is required"));
         driver.assertion().assertElementTextContains(categoryErrorMsg, "Category is required", "❌ categoryErrorMsg is not correct!");
-
         return this;
     }
 
+    @Step("Check Brand Error Msg Text Is \"Brand is required\"")
     public AdminAddProductPage checkBrandErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), brandErrorMsg).contains("Brand is required"));
         driver.assertion().assertElementTextContains(brandErrorMsg, "Brand is required", "❌ brandErrorMsg is not correct!");
         return this;
     }
 
+    @Step("Check Price Error Msg Text Is \"Price is required\"")
     public AdminAddProductPage checkPriceErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price is required"));
         driver.assertion().assertElementTextContains(priceErrorMsg, "Price is required", "❌ priceErrorMsg is not correct!");
-
         return this;
     }
 
+    @Step("Check Total Stock Error Msg Text Is \"Total Stock is required\"")
     public AdminAddProductPage checkTotalStockErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock is required"));
         driver.assertion().assertElementTextContains(totalStockErrorMsg, "Total Stock is required", "❌ totalStockErrorMsg is not correct!");
-
         return this;
     }
 
+    @Step("Check Invalid Price Error Msg Text Is \"Price must be greater than 0.\"")
     public AdminAddProductPage checkInvalidPriceErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), priceErrorMsg).contains("Price must be greater than 0."));
         driver.assertion().assertElementTextContains(priceErrorMsg, "Price must be greater than 0.", "❌ priceErrorMsg is not correct!");
-
         return this;
     }
 
+    @Step("Check Invalid Total Stock Error Msg Text Is \"Total Stock must be greater than 0.\"")
     public AdminAddProductPage checkInvalidTotalStockErrorMsgText() {
-//        Assert.assertTrue(ElementActions.getText(driver.get(), totalStockErrorMsg).contains("Total Stock must be greater than 0."));
         driver.assertion().assertElementTextContains(totalStockErrorMsg, "Total Stock must be greater than 0.", "❌ totalStockErrorMsg is not correct!");
-
         return this;
     }
 
+    @Step("Check Invalid Title Error Msg Text Is \"Title is too long!\"")
     public AdminAddProductPage checkInvalidTitleErrorMsgText() {
         driver.assertion().assertElementTextContains(titleErrorMsg, "Title is too long!", "❌ titleErrorMsg is not correct!");
         return this;
@@ -576,35 +498,32 @@ public class AdminAddProductPage {
     /***************  ACTIONS  *******************/
 
     /***************  clicks  *******************/
-//    public AdminAddProductPage clickOnUploadImageFieldLabel() {
-//        driver.element().click(uploadImageFieldLabel);
-//        return this;
-//    }
+
+    @Step("Click On Category Btn")
     public AdminAddProductPage clickOnCategoryBtn() {
         driver.element().click(categoryBtn);
         return this;
     }
 
+    @Step("Click On Brand Btn")
     public AdminAddProductPage clickOnBrandBtn() {
         driver.element().click(brandBtn);
         return this;
     }
 
+    @Step("Click On Close Add Product Form Btn")
     public AdminAddProductPage clickOnCloseAddProductFormBtn() {
         driver.element().click(closeAddProductFormBtn);
-//        new WebDriverWait(driver.get(), Duration.ofSeconds(5))
-//                .until(ExpectedConditions.invisibilityOf(ElementActions.find(driver.get(), addProductForm)));
         return this;
     }
 
+    @Step("Click On Add Btn")
     public AdminAddProductPage clickOnAddBtn() {
         driver.element().click(addBtn);
-//        WebElement element = ElementActions.find(driver.get(), addBtn);
-//        ((JavascriptExecutor) driver.get()).executeScript("document.querySelector(\"button[type='submit']\").click()");
-
         return this;
     }
 
+    @Step("Click On Toast Close Btn")
     public AdminAddProductPage clickOnToastCloseBtn() {
         driver.element().click(toastCloseBtn);
         return this;
@@ -613,102 +532,86 @@ public class AdminAddProductPage {
     /***************  End clicks  *******************/
 
     /***************  Send Keys  *******************/
+    @Step("Fill Upload Image Field")
     public AdminAddProductPage fillUploadImageField(String path) {
         File uploadFile = new File(path);
-//        driver.element().set(uploadImageInputField, uploadFile.getAbsolutePath());
         WebElement fileInput = driver.get().findElement(uploadImageInputField);
         fileInput.sendKeys(uploadFile.getAbsolutePath());
         return this;
     }
 
+    @Step("Fill Title Field")
     public AdminAddProductPage fillTitleField(String title) {
         driver.element().set(titleField, title);
         return this;
     }
 
+    @Step("Fill Description Field")
     public AdminAddProductPage fillDescriptionField(String description) {
         driver.element().set(descriptionField, description);
         return this;
     }
 
+    @Step("Fill Price Field")
     public AdminAddProductPage fillPriceField(int price) {
-//      driver.element().set(priceField, String.valueOf(price));
         driver.element().setNumberField(driver.get(), priceField, price);
         return this;
     }
 
+    @Step("Fill Sale Price Field")
     public AdminAddProductPage fillSalePriceField(int salePrice) {
-//        driver.element().set(salePriceField, String.valueOf(salePrice));
         driver.element().setNumberField(driver.get(), salePriceField, salePrice);
-
         return this;
     }
 
+
+    @Step("Fill Total Stock Field")
     public AdminAddProductPage fillTotalStockField(int totalStock) {
-//        driver.element().set(totalStockField, String.valueOf(totalStock));
         driver.element().setNumberField(driver.get(), totalStockField, totalStock);
         return this;
     }
 
     /***************  End Send Keys  *******************/
     /***************  Select options  *******************/
+
+    @Step("Select Option From Category Select")
     public AdminAddProductPage selectOptionFromCategorySelect(int index) {
-//        driver.element().click(categoryOptionsXpathList.get(index));
         driver.element().selectByIndex(categorySelect, index);
         return this;
     }
 
+    @Step("Select Option From Brand Select")
     public AdminAddProductPage selectOptionFromBrandSelect(int index) {
-//        driver.element().click(brandOptionsXpathList.get(index));
         driver.element().selectByIndex(brandSelect, index);
         return this;
-
     }
 
     /***************  End ACTIONS  *******************/
-    public AdminAddProductPage deleteAfterAddedSuccessfully(String title)
-    {
-        String deleteButtonXpath = "//main//h2[contains(text(),\""+title+"\")]/../..//button[2]";
-        By deleteButton=By.xpath(deleteButtonXpath);
-        if (ElementActions.isDisplayed(driver.get(), toastMsg))
-        {
-        driver.element().click(deleteButton);
-        }
-        return this;
-    }
-    public AdminAddProductPage deleteAfterAddedSuccessfully()
-    {
-        String deleteButtonXpath = "//main//h2[contains(text(),\"\")]/../..//button[2]";
-        By deleteButton=By.xpath(deleteButtonXpath);
-        if (ElementActions.isDisplayed(driver.get(), toastMsg))
-        {
+    @Step("Delete After Added Successfully")
+    public AdminAddProductPage deleteAfterAddedSuccessfully(String title) {
+        String deleteButtonXpath = "//main//h2[contains(text(),\"" + title + "\")]/../..//button[2]";
+        By deleteButton = By.xpath(deleteButtonXpath);
+        if (ElementActions.isDisplayed(driver.get(), toastMsg)) {
             driver.element().click(deleteButton);
         }
         return this;
     }
-//
-//    public AdminAddProductPage checkGreyAreaIsNotDisplayed() {
-//        Assert.assertFalse(ElementActions.isDisplayed(driver.get(), greySection));
-//        return this;
-//    }
-//    private void assertElementDisplayed(By locator, String errorMessage) {
-//        WebElement element = Waits.waitForElementVisible(driver.get(), locator);
-//        if (element == null || !element.isDisplayed()) {
-//            throw new AssertionError(errorMessage);
-//        }
-//    }
+
+    @Step("Delete After Added Successfully")
+    public AdminAddProductPage deleteAfterAddedSuccessfully() {
+        String deleteButtonXpath = "//main//h2[contains(text(),\"\")]/../..//button[2]";
+        By deleteButton = By.xpath(deleteButtonXpath);
+        if (ElementActions.isDisplayed(driver.get(), toastMsg)) {
+            driver.element().click(deleteButton);
+        }
+        return this;
+    }
+
     private void assertElementNotDisplayed(By locator, String errorMessage) {
         boolean isGone = Waits.waitForElementToBeInvisible(driver.get(), locator);
         if (!isGone) {
             throw new AssertionError(errorMessage);
         }
     }
-// options problem
-
-//public AdminAddProductPage displayed()
-//{
-//    new ElementActions(driver.get()).selectByIndex(categorySelect,1);
-//    return this;
-//}
 
 }
