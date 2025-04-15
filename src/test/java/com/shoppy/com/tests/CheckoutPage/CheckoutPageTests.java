@@ -18,8 +18,7 @@ public class CheckoutPageTests {
     public void setUp() {
         driver = new Driver("chrome");
         driver.browser().openUrl(driver.get(), url);
-        new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010");
-        new LoginPage(driver).assertLoginSuccessfulAsUser();
+        new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010").assertLoginSuccessfulAsUser();
     }
 
     @Epic("Checkout")

@@ -249,7 +249,7 @@ public class CartPage {
     }
 
     @Step("Click checkout button")
-    public CartPage clickOnCheckoutButton() {
+    public CheckoutPageUser clickOnCheckoutButton() {
         ((JavascriptExecutor) driver.get()).executeScript("window.scrollTo(0, 0);");
         try {
             Thread.sleep(500);
@@ -258,7 +258,7 @@ public class CartPage {
         }
 
         driver.element().click(checkoutButton);
-        return this;
+        return new CheckoutPageUser(driver);
 
     }
 
