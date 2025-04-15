@@ -50,4 +50,13 @@ public class Waits {
                     return expectedText.equals(element.getText()) ? element : null;
                 });
     }
+
+
+    public static boolean waitForUrlToContain(WebDriver driver, String expectedSubstring) {
+        return new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(d -> {
+                    String currentUrl = d.getCurrentUrl();
+                    return currentUrl != null && currentUrl.contains(expectedSubstring);
+                });
+    }
 }
