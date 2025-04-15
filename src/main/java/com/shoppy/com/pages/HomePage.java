@@ -30,6 +30,7 @@ public class HomePage {
     private final By footerLinks = By.cssSelector("footer a");
     private final By userHeader = By.xpath("//span[text()='Shoppy']");
     private final By clickOnAddToCardFirstProduct = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/section[5]/div/div/div[1]/div/div[3]/button");
+
     public HomePage(Driver driver) {
         this.driver = driver;
     }
@@ -79,12 +80,13 @@ public class HomePage {
     }
 
 
-
-
     /***************************************** Assertions  ******************************************/
     @Step("Assert login successful as user")
     public HomePage assertLoginSuccessfulAsUser() {
         driver.assertion().assertElementDisplayed(userHeader, "❌ User login failed!");
+        String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
+        String actualURL = driver.get().getCurrentUrl();
+        driver.validations().validateEquals(actualURL, expectedUserURL, "User URL mismatch!");
         return this;
     }
 

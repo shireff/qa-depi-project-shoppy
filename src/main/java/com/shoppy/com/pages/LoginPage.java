@@ -7,6 +7,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import static com.shoppy.com.utils.ElementActions.find;
 
@@ -69,6 +70,9 @@ public class LoginPage {
     @Step("Assert login successful as admin")
     public LoginPage assertLoginSuccessfulAsAdmin() {
         driver.assertion().assertElementDisplayed(adminDashboardHeader, "❌ Admin login failed!");
+        String expectedAdminURL = "https://shoppy-ochre.vercel.app/admin/dashboard";
+        String actualURL = driver.get().getCurrentUrl();
+        driver.validations().validateEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
         return this;
     }
 
