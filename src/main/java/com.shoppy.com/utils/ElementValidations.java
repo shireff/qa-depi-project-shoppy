@@ -17,9 +17,9 @@ public class ElementValidations {
     public ElementValidations validateTrue(boolean condition, String MSG) {
         try {
             Assert.assertTrue(condition, MSG);
-            LogHelper.logInfo(logger,GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            LogHelper.logError(logger,RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
@@ -28,9 +28,9 @@ public class ElementValidations {
     public ElementValidations validateFalse(boolean condition, String MSG) {
         try {
             Assert.assertFalse(condition, MSG);
-            LogHelper.logInfo(logger,GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            LogHelper.logError(logger,RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
@@ -39,9 +39,9 @@ public class ElementValidations {
     public <T> ElementValidations validateEquals(T actual, T expected, String MSG) {
         try {
             Assert.assertEquals(actual, expected, MSG);
-            LogHelper.logInfo(logger,GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(GREEN + BOLD + "✔ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            LogHelper.logError(logger,RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
@@ -51,7 +51,7 @@ public class ElementValidations {
         try {
             Assert.fail(MSG);
         } catch (AssertionError e) {
-            LogHelper.logError(logger,RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            LogHelper.logError(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
             throw e;
         }
         return this;
