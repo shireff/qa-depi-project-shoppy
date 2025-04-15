@@ -33,7 +33,7 @@ public class AdminEditProductTests {
     private int invalidPrice = -100;
     private int invalidSalePrice = -50;
     private int invalidTotalStock = -20;
-    private String longTitle = "Test automation Description for Edit!Test automation Description for Edit!Test automation Description for Edit!Test automation Description for Edit!Test automation Description for Edit!Test automation Description for Edit!Test automation Description for Edit!";
+    private String longTitle = "Test automation Title for Edit! Test automation Title for Edit! Test automation Title for Edit! Test automation Title for Edit! Test automation Title for Edit! Test automation Title for Edit! Test automation Title for Edit! Test automation Title for Edit!";
     private String filePath = "src/test/resources/2.txt";
 
 
