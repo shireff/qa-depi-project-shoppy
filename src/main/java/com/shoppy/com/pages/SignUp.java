@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.Objects;
+
 import static com.shoppy.com.utils.ElementActions.find;
 
 
@@ -31,15 +33,17 @@ public class SignUp {
 
     /* -------------------------------------- Actions -------------------------------------- */
     @Step("Click Sign Up link")
-    public void clickSignUpLink() {
+    public SignUp clickSignUpLink() {
         driver.element().click(signUpLink);
+        return this;
     }
 
     @Step("Fill sign-up form with username, email, password")
-    public void fillSignUpForm(String userName, String email, String password) {
+    public SignUp fillSignUpForm(String userName, String email, String password) {
         driver.element().set( userNameField, userName);
         driver.element().set(emailField, email);
         driver.element().set( passwordField, password);
+        return this;
     }
 
     @Step("Click Sign Up button")
@@ -64,13 +68,33 @@ public class SignUp {
 
 
     /* -------------------------------------- Assertions -------------------------------------- */
-    @Step("Assert error message is displayed")
-    public void assertErrorMessageDisplayed() {
-        driver.assertion().assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
-    }
-    @Step("Assert toast error message is displayed")
-    public void assertToastErrorMessageDisplayed() {
-        driver.assertion().assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
+    @Step("Assert Sign Up link is visible")
+    public SignUp assertSignUpLinkIsVisible() {
+        driver.validations().validateTrue(isSignUpLinkVisible(), "❌ Sign Up link is not visible!");
+        return this;
     }
 
+    @Step("Assert sign-up fields are visible")
+    public SignUp assertSignUpFieldsAreVisible() {
+        driver.validations().validateTrue(isSignUpFieldsVisible(), "❌ Sign-up fields are not all visible!");
+        return this;
+    }
+
+    @Step("Assert current URL contains '/auth/register'")
+    public SignUp assertOnRegisterPageUrl() {
+        String currentUrl = driver.browser().getCurrentURL(driver.get());;
+        driver.validations().validateTrue(currentUrl.contains("/auth/register"),
+                "❌ Current URL does not contain '/auth/register'. Actual URL: " + currentUrl);
+        return this;
+    }
+    @Step("Assert error message is displayed")
+    public SignUp assertErrorMessageDisplayed() {
+        driver.assertion().assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
+        return this;
+    }
+    @Step("Assert toast error message is displayed")
+    public SignUp assertToastErrorMessageDisplayed() {
+        driver.assertion().assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
+        return this;
+    }
 }

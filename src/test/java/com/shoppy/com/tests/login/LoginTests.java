@@ -84,10 +84,10 @@ public class LoginTests {
     @Description("Verify normal user can login and gets redirected to shop homepage")
     @Test(priority = 5)
     public void testLoginAsUser() {
-        loginPage.setUserName("shireffn369+f@gmail.com");
-        loginPage.setPassword("Shireff@123");
-        loginPage.clickLogin();
-        loginPage.assertLoginSuccessfulAsUser();
+        loginPage.setUserName("shireffn369+f@gmail.com").setPassword("Shireff@123").clickLogin().assertLoginSuccessfulAsUser();
+//        loginPage.setPassword("Shireff@123");
+//        loginPage.clickLogin();
+//        loginPage.assertLoginSuccessfulAsUser();
         String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
         String actualURL = driver.get().getCurrentUrl();
         Assert.assertEquals(actualURL, expectedUserURL, "User URL mismatch!");
