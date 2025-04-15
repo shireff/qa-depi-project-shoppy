@@ -18,9 +18,9 @@ public class CustomSoftAssertion extends SoftAssert {
     public CustomSoftAssertion softAssertionTrue(boolean condition, String MSG) {
         try {
             assertTrue(condition, MSG);
-            logger.info(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(logger,GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
+            LogHelper.logError(logger,RED + BOLD + "❌ [FAIL] " + MSG + RESET);
         }
         return this;
     }
@@ -31,9 +31,9 @@ public class CustomSoftAssertion extends SoftAssert {
     public CustomSoftAssertion softAssertionFalse(boolean condition, String MSG) {
         try {
             assertFalse(condition, MSG);
-            logger.info(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(logger,GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
+            LogHelper.logError(logger,RED + BOLD + "❌ [FAIL] " + MSG + RESET);
         }
         return this;
     }
@@ -44,9 +44,9 @@ public class CustomSoftAssertion extends SoftAssert {
     public <T> CustomSoftAssertion softAssertionEquals(T actual, T expected, String MSG) {
         try {
             assertEquals(actual, expected, MSG);
-            logger.info(GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
+            LogHelper.logInfo(logger,GREEN + BOLD + "✅ [PASS] " + MSG + RESET);
         } catch (AssertionError e) {
-            logger.error(RED + BOLD + "❌ [FAIL] " + MSG + RESET);
+            LogHelper.logError(logger,RED + BOLD + "❌ [FAIL] " + MSG + RESET);
         }
         return this;
     }
@@ -55,8 +55,8 @@ public class CustomSoftAssertion extends SoftAssert {
      * Executes all assertions and logs the result
      */
     public void assertAllAssertions() {
-        logger.info(CYAN + "🔍 Running all assertions..." + RESET);
+        LogHelper.logInfo(logger,CYAN + "🔍 Running all assertions..." + RESET);
         assertAll();
-        logger.info(CYAN + "✅ All assertions completed." + RESET);
+        LogHelper.logError(logger,CYAN + "✅ All assertions completed." + RESET);
     }
 }
