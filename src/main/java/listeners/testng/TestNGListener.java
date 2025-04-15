@@ -17,7 +17,6 @@ import static com.shoppy.com.utils.PropertiesManager.initializeProperties;
 import static com.shoppy.com.utils.PropertiesManager.webConfig;
 
 public class TestNGListener implements IExecutionListener, ITestListener {
-    private static final Logger logger = LoggerFactory.getLogger(TestNGListener.class);
     private static final String RESET = "\u001B[0m";
     private static final String GREEN = "\u001B[32m";
     private static final String RED = "\u001B[31m";
@@ -28,42 +27,42 @@ public class TestNGListener implements IExecutionListener, ITestListener {
 
     @Override
     public void onExecutionStart() {
-        LogHelper.logInfo(logger,CYAN + "🚀 TestNG is starting the execution" + RESET);
+        LogHelper.logInfo(CYAN + "🚀 TestNG is starting the execution" + RESET);
         initializeProperties();
         AllureReportHelper.cleanAllureReport();
     }
 
     @Override
     public void onExecutionFinish() {
-        LogHelper.logInfo(logger,CYAN + "📊 Generating Allure Report..." + RESET);
+        LogHelper.logInfo(CYAN + "📊 Generating Allure Report..." + RESET);
 
         if (webConfig.getProperty("openAllureReportAfterExecution").equalsIgnoreCase("true")) {
             try {
-                LogHelper.logInfo(logger,BLUE + "🔍 Opening Allure Report..." + RESET);
+                LogHelper.logInfo(BLUE + "🔍 Opening Allure Report..." + RESET);
                 Runtime.getRuntime().exec("reportGeneration.bat");
             } catch (IOException e) {
-                LogHelper.logError(logger,RED + "⚠️ Unable to open Allure Report. Please check the batch file or commands." + RESET);
+                LogHelper.logError(RED + "⚠️ Unable to open Allure Report. Please check the batch file or commands." + RESET);
             }
         } else {
-            LogHelper.logInfo(logger,YELLOW + "🛑 Allure Report not opened (check 'openAllureReportAfterExecution' config)." + RESET);
+            LogHelper.logInfo(YELLOW + "🛑 Allure Report not opened (check 'openAllureReportAfterExecution' config)." + RESET);
         }
 
-        LogHelper.logInfo(logger,GREEN + "✅ TestNG has finished the execution." + RESET);
+        LogHelper.logInfo(GREEN + "✅ TestNG has finished the execution." + RESET);
     }
 
 
     @Override
     public void onTestStart(ITestResult result) {
-        LogHelper.logInfo(logger,BLUE + "🟢 TestNG is starting the test: " + result.getName() + RESET);
+        LogHelper.logInfo(BLUE + "🟢 TestNG is starting the test: " + result.getName() + RESET);
     }
 
     public void onTestSuccess(ITestResult result) {
-        LogHelper.logInfo(logger,BLUE+ "✅ TestNG has finished the test successfully: " + result.getName() + RESET);
+        LogHelper.logInfo(BLUE+ "✅ TestNG has finished the test successfully: " + result.getName() + RESET);
     }
 
     public void onTestFailure(ITestResult result) {
-        LogHelper.logError(logger,RED + "❌ Test Failed..........." + RESET);
-        LogHelper.logError(logger,RED + "📸 Taking Screenshot..........." + RESET);
+        LogHelper.logError(RED + "❌ Test Failed..........." + RESET);
+        LogHelper.logError(RED + "📸 Taking Screenshot..........." + RESET);
 
         Driver driver = null;
         ThreadLocal<Driver> driverThreadLocal;
@@ -81,7 +80,7 @@ public class TestNGListener implements IExecutionListener, ITestListener {
                 }
             }
         } catch (IllegalAccessException e) {
-            LogHelper.logError(logger,YELLOW + "⚠️ Failed to get field: " + e.getMessage() + RESET);
+            LogHelper.logError(YELLOW + "⚠️ Failed to get field: " + e.getMessage() + RESET);
 
         }
 
@@ -91,7 +90,7 @@ public class TestNGListener implements IExecutionListener, ITestListener {
     }
 
     public void onTestSkipped(ITestResult result) {
-        LogHelper.logInfo(logger, YELLOW + "⏭️ TestNG has skipped the test: " + result.getName());
+        LogHelper.logInfo( YELLOW + "⏭️ TestNG has skipped the test: " + result.getName());
     }
 
 }
