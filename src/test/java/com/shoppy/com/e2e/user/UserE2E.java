@@ -86,6 +86,7 @@ public class UserE2E {
     }
 
 
+
     @AfterClass
     public void tearDown() {
         driver.browser().closeBrowser(driver.get());
