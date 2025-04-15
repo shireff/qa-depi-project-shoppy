@@ -18,9 +18,9 @@ import java.time.Duration;
 public class AdminDashBoardPageTest
 {
     public Driver driver;
-    String image1 = new File("src/test/resources/images/dash_1.jpg").getAbsolutePath();
-    String image2 = new File("src/test/resources/images/dash_2.jpg").getAbsolutePath();
-    String image3 = new File("src/test/resources/images/dash_3.jpg").getAbsolutePath();
+    String image1 = "src/test/resources/images/dash_1.jpg";
+    String image2 = "src/test/resources/images/dash_2.jpg";
+    String image3 = "src/test/resources/images/dash_3.jpg";
     @BeforeClass
     public void SetUp() {
         driver = new Driver("chrome");

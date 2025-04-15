@@ -2,13 +2,17 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.bidi.log.Log;
 import org.testng.Assert;
 
 import java.io.File;
 import java.time.Duration;
+
+import static com.shoppy.com.utils.Waits.waitForElementVisible;
 
 public class AdminDashboardPage {
     private final Driver driver;
@@ -224,7 +228,8 @@ public class AdminDashboardPage {
     @Step("✅check that uploaded image is displayed")
     public AdminDashboardPage checkThatUploadedImageIsDisplayed()
     {
-        driver.assertion().assertElementDisplayed(First_Image,"The element is not displayed as expected");
+        waitForElementVisible(driver.get(),Fourth_Image);
+        driver.assertion().assertElementDisplayed(Fourth_Image,"The element is not displayed as expected");
         return this;
     }
 }
