@@ -22,7 +22,7 @@ public class LoginPage {
     private final By toastErrorMsg = By.cssSelector("li[data-state='open'] .text-sm.font-semibold");
     private final By userNotExistToastMsg = By.xpath("//li[@data-state='open']//div[contains(text(),'User does not exists! Please register')]");
     private final By adminDashboardHeader = By.xpath("//h2[text()='Admin Panel']");
-    private final By userHeader = By.xpath("//span[text()='Shoppy']");
+ //   private final By userHeader = By.xpath("//span[text()='Shoppy']");
     private final By googleLoginButton = By.xpath("//button[contains(., 'Continue with Google')]");
     private final By emailField = By.xpath("//input[@type='email']");
     private final By nextButton = By.xpath("//span[contains(text(),'Next')]");
@@ -34,13 +34,15 @@ public class LoginPage {
 
     /* -------------------------------------- Actions -------------------------------------- */
     @Step("Set username")
-    public void setUserName(String userName) {
+    public LoginPage setUserName(String userName) {
         driver.element().type(usernameField, userName);
+        return this;
     }
 
     @Step("Set password")
-    public void setPassword(String pass) {
+    public LoginPage setPassword(String pass) {
         driver.element().type(passwordField, pass);
+        return this;
     }
 
     @Step("Click login button")
@@ -65,29 +67,34 @@ public class LoginPage {
 
     /* -------------------------------------- Assertions -------------------------------------- */
     @Step("Assert login successful as admin")
-    public void assertLoginSuccessfulAsAdmin() {
+    public LoginPage assertLoginSuccessfulAsAdmin() {
         driver.assertion().assertElementDisplayed(adminDashboardHeader, "❌ Admin login failed!");
+        return this;
     }
 
-    @Step("Assert login successful as user")
-    public void assertLoginSuccessfulAsUser() {
-        driver.assertion().assertElementDisplayed(userHeader, "❌ User login failed!");
-    }
+//    @Step("Assert login successful as user")
+//    public void assertLoginSuccessfulAsUser() {
+//        driver.assertion().assertElementDisplayed(userHeader, "❌ User login failed!");
+//    }
 
     @Step("Assert error message is displayed")
-    public void assertErrorMessageDisplayed() {
+    public LoginPage assertErrorMessageDisplayed() {
         driver.assertion().assertElementDisplayed(errorMsg, "❌ Error message is not displayed!");
+        return this;
     }
 
     @Step("Assert toast error message is displayed")
-    public void assertToastErrorMessageDisplayed() {
+    public LoginPage assertToastErrorMessageDisplayed() {
         driver.assertion().assertElementDisplayed(toastErrorMsg, "❌ Toast error message is not displayed!");
+        return this;
     }
 
     @Step("Assert 'User does not exist' toast message is displayed")
-    public void assertUserNotExistToastDisplayed() {
+    public LoginPage assertUserNotExistToastDisplayed() {
         driver.assertion().assertElementDisplayed(userNotExistToastMsg, "❌ User not exists toast message is missing!");
         driver.assertion().assertElementTextContains(userNotExistToastMsg, "User does not exists! Please register",
-                "❌ User not exists toast message text is incorrect!");    }
+                "❌ User not exists toast message text is incorrect!");
+        return this;
+    }
 
 }

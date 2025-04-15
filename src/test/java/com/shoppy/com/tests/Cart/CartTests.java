@@ -18,7 +18,7 @@ public class CartTests {
         driver = new Driver("chrome");
         driver.browser().openUrl(driver.get(), url);
         loginPage = new LoginPage(driver);
-        new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010");
+        new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010").assertLoginSuccessfulAsUser();
     }
 
     @Epic("Cart")
@@ -28,7 +28,6 @@ public class CartTests {
     @Description("Verify add to cart functionality.")
     @Test(priority = 1)
     public void testAddToCartProduct() {
-        loginPage.assertLoginSuccessfulAsUser();
         new CartPage(driver).checkThatTheProductNameIsDisplayed()
                             .clickOnAddToCartButton()
                             .checkThatTheProductMessageAddedSuccesfullyIsDisplayed()

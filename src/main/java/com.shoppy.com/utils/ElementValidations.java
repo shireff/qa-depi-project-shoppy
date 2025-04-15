@@ -46,4 +46,15 @@ public class ElementValidations {
         }
         return this;
     }
+
+    public ElementValidations validateFail(String MSG) {
+        try {
+            Assert.fail(MSG);
+        } catch (AssertionError e) {
+            logger.error(RED + BOLD + "✘ [FAIL] " + MSG + RESET);
+            throw e;
+        }
+        return this;
+    }
+
 }
