@@ -2,7 +2,6 @@ package com.shoppy.com.tests.Cart;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.CartPage;
-import com.shoppy.com.pages.CheckoutPageUser;
 import com.shoppy.com.pages.LoginPage;
 import io.qameta.allure.*;
 import org.testng.Assert;
@@ -22,8 +21,8 @@ public class CartTests {
         new LoginPage(driver).loginIntoApp("mylovelynano@gmail.com", "hakem@2010").assertLoginSuccessfulAsUser();
     }
 
-    @Epic("1- Cart")
-    @Feature("1.1- Add to cart")
+    @Epic("Cart")
+    @Feature("Add to cart")
     @Story("Add to cart functionality")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify add to cart functionality.")
@@ -35,8 +34,8 @@ public class CartTests {
                             .checkThatTheNumberOnCartIsDisplayed();
     }
 
-    @Epic("2- Cart")
-    @Feature("2.1- Product data in Cart")
+    @Epic("Cart")
+    @Feature("Product data in Cart")
     @Story("Product data are shown in cart")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify product data are shown in cart")
@@ -53,8 +52,8 @@ public class CartTests {
 
     }
 
-    @Epic("3- Cart")
-    @Feature("3.1- Minus icon disability in Cart")
+    @Epic("Cart")
+    @Feature("Minus icon disability in Cart")
     @Story("Minus icon disability in cart")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify minus icon is disable in cart with one quantity.")
@@ -63,8 +62,8 @@ public class CartTests {
         new CartPage(driver).checkThatTheProductMinusButtonIsDisapledWhenQuantityIsOne();
     }
 
-    @Epic("4- Cart")
-    @Feature("4.1- Price and total updates in Cart with plus icon")
+    @Epic("Cart")
+    @Feature("Price and total updates in Cart with plus icon")
     @Story("Product data are shown in cart")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify product data are updated in cart with plus icon")
@@ -75,8 +74,8 @@ public class CartTests {
                             .checkThatTheProducDataIsUpdatedWhenIncreasingTheQuantity();
     }
 
-    @Epic("5- Cart")
-    @Feature("5.1- Price and total updates in Cart with minus icon")
+    @Epic("Cart")
+    @Feature("Price and total updates in Cart with minus icon")
     @Story("Price and total updates in Cart with minus icon")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify product price are updated in cart with minus icon")
@@ -87,8 +86,8 @@ public class CartTests {
                             .checkThatTheProducDataIsUpdatedWhenDecreasingTheQuantity();
     }
 
-    @Epic("6- Cart")
-    @Feature("6.1- Delete button")
+    @Epic("Cart")
+    @Feature("Delete button")
     @Story("Delete button functionality")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify data are deleted from cart")
@@ -100,8 +99,8 @@ public class CartTests {
 
     }
 
-    @Epic("7- Cart")
-    @Feature("7.1- Checkout button")
+    @Epic("Cart")
+    @Feature("Checkout button")
     @Story("Checkout button clickability")
     @Severity(SeverityLevel.MINOR)
     @Description("Verify checkout button is clickable")
@@ -112,8 +111,8 @@ public class CartTests {
                 .checkThatTheCheckoutButtonIsClickable();
     }
 
-    @Epic("8- Cart")
-    @Feature("8.1- Close cart")
+    @Epic("Cart")
+    @Feature("Close cart")
     @Story("Close cart")
     @Severity(SeverityLevel.MINOR)
     @Description("Verify cart is closed")
@@ -123,8 +122,8 @@ public class CartTests {
                             .checkThatTheCartIsClosedAfterClickingOnCloseIcon();
     }
 
-    @Epic("9- Cart")
-    @Feature("9.1- checkout button direction")
+    @Epic("Cart")
+    @Feature("checkout button direction")
     @Story("Checkout button direct to checkout url")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify checkout button direction")
@@ -135,9 +134,9 @@ public class CartTests {
                             .clickOnCartIcon()
                             .clickOnCheckoutButton();
 
-        String expectedCheckoutURL = "https://shoppy-ochre.vercel.app/shop/checkout";
-        String actualURL = driver.get().getCurrentUrl();
-        Assert.assertEquals(actualURL, expectedCheckoutURL, "Checkout URL mismatch!");
+                             String expectedCheckoutURL = "https://shoppy-ochre.vercel.app/shop/checkout";
+                             String actualURL = driver.get().getCurrentUrl();
+                             Assert.assertEquals(actualURL, expectedCheckoutURL, "Checkout URL mismatch!");
     }
 
 
