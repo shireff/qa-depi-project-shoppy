@@ -35,8 +35,8 @@ public class UserE2E {
         userName = "test" + Math.random();
     }
 
-    @Epic("User Management")
-    @Feature("Account Creation")
+    @Epic("1 - User Management")
+    @Feature("1.1 - Account Creation")
     @Story("User can access and use the SignUp functionality")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Validate that a user can open the sign-up form, fill in their information, and receive appropriate feedback after submission.")
@@ -48,8 +48,8 @@ public class UserE2E {
 
     }
 
-    @Epic("User Management")
-    @Feature("Authentication")
+    @Epic("1 - User Management")
+    @Feature("1.2 - Authentication")
     @Story("User can log in after successful registration")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that a newly registered user can log in using their credentials and access the application successfully.")
@@ -59,8 +59,8 @@ public class UserE2E {
     }
 
 
-    @Epic("Shopping Flow")
-    @Feature("Add to Cart")
+    @Epic("2 - Shopping Flow")
+    @Feature("2.1 - Add to Cart")
     @Story("User can add a product to the cart from the home page after logging in")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that a logged-in user can add a featured product to the cart from the home page and see it correctly listed in the cart with name and price.")
@@ -75,8 +75,8 @@ public class UserE2E {
                 .clickOnCheckoutButton();
     }
 
-    @Epic("Shopping Flow")
-    @Feature("Checkout and Payment")
+    @Epic("2 - Shopping Flow")
+    @Feature("2.2 - Checkout and Payment")
     @Story("User can proceed to payment from the checkout page")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Ensure that the checkout page header is displayed correctly as the user begins the payment process.")
