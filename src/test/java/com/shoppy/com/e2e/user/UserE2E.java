@@ -30,7 +30,7 @@ public class UserE2E {
         signUpPage = new SignUp(driver);
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);
-
+         checkout = new CheckoutPageUser(driver);
         email = "test" + Math.random() + "@gmail.com";
         userName = "test" + Math.random();
     }
