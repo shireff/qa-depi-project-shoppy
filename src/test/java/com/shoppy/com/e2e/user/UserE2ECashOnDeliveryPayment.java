@@ -9,7 +9,7 @@ import io.qameta.allure.*;
 import org.testng.annotations.*;
 
 
-public class UserE2E {
+public class UserE2ECashOnDeliveryPayment {
 
     public Driver driver;
     private SignUp signUpPage;
@@ -72,17 +72,24 @@ public class UserE2E {
                 .checkThatTheCartIsDisplayed()
                 .checkThatTheProductNameInCartIsDisplayed()
                 .checkThatTheProductPriceIsDisplayed()
+                .checkThatTheProductTotalIsDisplayed()
                 .clickOnCheckoutButton();
     }
 
     @Epic("2 - Shopping Flow")
-    @Feature("2.2 - Checkout and Payment")
-    @Story("User can proceed to payment from the checkout page")
+    @Feature("2.2 - Checkout and Payment with cash on delivery")
+    @Story("User can proceed to cash on delivery payment from the checkout page")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Ensure that the checkout page header is displayed correctly as the user begins the payment process.")
+    @Description("Ensure that the checkout page header is displayed correctly and the user begins the payment process.")
     @Test(priority = 4, dependsOnMethods = "fromHomePageAddProduct")
     public void fromCheckoutPageMakeThePaymentProcess() {
-        checkout.checkThatTheHeaderDisblayed();
+        checkout.checkThatTheHeaderDisblayed()
+                .fillAddAddressForm("France", "Paris", "369852", "01000256325", "Testing")
+                .clickOnAddAddressButton()
+                .clickOnAddressSection()
+                .clickOnCashOnDeliveryButton()
+                .clickOnCheckoutButton()
+                .checkThatTheOrderSucessMessageIsDisplayed();
     }
 
 

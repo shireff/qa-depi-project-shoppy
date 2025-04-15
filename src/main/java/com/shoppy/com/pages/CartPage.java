@@ -4,6 +4,8 @@ import DriverFactory.Driver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.Assert;
+
 import static com.shoppy.com.utils.Waits.*;
 
 public class CartPage {
@@ -46,7 +48,7 @@ public class CartPage {
     @Step("Assert product name is displayed")
     public CartPage checkThatTheProductNameIsDisplayed() {
         driver.validations().validateEquals(driver.element().getTextOf(ProductsName), ProductsSectionName,
-                "Product name in the section should be the same as the expected one");
+                "❌ Product name in the section should be the same as the expected one!");
         return this;
     }
 
@@ -55,7 +57,7 @@ public class CartPage {
         driver.validations().validateEquals(
                 driver.element().getTextOf(productSuccessfullyAddedToCartMessage),
                 productSuccessfullyAddedToCartTitle,
-                "❌ Ensure that the 'Product Added Successfully' message appears and matches the expected text."
+                "❌ Ensure that the 'Product Added Successfully' message appears and matches the expected text!"
         );
         return this;
     }
@@ -64,7 +66,7 @@ public class CartPage {
     public CartPage checkThatTheNumberOnCartIsDisplayed() {
         driver.validations().validateTrue(
                 driver.get().findElement(cartNumber).isDisplayed(),
-                "❌ Ensure that the number of items in the cart is displayed as expected."
+                "❌ Ensure that the number of items in the cart is displayed as expected!"
         );
         return this;
     }
@@ -73,7 +75,7 @@ public class CartPage {
     public CartPage checkThatTheProductNameInCartIsDisplayed() {
         driver.validations().validateTrue(
                 driver.get().findElement(productcart).isDisplayed(),
-                "❌ Ensure that the product cart is displayed on the page."
+                "❌ Ensure that the product cart is displayed on the page!"
         );
         return this;
     }
@@ -82,7 +84,7 @@ public class CartPage {
     public CartPage checkThatTheProductImageIsDisplayed() {
         driver.validations().validateTrue(
                 driver.get().findElement(productImage).isDisplayed(),
-                "❌ Ensure that the product image is displayed on the page."
+                "❌ Ensure that the product image is displayed on the page!"
         );
         return this;
     }
@@ -92,7 +94,7 @@ public class CartPage {
         driver.validations().validateEquals(
                 driver.get().findElement(productImage).getAttribute("src"),
                 "http://res.cloudinary.com/dhz0pkov6/image/upload/v1735932881/ecommerce/ubbmqjalem2fi0wmyvbt.png",
-                "❌ Ensure that the product image source is correct."
+                "❌ Ensure that the product image source is correct!"
         );
         return this;
     }
@@ -101,7 +103,7 @@ public class CartPage {
     public CartPage checkThatTheProductPriceIsDisplayed() {
         driver.validations().validateTrue(
                 driver.get().findElement(productPriceInCart).isDisplayed(),
-                "❌ Ensure that the product price is displayed in the cart."
+                "❌ Ensure that the product price is displayed in the cart!"
         );
 
         return this;
@@ -111,7 +113,7 @@ public class CartPage {
     public CartPage checkThatTheProductQuantityIsDisplayed() {
         driver.validations().validateTrue(
                 driver.get().findElement(productQuantityInCart).isDisplayed(),
-                "❌ Ensure that the product quantity is displayed in the cart."
+                "❌ Ensure that the product quantity is displayed in the cart!"
         );
         return this;
     }
@@ -120,7 +122,7 @@ public class CartPage {
     public CartPage checkThatTheProductTotalIsDisplayed() {
         driver.validations().validateTrue(
                 driver.get().findElement(productTotalInCart).isDisplayed(),
-                "❌ Ensure that the product total is displayed in the cart."
+                "❌ Ensure that the product total is displayed in the cart!"
         );
         return this;
     }
@@ -130,7 +132,7 @@ public class CartPage {
         driver.validations().validateEquals(
                 driver.element().getTextOf(cartEmptyMessage),
                 CartEmptyMessageTitle,
-                "❌ Ensure that the 'Cart Empty' message is displayed correctly."
+                "❌ Ensure that the 'Cart Empty' message is displayed correctly!"
         );
         return this;
     }
@@ -140,7 +142,7 @@ public class CartPage {
         driver.validations().validateEquals(
                 driver.element().getTextOf(cartDeletedMessage),
                 cartDeletedMessageTitle,
-                "❌ Ensure that the 'Cart Deleted' message is displayed correctly."
+                "❌ Ensure that the 'Cart Deleted' message is displayed correctly!"
         );        return this;
     }
 
@@ -149,7 +151,7 @@ public class CartPage {
         boolean isCartGone = waitForElementToBeInvisible(driver.get(), yourCartMessage);
         driver.validations().validateTrue(
                 isCartGone,
-                "❌ Ensure that the cart is closed after clicking on the close icon. The 'Your Cart' message should not be visible."
+                "❌ Ensure that the cart is closed after clicking on the close icon. The 'Your Cart' message should not be visible!"
         );
         return this;
     }
@@ -158,7 +160,7 @@ public class CartPage {
     public CartPage checkThatTheProducDataIsUpdatedWhenIncreasingTheQuantity() {
         driver.validations().validateTrue(
                 driver.get().findElement(productcart).isDisplayed(),
-                "❌ Ensure that the product cart is displayed."
+                "❌ Ensure that the product cart is displayed!"
         );
         return this;
     }
@@ -167,14 +169,14 @@ public class CartPage {
     public CartPage checkThatTheProducDataIsUpdatedWhenDecreasingTheQuantity() {
         driver.validations().validateTrue(
                 driver.get().findElement(productcart).isDisplayed(),
-                "❌ The product cart is not displayed."
+                "❌ The product cart is not displayed!"
         );
         return this;
     }
 
     @Step("Assert update message is displayed")
     public CartPage checkThatTheProductMessageUpdatedSuccesfullyIsDisplayed() {
-        driver.validations().validateEquals(driver.element().getTextOf(cartUpdatedSuccessfullyMessage), cartUpdatedSuccessfullyMessageTitle, "❌ The product update message is incorrect.");
+        driver.validations().validateEquals(driver.element().getTextOf(cartUpdatedSuccessfullyMessage), cartUpdatedSuccessfullyMessageTitle, "❌ The product update message is incorrect!");
 
         return this;
     }
@@ -184,7 +186,7 @@ public class CartPage {
         String actualQuantity = driver.element().getTextOf(productQuantityInCart);
         boolean isMinusButtonEnabled = driver.get().findElement(productQuantityMinusIcon).isEnabled();
         driver.validations().validateEquals(actualQuantity, "1", "❌ The quantity is not 1.");
-        driver.validations().validateEquals(isMinusButtonEnabled, false, "❌ The minus button is not disabled.");
+        driver.validations().validateEquals(isMinusButtonEnabled, false, "❌ The minus button is not disabled!");
 
         driver.assertion().assertElementDisplayed(productQuantityMinusIcon, "❌ The minus icon is enabled!");
         return this;
@@ -193,14 +195,14 @@ public class CartPage {
 
     @Step("Assert checkout button is clickable")
     public CartPage checkThatTheCheckoutButtonIsClickable() {
-        driver.validations().validateEquals(driver.element().isClickable(checkoutButton), true, "❌ The checkout button is not clickable.");
+        driver.validations().validateEquals(driver.element().isClickable(checkoutButton), true, "❌ The checkout button is not clickable!");
 
         return this;
     }
 
     @Step("Assert cart is displayed")
     public CartPage checkThatTheCartIsDisplayed() {
-        driver.validations().validateEquals(driver.get().findElement(cartOpen).isDisplayed(), true, "❌ The cart is not displayed.");
+        driver.validations().validateEquals(driver.get().findElement(cartOpen).isDisplayed(), true, "❌ The cart is not displayed!");
         return this;
     }
 

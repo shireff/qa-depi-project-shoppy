@@ -84,7 +84,6 @@ public class CheckoutPageUser
     private final By AddAddressMessage = By.xpath("//li/div/div");
 
     //Address data
-    //private final By AddressData = By.xpath("//form/div/div[1]/label");
     private final By AddressData = By.xpath("//div[1]/div/main/div/div[2]/div[1]/div[1]/div[1]");
 
     //Order success message
@@ -112,13 +111,6 @@ public class CheckoutPageUser
     private final By PaymentMessage = By.xpath("//div[2]/ol/li");
 
 
-    String ErrorMessageTitle = "Please select an address to proceed with the payment.";
-    String UpdatedMessageTitle = "Card item updated successfully";
-    String DeletedMessageTitle = "Card item deleted successfully";
-    String AddAddressMessageTitle = "Address added successfully";
-    String PaymentMessageTitle = "Please select a payment method to proceed with the payment.";
-
-
     //constructor
     public CheckoutPageUser(Driver driver)
     {
@@ -128,7 +120,6 @@ public class CheckoutPageUser
 
 /************************************ Assertions *******************************************/
    //Header Displayedibility
-
     @Step("Assert header is displayed")
     public CheckoutPageUser checkThatTheHeaderDisblayed() {
        driver.assertion().assertElementDisplayed(Header, "❌ The header is not displayed!");
@@ -136,7 +127,6 @@ public class CheckoutPageUser
 }
 
     //Header Buttons Displayedibility
-
     @Step("Assert home label button is displayed")
     public CheckoutPageUser checkThatTheHomeLabelButtonIsDisblayed() {
         driver.assertion().assertElementDisplayed(Home_Label_Button, "❌ The home label button is not displayed!");
@@ -192,14 +182,12 @@ public class CheckoutPageUser
     }
 
     //footer Displayedibility
-
     @Step("Assert footer is displayed")
     public CheckoutPageUser checkThatTheFooterIsDisblayed() {
         driver.assertion().assertElementDisplayed(footerLinks, "❌ The footer is not displayed!");
         return this;
     }
     //footer_links Displayedibility
-
     @Step("Assert Right reserved is displayed")
      public CheckoutPageUser checkThatTheRightsReservedIsDisblayed() {
         driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "❌ The footer rights reserved is not displayed!");
@@ -225,7 +213,6 @@ public class CheckoutPageUser
     }
 
    //Title_Image Disapility
-
     @Step("Assert title image is displayed")
     public CheckoutPageUser checkThatTheTitleImageIsDisblayed() {
         driver.assertion().assertElementDisplayed(Title_Image, "❌ The title image is not displayed!");
@@ -240,7 +227,6 @@ public class CheckoutPageUser
     }
 
     //Form_adding_address Displayedibility
-
     @Step("Assert user saved address is displayed")
     public CheckoutPageUser checkThatTheUserSavedAddressIsDisblayed() {
         driver.assertion().assertElementDisplayed(User_Saved_Address, "❌ The user saved address is not displayed!");
@@ -324,9 +310,7 @@ public class CheckoutPageUser
     public CheckoutPageUser checkThatTheAddAddressButtonIsDisapledWhenFormIsEmpty() {
 
         boolean isAddAddressButtonEnabled = driver.get().findElement(AddAddress_Button).isEnabled();
-        driver.validations().validateEquals(isAddAddressButtonEnabled, false, "❌ The minus button is not disabled.");
-
-        //driver.assertion().assertElementEnabled(AddAddress_Button, "❌ The addaddress button is disabled!");
+        driver.validations().validateEquals(isAddAddressButtonEnabled, false, "❌ The minus button is not disabled!");
         return this;
     }
 
@@ -374,7 +358,6 @@ public class CheckoutPageUser
     }
 
     //Total_data Displayedibility
-
     @Step("Assert total title is displayed")
     public CheckoutPageUser checkThatTheTotalTitleDisblayed() {
         driver.assertion().assertElementDisplayed(Total_Title, "❌ The total title is not displayed!");
@@ -407,14 +390,14 @@ public class CheckoutPageUser
     }
     @Step("Assert checkout button is clickable")
     public CheckoutPageUser checkThatTheCheckoutButtonIsClickable() {
-        driver.validations().validateEquals(driver.element().isClickable(Checkout_Button), true, "❌ The checkout button is not clickable.");
+        driver.validations().validateEquals(driver.element().isClickable(Checkout_Button), true, "❌ The checkout button is not clickable!");
         return this;
     }
 
     // AddAddress button is disabled when the form fields are empty
     @Step("Assert addaddress button is not clickable")
     public CheckoutPageUser checkThatTheAddaddressButtonIsNotClickableWhenTheFormFieldsAreEmpty() {
-        driver.validations().validateEquals(driver.element().isClickable(AddAddress_Button), false, "❌ The addaddress button is clickable.");
+        driver.validations().validateEquals(driver.element().isClickable(AddAddress_Button), false, "❌ The addaddress button is clickabl!");
 
         return this;
     }
@@ -515,6 +498,18 @@ public class CheckoutPageUser
         return this;
     }
 
+    //URL changed to paypal
+    @Step("Assert payment error message is displayed")
+    public CheckoutPageUser checkThatTheUrlChangedToPaypal() {
+        boolean currentUrl = waitForUrlToContain(driver.get(), "paypal.com");
+        driver.validations().validateTrue(
+                currentUrl,
+                "❌ The url doesn't changed to paypal!"
+        );
+        return this;
+    }
+
+
     /************************************** Actions ********************************************/
     @Step("Click addaddress button")
     public CheckoutPageUser clickOnAddAddressButton()  {
@@ -579,7 +574,6 @@ public class CheckoutPageUser
     @Step("Click delete address button in address section")
     public CheckoutPageUser clickOnDeleteAddressButton()  {
         driver.element().click(FormDeleteAddress_Button);
-        //driver.get().findElement(FormDeleteAddress_Button).submit();
         return this;
     }
 
