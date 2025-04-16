@@ -449,5 +449,35 @@ public class ProductsPageUser {
         driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
         return this;
     }
+    @Step("✅Check that the products is sorted low to high")
+    public ProductsPageUser checkThatSortByLowToHigh()
+    {
+        driver.assertion().assertElementAttributeEquals(PriceLowToHigh,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("✅Check that the products is sorted high to low")
+    public ProductsPageUser checkThatSortByHighToLow()
+    {
+        driver.assertion().assertElementAttributeEquals(PriceHighToLow,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("✅Check that the products is sorted A to Z")
+    public ProductsPageUser checkThatSortByAToZ()
+    {
+        driver.assertion().assertElementAttributeEquals(TitleA_To_Z,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("✅Check that the products is sorted Z to A")
+    public ProductsPageUser checkThatSortByZToA()
+    {
+        driver.assertion().assertElementAttributeEquals(TitleZ_To_A,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("Check that sort by button is displayed")
+    public ProductsPageUser checkThatSortByButtonIsDisplayed()
+    {
+        driver.assertion().assertElementDisplayed(SortByButton,"Sort By button is not displayed");
+        return this;
+    }
 
 }

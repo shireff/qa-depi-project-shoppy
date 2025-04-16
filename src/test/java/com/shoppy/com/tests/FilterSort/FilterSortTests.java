@@ -167,10 +167,8 @@ public class FilterSortTests {
     @Description("Verify the display of options in the 'Sort By' dropdown.")
     @Test(priority = 8)
     public void verifySortByOptionsDisplay() {
-        // Assuming you need to interact with the dropdown to see the options
-        new ProductsPageUser(driver).sortByPriceLowToHigh(); // Clicking opens the dropdown
-        // You might need specific locators and checks to ensure the options are visible
-        // For now, we are implicitly checking by attempting to select them in other tests
+
+        new ProductsPageUser(driver).checkThatSortByButtonIsDisplayed();
     }
 
     @Epic("User Products Page")
@@ -180,12 +178,7 @@ public class FilterSortTests {
     @Description("Verify the functionality of sorting products by price low to high.")
     @Test(priority = 9)
     public void verifySortByPriceLowToHigh() {
-        new ProductsPageUser(driver).sortByPriceLowToHigh();
-        // Add assertions here to check if the products are sorted by price low to high
-        // This likely involves fetching product elements and comparing their prices
-        // Example (you'll need to adapt this based on your product structure):
-        // List<WebElement> productPrices = driver.findElements(By.xpath("//span[@class='product-price']"));
-        // Assert.assertTrue(isSortedAscending(productPrices), "Products are not sorted by price low to high");
+        new ProductsPageUser(driver).sortByPriceLowToHigh().checkThatSortByLowToHigh();
     }
 
     @Epic("User Products Page")
@@ -195,11 +188,7 @@ public class FilterSortTests {
     @Description("Verify the functionality of sorting products by price high to low.")
     @Test(priority = 10)
     public void verifySortByPriceHighToLow() {
-        new ProductsPageUser(driver).sortByPriceHighToLow();
-        // Add assertions here to check if the products are sorted by price high to low
-        // Example (you'll need to adapt this):
-        // List<WebElement> productPrices = driver.findElements(By.xpath("//span[@class='product-price']"));
-        // Assert.assertTrue(isSortedDescending(productPrices), "Products are not sorted by price high to low");
+        new ProductsPageUser(driver).sortByPriceHighToLow().checkThatSortByHighToLow();
     }
 
     @Epic("User Products Page")
@@ -209,11 +198,7 @@ public class FilterSortTests {
     @Description("Verify the functionality of sorting products by title A to Z.")
     @Test(priority = 11)
     public void verifySortByTitleAToZ() {
-        new ProductsPageUser(driver).sortByTitleA_To_Z();
-        // Add assertions here to check if the products are sorted by title A to Z
-        // Example (you'll need to adapt this):
-        // List<WebElement> productTitles = driver.findElements(By.xpath("//h3[@class='product-title']"));
-        // Assert.assertTrue(isSortedAlphabetically(productTitles), "Products are not sorted by title A to Z");
+        new ProductsPageUser(driver).sortByTitleA_To_Z().checkThatSortByAToZ();
     }
 
     @Epic("User Products Page")
@@ -223,11 +208,7 @@ public class FilterSortTests {
     @Description("Verify the functionality of sorting products by title Z to A.")
     @Test(priority = 12)
     public void verifySortByTitleZToA() {
-        new ProductsPageUser(driver).sortByTitleZ_To_A();
-        // Add assertions here to check if the products are sorted by title Z to A
-        // Example (you'll need to adapt this):
-        // List<WebElement> productTitles = driver.findElements(By.xpath("//h3[@class='product-title']"));
-        // Assert.assertTrue(isSortedReverseAlphabetically(productTitles), "Products are not sorted by title Z to A");
+        new ProductsPageUser(driver).sortByTitleZ_To_A().checkThatSortByZToA();
     }
 
     @Epic("User Products Page")
@@ -237,9 +218,8 @@ public class FilterSortTests {
     @Description("Verify sorting functionality after applying a category filter.")
     @Test(priority = 13)
     public void verifySortAfterCategoryFilter() {
-        new ProductsPageUser(driver).clickMenCheckBox().sortByPriceLowToHigh();
-        // Add assertions to check if the displayed (Men's) products are sorted by price low to high
-        new ProductsPageUser(driver).clickMenCheckBox(); // Uncheck
+        new ProductsPageUser(driver).clickMenCheckBox().sortByPriceLowToHigh().checkThatTheMenCheckBoxIsChecked().checkThatSortByLowToHigh();
+        new ProductsPageUser(driver).clickMenCheckBox().checkThatTheMenCheckBoxIsNotChecked();
     }
 
     @Epic("User Products Page")
@@ -249,9 +229,8 @@ public class FilterSortTests {
     @Description("Verify sorting functionality after applying a brand filter.")
     @Test(priority = 14)
     public void verifySortAfterBrandFilter() {
-        new ProductsPageUser(driver).clickNickCheckBox().sortByTitleZ_To_A();
-        // Add assertions to check if the displayed (Nike) products are sorted by title Z to A
-        new ProductsPageUser(driver).clickNickCheckBox(); // Uncheck
+        new ProductsPageUser(driver).clickNickCheckBox().sortByTitleZ_To_A().checkThatSortByZToA();
+        new ProductsPageUser(driver).clickNickCheckBox();
     }
 
     @Epic("User Products Page")
@@ -359,14 +338,15 @@ public class FilterSortTests {
     @Description("Verify the presence and correctness of footer elements on the Products page.")
     @Test(priority = 24)
     public void verifyFooterElements() {
-        new ProductsPageUser(driver)
-                .checkFooterRightsReservedDisplayed()
-                .checkFooterRightsReservedText("© 2025 Shireff Nady All rights reserved")
-                .checkFooterGitHubDisplayed()
-                .checkFooterLinkedInDisplayed()
-                .checkFooterWhatsAppDisplayed()
-                .checkFooterGitHubLink("https://github.com/shireff")
-                .checkFooterLinkedInLink("https://www.linkedin.com/");
+            new ProductsPageUser(driver)
+                    .checkFooterRightsReservedDisplayed()
+                    .checkFooterRightsReservedText("© 2025 Shireff Nady All rights reserved")
+                    .checkFooterGitHubDisplayed()
+                    .checkFooterLinkedInDisplayed()
+                    .checkFooterWhatsAppDisplayed()
+                    .checkFooterGitHubLink("https://github.com/shireff")
+                    .checkFooterLinkedInLink("https://www.linkedin.com/in/shireff-nady-5b7791340/")
+                    .checkFooterWhatsAppLink("https://wa.me/+201274068946");
     }
     @AfterClass
     public void TearDown() {
