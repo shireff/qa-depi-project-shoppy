@@ -27,45 +27,6 @@ public class FilterSortTests {
         new ProductsPageUser(driver).driverNavigate();
     }
 
-    @Test
-    public void TestCase_Demo() {
-        new ProductsPageUser(driver).clickMenCheckBox().clickHMCheckBox().clickAccessoriesCheckBox();
-    }
-    @Test
-    public void usingAllCheckBoxes()
-    {
-        new ProductsPageUser(driver).clickMenCheckBox().
-                clickWomenCheckBox().
-                clickKidsCheckBox().
-                clickAccessoriesCheckBox().
-                clickFootWearCheckBox().
-                clickNickCheckBox().
-                clickAdidasCheckBox().
-                clickPumaCheckBox().
-                clickLevisCheckBox().
-                clickZaraCheckBox().
-                clickHMCheckBox().checkThatTheMenCheckBoxIsChecked().
-                checkThatTheWomenCheckBoxIsChecked().
-                checkThatTheKidsCheckBoxIsChecked().
-                checkThatTheAccessoriesCheckBoxIsChecked().
-                checkThatFootWearCheckBoxIsChecked().
-                checkThatNikeCheckBoxIsChecked().
-                checkThatAdidasCheckBoxIsChecked().
-                checkThatPumaCheckBoxIsChecked().
-                checkThatLevisCheckBoxIsChecked().
-                checkThatZaraCheckBoxIsChecked().
-                checkThatHMCheckBoxIsChecked();
-    }
-    @Test
-    public void goingToSearchPageFromProductsPage()
-    {
-        new ProductsPageUser(driver).clickNavBarSearch().checkThatSearchTabIsVisible();
-    }
-    @Test
-    public void goingToHomePageFromProductsPage()
-    {
-        new ProductsPageUser(driver).clickNavBarHome();
-    }
     @Epic("User Products Page")
     @Feature("Navigation")
     @Story("Verify Products Page URL")
@@ -81,7 +42,7 @@ public class FilterSortTests {
     @Story("Verify Main Titles")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify the presence and text of the main titles on the Products page.")
-    @Test(priority = 2)
+    @Test(priority = 5)
     public void verifyMainTitles() {
         new ProductsPageUser(driver).checkThatTheAllProductsTitleIsDisplayed()
                 .checkThatTheFiltersTitleIsDisplayed()
@@ -177,7 +138,7 @@ public class FilterSortTests {
     @Story("Verify Sort By Functionality")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify the functionality of the 'Sort By' dropdown options.")
-    @Test(priority = 5)
+    @Test(priority = 2)
     public void verifySortByFunctionality() {
         new ProductsPageUser(driver).sortByPriceLowToHigh();
         // Add assertions here to check if the products are sorted by price low to high
@@ -301,6 +262,48 @@ public class FilterSortTests {
     @Story("Verify Footer Elements")
     @Severity(SeverityLevel.MINOR)
     @Description("Verify the presence of footer elements on the Products page.")
+
+    @Test
+    public void TestCase_Demo() {
+        new ProductsPageUser(driver).clickMenCheckBox().clickHMCheckBox().clickAccessoriesCheckBox();
+    }
+    @Test
+    public void usingAllCheckBoxes()
+    {
+        new ProductsPageUser(driver).clickMenCheckBox().
+                clickWomenCheckBox().
+                clickKidsCheckBox().
+                clickAccessoriesCheckBox().
+                clickFootWearCheckBox().
+                clickNickCheckBox().
+                clickAdidasCheckBox().
+                clickPumaCheckBox().
+                clickLevisCheckBox().
+                clickZaraCheckBox().
+                clickHMCheckBox().checkThatTheMenCheckBoxIsChecked().
+                checkThatTheWomenCheckBoxIsChecked().
+                checkThatTheKidsCheckBoxIsChecked().
+                checkThatTheAccessoriesCheckBoxIsChecked().
+                checkThatFootWearCheckBoxIsChecked().
+                checkThatNikeCheckBoxIsChecked().
+                checkThatAdidasCheckBoxIsChecked().
+                checkThatPumaCheckBoxIsChecked().
+                checkThatLevisCheckBoxIsChecked().
+                checkThatZaraCheckBoxIsChecked().
+                checkThatHMCheckBoxIsChecked();
+    }
+    @Test
+    public void goingToSearchPageFromProductsPage()
+    {
+        new ProductsPageUser(driver).clickNavBarSearch().checkThatSearchTabIsVisible();
+    }
+    @Test
+    public void goingToHomePageFromProductsPage()
+    {
+        new ProductsPageUser(driver).clickNavBarHome();
+    }
+
+
     @Test(priority = 15)
     public void verifyFooterElements() {
         // Note: You'll need to add methods to your ProductsPageUser page to interact with and assert on footer elements.
