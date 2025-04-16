@@ -75,6 +75,13 @@ public class LoginPage {
         driver.validations().validateEquals(actualURL, expectedAdminURL, "Admin URL mismatch!");
         return this;
     }
+    @Step("check the page url")
+    public LoginPage checkLoginPageURL()
+    {
+        String url =  "https://shoppy-ochre.vercel.app/auth/login";
+        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), url);
+        return this;
+    }
 
 //    @Step("Assert login successful as user")
 //    public void assertLoginSuccessfulAsUser() {

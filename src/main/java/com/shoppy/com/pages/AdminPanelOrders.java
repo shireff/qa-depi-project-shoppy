@@ -334,4 +334,16 @@ public class AdminPanelOrders
         driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
         return this;
     }
+    public AdminPanelOrders checkOrdersTableHeaders()
+    {
+        new AdminPanelOrders(driver).checkOrderIDTitleText().checkOrderDateTitleIsDisplayed().checkOrderDateTitleText()
+                .checkOrderStatusTitleIsDisplayed().checkOrderStatusTitleText();
+        return this;
+    }
+    public AdminPanelOrders verifyFirstOrderDetails()
+    {
+        new AdminPanelOrders(driver).checkOrderIDIsDisplayed().checkOrderDateIsDisplayed().checkOrderPriceIsDisplayed()
+                .checkOrderStatusIsDisplayed();
+        return this;
+    }
 }
