@@ -201,8 +201,9 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
-                .deleteAfterAddedSuccessfully(title)
                 .checkAddProductFormIsNotDisplayed()
+                .deleteAfterAddedSuccessfully(title)
+
         ;
     }
 
@@ -385,7 +386,9 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
-//                .deleteAfterAddedSuccessfully(title)
+                .deleteAfterAddedSuccessfully(title)
+                .checkToastMsgIsDisplayed()
+
 //                .checkAddProductFormIsDisplayed()
 //                .checkInvalidTotalStockErrorMsgText();
         ;
@@ -410,7 +413,9 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
-//                .deleteAfterAddedSuccessfully(longTitle)
+                .deleteAfterAddedSuccessfully(longTitle)
+                .checkToastMsgIsDisplayed()
+
 //                .checkAddProductFormIsDisplayed()
 //                .checkInvalidTitleErrorMsgText();
         ;
@@ -442,7 +447,8 @@ public class AdminAddProductPageTests {
                 .selectOptionFromBrandSelect(brandIndex)
                 .checkAddBtnIsDisplayed()
                 .clickOnAddBtn()
-//                .deleteAfterAddedSuccessfully(title)
+                .deleteAfterAddedSuccessfully(title)
+                .checkToastMsgIsDisplayed()
 //                .checkAddProductFormIsDisplayed()
         ;
     }
