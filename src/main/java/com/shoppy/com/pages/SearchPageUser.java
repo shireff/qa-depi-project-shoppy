@@ -2,12 +2,13 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class SearchPageUser
 {
-    private final Driver driver;
+    private Driver driver;
 
     private final String url = "https://shoppy-ochre.vercel.app/shop/search";
     //Nav Bar Responsive Button
@@ -39,149 +40,155 @@ public class SearchPageUser
     private final By Footer_GitHub = By.xpath("//footer/div/div/a[1]");
     private final By Footer_LinkedIn = By.xpath("//footer/div/div/a[2]");
     private final By Footer_WhatsApp = By.xpath("//footer/div/div/a[3]");
+    //Constructor
     public SearchPageUser(Driver driver)
     {
         this.driver = driver;
     }
 
     //Actions
+    @Step("👆click on search tap")
+    public SearchPageUser clickOnSearchTap()
+    {
+        driver.element().click(Search_Label_Button);
+        return this;
+    }
+    @Step("👆click on the search box")
     public SearchPageUser clickOnSearchBox()
     {
-        System.out.println("👆click on the search box");
         driver.element().click(SearchBox);
         return this;
     }
+    @Step("✍️fill the search box Men")
     public SearchPageUser fillSearchBoxMen()
     {
-        System.out.println("✍️fill the search box Men");
         driver.element().type(SearchBox,"Men");
         return this;
     }
+    @Step("✍️fill the search box Women")
     public SearchPageUser fillSearchBoxWomen()
     {
-        System.out.println("✍️fill the search box Women");
         driver.element().type(SearchBox,"Women");
         return this;
     }
+    @Step("✍️fill the search box Kids")
     public SearchPageUser fillSearchBoxKids()
     {
-        System.out.println("✍️fill the search box Kids");
         driver.element().type(SearchBox,"Kids");
         return this;
     }
+    @Step("✍️fill the search box Footwear")
     public SearchPageUser fillSearchBoxFootwear()
     {
-        System.out.println("✍️fill the search box Footwear");
         driver.element().type(SearchBox,"Footwear");
         return this;
     }
+    @Step("✍️fill the search box Accessories")
     public SearchPageUser fillSearchBoxAccessories()
     {
-        System.out.println("✍️fill the search box Accessories");
         driver.element().type(SearchBox,"Accessories");
         return this;
     }
+    @Step("✍️fill the search box Nike")
     public SearchPageUser fillSearchBoxNike()
     {
-        System.out.println("✍️fill the search box Nike");
         driver.element().type(SearchBox,"Nike");
         return this;
     }
+    @Step("✍️fill the search box Adidas")
     public SearchPageUser fillSearchBoxAdidas()
     {
-        System.out.println("✍️fill the search box Adidas");
         driver.element().type(SearchBox,"Adidas");
         return this;
     }
+    @Step("✍️fill the search box Puma")
     public SearchPageUser fillSearchBoxPuma()
     {
-        System.out.println("✍️fill the search box Puma");
         driver.element().type(SearchBox,"Puma");
         return this;
     }
+    @Step("✍️fill the search box Levi's")
     public SearchPageUser fillSearchBoxLevis()
     {
-        System.out.println("✍️fill the search box Levi's");
         driver.element().type(SearchBox,"Levi's");
         return this;
     }
+    @Step("✍️fill the search box Zara")
     public SearchPageUser fillSearchBoxZara()
     {
-        System.out.println("✍️fill the search box Zara");
         driver.element().type(SearchBox,"Zara");
         return this;
     }
+    @Step("✍️fill the search box H&M")
     public SearchPageUser fillSearchBoxHM()
     {
-        System.out.println("✍️fill the search box H&M");
         driver.element().type(SearchBox,"H&M");
         return this;
     }
+    @Step("👆click on the searched image for details")
     public void clickOnSearchedImage()
     {
-        System.out.println("👆click on the searched image for details");
         driver.element().click(First_Search_Image);
     }
     //Assertion
+    @Step("✅check search tab in nav is visible")
     public SearchPageUser checkThatSearchTabIsVisible()
     {
-        System.out.println("✅check search tab in nav is visible");
-        String actualTitle = driver.element().getTextOf(Search_Label_Button);
-        Assert.assertEquals(actualTitle,Search_Button_Text);
+        driver.assertion().assertElementTextEquals(Search_Label_Button,Search_Button_Text,"The text of the element does not match the expected value");
         return this;
     }
+    @Step("✅check that search box is displayed")
     public SearchPageUser checkThatSearchBoxIsDisplayed()
     {
-        System.out.println("✅check that search box is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),SearchBox));
+        driver.assertion().assertElementDisplayed(SearchBox,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that no products found is displayed before search")
     public SearchPageUser checkThatNoProductsFoundIsDisplayed()
     {
-        System.out.println("✅check that no products found is displayed before search");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),No_Products_Found_Header));
+        driver.assertion().assertElementDisplayed(No_Products_Found_Header,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's name is displayed")
     public SearchPageUser checkThatProductSearchedNameIsDisplayed()
     {
-        System.out.println("✅check that the searched product's name is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_ProductName));
+        driver.assertion().assertElementDisplayed(First_Search_ProductName,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's category is displayed")
     public SearchPageUser checkThatProductSearchedCategoryIsDisplayed()
     {
-        System.out.println("✅check that the searched product's category is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_Category));
+        driver.assertion().assertElementDisplayed(First_Search_Category,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's brand is displayed")
     public SearchPageUser checkThatProductSearchedBrandIsDisplayed()
     {
-        System.out.println("✅check that the searched product's brand is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_Brand));
+        driver.assertion().assertElementDisplayed(First_Search_Brand,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's price is displayed")
     public SearchPageUser checkThatProductSearchedPriceIsDisplayed()
     {
-        System.out.println("✅check that the searched product's price is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_Price));
+        driver.assertion().assertElementDisplayed(First_Search_Price,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's sale price is displayed")
     public SearchPageUser checkThatProductSearchedSalePriceIsDisplayed()
     {
-        System.out.println("✅check that the searched product's sale price is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_SalePrice));
+        driver.assertion().assertElementDisplayed(First_Search_SalePrice,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's add to card button is displayed")
     public SearchPageUser checkThatProductSearchedAddToCardIsDisplayed()
     {
-        System.out.println("✅check that the searched product's add to card button is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_AddToCardBtn));
+        driver.assertion().assertElementDisplayed(First_Search_AddToCardBtn,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that the searched product's image is displayed")
     public SearchPageUser checkThatProductSearchedImageIsDisplayed()
     {
-        System.out.println("✅check that the searched product's image is displayed");
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Search_Image));
+        driver.assertion().assertElementDisplayed(First_Search_Image,"The element is not displayed as expected");
         return this;
     }
 }

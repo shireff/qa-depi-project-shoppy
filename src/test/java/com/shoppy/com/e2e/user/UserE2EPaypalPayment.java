@@ -6,11 +6,11 @@ import com.shoppy.com.pages.HomePage;
 import com.shoppy.com.pages.LoginPage;
 import com.shoppy.com.pages.SignUp;
 import io.qameta.allure.*;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-
-public class UserE2E {
-
+public class UserE2EPaypalPayment {
     public Driver driver;
     private SignUp signUpPage;
     private LoginPage loginPage;
@@ -72,17 +72,24 @@ public class UserE2E {
                 .checkThatTheCartIsDisplayed()
                 .checkThatTheProductNameInCartIsDisplayed()
                 .checkThatTheProductPriceIsDisplayed()
+                .checkThatTheProductTotalIsDisplayed()
                 .clickOnCheckoutButton();
     }
 
     @Epic("2 - Shopping Flow")
-    @Feature("2.2 - Checkout and Payment")
-    @Story("User can proceed to payment from the checkout page")
+    @Feature("2.2 - Checkout and Payment with paypal")
+    @Story("User can proceed to paypal payment from the checkout page")
     @Severity(SeverityLevel.CRITICAL)
-    @Description("Ensure that the checkout page header is displayed correctly as the user begins the payment process.")
+    @Description("Ensure that the checkout page header is displayed correctly and the user begins the payment process.")
     @Test(priority = 4, dependsOnMethods = "fromHomePageAddProduct")
     public void fromCheckoutPageMakeThePaymentProcess() {
-        checkout.checkThatTheHeaderDisblayed();
+        checkout.checkThatTheHeaderDisblayed()
+                .fillAddAddressForm("Korea", "Seoul", "369852", "01736256325", "Testing")
+                .clickOnAddAddressButton()
+                .clickOnAddressSection()
+                .clickOnPaypalButton()
+                .clickOnCheckoutButton()
+                .checkThatTheUrlChangedToPaypal();
     }
 
 

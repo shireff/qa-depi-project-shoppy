@@ -3,10 +3,10 @@ package com.shoppy.com.pages;
 import DriverFactory.Driver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+
 import static com.shoppy.com.utils.Waits.*;
 
-public class CheckoutPageUser
-{
+public class CheckoutPageUser {
     private final Driver driver;
 
     //Header section
@@ -120,20 +120,18 @@ public class CheckoutPageUser
 
 
     //constructor
-    public CheckoutPageUser(Driver driver)
-    {
+    public CheckoutPageUser(Driver driver) {
         this.driver = driver;
     }
 
 
-/************************************ Assertions *******************************************/
-   //Header Displayedibility
-
+    /************************************ Assertions *******************************************/
+    //Header Displayedibility
     @Step("Assert header is displayed")
     public CheckoutPageUser checkThatTheHeaderDisblayed() {
-       driver.assertion().assertElementDisplayed(Header, "❌ The header is not displayed!");
-       return this;
-}
+        driver.assertion().assertElementDisplayed(Header, "❌ The header is not displayed!");
+        return this;
+    }
 
     //Header Buttons Displayedibility
 
@@ -201,7 +199,7 @@ public class CheckoutPageUser
     //footer_links Displayedibility
 
     @Step("Assert Right reserved is displayed")
-     public CheckoutPageUser checkThatTheRightsReservedIsDisblayed() {
+    public CheckoutPageUser checkThatTheRightsReservedIsDisblayed() {
         driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "❌ The footer rights reserved is not displayed!");
         return this;
     }
@@ -224,7 +222,7 @@ public class CheckoutPageUser
         return this;
     }
 
-   //Title_Image Disapility
+    //Title_Image Disapility
 
     @Step("Assert title image is displayed")
     public CheckoutPageUser checkThatTheTitleImageIsDisblayed() {
@@ -405,6 +403,7 @@ public class CheckoutPageUser
         driver.assertion().assertElementDisplayed(Checkout_Button, "❌ The checkout button is not displayed!");
         return this;
     }
+
     @Step("Assert checkout button is clickable")
     public CheckoutPageUser checkThatTheCheckoutButtonIsClickable() {
         driver.validations().validateEquals(driver.element().isClickable(Checkout_Button), true, "❌ The checkout button is not clickable.");
@@ -430,8 +429,8 @@ public class CheckoutPageUser
     public CheckoutPageUser checkThatTheProducDataIsUpdatedWithePlusIcon() {
         waitForElementTextToBe(driver.get(), ProductQuantity_Label, "2");
 
-        String productQuantity =driver.get().findElement(ProductQuantity_Label).getText();
-        driver.validations().validateEquals(productQuantity,"2", "❌ The product quantity is not 2");
+        String productQuantity = driver.get().findElement(ProductQuantity_Label).getText();
+        driver.validations().validateEquals(productQuantity, "2", "❌ The product quantity is not 2");
         return this;
     }
 
@@ -439,8 +438,8 @@ public class CheckoutPageUser
     public CheckoutPageUser checkThatTheProducDataIsUpdatedWithMinusIcon() {
         waitForElementTextToBe(driver.get(), ProductQuantity_Label, "1");
 
-        String productQuantity =driver.get().findElement(ProductQuantity_Label).getText();
-        driver.validations().validateEquals(productQuantity,"1", "❌ The product quantity is not 1");
+        String productQuantity = driver.get().findElement(ProductQuantity_Label).getText();
+        driver.validations().validateEquals(productQuantity, "1", "❌ The product quantity is not 1");
         return this;
     }
 
@@ -476,7 +475,7 @@ public class CheckoutPageUser
     //Address_data Displayedibility
     @Step("Assert Address data is displayed")
     public CheckoutPageUser checkThatTheAddressDataIsDisplayed() {
-        driver.assertion().assertElementDisplayed(AddressData,"❌ The Address data is not displayed");
+        driver.assertion().assertElementDisplayed(AddressData, "❌ The Address data is not displayed");
         return this;
     }
 
@@ -515,82 +514,94 @@ public class CheckoutPageUser
         return this;
     }
 
+    //URL changed to paypal
+    @Step("Assert payment error message is displayed")
+    public CheckoutPageUser checkThatTheUrlChangedToPaypal() {
+        boolean currentUrl = waitForUrlToContain(driver.get(), "paypal.com");
+        driver.validations().validateTrue(
+                currentUrl,
+                "❌ The url doesn't changed to paypal!"
+        );
+        return this;
+    }
+
+
     /************************************** Actions ********************************************/
     @Step("Click addaddress button")
-    public CheckoutPageUser clickOnAddAddressButton()  {
+    public CheckoutPageUser clickOnAddAddressButton() {
         driver.element().click(AddAddress_Button);
         return this;
     }
 
     @Step("Click checkout button")
-    public CheckoutPageUser clickOnCheckoutButton()  {
+    public CheckoutPageUser clickOnCheckoutButton() {
         driver.element().click(Checkout_Button);
         return this;
     }
 
     @Step("Click add(+) button")
-    public CheckoutPageUser clickOnPlusButton()  {
+    public CheckoutPageUser clickOnPlusButton() {
         driver.element().click(Add_Button);
         return this;
     }
 
     @Step("Click minus(-) button")
-    public CheckoutPageUser clickOnminusButton()  {
+    public CheckoutPageUser clickOnminusButton() {
         driver.element().click(Minus_Button);
         return this;
     }
 
     @Step("Click delete button")
-    public CheckoutPageUser clickOndeleteButton()  {
+    public CheckoutPageUser clickOndeleteButton() {
         driver.element().click(DeleteProduct_Button);
         return this;
     }
 
     @Step("Select address")
-    public CheckoutPageUser clickOnAddressSection()  {
+    public CheckoutPageUser clickOnAddressSection() {
         driver.element().click(AddressData);
         return this;
     }
 
     @Step("Click cash_on_delivery button")
-    public CheckoutPageUser clickOnCashOnDeliveryButton()  {
+    public CheckoutPageUser clickOnCashOnDeliveryButton() {
         driver.element().click(Cash_Button);
         return this;
     }
 
     @Step("Click paypal button")
-    public CheckoutPageUser clickOnPaypalButton()  {
+    public CheckoutPageUser clickOnPaypalButton() {
         driver.element().click(PayPal_Button);
         return this;
     }
 
     @Step("Click edit address button in address section")
-    public CheckoutPageUser clickOnEditAddressButton()  {
+    public CheckoutPageUser clickOnEditAddressButton() {
         driver.element().click(EditAddress_Button);
         return this;
     }
 
     @Step("Click edit address button in form")
-    public CheckoutPageUser clickOEditAddressButtonInForm()  {
+    public CheckoutPageUser clickOEditAddressButtonInForm() {
         driver.element().click(FormEditAddress_Button);
         return this;
     }
 
     @Step("Click delete address button in address section")
-    public CheckoutPageUser clickOnDeleteAddressButton()  {
+    public CheckoutPageUser clickOnDeleteAddressButton() {
         driver.element().click(FormDeleteAddress_Button);
         //driver.get().findElement(FormDeleteAddress_Button).submit();
         return this;
     }
 
     @Step("Click close button")
-    public CheckoutPageUser clickOnCloseButton()  {
+    public CheckoutPageUser clickOnCloseButton() {
         driver.element().click(Close_Button);
         return this;
     }
 
     @Step("Click shoppy link")
-    public HomePage clickOnShopyLink()  {
+    public HomePage clickOnShopyLink() {
         driver.element().click(Shoppy_Icon);
         return new HomePage(driver);
     }
