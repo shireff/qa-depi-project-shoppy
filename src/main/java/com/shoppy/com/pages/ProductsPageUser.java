@@ -402,4 +402,82 @@ public class ProductsPageUser {
         return this;
     }
 
+    @Step("✅Check if the footer rights reserved text is displayed")
+    public ProductsPageUser checkFooterRightsReservedDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "The footer rights reserved text is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the footer rights reserved")
+    public ProductsPageUser checkFooterRightsReservedText(String expectedText) {
+        driver.assertion().assertElementTextContains(Footer_Rights_Reserved, expectedText, "The footer rights reserved text does not match.");
+        return this;
+    }
+
+    @Step("✅Check if the GitHub link is displayed")
+    public ProductsPageUser checkFooterGitHubDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_GitHub, "The GitHub link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the LinkedIn link is displayed")
+    public ProductsPageUser checkFooterLinkedInDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_LinkedIn, "The LinkedIn link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the WhatsApp link is displayed")
+    public ProductsPageUser checkFooterWhatsAppDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_WhatsApp, "The WhatsApp link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the GitHub link")
+    public ProductsPageUser checkFooterGitHubLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_GitHub, "href", expectedLink, "The GitHub link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the LinkedIn link")
+    public ProductsPageUser checkFooterLinkedInLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_LinkedIn, "href", expectedLink, "The LinkedIn link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the WhatsApp link")
+    public ProductsPageUser checkFooterWhatsAppLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
+        return this;
+    }
+    @Step("✅Check that the products is sorted low to high")
+    public ProductsPageUser checkThatSortByLowToHigh()
+    {
+        driver.assertion().assertElementAttributeEquals(PriceLowToHigh,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("✅Check that the products is sorted high to low")
+    public ProductsPageUser checkThatSortByHighToLow()
+    {
+        driver.assertion().assertElementAttributeEquals(PriceHighToLow,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("✅Check that the products is sorted A to Z")
+    public ProductsPageUser checkThatSortByAToZ()
+    {
+        driver.assertion().assertElementAttributeEquals(TitleA_To_Z,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("✅Check that the products is sorted Z to A")
+    public ProductsPageUser checkThatSortByZToA()
+    {
+        driver.assertion().assertElementAttributeEquals(TitleZ_To_A,"data-state","checked","sort drop down didn't function");
+        return this;
+    }
+    @Step("Check that sort by button is displayed")
+    public ProductsPageUser checkThatSortByButtonIsDisplayed()
+    {
+        driver.assertion().assertElementDisplayed(SortByButton,"Sort By button is not displayed");
+        return this;
+    }
+
 }

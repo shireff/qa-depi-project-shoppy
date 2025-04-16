@@ -1,6 +1,7 @@
 package com.shoppy.com.tests.searchPage;
 
 import DriverFactory.Driver;
+import com.shoppy.com.pages.AdminDashboardPage;
 import com.shoppy.com.pages.LoginPage;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -35,11 +36,8 @@ public class SearchPageUser
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that the Search page URL is correct.")
     @Test(priority = 1)
-    public void verifySearchPageURL() {
-        // Note: The URL might not change upon clicking the search icon,
-        // as it might be a modal or an in-page element. Adjust the assertion accordingly.
-        // If it does navigate to a specific URL, uncomment and verify.
-        // searchPageUser.checkSearchPageUrl();
+    public void verifySearchPageLoaded() {
+        new com.shoppy.com.pages.SearchPageUser(driver).checkThatSearchBoxIsDisplayed();
     }
 
     @Epic("User Search Page")
@@ -80,17 +78,13 @@ public class SearchPageUser
     @Test(priority = 5)
     public void searchForMenAndVerifyResults() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxMen();
-        // Assuming there will be search results for "Men"
-        // You might need to add a way to trigger the search (e.g., pressing Enter or clicking a search button if present)
-        // For now, we'll just check if the elements for a search result are displayed after filling the box.
         new com.shoppy.com.pages.SearchPageUser(driver).checkThatProductSearchedNameIsDisplayed()
                 .checkThatProductSearchedCategoryIsDisplayed()
                 .checkThatProductSearchedBrandIsDisplayed()
                 .checkThatProductSearchedPriceIsDisplayed()
                 .checkThatProductSearchedAddToCardIsDisplayed()
                 .checkThatProductSearchedImageIsDisplayed();
-        // Optional: Verify Sale Price if applicable
-        // searchPageUser.checkThatProductSearchedSalePriceIsDisplayed();
+
     }
 
     @Epic("User Search Page")
@@ -101,16 +95,12 @@ public class SearchPageUser
     @Test(priority = 6)
     public void searchForWomenAndVerifyResults() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxWomen();
-        // Assuming there will be search results for "Women"
-        // Add a way to trigger the search if needed
         new com.shoppy.com.pages.SearchPageUser(driver).checkThatProductSearchedNameIsDisplayed()
                 .checkThatProductSearchedCategoryIsDisplayed()
                 .checkThatProductSearchedBrandIsDisplayed()
                 .checkThatProductSearchedPriceIsDisplayed()
                 .checkThatProductSearchedAddToCardIsDisplayed()
                 .checkThatProductSearchedImageIsDisplayed();
-        // Optional: Verify Sale Price
-        // searchPageUser.checkThatProductSearchedSalePriceIsDisplayed();
     }
 
     @Epic("User Search Page")
@@ -121,16 +111,13 @@ public class SearchPageUser
     @Test(priority = 7)
     public void searchForKidsAndVerifyResults() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxKids();
-        // Assuming there will be search results for "Kids"
-        // Add a way to trigger the search if needed
         new com.shoppy.com.pages.SearchPageUser(driver).checkThatProductSearchedNameIsDisplayed()
                 .checkThatProductSearchedCategoryIsDisplayed()
                 .checkThatProductSearchedBrandIsDisplayed()
                 .checkThatProductSearchedPriceIsDisplayed()
                 .checkThatProductSearchedAddToCardIsDisplayed()
                 .checkThatProductSearchedImageIsDisplayed();
-        // Optional: Verify Sale Price
-        // searchPageUser.checkThatProductSearchedSalePriceIsDisplayed();
+
     }
 
     @Epic("User Search Page")
@@ -141,16 +128,12 @@ public class SearchPageUser
     @Test(priority = 8)
     public void searchForFootwearAndVerifyResults() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxFootwear();
-        // Assuming there will be search results for "Footwear"
-        // Add a way to trigger the search if needed
         new com.shoppy.com.pages.SearchPageUser(driver).checkThatProductSearchedNameIsDisplayed()
                 .checkThatProductSearchedCategoryIsDisplayed()
                 .checkThatProductSearchedBrandIsDisplayed()
                 .checkThatProductSearchedPriceIsDisplayed()
                 .checkThatProductSearchedAddToCardIsDisplayed()
                 .checkThatProductSearchedImageIsDisplayed();
-        // Optional: Verify Sale Price
-        // searchPageUser.checkThatProductSearchedSalePriceIsDisplayed();
     }
 
     @Epic("User Search Page")
@@ -161,16 +144,12 @@ public class SearchPageUser
     @Test(priority = 9)
     public void searchForAccessoriesAndVerifyResults() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxAccessories();
-        // Assuming there will be search results for "Accessories"
-        // Add a way to trigger the search if needed
         new com.shoppy.com.pages.SearchPageUser(driver).checkThatProductSearchedNameIsDisplayed()
                 .checkThatProductSearchedCategoryIsDisplayed()
                 .checkThatProductSearchedBrandIsDisplayed()
                 .checkThatProductSearchedPriceIsDisplayed()
                 .checkThatProductSearchedAddToCardIsDisplayed()
                 .checkThatProductSearchedImageIsDisplayed();
-        // Optional: Verify Sale Price
-        // searchPageUser.checkThatProductSearchedSalePriceIsDisplayed();
     }
 
     @Epic("User Search Page")
@@ -181,16 +160,13 @@ public class SearchPageUser
     @Test(priority = 10)
     public void searchForNikeAndVerifyResults() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxNike();
-        // Assuming there will be search results for "Nike"
-        // Add a way to trigger the search if needed
         new com.shoppy.com.pages.SearchPageUser(driver).checkThatProductSearchedNameIsDisplayed()
                 .checkThatProductSearchedCategoryIsDisplayed()
                 .checkThatProductSearchedBrandIsDisplayed()
                 .checkThatProductSearchedPriceIsDisplayed()
                 .checkThatProductSearchedAddToCardIsDisplayed()
                 .checkThatProductSearchedImageIsDisplayed();
-        // Optional: Verify Sale Price
-        // searchPageUser.checkThatProductSearchedSalePriceIsDisplayed();
+
     }
 
     @Epic("User Search Page")
@@ -201,10 +177,7 @@ public class SearchPageUser
     @Test(priority = 11)
     public void clickOnSearchedImageTest() {
         new com.shoppy.com.pages.SearchPageUser(driver).fillSearchBoxMen();
-        // Assuming search results are displayed
         new com.shoppy.com.pages.SearchPageUser(driver).clickOnSearchedImage();
-        // Add assertions here to verify that the click action was successful
-        // (e.g., checking the URL or the presence of product details elements).
     }
 
     @Epic("User Search Page")
@@ -214,12 +187,15 @@ public class SearchPageUser
     @Description("Verify the presence of footer elements on the Search page.")
     @Test(priority = 12)
     public void verifyFooterElements() {
-        // Note: You'll need to add methods to your SearchPageUser page to interact with and assert on footer elements.
-        // Assuming you add methods like checkFooterRightsReservedDisplayed, checkFooterGitHubDisplayed, etc.
-        // searchPageUser.checkFooterRightsReservedDisplayed()
-        //         .checkFooterGitHubDisplayed()
-        //         .checkFooterLinkedInDisplayed()
-        //         .checkFooterWhatsAppDisplayed();
+        new com.shoppy.com.pages.SearchPageUser(driver)
+                .checkFooterRightsReservedDisplayed()
+                .checkFooterRightsReservedText("© 2025 Shireff Nady All rights reserved")
+                .checkFooterGitHubDisplayed()
+                .checkFooterLinkedInDisplayed()
+                .checkFooterWhatsAppDisplayed()
+                .checkFooterGitHubLink("https://github.com/shireff")
+                .checkFooterLinkedInLink("https://www.linkedin.com/in/shireff-nady-5b7791340/")
+                .checkFooterWhatsAppLink("https://wa.me/+201274068946");;
     }
     @AfterClass
     public void TearDown() {
