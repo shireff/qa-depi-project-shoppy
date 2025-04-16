@@ -24,11 +24,6 @@ public class AdminOrdersPageTest
         new LoginPage(driver).loginIntoApp("ramymahana7@gmail.com", "archer@@@97");
         new AdminDashboardPage(driver).clickOnOrdersBtn();
     }
-    @Test
-    public void TestMethod()
-    {
-        new AdminPanelOrders(driver).clickOnViewDetailsBtn();
-    }
     @Epic("Admin Panel")
     @Feature("Orders Page")
     @Story("Verify Orders Page URL")
@@ -52,10 +47,40 @@ public class AdminOrdersPageTest
 
     @Epic("Admin Panel")
     @Feature("Orders Page")
+    @Story("Verify Dashboard Button")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify the presence and text of the Dashboard button on the Orders page.")
+    @Test(priority = 3)
+    public void verifyDashboardButton() {
+        new AdminPanelOrders(driver).checkDashboardBtnDisplayed()
+                .checkDashboardBtnText();
+    }
+    @Epic("Admin Panel")
+    @Feature("Orders Page")
+    @Story("Verify Orders Button")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify the presence and text of the Orders button on the Orders page.")
+    @Test(priority = 4)
+    public void verifyOrdersButton() {
+        new AdminPanelOrders(driver).checkOrdersBtnDisplayed()
+                .checkOrdersBtnText();
+    }
+    @Epic("Admin Panel")
+    @Feature("Orders Page")
+    @Story("Verify Products Button")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify the presence and text of the Products button on the Orders page.")
+    @Test(priority = 5)
+    public void verifyProductsButton() {
+        new AdminPanelOrders(driver).checkProductsBtnDisplayed()
+                .checkProductsBtnText();
+    }
+    @Epic("Admin Panel")
+    @Feature("Orders Page")
     @Story("Verify Admin Panel Header Responsive")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify the presence and text of the Admin Panel header in responsive view on the Orders page.")
-    @Test(priority = 3)
+    @Test(priority = 6)
     public void verifyAdminPanelHeaderResponsive() {
         new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
                 .checkAdminPanelHeaderResDisplayed()
@@ -64,21 +89,10 @@ public class AdminOrdersPageTest
 
     @Epic("Admin Panel")
     @Feature("Orders Page")
-    @Story("Verify Dashboard Button")
-    @Severity(SeverityLevel.NORMAL)
-    @Description("Verify the presence and text of the Dashboard button on the Orders page.")
-    @Test(priority = 4)
-    public void verifyDashboardButton() {
-        new AdminPanelOrders(driver).checkDashboardBtnDisplayed()
-                .checkDashboardBtnText();
-    }
-
-    @Epic("Admin Panel")
-    @Feature("Orders Page")
     @Story("Verify Dashboard Button Responsive")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify the presence and text of the Dashboard button in responsive view on the Orders page.")
-    @Test(priority = 5)
+    @Test(priority = 7)
     public void verifyDashboardButtonResponsive() {
         new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
                 .checkDashboardBtnResDisplayed()
@@ -87,36 +101,14 @@ public class AdminOrdersPageTest
 
     @Epic("Admin Panel")
     @Feature("Orders Page")
-    @Story("Verify Products Button")
-    @Severity(SeverityLevel.NORMAL)
-    @Description("Verify the presence and text of the Products button on the Orders page.")
-    @Test(priority = 6)
-    public void verifyProductsButton() {
-        new AdminPanelOrders(driver).checkProductsBtnDisplayed()
-                .checkProductsBtnText();
-    }
-
-    @Epic("Admin Panel")
-    @Feature("Orders Page")
     @Story("Verify Products Button Responsive")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify the presence and text of the Products button in responsive view on the Orders page.")
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void verifyProductsButtonResponsive() {
         new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
                 .checkProductsBtnResDisplayed()
                 .checkProductsBtnResText();
-    }
-
-    @Epic("Admin Panel")
-    @Feature("Orders Page")
-    @Story("Verify Orders Button")
-    @Severity(SeverityLevel.NORMAL)
-    @Description("Verify the presence and text of the Orders button on the Orders page.")
-    @Test(priority = 8)
-    public void verifyOrdersButton() {
-        new AdminPanelOrders(driver).checkOrdersBtnDisplayed()
-                .checkOrdersBtnText();
     }
 
     @Epic("Admin Panel")
