@@ -205,8 +205,7 @@ public class FilterSortTests {
                 .checkThatWomenTabIsVisible()
                 .checkThatKidsTabIsVisible()
                 .checkThatFootwearTabIsVisible()
-                .checkThatAccessoriesTabIsVisible()
-                .checkThatSearchTabIsVisible();
+                .checkThatSearchTabIsVisible().checkThatAccessoriesTabIsVisible();
     }
 
     @Epic("User Products Page")

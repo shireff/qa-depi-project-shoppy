@@ -4,6 +4,7 @@ import DriverFactory.Driver;
 import com.shoppy.com.pages.AdminDashboardPage;
 import com.shoppy.com.pages.AdminPanelOrders;
 import com.shoppy.com.pages.LoginPage;
+import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -72,17 +73,17 @@ public class AdminOrdersPageTest
                 .checkDashboardBtnText();
     }
 
-//    @Epic("Admin Panel")
-//    @Feature("Orders Page")
-//    @Story("Verify Dashboard Button Responsive")
-//    @Severity(SeverityLevel.NORMAL)
-//    @Description("Verify the presence and text of the Dashboard button in responsive view on the Orders page.")
-//    @Test(priority = 5)
-//    public void verifyDashboardButtonResponsive() {
-//        new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
-//                .checkDashboardBtnResDisplayed()
-//                .checkDashboardBtnResText();
-//    }
+    @Epic("Admin Panel")
+    @Feature("Orders Page")
+    @Story("Verify Dashboard Button Responsive")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify the presence and text of the Dashboard button in responsive view on the Orders page.")
+    @Test(priority = 5)
+    public void verifyDashboardButtonResponsive() {
+        new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
+                .checkDashboardBtnResDisplayed()
+                .checkDashboardBtnResText();
+    }
 
     @Epic("Admin Panel")
     @Feature("Orders Page")
@@ -95,17 +96,17 @@ public class AdminOrdersPageTest
                 .checkProductsBtnText();
     }
 
-//    @Epic("Admin Panel")
-//    @Feature("Orders Page")
-//    @Story("Verify Products Button Responsive")
-//    @Severity(SeverityLevel.NORMAL)
-//    @Description("Verify the presence and text of the Products button in responsive view on the Orders page.")
-//    @Test(priority = 7)
-//    public void verifyProductsButtonResponsive() {
-//        new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
-//                .checkProductsBtnResDisplayed()
-//                .checkProductsBtnResText();
-//    }
+    @Epic("Admin Panel")
+    @Feature("Orders Page")
+    @Story("Verify Products Button Responsive")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify the presence and text of the Products button in responsive view on the Orders page.")
+    @Test(priority = 7)
+    public void verifyProductsButtonResponsive() {
+        new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
+                .checkProductsBtnResDisplayed()
+                .checkProductsBtnResText();
+    }
 
     @Epic("Admin Panel")
     @Feature("Orders Page")
@@ -118,17 +119,17 @@ public class AdminOrdersPageTest
                 .checkOrdersBtnText();
     }
 
-//    @Epic("Admin Panel")
-//    @Feature("Orders Page")
-//    @Story("Verify Orders Button Responsive")
-//    @Severity(SeverityLevel.NORMAL)
-//    @Description("Verify the presence and text of the Orders button in responsive view on the Orders page.")
-//    @Test(priority = 9)
-//    public void verifyOrdersButtonResponsive() {
-//        new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
-//                .checkOrdersBtnResDisplayed()
-//                .checkOrdersBtnResText();
-//    }
+    @Epic("Admin Panel")
+    @Feature("Orders Page")
+    @Story("Verify Orders Button Responsive")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify the presence and text of the Orders button in responsive view on the Orders page.")
+    @Test(priority = 9)
+    public void verifyOrdersButtonResponsive() {
+        new AdminPanelOrders(driver).clickOnNavigationResponsiveButton()
+                .checkOrdersBtnResDisplayed()
+                .checkOrdersBtnResText();
+    }
 
     @Epic("Admin Panel")
     @Feature("Orders Page")

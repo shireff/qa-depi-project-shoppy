@@ -1,6 +1,7 @@
 package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
+import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -9,7 +10,7 @@ public class ProductsPageUser {
     private final Driver driver;
     private final String url = "https://shoppy-ochre.vercel.app/shop/listing";
     //Sort By
-    private final By SortByButton = By.xpath("//button [@aria-haspopup=\"dialog\"]");
+    private final By SortByButton = By.xpath("//button [@type=\"button\"]/span");
     private final By PriceLowToHigh = By.xpath("//div[@role=\"menuitemradio\"][1]");
     private final By PriceHighToLow = By.xpath("//div[@role=\"menuitemradio\"][2]");
     private final By TitleA_To_Z = By.xpath("//div[@role=\"menuitemradio\"][3]");
@@ -182,24 +183,31 @@ public class ProductsPageUser {
     //Sort By DropDown Action
     @Step("⬆️`Clicking Sort By button and ✅`Selecting Price Low to High.")
     public ProductsPageUser sortByPriceLowToHigh() {
+        Waits.waitForElementVisible(driver.get(),SortByButton);
         driver.element().click(SortByButton);
         driver.element().click(PriceLowToHigh);
         return this;
     }
     @Step("⬆️Clicking Sort By button and ✅`Selecting Price High to Low. ")
     public ProductsPageUser sortByPriceHighToLow() {
+        Waits.waitForElementVisible(driver.get(),SortByButton);
+        driver.element().click(SortByButton);
         driver.element().click(SortByButton);
         driver.element().click(PriceHighToLow);
         return this;
     }
     @Step("⬆️`Clicking Sort By button and ✅`Selecting Title A to Z.")
     public ProductsPageUser sortByTitleA_To_Z() {
+        Waits.waitForElementVisible(driver.get(),SortByButton);
+        driver.element().click(SortByButton);
         driver.element().click(SortByButton);
         driver.element().click(TitleA_To_Z);
         return this;
     }
     @Step("⬆️`Clicking Sort By button and ✅Selecting Title Z to A.")
     public ProductsPageUser sortByTitleZ_To_A() {
+        Waits.waitForElementVisible(driver.get(),SortByButton);
+        driver.element().click(SortByButton);
         driver.element().click(SortByButton);
         driver.element().click(TitleZ_To_A);
         return this;

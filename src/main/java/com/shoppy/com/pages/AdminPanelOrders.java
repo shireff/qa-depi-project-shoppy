@@ -2,6 +2,7 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -52,7 +53,8 @@ public class AdminPanelOrders
     @Step("👆click on the nav bar responsive button")
     public AdminPanelOrders clickOnNavigationResponsiveButton()
     {
-        driver.get().manage().window().minimize();
+        driver.browser().smallerBrowser();
+        Waits.waitForElementVisible(driver.get(),Res_Nav_Button);
         driver.element().click(Res_Nav_Button);
         return this;
     }
