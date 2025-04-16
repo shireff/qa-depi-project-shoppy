@@ -6,6 +6,7 @@ import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import java.io.File;
 
 
@@ -18,7 +19,7 @@ public class AdminEditProductPage {
     private final By editProductForm = By.xpath("//div[@role=\"dialog\"]");
     private final By editProductFormTitle = By.xpath("//div[@role=\"dialog\"]/div/h2");
     private final By greySection = By.xpath("/html/body/span[1]");
-    private final By editBtnCard = By.xpath("//main//h2[contains(text(),\"Test automation Title for Edit!\")]/../..//button[1]");
+    private final By editBtnCard = By.xpath("//main//h2[contains(text(),\"automation Title for Edit!\")]/../..//button[1]");
 
     //    form elements
     // *************** Labels ************* //
@@ -78,6 +79,8 @@ public class AdminEditProductPage {
     private final By toastMsg = By.xpath("//li[@role=\"status\"]");
     private final By toastCloseBtn = By.xpath("//li[@role=\"status\"]/button");
 
+    //    private final String cardXpath = "//main//h2";
+    private final By firstProduct = By.xpath("(//main//h2)[1]");
 
     public AdminEditProductPage(Driver driver) {
         this.driver = driver;
@@ -92,7 +95,7 @@ public class AdminEditProductPage {
     /********* form itself **********/
 //    done
     @Step("Check Edit Product Form Is Displayed")
-public AdminEditProductPage checkEditProductFormIsDisplayed() {
+    public AdminEditProductPage checkEditProductFormIsDisplayed() {
         driver.assertion().assertElementDisplayed(editProductForm, "❌ editProductForm is not displayed!");
         return this;
     }
@@ -615,9 +618,26 @@ public AdminEditProductPage checkEditProductFormIsDisplayed() {
             throw new AssertionError(errorMessage);
         }
     }
+
     public void clearField(By locator) {
         WebElement input = ElementActions.find(driver.get(), locator);
         input.sendKeys("");
         input.submit();
+    }
+
+    @Step("Delete After Updated Successfully")
+    public AdminEditProductPage deleteAfterUpdatedSuccessfully(String title) {
+        String deleteButtonXpath = "//main//h2[contains(text(),\"" + title + "\")]/../..//button[2]";
+        By deleteButton = By.xpath(deleteButtonXpath);
+//        if (ElementActions.isDisplayed(driver.get(), toastMsg)) {
+        driver.element().click(deleteButton);
+//        }
+        return this;
+    }
+
+    @Step("Check Products Are Displayed")
+    public AdminEditProductPage checkProductsAreDisplayed() {
+        driver.assertion().assertElementDisplayed(firstProduct, "❌ firstProduct is not displayed!");
+        return this;
     }
 }

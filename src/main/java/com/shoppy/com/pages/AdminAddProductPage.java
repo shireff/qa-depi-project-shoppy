@@ -591,9 +591,9 @@ public class AdminAddProductPage {
     public AdminAddProductPage deleteAfterAddedSuccessfully(String title) {
         String deleteButtonXpath = "//main//h2[contains(text(),\"" + title + "\")]/../..//button[2]";
         By deleteButton = By.xpath(deleteButtonXpath);
-        if (ElementActions.isDisplayed(driver.get(), toastMsg)) {
+//        if (ElementActions.isDisplayed(driver.get(), toastMsg)) {
             driver.element().click(deleteButton);
-        }
+//        }
         return this;
     }
 

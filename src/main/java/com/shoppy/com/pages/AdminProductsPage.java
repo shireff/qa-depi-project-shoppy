@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class AdminProductsPage {
     private final Driver driver;
-    private final String cardXpath = "//div[@class=\"grid gap-4 md:grid-cols-3 ls:grid-cols-4\"]/div";
+    private final String cardXpath = "(//main//h2)[1]/../../../div";
     private final String URL = "https://shoppy-ochre.vercel.app/admin/products";
 
     private final By firstProduct = By.xpath(cardXpath);
@@ -15,11 +15,11 @@ public class AdminProductsPage {
     // Card Components
 
     private final By card = By.xpath(cardXpath + "[1]/div");
-    private final By cardImage = By.xpath(cardXpath + "[1]/div/div/img");
-    private final By cardTitle = By.xpath(cardXpath + "[1]/div/div/h2");
-    private final By cardPrice = By.xpath(cardXpath + "[1]/div/div/div/span[1]");
-    private final By cardEditBtn = By.xpath(cardXpath + "[1]/div/div[3]/button[contains(text(),\"Edit\")]");
-    private final By cardDeleteBtn = By.xpath(cardXpath + "[1]/div/div[3]/button[contains(text(),\"Delete\")]");
+    private final By cardImage = By.xpath(cardXpath + "[1]/div/img");
+    private final By cardTitle = By.xpath(cardXpath + "[1]/div/h2");
+    private final By cardPrice = By.xpath(cardXpath + "[1]/div/div/span[1]");
+    private final By cardEditBtn = By.xpath(cardXpath + "[1]/div[3]/button[contains(text(),\"Edit\")]");
+    private final By cardDeleteBtn = By.xpath(cardXpath + "[1]/div[3]/button[contains(text(),\"Delete\")]");
 
     public AdminProductsPage(Driver driver) {
         this.driver = driver;
