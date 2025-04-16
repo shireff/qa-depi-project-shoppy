@@ -35,8 +35,9 @@ public class AdminProductsPageTests {
 
     @Test(priority = 2)
     public void testThatProductCardAndItsComponentsExists() {
-        new AdminProductsPage(driver.get()).
-                checkProductCardIsDisplayed()
+        new AdminDashboardPage(driver.get())
+                .clickOnProductsBtn()
+                .checkProductCardIsDisplayed()
                 .checkProductCardImageIsDisplayed()
                 .checkProductCardEditBtnIsDisplayed()
                 .checkProductCardDeleteBtnIsDisplayed()
@@ -46,14 +47,17 @@ public class AdminProductsPageTests {
 
     @Test(priority = 3)
     public void verifyThatAddProductButtonIsWorkingProperly() {
-        new AdminProductsPage(driver.get())
-                .checkAddProductBtnIsDisplayed()
+        new AdminDashboardPage(driver.get())
+                .clickOnProductsBtn()
+                .checkProductCardIsDisplayed()
+//        new AdminProductsPage(driver.get())
                 .clickOnAddProductBtn()
                 .checkAddProductFormIsDisplayed();
     }
 
     @AfterClass
     public void tearDown() {
+
         driver.get().browser().closeBrowser(driver.get().get());
     }
 }

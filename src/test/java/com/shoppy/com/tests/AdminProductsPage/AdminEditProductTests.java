@@ -81,6 +81,7 @@ public class AdminEditProductTests {
     public void verifyThatEditBtnOfTheProductCardIsWorking() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed();
     }
@@ -89,6 +90,7 @@ public class AdminEditProductTests {
     public void verifyThatAllLabelsOfTheEditFormAreDisplayed() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkUploadImageLabelIsDisplayed()
@@ -106,6 +108,7 @@ public class AdminEditProductTests {
     public void verifyThatAllInputFieldsOfTheFormAreDisplayed() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkTitleFieldIsDisplayed()
@@ -124,6 +127,7 @@ public class AdminEditProductTests {
     public void verifyThatPlaceholdersTextIsCorrectlyWritten() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkTitleFieldIsDisplayed()
@@ -147,6 +151,7 @@ public class AdminEditProductTests {
     public void verifyThatEditBtnOfTheFormIsDisplayed() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkEditBtnIsDisplayed();
@@ -156,6 +161,7 @@ public class AdminEditProductTests {
     public void verifyThatCloseBtnXIsDisplayed() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkCloseEditProductFormBtnIsDisplayed();
@@ -165,6 +171,7 @@ public class AdminEditProductTests {
     public void verifyThatCloseBtnXClosesTheEditProductForm() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkCloseEditProductFormBtnIsDisplayed()
@@ -176,6 +183,7 @@ public class AdminEditProductTests {
     public void ensureTitleFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkTitleFieldIsDisplayed()
@@ -192,6 +200,7 @@ public class AdminEditProductTests {
     public void ensureDescriptionFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkDescriptionFieldIsDisplayed()
@@ -208,6 +217,7 @@ public class AdminEditProductTests {
     public void ensureCategoryFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkCategoryBtnIsDisplayed()
@@ -224,6 +234,7 @@ public class AdminEditProductTests {
     public void ensureBrandFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkBrandBtnIsDisplayed()
@@ -240,6 +251,7 @@ public class AdminEditProductTests {
     public void ensurePriceFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkPriceFieldIsDisplayed()
@@ -256,6 +268,7 @@ public class AdminEditProductTests {
     public void ensureSalePriceFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkSalePriceFieldIsDisplayed()
@@ -272,6 +285,7 @@ public class AdminEditProductTests {
     public void ensureTotalStockFieldsChangesCorrectly() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkTotalStockFieldIsDisplayed()
@@ -289,6 +303,7 @@ public class AdminEditProductTests {
     public void validateEditSubmissionWithIncorrectValueInPriceField() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkPriceFieldIsDisplayed()
@@ -308,6 +323,7 @@ public class AdminEditProductTests {
     public void validateEditSubmissionWithIncorrectValueInTotalStockField() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkTotalStockFieldIsDisplayed()
@@ -329,6 +345,7 @@ public class AdminEditProductTests {
     public void validateEditSubmissionWithLongValueInTitleField() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkEditProductFormIsDisplayed()
                 .checkTitleFieldIsDisplayed()
@@ -349,13 +366,15 @@ public class AdminEditProductTests {
     public void verifyThatTheUploadImageFieldAcceptsOnlyImages() {
         new AdminEditProductPage(driver.get())
                 .navigateToProductsPage()
+                .checkProductsAreDisplayed()
                 .clickOnEditBtnCard()
                 .checkPriceFieldIsDisplayed()
 //                .checkUploadImageFieldLabelIsDisplayed()
 //                .fillUploadImageField(filePath)
                 .checkEditBtnIsDisplayed()
                 .clickOnEditBtn()
-//                .deleteAfterAddedSuccessfully(title)
+                .deleteAfterUpdatedSuccessfully(title)
+                .checkToastMsgIsDisplayed()
 //                .checkEditProductFormIsDisplayed()
 
         ;
@@ -363,7 +382,6 @@ public class AdminEditProductTests {
 
     @AfterClass
     public void tearDown() {
-//        Thread.sleep(3000);
         driver.get().browser().closeBrowser(driver.get().get());
     }
 
