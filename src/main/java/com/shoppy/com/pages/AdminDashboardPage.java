@@ -2,9 +2,17 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.bidi.log.Log;
 import org.testng.Assert;
+
+import java.io.File;
+import java.time.Duration;
+
+import static com.shoppy.com.utils.Waits.waitForElementVisible;
 
 public class AdminDashboardPage {
     private final Driver driver;
@@ -27,7 +35,10 @@ public class AdminDashboardPage {
     private final By Feature_Images_Title = By.xpath("//main/div/h1");
     private final By Upload_New_Image_Title = By.xpath("//main/div/div[1]/h2");
     private final By Upload_Image_Title = By.xpath("//main/div/div[1]/div/label");
-    private final By Drag_Drop_Click_Upload = By.xpath("//main/div/div[1]/div/div/label");
+    private final By click_For_Upload_Win = By.xpath("//label [@for=\"image-upload\"]");
+    private final By select_Image_Upload = By.xpath("//div/input[@id=\"image-upload\"]");
+
+
     private final By Upload_Button = By.xpath("//main/div/div[1]/button");
     //images uploaded  locators
     private final By First_Image = By.xpath("//main/div/div[2]/div[1]/div");  //div[i]/div to go to the next image
@@ -65,44 +76,49 @@ public class AdminDashboardPage {
         this.driver = driver;
     }
     //Actions
+    @Step("🔃upload image selected image")
+    public AdminDashboardPage uploadImageDashBoard(String path) {
+        File uploadFile = new File(path);
+        driver.get().findElement(select_Image_Upload).sendKeys(uploadFile.getAbsolutePath());
+        return this;
+    }
     @Step("👆click on products button")
     public AdminProductsPage clickOnProductsBtn() {
-        System.out.println("👆Clicking on products button");
         driver.element().click(Products_Button);
         return new AdminProductsPage(driver);
     }
     @Step("👆click on orders button")
     public AdminPanelOrders clickOnOrdersBtn()
     {
-        System.out.println("👆Clicking on orders button");
         driver.element().click(Orders_Button);
         return new AdminPanelOrders(driver);
-    }
-    @Step("👆click on upload image box")
-    public AdminDashboardPage clickOnUploadImageBox()
-    {
-        System.out.println("👆Clicking on upload image box");
-        driver.element().click(Drag_Drop_Click_Upload);
-        return this;
     }
     @Step("👆click on upload button")
     public AdminDashboardPage clickOnUploadBtn()
     {
-        System.out.println("👆Clicking on upload button");
         driver.element().click(Upload_Button);
         return this;
     }
     @Step("👆click on delete button")
     public AdminDashboardPage clickOnDeleteBtn()
     {
-        System.out.println("👆Clicking on delete button");
         driver.element().click(First_Image_Delete_Button);
+        return this;
+    }
+    public AdminDashboardPage clickOnDeleteBtnThird()
+    {
+        driver.element().click(Third_Image_Delete_Button);
+        return this;
+    }
+    @Step("👆click on delete button")
+    public AdminDashboardPage clickOnDeleteBtnFourthImage()
+    {
+        driver.element().click(Fourth_Image_Delete_Button);
         return this;
     }
     @Step("👆click on logout button")
     public LoginPage clickOnLogoutBtn()
     {
-        System.out.println("👆Clicking on logout button");
         driver.element().click(Logout_Button);
         return new LoginPage(driver);
     }
@@ -112,99 +128,108 @@ public class AdminDashboardPage {
     @Step("✅Check Admin Dashboard url")
     public AdminDashboardPage checkAdminDashboardUrl()
     {
-        System.out.println("✅Checking Admin dashboard url");
         Assert.assertEquals(driver.browser().getCurrentURL(driver.get()), URL);
         return this;
     }
-    public AdminDashboardPage checkAdminPanelHeaderText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), AdminPanel_Title).contains("Admin Panel"));
+    @Step("✅check admin panel header text")
+    public AdminDashboardPage checkAdminPanelHeaderText()
+    {
+        driver.assertion().assertElementTextEquals(AdminPanel_Title,"Admin Panel","The text of the element does not match the expected value.");
         return this;
     }
-
+    @Step("✅check admin panel header isDisplayed")
     public AdminDashboardPage checkAdminPanelHeaderDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), AdminPanel_Title));
+        driver.assertion().assertElementDisplayed(AdminPanel_Title,"The element is not displayed as expected");
         return this;
     }
-
+    @Step("✅check dashboard button text")
     public AdminDashboardPage checkDashboardBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), DashBoard_Button).contains("Dashboard"));
+        driver.assertion().assertElementTextContains(DashBoard_Button,"Dashboard","The text of the element does not match the expected value.");
         return this;
     }
-
+    @Step("✅check dashboard button is displayed")
     public AdminDashboardPage checkDashboardBtnDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), DashBoard_Button));
+        driver.assertion().assertElementDisplayed(DashBoard_Button,"The element is not displayed as expected");
         return this;
     }
-
+    @Step("✅check dashboard button text")
     public AdminDashboardPage checkProductsBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), Products_Button).contains("Products"));
+        driver.assertion().assertElementTextContains(Products_Button,"Products","The text of the element does not match the expected value.");
         return this;
     }
-
+    @Step("✅check products button is displayed")
     public AdminDashboardPage checkProductsBtnDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Products_Button));
+        driver.assertion().assertElementDisplayed(Products_Button,"The element is not displayed as expected");
         return this;
     }
-
+    @Step("✅check orders button text")
     public AdminDashboardPage checkOrdersBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), Orders_Button).contains("Orders"));
+        driver.assertion().assertElementTextContains(Orders_Button,"Orders","The text of the element does not match the expected value.");
         return this;
     }
-
+    @Step("✅check orders button is displayed")
     public AdminDashboardPage checkOrdersBtnDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Orders_Button));
+        driver.assertion().assertElementDisplayed(Orders_Button,"The element is not displayed as expected");
         return this;
     }
 
-
+    @Step("✅check logout button text")
     public AdminDashboardPage checkLogoutBtnText() {
-        Assert.assertTrue(ElementActions.getText(driver.get(), Logout_Button).contains(" Logout"));
+        driver.assertion().assertElementTextEquals(Logout_Button,"Logout","The text of the element does not match the expected value.");
         return this;
     }
-
+    @Step("✅check logout button is displayed")
     public AdminDashboardPage checkLogoutBtnDisplayed() {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Logout_Button));
+        driver.assertion().assertElementDisplayed(Logout_Button,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check feature image title is displayed")
     public AdminDashboardPage checkFeatureImagesTitleIsDisplayed()
     {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(), Feature_Images_Title));
+        driver.assertion().assertElementDisplayed(Feature_Images_Title,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check feature images text")
     public AdminDashboardPage checkFeatureImagesTitleText()
     {
-        Assert.assertTrue(ElementActions.getText(driver.get(), Feature_Images_Title).contains("Feature Images"));
+        driver.assertion().assertElementTextEquals(Feature_Images_Title,"Feature Images","The text of the element does not match the expected value.");
         return this;
     }
+    @Step("✅check upload new image title is displayed")
     public AdminDashboardPage checkUploadNewImageTitleIsDisplayed()
     {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_New_Image_Title));
+        driver.assertion().assertElementDisplayed(Upload_New_Image_Title,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check upload new image title text")
     public AdminDashboardPage checkUploadNewImageTitleText()
     {
-        Assert.assertTrue(ElementActions.getText(driver.get(), Upload_New_Image_Title).contains("Upload New Image"));
+        driver.assertion().assertElementTextContains(Upload_New_Image_Title,"Upload New Image","The text of the element does not match the expected value.");
         return this;
     }
+    @Step("✅check upload image title is displayed")
     public AdminDashboardPage checkUploadImageTitleIsDisplayed()
     {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_Image_Title));
+        driver.assertion().assertElementDisplayed(Upload_Image_Title,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check upload image title text")
     public AdminDashboardPage checkUploadImageTitleText()
     {
-        Assert.assertTrue(ElementActions.getText(driver.get(),Upload_Image_Title).contains("Upload Image"));
+        driver.assertion().assertElementTextContains(Upload_Image_Title,"Upload Image","The text of the element does not match the expected value.");
         return this;
     }
+    @Step("✅check that upload button is displayed")
     public AdminDashboardPage checkThatUploadButtonIsDisplayed()
     {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),Upload_Button));
+        driver.assertion().assertElementDisplayed(Upload_Button,"The element is not displayed as expected");
         return this;
     }
+    @Step("✅check that uploaded image is displayed")
     public AdminDashboardPage checkThatUploadedImageIsDisplayed()
     {
-        Assert.assertTrue(ElementActions.isDisplayed(driver.get(),First_Image));
+        waitForElementVisible(driver.get(),Fourth_Image);
+        driver.assertion().assertElementDisplayed(Fourth_Image,"The element is not displayed as expected");
         return this;
     }
-
 }

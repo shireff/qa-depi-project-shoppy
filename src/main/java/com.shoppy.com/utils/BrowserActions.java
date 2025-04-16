@@ -1,6 +1,7 @@
 package com.shoppy.com.utils;
 
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -53,6 +54,12 @@ public class BrowserActions {
 
     public BrowserActions scrollToAmount(int width, int height) {
         new Actions(driver).scrollByAmount(width, height).build().perform();
+        return this;
+    }
+    public BrowserActions smallerBrowser()
+    {
+        Dimension newSize = new Dimension(800, 600); // Width: 800, Height: 600
+        driver.manage().window().setSize(newSize);
         return this;
     }
 
