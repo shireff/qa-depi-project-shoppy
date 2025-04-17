@@ -93,7 +93,7 @@ public class AdminProductE2E {
     }
 
     @AfterClass
-    public void tearDown() {
+    public void tearDown()  {
         driver.get().browser().closeBrowser(driver.get().get());
     }
 
