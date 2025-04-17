@@ -30,7 +30,7 @@ public class HomePage {
     private final By footerLinks = By.cssSelector("footer a");
     private final By userHeader = By.xpath("//span[text()='Shoppy']");
     private final By clickOnAddToCardFirstProduct = By.xpath("//*[@id=\"root\"]/div[1]/div/main/div/section[5]/div/div/div[1]/div/div[3]/button");
-
+    private final String url ="https://shoppy-ochre.vercel.app/shop/home";
     public HomePage(Driver driver) {
         this.driver = driver;
     }
@@ -87,6 +87,11 @@ public class HomePage {
         String expectedUserURL = "https://shoppy-ochre.vercel.app/shop/home";
         String actualURL = driver.get().getCurrentUrl();
         driver.validations().validateEquals(actualURL, expectedUserURL, "User URL mismatch!");
+        return this;
+    }
+    public HomePage checkHomePageUrl()
+    {
+        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()),url);
         return this;
     }
 

@@ -416,5 +416,23 @@ public class AdminPanelOrdersDetails
         driver.assertion().assertElementTextContains(OrderStatus, expectedStatus, "The order status does not contain the expected value after update.");
         return this;
     }
+    @Step("checking the elements for e2e")
+    public AdminPanelOrdersDetails verifyOrderDetailsElements()
+    {
+        new AdminPanelOrdersDetails(driver).checkOrderIdTitleIsDisplayed().checkOrderIdTitleText()
+                .checkOrderIdIsDisplayed().checkOrderPriceTitleIsDisplayed().checkOrderPriceTitleText()
+                .checkOrderPriceTitleText().checkOrderDateTitleIsDisplayed().checkOrderDateTitleText()
+                .checkOrderDateIsDisplayed().checkOrderStatusTitleIsDisplayed().checkOrderStatusTitleText()
+                .checkOrderStatusIsDisplayed().checkOrderItemsTitleIsDisplayed()
+                .checkProductNameIsDisplayed();
+        return this;
+    }
+    @Step("checking shipping info")
+    public AdminPanelOrdersDetails verifyShippingInfoDetails()
+    {
+        new AdminPanelOrdersDetails(driver).checkUserValueIsDisplayed().checkAddressValueIsDisplayed().
+                checkCityValueIsDisplayed().checkPincodeValueIsDisplayed().checkPhoneValueIsDisplayed();
+        return this;
+    }
 
 }

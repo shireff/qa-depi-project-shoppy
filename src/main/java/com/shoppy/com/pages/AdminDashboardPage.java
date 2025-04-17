@@ -458,5 +458,74 @@ public class AdminDashboardPage {
         driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
         return this;
     }
+    @Step("✅Check the navigation elements")
+    public AdminDashboardPage verifyNavigationElements()
+    {
+        new AdminDashboardPage(driver).checkAdminPanelHeaderText().checkAdminPanelHeaderDisplayed()
+                .checkDashboardBtnText().checkDashboardBtnDisplayed().checkProductsBtnText()
+                .checkProductsBtnDisplayed().checkOrdersBtnText().checkOrdersBtnDisplayed();
+        return this;
+    }
+    @Step("✅check the feature images ui")
+    public AdminDashboardPage verifyFeatureImagesSectionUI()
+    {
+        new AdminDashboardPage(driver).checkThatUploadButtonIsDisplayed().checkThatUploadedImageIsDisplayed()
+                .checkThatSecondUploadedImageIsDisplayed().checkThatThirdUploadedImageIsDisplayed();
+        return this;
+    }
+    @Step("E2E footer test")
+    public AdminDashboardPage verifyFooterElements() {
+        new ProductsPageUser(driver)
+                .checkFooterRightsReservedDisplayed()
+                .checkFooterRightsReservedText("© 2025 Shireff Nady All rights reserved")
+                .checkFooterGitHubDisplayed()
+                .checkFooterLinkedInDisplayed()
+                .checkFooterWhatsAppDisplayed()
+                .checkFooterGitHubLink("https://github.com/shireff")
+                .checkFooterLinkedInLink("https://www.linkedin.com/in/shireff-nady-5b7791340/")
+                .checkFooterWhatsAppLink("https://wa.me/+201274068946");
+        return this;
+    }
+    @Step("✅check admin panel header is displayed responsive")
+    public AdminDashboardPage checkAdminPanelHeaderResDisplayed()
+    {
+        driver.assertion().assertElementDisplayed(AdminPanel_Title_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅check dashboard btn text responsive")
+    public AdminDashboardPage checkDashboardBtnResText()
+    {
+        driver.assertion().assertElementTextEquals(DashBoard_Button_Responsive,"Dashboard","The text of the element does not match the expected value");
+        return this;
+    }
+    @Step("✅check dashboard btn is displayed responsive")
+    public AdminDashboardPage checkDashboardBtnResDisplayed()
+    {
+        driver.assertion().assertElementDisplayed(DashBoard_Button_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅check products btn text responsive")
+    public AdminDashboardPage checkProductsBtnResText()
+    {
+        driver.assertion().assertElementTextContains(Products_Button_Responsive,"Products","The text of the element does not match the expected value");
+        return this;
+    }
+    @Step("✅check products btn is displayed responsive")
+    public AdminDashboardPage checkProductsBtnResDisplayed() {
+        driver.assertion().assertElementDisplayed(Products_Button_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅check orders btn is displayed responsive")
+    public AdminDashboardPage checkOrdersBtnResDisplayed() {
+        driver.assertion().assertElementDisplayed(Orders_Button_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("delete multiple images")
+    public AdminDashboardPage deleteMultipleUploadedImages()
+    {
+        new AdminDashboardPage(driver).clickOnDeleteBtn().clickOnDeleteBtnThird().clickOnDeleteBtnSecond();
+        return this;
+    }
+
 
 }
