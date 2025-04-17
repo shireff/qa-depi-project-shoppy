@@ -57,7 +57,7 @@ public class TestNGListener implements IExecutionListener, ITestListener {
     }
 
     public void onTestSuccess(ITestResult result) {
-        LogHelper.logInfo(BLUE+ "✅ TestNG has finished the test successfully: " + result.getName() + RESET);
+        LogHelper.logInfo(BLUE + "✅ TestNG has finished the test successfully: " + result.getName() + RESET);
     }
 
     public void onTestFailure(ITestResult result) {
@@ -71,26 +71,31 @@ public class TestNGListener implements IExecutionListener, ITestListener {
 
         try {
             for (Field field : fields) {
+                field.setAccessible(true);
                 if (field.getType() == Driver.class) {
                     driver = (Driver) field.get(currentClass);
                 }
 
                 if (field.getType() == ThreadLocal.class) {
                     driverThreadLocal = (ThreadLocal<Driver>) field.get(currentClass);
+                    driver = driverThreadLocal.get();
                 }
             }
+            if (driver != null && driver.get() != null) {
+                ScreenshotManager.takeScreenshot(driver.get(), result.getName());
+            } else {
+                LogHelper.logWarn(YELLOW + "⚠️ Could not capture screenshot: driver is null" + RESET);
+            }
+
         } catch (IllegalAccessException e) {
-            LogHelper.logError(YELLOW + "⚠️ Failed to get field: " + e.getMessage() + RESET);
-
+            LogHelper.logError(RED + "⚠️ Failed to access driver field: " + e.getMessage() + RESET);
+        } catch (Exception e) {
+            LogHelper.logError(RED + "💥 Unexpected error during screenshot: " + e.getMessage() + RESET);
         }
-
-        assert driver != null;
-        ScreenshotManager.takeScreenshot(driver.get(), result.getName());
-
     }
 
     public void onTestSkipped(ITestResult result) {
-        LogHelper.logInfo( YELLOW + "⏭️ TestNG has skipped the test: " + result.getName());
+        LogHelper.logInfo(YELLOW + "⏭️ TestNG has skipped the test: " + result.getName());
     }
 
 }
