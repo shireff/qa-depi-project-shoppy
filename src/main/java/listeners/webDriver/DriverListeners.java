@@ -81,6 +81,10 @@ public class DriverListeners implements WebDriverListener {
     @Override
     public void beforeFindElement(WebDriver driver, By locator) {
         try {
+            if (driver == null) {
+                throw new IllegalStateException("WebDriver is not initialized.");
+            }
+
             new FluentWait<>(driver).withTimeout(Duration.ofSeconds(
                             Long.parseLong(webConfig.getProperty("elementIdentificationTimeout"))))
                     .pollingEvery(Duration.ofMillis(500))
@@ -90,10 +94,12 @@ public class DriverListeners implements WebDriverListener {
         } catch (TimeoutException exception) {
             LogHelper.logError("⏳ Timeout: " + exception.getMessage() + " || " + exception.getCause().getMessage().substring(0, exception.getCause().getMessage().indexOf("\n")));
             throw exception;
+        } catch (Exception e) {
+            LogHelper.logError("Error occurred while finding element: " + e.getMessage());
+            throw e;
         }
-
-
     }
+
 
     @Override
     public void afterClose(WebDriver driver) {

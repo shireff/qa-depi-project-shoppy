@@ -52,7 +52,7 @@ public class AdminPanelOrdersDetails
     private final By Order_Status_InShipping = By.xpath("//div[1]/div[6]/form/div/div/div/select/option[3]");
     private final By Order_Status_Delivered = By.xpath("//div[1]/div[6]/form/div/div/div/select/option[4]");
     private final By Order_Status_Rejected = By.xpath("//div[1]/div[6]/form/div/div/div/select/option[5]");
-    private final By Order_Status_Dropdown_Options = By.xpath("//form/div/div/div/selectgit");
+    private final By Order_Status_Dropdown_Options = By.xpath("//form/div/div/div/select");
     //Buttons end of form
     private final By Update_Orders_Status_Button = By.xpath("//div[1]/div[6]/form/button");
     private final By Close_OrderDetails_Button = By.xpath("//div[2]/button");
@@ -66,7 +66,7 @@ public class AdminPanelOrdersDetails
     private void openOrderStatusDropdown() {
         Waits.waitForElementClickable(driver.get(), Order_Status_DropDown);
         driver.element().click(Order_Status_DropDown);
-        Waits.waitForElementToBeInvisible(driver.get(), Order_Status_Dropdown_Options); // Wait for options to load
+        Waits.waitForElementVisible(driver.get(), Order_Status_Dropdown_Options); // Wait for options to load
     }
 
     @Step("👆click on status dropdown and ✅select the pending status")

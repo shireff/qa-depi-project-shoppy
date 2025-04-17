@@ -69,8 +69,14 @@ public class ElementActions {
     public ElementActions click(By locator) {
         LogHelper.logInfo(BLUE + "🖱️ Click on: " + locator.toString() + RESET);
         try {
-            //    isClickable(locator);
-            find(driver, locator).click();
+            // Executing The Method with Retry Mechanism
+            ElementInteraction.interactWithElement(driver, find(driver, locator), element -> {
+                try {
+                    element.click();
+                } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
+                    throw new RuntimeException("Error during click", e);
+                }
+            }, 3);
         } catch (ElementClickInterceptedException | NoSuchElementException | StaleElementReferenceException |
                  TimeoutException exception) {
             LogHelper.logError(RED + BOLD + "❌ ERROR From click method: " + exception.getMessage() + RESET);
@@ -79,6 +85,7 @@ public class ElementActions {
         }
         return this;
     }
+
 
     public ElementActions type(By locator, String text) {
         clearField(locator);
