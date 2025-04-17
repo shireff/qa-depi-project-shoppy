@@ -30,8 +30,7 @@ public class AdminOrdersPageDetailsE2E
     @Severity(SeverityLevel.CRITICAL)
     @Description("End-to-end scenario: Verify Order Details page elements, update order status, and navigate back to the Orders list page.")
     @Test(priority = 1)
-    public void completeOrderDetailsWorkflow()
-    {
+    public void completeOrderDetailsWorkflow() throws InterruptedException {
         // 1. Verify Order Details Page URL and Basic Elements
         new AdminPanelOrdersDetails(driver).checkAdminPanelOrdersUrl(); // Or a more specific Order Details URL check
         new AdminPanelOrdersDetails(driver).checkOrderDetailsTitleIsDisplayed();

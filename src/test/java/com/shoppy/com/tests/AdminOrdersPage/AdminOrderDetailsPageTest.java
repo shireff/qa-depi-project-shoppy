@@ -2,6 +2,7 @@ package com.shoppy.com.tests.AdminOrdersPage;
 
 import DriverFactory.Driver;
 import com.shoppy.com.pages.AdminDashboardPage;
+import com.shoppy.com.pages.AdminPanelOrders;
 import com.shoppy.com.pages.AdminPanelOrdersDetails;
 import com.shoppy.com.pages.LoginPage;
 import io.qameta.allure.Epic;
@@ -252,8 +253,9 @@ public class AdminOrderDetailsPageTest {
     @Severity(SeverityLevel.MINOR)
     @Description("Verify that the 'Pending' status can be selected from the dropdown.")
     @Test(priority = 20)
-    public void verifySelectPendingStatus() {
+    public void verifySelectPendingStatus() throws InterruptedException {
         new AdminPanelOrdersDetails(driver).selectPendingStatus();
+
         new AdminPanelOrdersDetails(driver).checkOrderStatusAfterUpdate("Pending"); // Add this assertion
     }
 
@@ -265,6 +267,7 @@ public class AdminOrderDetailsPageTest {
     @Test(priority = 21)
     public void verifySelectInProcessStatus() {
         new AdminPanelOrdersDetails(driver).selectInProcessStatus();
+
         new AdminPanelOrdersDetails(driver).checkOrderStatusAfterUpdate("In Process");
     }
 

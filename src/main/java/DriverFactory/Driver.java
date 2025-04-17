@@ -28,6 +28,10 @@ public class Driver {
         WebDriver undecoratedDriver = Optional.ofNullable(getDriver(driverType).startDriver())
                 .orElseThrow(() -> new IllegalStateException("Driver could not be started."));
 
+        if (undecoratedDriver == null) {
+            throw new IllegalStateException("The WebDriver could not be initialized properly.");
+        }
+
         WebDriver decoratedDriver = new EventFiringDecorator<>(WebDriver.class,
                 new DriverListeners(undecoratedDriver)).decorate(undecoratedDriver);
 
