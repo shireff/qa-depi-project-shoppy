@@ -122,6 +122,69 @@ public class AdminDashboardPage {
         driver.element().click(Logout_Button);
         return new LoginPage(driver);
     }
+    @Step("👆click on the second image delete button")
+    public AdminDashboardPage clickOnDeleteBtnSecond() {
+        driver.element().click(Second_Image_Delete_Button);
+        return this;
+    }
+
+    @Step("👆click on the fifth image delete button")
+    public AdminDashboardPage clickOnDeleteBtnFifth() {
+        driver.element().click(Fifth_Image_Delete_Button);
+        return this;
+    }
+
+    @Step("👆click on the sixth image delete button")
+    public AdminDashboardPage clickOnDeleteBtnSixth() {
+        driver.element().click(Sixth_Image_Delete_Button);
+        return this;
+    }
+
+    @Step("👆click on the seventh image delete button")
+    public AdminDashboardPage clickOnDeleteBtnSeventh() {
+        driver.element().click(Seventh_Image_Delete_Button);
+        return this;
+    }
+
+    @Step("👆click on the eighth image delete button")
+    public AdminDashboardPage clickOnDeleteBtnEighth() {
+        driver.element().click(Eighth_Image_Delete_Button);
+        return this;
+    }
+
+    @Step("👆click on the ninth image delete button")
+    public AdminDashboardPage clickOnDeleteBtnNinth() {
+        driver.element().click(Ninth_Image_Delete_Button);
+        return this;
+    }
+
+    @Step("👆click on the tenth image delete button")
+    public AdminDashboardPage clickOnDeleteBtnTenth() {
+        driver.element().click(Tenth_Image_Delete_Button);
+        return this;
+    }
+    @Step("👆Click on the responsive navigation menu button")
+    public AdminDashboardPage clickOnResponsiveNavButton() {
+        driver.browser().smallerBrowser();
+        Waits.waitForElementVisible(driver.get(),Res_Nav_Button);
+        driver.element().click(Res_Nav_Button);
+        return this;
+    }
+    @Step("👆Click on the responsive dashboard button")
+    public AdminDashboardPage clickOnResponsiveDashboardButton() {
+        driver.element().click(DashBoard_Button_Responsive);
+        return this;
+    }
+    @Step("👆Click on the responsive products button")
+    public AdminProductsPage clickOnResponsiveProductsButton() {
+        driver.element().click(Products_Button_Responsive);
+        return new AdminProductsPage(driver);
+    }
+    @Step("👆Click on the responsive orders button")
+    public AdminPanelOrders clickOnResponsiveOrdersButton() {
+        driver.element().click(Orders_Button_Responsive);
+        return new AdminPanelOrders(driver);
+    }
 
 
     //Assertions
@@ -232,4 +295,237 @@ public class AdminDashboardPage {
         driver.assertion().assertElementDisplayed(Fourth_Image,"The element is not displayed as expected");
         return this;
     }
+
+
+    @Step("✅Check if the responsive admin panel title is displayed")
+    public AdminDashboardPage checkResponsiveAdminPanelTitleDisplayed() {
+        driver.assertion().assertElementDisplayed(AdminPanel_Title_Responsive, "The responsive admin panel title is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the responsive admin panel title")
+    public AdminDashboardPage checkResponsiveAdminPanelTitleText(String expectedText) {
+        driver.assertion().assertElementTextEquals(AdminPanel_Title_Responsive, expectedText, "The responsive admin panel title text does not match.");
+        return this;
+    }
+
+
+
+    @Step("✅Check if the responsive dashboard button is displayed")
+    public AdminDashboardPage checkResponsiveDashboardButtonDisplayed() {
+        driver.assertion().assertElementDisplayed(DashBoard_Button_Responsive, "The responsive dashboard button is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the responsive dashboard button")
+    public AdminDashboardPage checkResponsiveDashboardButtonText(String expectedText) {
+        driver.assertion().assertElementTextEquals(DashBoard_Button_Responsive, expectedText, "The responsive dashboard button text does not match.");
+        return this;
+    }
+
+
+
+    @Step("✅Check if the responsive products button is displayed")
+    public AdminDashboardPage checkResponsiveProductsButtonDisplayed() {
+        driver.assertion().assertElementDisplayed(Products_Button_Responsive, "The responsive products button is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the responsive products button")
+    public AdminDashboardPage checkResponsiveProductsButtonText(String expectedText) {
+        driver.assertion().assertElementTextEquals(Products_Button_Responsive, expectedText, "The responsive products button text does not match.");
+        return this;
+    }
+
+    @Step("✅Check if the responsive orders button is displayed")
+    public AdminDashboardPage checkResponsiveOrdersButtonDisplayed() {
+        driver.assertion().assertElementDisplayed(Orders_Button_Responsive, "The responsive orders button is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the responsive orders button")
+    public AdminDashboardPage checkResponsiveOrdersButtonText(String expectedText) {
+        driver.assertion().assertElementTextEquals(Orders_Button_Responsive, expectedText, "The responsive orders button text does not match.");
+        return this;
+    }
+
+    @Step("✅check that second uploaded image is displayed")
+    public AdminDashboardPage checkThatSecondUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Second_Image);
+        driver.assertion().assertElementDisplayed(Second_Image, "The second uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check that third uploaded image is displayed")
+    public AdminDashboardPage checkThatThirdUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Third_Image);
+        driver.assertion().assertElementDisplayed(Third_Image, "The third uploaded image is not displayed as expected");
+        return this;
+    }
+    @Step("❎check that third uploaded image is displayed")
+    public AdminDashboardPage checkThatThirdUploadedImageIsNotDisplayed() {
+        waitForElementVisible(driver.get(), Third_Image);
+        driver.assertion().assertElementNotDisplayed(Third_Image, "The third uploaded image is not deleted as expected");
+        return this;
+    }
+
+    @Step("✅check that fifth uploaded image is displayed")
+    public AdminDashboardPage checkThatFifthUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Fifth_Image);
+        driver.assertion().assertElementDisplayed(Fifth_Image, "The fifth uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check that sixth uploaded image is displayed")
+    public AdminDashboardPage checkThatSixthUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Sixth_Image);
+        driver.assertion().assertElementDisplayed(Sixth_Image, "The sixth uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check that seventh uploaded image is displayed")
+    public AdminDashboardPage checkThatSeventhUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Seventh_Image);
+        driver.assertion().assertElementDisplayed(Seventh_Image, "The seventh uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check that eighth uploaded image is displayed")
+    public AdminDashboardPage checkThatEighthUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Eighth_Image);
+        driver.assertion().assertElementDisplayed(Eighth_Image, "The eighth uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check that ninth uploaded image is displayed")
+    public AdminDashboardPage checkThatNinthUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Ninth_Image);
+        driver.assertion().assertElementDisplayed(Ninth_Image, "The ninth uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check that tenth uploaded image is displayed")
+    public AdminDashboardPage checkThatTenthUploadedImageIsDisplayed() {
+        waitForElementVisible(driver.get(), Tenth_Image);
+        driver.assertion().assertElementDisplayed(Tenth_Image, "The tenth uploaded image is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅Check if the footer rights reserved text is displayed")
+    public AdminDashboardPage checkFooterRightsReservedDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "The footer rights reserved text is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the footer rights reserved")
+    public AdminDashboardPage checkFooterRightsReservedText(String expectedText) {
+        driver.assertion().assertElementTextContains(Footer_Rights_Reserved, expectedText, "The footer rights reserved text does not match.");
+        return this;
+    }
+
+    @Step("✅Check if the GitHub link is displayed")
+    public AdminDashboardPage checkFooterGitHubDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_GitHub, "The GitHub link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the LinkedIn link is displayed")
+    public AdminDashboardPage checkFooterLinkedInDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_LinkedIn, "The LinkedIn link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the WhatsApp link is displayed")
+    public AdminDashboardPage checkFooterWhatsAppDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_WhatsApp, "The WhatsApp link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the GitHub link")
+    public AdminDashboardPage checkFooterGitHubLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_GitHub, "href", expectedLink, "The GitHub link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the LinkedIn link")
+    public AdminDashboardPage checkFooterLinkedInLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_LinkedIn, "href", expectedLink, "The LinkedIn link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the WhatsApp link")
+    public AdminDashboardPage checkFooterWhatsAppLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
+        return this;
+    }
+    @Step("✅Check the navigation elements")
+    public AdminDashboardPage verifyNavigationElements()
+    {
+        new AdminDashboardPage(driver).checkAdminPanelHeaderText().checkAdminPanelHeaderDisplayed()
+                .checkDashboardBtnText().checkDashboardBtnDisplayed().checkProductsBtnText()
+                .checkProductsBtnDisplayed().checkOrdersBtnText().checkOrdersBtnDisplayed();
+        return this;
+    }
+    @Step("✅check the feature images ui")
+    public AdminDashboardPage verifyFeatureImagesSectionUI()
+    {
+        new AdminDashboardPage(driver).checkThatUploadButtonIsDisplayed().checkThatUploadedImageIsDisplayed()
+                .checkThatSecondUploadedImageIsDisplayed().checkThatThirdUploadedImageIsDisplayed();
+        return this;
+    }
+    @Step("E2E footer test")
+    public AdminDashboardPage verifyFooterElements() {
+        new ProductsPageUser(driver)
+                .checkFooterRightsReservedDisplayed()
+                .checkFooterRightsReservedText("© 2025 Shireff Nady All rights reserved")
+                .checkFooterGitHubDisplayed()
+                .checkFooterLinkedInDisplayed()
+                .checkFooterWhatsAppDisplayed()
+                .checkFooterGitHubLink("https://github.com/shireff")
+                .checkFooterLinkedInLink("https://www.linkedin.com/in/shireff-nady-5b7791340/")
+                .checkFooterWhatsAppLink("https://wa.me/+201274068946");
+        return this;
+    }
+    @Step("✅check admin panel header is displayed responsive")
+    public AdminDashboardPage checkAdminPanelHeaderResDisplayed()
+    {
+        driver.assertion().assertElementDisplayed(AdminPanel_Title_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅check dashboard btn text responsive")
+    public AdminDashboardPage checkDashboardBtnResText()
+    {
+        driver.assertion().assertElementTextEquals(DashBoard_Button_Responsive,"Dashboard","The text of the element does not match the expected value");
+        return this;
+    }
+    @Step("✅check dashboard btn is displayed responsive")
+    public AdminDashboardPage checkDashboardBtnResDisplayed()
+    {
+        driver.assertion().assertElementDisplayed(DashBoard_Button_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅check products btn text responsive")
+    public AdminDashboardPage checkProductsBtnResText()
+    {
+        driver.assertion().assertElementTextContains(Products_Button_Responsive,"Products","The text of the element does not match the expected value");
+        return this;
+    }
+    @Step("✅check products btn is displayed responsive")
+    public AdminDashboardPage checkProductsBtnResDisplayed() {
+        driver.assertion().assertElementDisplayed(Products_Button_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅check orders btn is displayed responsive")
+    public AdminDashboardPage checkOrdersBtnResDisplayed() {
+        driver.assertion().assertElementDisplayed(Orders_Button_Responsive,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("delete multiple images")
+    public AdminDashboardPage deleteMultipleUploadedImages()
+    {
+        new AdminDashboardPage(driver).clickOnDeleteBtn().clickOnDeleteBtnThird().clickOnDeleteBtnSecond();
+        return this;
+    }
+
+
 }

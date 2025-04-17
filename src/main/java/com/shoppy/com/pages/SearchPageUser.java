@@ -53,12 +53,25 @@ public class SearchPageUser
         driver.element().click(Search_Label_Button);
         return this;
     }
+    @Step("👆click on search tap")
+    public ProductsPageUser clickOnProductsTap()
+    {
+        driver.element().click(Search_Label_Button);
+        return new ProductsPageUser(driver);
+    }
     @Step("👆click on the search box")
     public SearchPageUser clickOnSearchBox()
     {
         driver.element().click(SearchBox);
         return this;
     }
+    @Step("✍️fill the search box user input")
+    public SearchPageUser fillSearchBox(String word)
+    {
+        driver.element().type(SearchBox,word);
+        return this;
+    }
+
     @Step("✍️fill the search box Men")
     public SearchPageUser fillSearchBoxMen()
     {
@@ -130,7 +143,21 @@ public class SearchPageUser
     {
         driver.element().click(First_Search_Image);
     }
+    @Step("👆click on the searched image for details")
+    public HomePage clickOnHomeTap()
+    {
+        driver.element().click(Home_Label_Button);
+        return new HomePage(driver);
+    }
     //Assertion
+    public SearchPageUser checkSearchPageUrl()
+    {
+        Assert.assertEquals(driver.browser().getCurrentURL(driver.get()),url);
+        return this;
+    }
+
+
+
     @Step("✅check search tab in nav is visible")
     public SearchPageUser checkThatSearchTabIsVisible()
     {
@@ -189,6 +216,66 @@ public class SearchPageUser
     public SearchPageUser checkThatProductSearchedImageIsDisplayed()
     {
         driver.assertion().assertElementDisplayed(First_Search_Image,"The element is not displayed as expected");
+        return this;
+    }
+    @Step("✅Check if the footer rights reserved text is displayed")
+    public SearchPageUser checkFooterRightsReservedDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "The footer rights reserved text is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the footer rights reserved")
+    public SearchPageUser checkFooterRightsReservedText(String expectedText) {
+        driver.assertion().assertElementTextContains(Footer_Rights_Reserved, expectedText, "The footer rights reserved text does not match.");
+        return this;
+    }
+
+    @Step("✅Check if the GitHub link is displayed")
+    public SearchPageUser checkFooterGitHubDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_GitHub, "The GitHub link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the LinkedIn link is displayed")
+    public SearchPageUser checkFooterLinkedInDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_LinkedIn, "The LinkedIn link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the WhatsApp link is displayed")
+    public SearchPageUser checkFooterWhatsAppDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_WhatsApp, "The WhatsApp link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the GitHub link")
+    public SearchPageUser checkFooterGitHubLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_GitHub, "href", expectedLink, "The GitHub link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the LinkedIn link")
+    public SearchPageUser checkFooterLinkedInLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_LinkedIn, "href", expectedLink, "The LinkedIn link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the WhatsApp link")
+    public SearchPageUser checkFooterWhatsAppLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
+        return this;
+    }
+    @Step("E2E footer test")
+    public SearchPageUser verifyFooterElements() {
+        new ProductsPageUser(driver)
+                .checkFooterRightsReservedDisplayed()
+                .checkFooterRightsReservedText("© 2025 Shireff Nady All rights reserved")
+                .checkFooterGitHubDisplayed()
+                .checkFooterLinkedInDisplayed()
+                .checkFooterWhatsAppDisplayed()
+                .checkFooterGitHubLink("https://github.com/shireff")
+                .checkFooterLinkedInLink("https://www.linkedin.com/in/shireff-nady-5b7791340/")
+                .checkFooterWhatsAppLink("https://wa.me/+201274068946");
         return this;
     }
 }

@@ -2,6 +2,7 @@ package com.shoppy.com.pages;
 
 import DriverFactory.Driver;
 import com.shoppy.com.utils.ElementActions;
+import com.shoppy.com.utils.Waits;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -51,6 +52,7 @@ public class AdminPanelOrdersDetails
     private final By Order_Status_InShipping = By.xpath("//div[1]/div[6]/form/div/div/div/select/option[3]");
     private final By Order_Status_Delivered = By.xpath("//div[1]/div[6]/form/div/div/div/select/option[4]");
     private final By Order_Status_Rejected = By.xpath("//div[1]/div[6]/form/div/div/div/select/option[5]");
+    private final By Order_Status_Dropdown_Options = By.xpath("//form/div/div/div/selectgit");
     //Buttons end of form
     private final By Update_Orders_Status_Button = By.xpath("//div[1]/div[6]/form/button");
     private final By Close_OrderDetails_Button = By.xpath("//div[2]/button");
@@ -61,41 +63,52 @@ public class AdminPanelOrdersDetails
         this.driver = driver;
     }
     //Actions
-    @Step("👆click on status dropdown and ✅select the pending status")
-    public AdminPanelOrdersDetails clickOnPendingStatus()
-    {
+    private void openOrderStatusDropdown() {
+        Waits.waitForElementClickable(driver.get(), Order_Status_DropDown);
         driver.element().click(Order_Status_DropDown);
+        Waits.waitForElementToBeInvisible(driver.get(), Order_Status_Dropdown_Options); // Wait for options to load
+    }
+
+    @Step("👆click on status dropdown and ✅select the pending status")
+    public AdminPanelOrdersDetails selectPendingStatus() {
+        openOrderStatusDropdown();
+        Waits.waitForElementClickable(driver.get(), Order_Status_Pending);
         driver.element().click(Order_Status_Pending);
         return this;
     }
+
     @Step("👆click on status dropdown and ✅select the in process status")
-    public AdminPanelOrdersDetails clickOnInProcessStatus()
-    {
-        driver.element().click(Order_Status_DropDown);
+    public AdminPanelOrdersDetails selectInProcessStatus() {
+        openOrderStatusDropdown();
+        Waits.waitForElementClickable(driver.get(), Order_Status_InProcess);
         driver.element().click(Order_Status_InProcess);
         return this;
     }
+
     @Step("👆click on status dropdown and ✅select the in shipping status")
-    public AdminPanelOrdersDetails clickOnInShippingStatus()
-    {
-        driver.element().click(Order_Status_DropDown);
+    public AdminPanelOrdersDetails selectInShippingStatus() {
+        openOrderStatusDropdown();
+        Waits.waitForElementClickable(driver.get(), Order_Status_InShipping);
         driver.element().click(Order_Status_InShipping);
         return this;
     }
+
     @Step("👆click on status dropdown and ✅select the delivered status")
-    public AdminPanelOrdersDetails clickOnDeliveredStatus()
-    {
-        driver.element().click(Order_Status_DropDown);
+    public AdminPanelOrdersDetails selectDeliveredStatus() {
+        openOrderStatusDropdown();
+        Waits.waitForElementClickable(driver.get(), Order_Status_Delivered);
         driver.element().click(Order_Status_Delivered);
         return this;
     }
+
     @Step("👆click on status dropdown and ✅select the rejected status")
-    public AdminPanelOrdersDetails clickOnRejectedStatus()
-    {
-        driver.element().click(Order_Status_DropDown);
+    public AdminPanelOrdersDetails selectRejectedStatus() {
+        openOrderStatusDropdown();
+        Waits.waitForElementClickable(driver.get(), Order_Status_Rejected);
         driver.element().click(Order_Status_Rejected);
         return this;
     }
+
     @Step("👆click on update status button")
     public AdminPanelOrdersDetails clickOnUpdateOrderStatusBtn()
     {
@@ -359,6 +372,66 @@ public class AdminPanelOrdersDetails
     public AdminPanelOrdersDetails checkOrderStatusDropDownTitleText()
     {
         driver.assertion().assertElementTextContains(Order_Status_Title,"Order Status","The text of the element does not match the expected value");
+        return this;
+    }
+
+    @Step("✅check the user value is displayed")
+    public AdminPanelOrdersDetails checkUserValueIsDisplayed() {
+        driver.assertion().assertElementDisplayed(User_Field, "The User value is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check the address value is displayed")
+    public AdminPanelOrdersDetails checkAddressValueIsDisplayed() {
+        driver.assertion().assertElementDisplayed(Address_Field, "The Address value is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check the city value is displayed")
+    public AdminPanelOrdersDetails checkCityValueIsDisplayed() {
+        driver.assertion().assertElementDisplayed(City_Field, "The City value is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check the pincode value is displayed")
+    public AdminPanelOrdersDetails checkPincodeValueIsDisplayed() {
+        driver.assertion().assertElementDisplayed(Pincode_Field, "The Pincode value is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check the phone value is displayed")
+    public AdminPanelOrdersDetails checkPhoneValueIsDisplayed() {
+        driver.assertion().assertElementDisplayed(Phone_Field, "The Phone value is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check the notes value is displayed")
+    public AdminPanelOrdersDetails checkNotesValueIsDisplayed() {
+        driver.assertion().assertElementDisplayed(Notes_Field, "The Notes value is not displayed as expected");
+        return this;
+    }
+
+    @Step("✅check the order status after update contains: {expectedStatus}")
+    public AdminPanelOrdersDetails checkOrderStatusAfterUpdate(String expectedStatus) {
+        driver.assertion().assertElementTextContains(OrderStatus, expectedStatus, "The order status does not contain the expected value after update.");
+        return this;
+    }
+    @Step("checking the elements for e2e")
+    public AdminPanelOrdersDetails verifyOrderDetailsElements()
+    {
+        new AdminPanelOrdersDetails(driver).checkOrderIdTitleIsDisplayed().checkOrderIdTitleText()
+                .checkOrderIdIsDisplayed().checkOrderPriceTitleIsDisplayed().checkOrderPriceTitleText()
+                .checkOrderPriceTitleText().checkOrderDateTitleIsDisplayed().checkOrderDateTitleText()
+                .checkOrderDateIsDisplayed().checkOrderStatusTitleIsDisplayed().checkOrderStatusTitleText()
+                .checkOrderStatusIsDisplayed().checkOrderItemsTitleIsDisplayed()
+                .checkProductNameIsDisplayed();
+        return this;
+    }
+    @Step("checking shipping info")
+    public AdminPanelOrdersDetails verifyShippingInfoDetails()
+    {
+        new AdminPanelOrdersDetails(driver).checkUserValueIsDisplayed().checkAddressValueIsDisplayed().
+                checkCityValueIsDisplayed().checkPincodeValueIsDisplayed().checkPhoneValueIsDisplayed();
         return this;
     }
 

@@ -285,4 +285,65 @@ public class AdminPanelOrders
         driver.assertion().assertElementDisplayed(OrderPrice_FirstOrder,"The element is not displayed as expected");
         return this;
     }
+
+
+    @Step("✅Check if the footer rights reserved text is displayed")
+    public AdminPanelOrders checkFooterRightsReservedDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_Rights_Reserved, "The footer rights reserved text is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the text of the footer rights reserved")
+    public AdminPanelOrders checkFooterRightsReservedText(String expectedText) {
+        driver.assertion().assertElementTextContains(Footer_Rights_Reserved, expectedText, "The footer rights reserved text does not match.");
+        return this;
+    }
+
+    @Step("✅Check if the GitHub link is displayed")
+    public AdminPanelOrders checkFooterGitHubDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_GitHub, "The GitHub link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the LinkedIn link is displayed")
+    public AdminPanelOrders checkFooterLinkedInDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_LinkedIn, "The LinkedIn link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check if the WhatsApp link is displayed")
+    public AdminPanelOrders checkFooterWhatsAppDisplayed() {
+        driver.assertion().assertElementDisplayed(Footer_WhatsApp, "The WhatsApp link in the footer is not displayed.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the GitHub link")
+    public AdminPanelOrders checkFooterGitHubLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_GitHub, "href", expectedLink, "The GitHub link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the LinkedIn link")
+    public AdminPanelOrders checkFooterLinkedInLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_LinkedIn, "href", expectedLink, "The LinkedIn link in the footer is incorrect.");
+        return this;
+    }
+
+    @Step("✅Check the href attribute of the WhatsApp link")
+    public AdminPanelOrders checkFooterWhatsAppLink(String expectedLink) {
+        driver.assertion().assertElementAttributeEquals(Footer_WhatsApp, "href", expectedLink, "The WhatsApp link in the footer is incorrect.");
+        return this;
+    }
+    public AdminPanelOrders checkOrdersTableHeaders()
+    {
+        new AdminPanelOrders(driver).checkOrderIDTitleText().checkOrderDateTitleIsDisplayed().checkOrderDateTitleText()
+                .checkOrderStatusTitleIsDisplayed().checkOrderStatusTitleText();
+        return this;
+    }
+    public AdminPanelOrders verifyFirstOrderDetails()
+    {
+        new AdminPanelOrders(driver).checkOrderIDIsDisplayed().checkOrderDateIsDisplayed().checkOrderPriceIsDisplayed()
+                .checkOrderStatusIsDisplayed();
+        return this;
+    }
 }
